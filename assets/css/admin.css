@@ -1,0 +1,102 @@
+/* General */
+@font-face {
+  font-family: "schema-wp-dashicons";
+  src:url("../fonts/dashicons.eot");
+  src:url("../fonts/dashicons.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/dashicons.woff") format("woff"),
+    url("../fonts/dashicons.ttf") format("truetype"),
+    url("../fonts/dashicons.svg#dashicons") format("svg");
+}
+
+#adminmenu #toplevel_page_schema div.wp-menu-image:before {
+	font-family: 'schema-wp-dashicons' !important;
+	content: "\e900";
+}
+
+.schema-wp-ajax-search-wrap {
+	position: relative;
+}
+
+.schema-wp-ajax {
+	position: absolute;
+	right: 8px;
+	top: 1px;
+}
+
+/* Welcome */
+.feature-section ul {
+	list-style: initial;
+    list-style-type: disc;
+    list-style-position: inside;
+}
+.return-to-dashboard i {
+	margin-right: 2px;
+    font-size: 16px;
+    margin-top: 1px;
+}
+.changelog .sub-section {
+	width:50%;
+	display:block;
+	float:left;
+}
+@media (max-width: 800px) {
+    .changelog .sub-section {
+        width: auto;
+    }
+}
+
+/* Creatives */
+#affwp_add_creative table,
+#affwp_edit_creative table {
+    table-layout: fixed;
+}
+
+#preview_image {
+    margin: 15px 0;
+	width: 120px;
+}
+
+#preview_image img {
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
+
+/* Add-ons */
+
+#schema-wp-add-ons h2 {
+  margin: 0 0 15px;
+}
+
+#schema-wp-add-ons .schema-wp-add-on {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 11px 14px 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  width: 320px;
+  padding: 14px;
+  min-height: 290px;
+  position: relative;
+}
+
+#schema-wp-add-ons .schema-wp-add-on h3 {
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
+#schema-wp-add-ons .schema-wp-add-on .button-secondary {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+}
+
+#schema-wp-add-ons .schema-wp-add-on .wp-post-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.schema-wp-add-ons-footer {
+  padding-top: 10px;
+}
