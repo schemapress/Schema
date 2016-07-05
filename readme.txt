@@ -14,6 +14,10 @@ Super fast, light-weight plugin for adding schema.org structured data markup in 
 
 Enhanced Presentation in Search Results By including structured data appropriate to your content, your site can enhance its search results and presentation.
 
+Check out the [Plugin Homepage](http://schema.press/) for more info and documentation.
+
+Developers? Feel free to [fork the project on GitHub](https://github.com/schemapress/Schema) and submit your contributions via pull request.
+
 **What is Schema markup?**
 
 Schema markup is code (semantic vocabulary) that you put on your website to help the search engines return more informative results for users. So, Schema is not just for SEO reasons, it’s also for the benefit of the searcher. 
