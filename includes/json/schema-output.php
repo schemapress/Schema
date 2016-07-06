@@ -143,11 +143,9 @@ function schema_wp_get_schema_json( $type ) {
 	
 	$schema["url"] = $json['permalink'];
 	
-	$schema["author"] = array(
-		"@type"	=> "Person",
-		"name"	=> $json['author']['author_name'],
-		"url"	=> $json['author']['author_posts_link'],
-		);
+	if ( ! empty( $json["author"] ) ) {
+		$schema["author"] = $json['author'];
+	}
 	
 	$schema["headline"]			= $json["headline"];
 	$schema["datePublished"]	= $json["datePublished"];
@@ -209,6 +207,7 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	$excerpt			= $content_post->post_excerpt;
 	$full_content		= apply_filters('the_content', $full_content);
 	$full_content		= str_replace(']]>', ']]&gt;', $full_content);
+	$full_content		= strip_tags($full_content);
 	$short_content		= wp_trim_words( $full_content, 49, '' ); 
 	$description		= ( $excerpt != '' ) ? $excerpt : $short_content; 
 	
@@ -234,12 +233,7 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	$json["datePublished"]	= $content_post->post_date;
 	$json["dateModified"]	= $content_post->post_modified;
 	
-	$json['author'] 			= array(
-			'author_name'		=> $author->display_name,
-			'author_posts_link'	=> $author_posts_link,
-	);
-	// Insted of...
-	//$json['author']			= $author->display_name;
+	$json['author'] 		= schema_wp_get_author_array();
 	
 	$json['category']		= $category;
 	$json['keywords']		= $keywords;

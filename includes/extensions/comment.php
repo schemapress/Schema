@@ -46,7 +46,7 @@ function schema_wp_do_comment( $schema ) {
 	
 	$schema_type 			= $schema["@type"];
 	$support_article_types 	= schema_wp_get_support_article_types();
-	$number 				= apply_filters( 'schema_wp_do_comment_number', '10'); // default comments to include = 10
+	$number 				= apply_filters( 'schema_wp_do_comment_number', '10'); // default = 10
 	
 	if ( in_array( $schema_type, $support_article_types, true) ) {
 		

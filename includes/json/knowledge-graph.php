@@ -123,9 +123,9 @@ function schema_wp_get_social_array() {
 	
 	$social = array();
 	
+	$google 	= esc_attr( stripslashes( schema_wp_get_setting( 'google' ) ) );
 	$facebook 	= esc_attr( stripslashes( schema_wp_get_setting( 'facebook') ) );
 	$twitter 	= esc_attr( stripslashes( schema_wp_get_setting( 'twitter' ) ) );
-	$google 	= esc_attr( stripslashes( schema_wp_get_setting( 'google' ) ) );
 	$instagram 	= esc_attr( stripslashes( schema_wp_get_setting( 'instagram' ) ) );
 	$youtube 	= esc_attr( stripslashes( schema_wp_get_setting( 'youtube' ) ) );
 	$linkedin 	= esc_attr( stripslashes( schema_wp_get_setting( 'linkedin' ) ) );
@@ -134,7 +134,7 @@ function schema_wp_get_social_array() {
 	$soundcloud = esc_attr( stripslashes( schema_wp_get_setting( 'soundcloud' ) ) );
 	$tumblr 	= esc_attr( stripslashes( schema_wp_get_setting( 'tumblr' ) ) );
 	
-	$social_links = array( $facebook, $twitter, $google, $instagram, $youtube, $linkedin, $myspace, $pinterest, $soundcloud, $tumblr);
+	$social_links = array( $google, $facebook, $twitter, $instagram, $youtube, $linkedin, $myspace, $pinterest, $soundcloud, $tumblr);
 	
 	// Remove empty fields
 	foreach( $social_links as $profile ) {
