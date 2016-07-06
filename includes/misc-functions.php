@@ -610,3 +610,17 @@ function schema_save_categories( $post_id, $post, $update ) {
 	
 	update_post_meta($post_id, '_schema_categories', $post_categories);
 }
+
+
+/**
+ * Get supported Article types  
+ *
+ * @since 1.5.3
+ * @return array 
+ */
+function schema_wp_get_support_article_types() {
+
+	$support_article_types = array( 'Article', 'BlogPosting', 'NewsArticle', 'Report', 'ScholarlyArticle', 'TechArticle' );
+	
+	return apply_filters( 'schema_wp_support_article_types', $support_article_types );
+}

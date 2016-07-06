@@ -174,7 +174,6 @@ function schema_wp_get_schema_json( $type ) {
 		$schema["publisher"] = $json["publisher"];
 	}
 	
-	
 	if ( $json["description"] != '' )  {
 		$schema["description"] = $json["description"];
 	}
@@ -190,17 +189,17 @@ function schema_wp_get_schema_json( $type ) {
  * @since 1.4
  * @return an array
  */
-function schema_wp_get_schema_json_prepare( $id = null ) {
+function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	
 	global $post;
 	
 	// Set post ID
-	If ( ! isset($id) ) $id = $post->ID;
+	If ( ! isset($post_id) ) $post_id = $post->ID;
 	
 	$jason = array();
 	
 	// Get post content
-	$content_post		= get_post($id);
+	$content_post		= get_post($post_id);
 	
 	// Debug
 	//echo '<pre>'; print_r($content_post); echo '</pre>';
@@ -214,9 +213,9 @@ function schema_wp_get_schema_json_prepare( $id = null ) {
 	$description		= ( $excerpt != '' ) ? $excerpt : $short_content; 
 	
 	// Stuff for any page, if it exists
-	$permalink			= get_permalink($id);
-	$category			= schema_wp_get_post_category($id);
-	$keywords			= schema_wp_get_post_tags($id) ;
+	$permalink			= get_permalink($post_id);
+	$category			= schema_wp_get_post_category($post_id);
+	$keywords			= schema_wp_get_post_tags($post_id) ;
 	
 	// Get data for the user who wrote that particular item
 	$author				= get_userdata($content_post->post_author); 
@@ -245,7 +244,7 @@ function schema_wp_get_schema_json_prepare( $id = null ) {
 	$json['category']		= $category;
 	$json['keywords']		= $keywords;
 	
-	$json['media'] 			= schema_wp_get_media($id);
+	$json['media'] 			= schema_wp_get_media($post_id);
 	
 	$json['publisher']		= $publisher;
 	
