@@ -216,6 +216,7 @@ final class Schema_WP {
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/page-about.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/page-contact.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/video-object.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/comment.php';
 	}
 
 	/**
