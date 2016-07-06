@@ -101,6 +101,7 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 * Added better support for enabled AMP post types.
 * Added support Schema for comment to markup comments in Article types.
 * Added support Schema for commentCount markup to Article types.
+* Added new filter to override default comments number to include in markups.
 * Added GNU GENERAL PUBLIC LICENSE file.
 * Added README.md
 
