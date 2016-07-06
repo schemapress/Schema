@@ -98,7 +98,9 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 == Changelog ==
 
 = 1.5.3 =
-* Better support for enabled AMP post types.
+* Added better support for enabled AMP post types.
+* Added support Schema for comment to markup comments in Article types.
+* Added support Schema for commentCount markup to Article types.
 * Added GNU GENERAL PUBLIC LICENSE file.
 * Added README.md
 
@@ -220,7 +222,7 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 == Upgrade Notice ==
 
 = 1.5.3 =
-In this release, a better support added to AMP pages, now the plugin will work on post types enabled AMP pages if found, and present Schema type by ref post meta saved in each post.  Please, update the plugin on your website now to get the new enhancements.
+In this release, a better support added to AMP pages, now the plugin will work on post types enabled AMP pages if found, and present Schema type by ref post meta saved in each post. Also added support Schema markup for comments. Please, update the plugin on your website now to get the new enhancements.
 
 = 1.5.2 =
 New features introduced in this update release, fixed a minor warning on 404 pages. Please, update the plugin on your website now to get this fix and new features.
