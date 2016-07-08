@@ -49,32 +49,9 @@ function schema_wp_do_comment( $schema ) {
 	$number 				= apply_filters( 'schema_wp_do_comment_number', '10'); // default = 10
 	
 	if ( in_array( $schema_type, $support_article_types, true) ) {
-		
-		$comments_number = get_comments_number($post->ID);
-		
-		$Comments = array();
-		$PostComments = get_comments( array( 'post_id' => $post->ID, 'number' => $number, 'status' => 'approve', 'type' => 'comment' ) );
-
-		if ( count( $PostComments ) ) {
-			
-			foreach ( $PostComments as $Item ) {
-				
-				$Comments[] = array
-				(
-					'@type' => 'Comment',
-					'dateCreated' => $Item->comment_date,
-					'description' => $Item->comment_content,
-					'author' => array
-					(
-						'@type' => 'Person',
-						'name' => $Item->comment_author,
-						'url' => $Item->comment_author_url,
-					),
-				);
-			}
-			
+		$Comments = schema_wp_get_comments();
+		if ( !empty($Comments) )	
 			$schema["comment"] = $Comments;
-		}
 	}
 	
 	return $schema;

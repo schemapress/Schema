@@ -195,6 +195,7 @@ final class Schema_WP {
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-notices.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/settings/display-settings.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-welcome.php';
+			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-feedback.php';
 			
 		}
 
@@ -204,12 +205,17 @@ final class Schema_WP {
 		
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/knowledge-graph.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/search-results.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/blog.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/author.php';
 		
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/schema-output.php';
 		
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/admin-bar-menu.php';
+		
 		// Integrations
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/amp.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/wp-rich-snippets.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/genesis.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/thesis.php';
 		
 		// Core Extensions

@@ -1,5 +1,8 @@
 <?php
 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 class Schema_WP_Admin_Menu {
 
 
@@ -28,8 +31,8 @@ class Schema_WP_Admin_Menu {
 		
 		add_submenu_page(
 			'schema',
-			__( 'Schema Types', 'schema-wp' ),
-			__( 'Schema Types', 'schema-wp' ),
+			__( 'Types', 'schema-wp' ),
+			__( 'Types', 'schema-wp' ),
 			'manage_schema',
 			'edit.php?post_type=schema'
 		);

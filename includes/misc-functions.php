@@ -349,10 +349,9 @@ function schema_wp_get_media( $id = null) {
 	$media = array();
 	
 	// Featured image
-	//$post_thumb			= wp_get_attachment_url(get_post_thumbnail_id($id));
 	$image_attributes	= wp_get_attachment_image_src( get_post_thumbnail_id($id), 'full' );
 	$image_url			= $image_attributes[0];
-	$image_width		= ( $image_attributes[1] > 696 ) ? $image_attributes[1] : 696; // Images should be at least 696 pixels wide.
+	$image_width		= ( $image_attributes[1] > 696 ) ? $image_attributes[1] : 696; // Images should be at least 696 pixels wide
 	$image_height		= $image_attributes[2];
 	
 	// Thesis 2.x Post Image
@@ -371,19 +370,35 @@ function schema_wp_get_media( $id = null) {
 		}
 	}
 	
-	// check if there is no image, then return an empy array
+	// Try something else...
+	// @since 1.5.4
+	if ( ! isset($image_url) || $image_url == '' ) {
+		if ( $post->post_content ) {
+			$Document = new DOMDocument();
+			@$Document->loadHTML( $post->post_content );
+			$DocumentImages = $Document->getElementsByTagName( 'img' );
+
+			if ( $DocumentImages->length ) {
+				$image_url 		= $DocumentImages->item( 0 )->getAttribute( 'src' );
+				$image_width 	= ( $DocumentImages->item( 0 )->getAttribute( 'width' ) > 696 ) ? $DocumentImages->item( 0 )->getAttribute( 'width' ) : 696;
+				$image_height	= $DocumentImages->item( 0 )->getAttribute( 'height' );
+			}
+		}
+	}
+			
+	// Check if there is no image, then return an empy array
 	// @since 1.4.3 
 	if ( ! isset($image_url) || $image_url == '' ) return $media;
 	// @since 1.4.4
 	if ( ! isset($image_width) || $image_width == '' ) return $media;
 	if ( ! isset($image_height) || $image_height == '' ) return $media;
 	
-	// Prepare media array
-	$media = array(
-			'image_url'		=> $image_url,
-			'image_width'	=> $image_width,
-			'image_height'	=> $image_height,
-			);
+	$media = array (
+		'@type' => 'ImageObject',
+			'url' => $image_url,
+			'width' => $image_width,
+			'height' => $image_height,
+		);
 	
 	// debug
 	//echo '<pre>'; print_r($media); echo '</pre>';
@@ -725,6 +740,43 @@ function schema_wp_get_support_article_types() {
 	
 	return apply_filters( 'schema_wp_support_article_types', $support_article_types );
 }
+
+
+/**
+ * Get comments   
+ *
+ * @since 1.5.4
+ * @return array 
+ */
+function schema_wp_get_comments() {
+		
+	global $post;
+	
+	//$comments_number = get_comments_number($post->ID);
+		
+	$number	= apply_filters( 'schema_wp_do_comments', '10'); // default = 10
+		
+	$Comments = array();
+	$PostComments = get_comments( array( 'post_id' => $post->ID, 'number' => $number, 'status' => 'approve', 'type' => 'comment' ) );
+
+	if ( count( $PostComments ) ) {
+		foreach ( $PostComments as $Item ) {
+			$Comments[] = array (
+					'@type' => 'Comment',
+					'dateCreated' => $Item->comment_date,
+					'description' => $Item->comment_content,
+					'author' => array (
+						'@type' => 'Person',
+						'name' => $Item->comment_author,
+						'url' => $Item->comment_author_url,
+				),
+			);
+		}
+
+		return $Comments;
+	}
+}
+
 
 
 function schema_wp_getAuthor()

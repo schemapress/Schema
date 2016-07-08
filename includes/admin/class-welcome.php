@@ -205,6 +205,10 @@ class Schema_WP_Welcome {
                     
                     <br>
                     
+                    - <?php _e( 'Blog', 'schema-wp' );?> (<?php _e( 'for Blog posts list page', 'schema-wp' );?>)
+                    
+                    <br>
+                    
                     - <?php _e( 'AboutPage', 'schema-wp' );?> (<?php _e( 'for the about page', 'schema-wp' );?>)
                     
                     <br>
@@ -236,6 +240,11 @@ class Schema_WP_Welcome {
                     <h3><?php _e( 'Hello AMP!', 'schema-wp' );?></h3>
 					<p><?php _e( 'If you are using the AMP plugin, Schema got you covered!', 'schema-wp' );?></p>
                     
+                    <h3><?php _e( 'WPRichSnippets plugin', 'schema-wp' );?></h3>
+					<p><?php _e( 'If you are using the WPRichSnippets plugin, Schema will behave!', 'schema-wp' );?></p>
+                    
+                    <h3><?php _e( 'Correct Genesis Schema Markup', 'schema-wp' );?></h3>
+					<p><?php _e( 'Using Genesis Framework? The Schema plugin will automatically indicate that and correct Genesis Schema output.', 'schema-wp' );?></p>
                     <h3><?php _e( 'Uses Thesis Theme 2.x Post Image', 'schema-wp' );?></h3>
 					<p><?php _e( 'Using Thesis? The Schema plugin will automatically indicate and use Thesis Post Image is are presented.', 'schema-wp' );?></p>
                     

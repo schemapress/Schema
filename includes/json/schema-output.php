@@ -152,12 +152,7 @@ function schema_wp_get_schema_json( $type ) {
 	$schema["dateModified"]		= $json["dateModified"];
 	
 	if ( ! empty( $json["media"] ) ) {
-		$schema["image"] = array(
-    		"@type"		=> "ImageObject",
-    		"url"		=> $json["media"]["image_url"],
-    		"width"		=> $json["media"]["image_width"],
-			"height"	=> $json["media"]["image_height"]
-		);
+		$schema["image"] = $json["media"];
 	}
 	
 	if ( $json['category'] != '' ) {
@@ -214,7 +209,7 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	// Stuff for any page, if it exists
 	$permalink			= get_permalink($post_id);
 	$category			= schema_wp_get_post_category($post_id);
-	$keywords			= schema_wp_get_post_tags($post_id) ;
+	$keywords			= schema_wp_get_post_tags($post_id);
 	
 	// Get data for the user who wrote that particular item
 	$author				= get_userdata($content_post->post_author); 

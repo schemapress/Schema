@@ -6,7 +6,7 @@ Requires at least: 3.0
 Tested up to: 4.5.3
 Stable tag: 1.5.3
 
-Get the next generation of Structured Data to enhance your WordPress site presentation in search results.
+Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
 == Description ==
 
@@ -51,6 +51,8 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
   * [ScholarlyArticle](https://schema.org/ScholarlyArticle)
   * [TechArticle](https://schema.org/TechArticle)
 
+* [Blog](https://schema.org/Blog) to markup Blog posts list page.
+
 * [AboutPage](https://schema.org/AboutPage) to markup the About page.
 
 * [ContactPage](https://schema.org/ContactPage) to markup the Contact page.
@@ -65,6 +67,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
  * WPRichSnippets plugin.
 
 * Supported Themes
+ * Genesis Framework 2.x 
  * Thesis Theme 2.x 
  
 == Installation ==
@@ -96,6 +99,18 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 3. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.5.4 =
+* Added admin notification for feedback.
+* Added support for Schema type Blog, markup blog post list.
+* Added new function to retrieve post comments.
+* Added admin bar menu item for easy Structured Data testing access.
+* Added a check if WPRichSnippets plugin is active, remove its admin bar menu.
+* Added integration with Genesis Framework.
+* Enhanced Media function, check for images in content if Featured image not found.
+* Enhanced plugin wording in menu, change Schema Types to read Types, make it simple.
+* Updated the plugin welcome page.
+* Modified ready.txt file.
 
 = 1.5.3 =
 * Added better support for enabled AMP post types.
