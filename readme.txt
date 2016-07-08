@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, about, contact, amp, mobile
 Requires at least: 3.0
 Tested up to: 4.5.3
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -238,6 +238,9 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.5.3 =
+In this release, a good set of enhancements has been added, also introduced new Schema type Blog, which markup your Blog posts page automatically. Also added integration for Genesis Framework. Please, update the plugin on your website now to get the new enhancements.
 
 = 1.5.3 =
 In this release, a better support added to AMP pages, now the plugin will work on post types enabled AMP pages if found, and present Schema type by ref post meta saved in each post. Also added support Schema markup for comments. Please, update the plugin on your website now to get the new enhancements.
