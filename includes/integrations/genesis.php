@@ -103,6 +103,9 @@ add_filter( 'get_search_form', 'wp_schema_genesis_search_form' );
  * @return string HTML markup.
  */
 function wp_schema_genesis_search_form() {
+	
+	if ( ! function_exists('genesis_html5') ) return;
+	
 	$search_text = get_search_query() ? apply_filters( 'the_search_query', get_search_query() ) : apply_filters( 'genesis_search_text', __( 'Search this website', 'genesis' ) . ' &#x02026;' );
 
 	$button_text = apply_filters( 'genesis_search_button_text', esc_attr__( 'Search', 'genesis' ) );
