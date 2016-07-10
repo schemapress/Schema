@@ -32,7 +32,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 	$desc = isset( $field['desc'] ) ? '<span class="description">' . $field['desc'] . '</span>' : null;
 	$tip = isset( $field['tip'] ) ? '<span data-tooltip="'.$field['tip'].'"><span class="dashicons dashicons-info"></span></span>' : null;
 	$place = isset( $field['place'] ) ? $field['place'] : null;
-	$size = isset( $field['size'] ) ? $field['size'] : null;
+	$size = isset( $field['size'] ) ? $field['size'] : 'regular';
 	$post_type = isset( $field['post_type'] ) ? $field['post_type'] : null;
 	$options = isset( $field['options'] ) ? $field['options'] : null;
 	$settings = isset( $field['settings'] ) ? $field['settings'] : null;
@@ -54,7 +54,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 		case 'tel':
 		case 'email':
 		default:
-			echo '<input type="' . $type . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="' . esc_attr( $meta ) . '" class="regular-text" size="30" />
+			echo '<input type="' . $type . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="' . esc_attr( $meta ) . '" class="'.$size.'-text" size="30" />
 					<br />' . $desc;
 		break;
 		case 'url':

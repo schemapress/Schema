@@ -17,9 +17,9 @@ add_action('wp_head', 'schema_wp_output_sitelinks_search_box');
  */
 function schema_wp_output_sitelinks_search_box() {
 	
-	// Run only on front page and make sure Yoast SEO isn't active
-	if ( is_front_page() && !defined('WPSEO_VERSION') ) {
-		
+	// Run only on front page 
+	if ( is_front_page() ) {
+		$output 				= '';
 		$sitelinks_search_box	= schema_wp_get_setting( 'sitelinks_search_box' );
 		$site_name_enable		= schema_wp_get_setting( 'site_name_enable' );
 		$site_name				= schema_wp_get_setting( 'site_name' );
@@ -27,26 +27,32 @@ function schema_wp_output_sitelinks_search_box() {
 		
 		if ( ! isset($sitelinks_search_box) ) return;
 		
-		echo PHP_EOL . '<script type="application/ld+json">' . PHP_EOL;
-		echo '{' . PHP_EOL;
-		echo '  "@context": "http://schema.org",' . PHP_EOL;
-		echo '  "@type": "WebSite",' . PHP_EOL;
+		$output .= PHP_EOL . '<script type="application/ld+json">' . PHP_EOL;
+		$output .= '{' . PHP_EOL;
+		$output .= '  "@context": "http://schema.org",' . PHP_EOL;
+		$output .= '  "@type": "WebSite",' . PHP_EOL;
 		
 		if ( $site_name_enable ) {
-			echo '  "name": "' . $site_name . '",' . PHP_EOL;
-			if ( $site_alternate_name ) echo '  "alternateName": "' . $site_alternate_name . '",' . PHP_EOL;
+			$output .= '  "name": "' . $site_name . '",' . PHP_EOL;
+			if ( $site_alternate_name ) $output .= '  "alternateName": "' . $site_alternate_name . '",' . PHP_EOL;
 		}
 		
-		echo '  "url": "' . get_site_url() . '/",' . PHP_EOL;
-		echo '  "potentialAction": {' . PHP_EOL;
-		echo '    "@type": "SearchAction",' . PHP_EOL;
-		echo '    "target": "' . get_home_url() . '/?s={search_term}",' . PHP_EOL;
-		echo '    "query-input": "required name=search_term"' . PHP_EOL;
-		echo '  }' . PHP_EOL;
-		echo '}' . PHP_EOL;
-		echo '</script>' . PHP_EOL . PHP_EOL;
+		$output .= '  "url": "' . get_site_url() . '/",' . PHP_EOL;
+		$output .= '  "potentialAction": {' . PHP_EOL;
+		$output .= '    "@type": "SearchAction",' . PHP_EOL;
+		$output .= '    "target": "' . get_home_url() . '/?s={search_term_string}",' . PHP_EOL;
+		$output .= '    "query-input": "required name=search_term_string"' . PHP_EOL;
+		$output .= '  }' . PHP_EOL;
+		$output .= '}' . PHP_EOL;
+		$output .= '</script>' . PHP_EOL . PHP_EOL;
+		
+		$output = apply_filters( 'schema_wp_output_sitelinks_search_box', $output );;
+		
+		echo $output;
 	}
 }
+
+
 
 add_action('wp_head', 'schema_wp_output_sitelinks_search_box_disable');
 /**
@@ -57,8 +63,8 @@ add_action('wp_head', 'schema_wp_output_sitelinks_search_box_disable');
  */
 function schema_wp_output_sitelinks_search_box_disable() {
 	
-	// Run only on front page and make sure Yoast SEO isn't active
-	if ( is_front_page() && !defined('WPSEO_VERSION') ) {
+	// Run only on front page 
+	if ( is_front_page() ) {
 		
 		$sitelinks_search_box_disable	= schema_wp_get_setting( 'sitelinks_search_box_disable' );
 		

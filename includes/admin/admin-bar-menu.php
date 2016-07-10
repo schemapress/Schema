@@ -33,7 +33,7 @@ function schema_wp_admin_bar_menu_items( $admin_bar ) {
 	$url =  'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 
 	// If user can't edit posts, then get out
-	if ( ! current_user_can( 'edit_post' ) ) return;
+	if ( ! current_user_can( 'edit_post', $post->ID ) ) return;
 	
 	$admin_bar->add_menu( array(
 		'id'	=> 'schema-test-item',

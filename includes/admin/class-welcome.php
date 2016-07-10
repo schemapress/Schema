@@ -248,6 +248,8 @@ class Schema_WP_Welcome {
                     <h3><?php _e( 'Uses Thesis Theme 2.x Post Image', 'schema-wp' );?></h3>
 					<p><?php _e( 'Using Thesis? The Schema plugin will automatically indicate and use Thesis Post Image is are presented.', 'schema-wp' );?></p>
                     
+                    <h3><?php _e( 'The SEO Framework plugin is active?', 'schema-wp' );?></h3>
+					<p><?php _e( 'No problem! The Schema plugin will automatically indicate that and show respect for SEO Framework.', 'schema-wp' );?></p>
 				</div>
              	
                	<div class="schema-types-section sub-section">
@@ -316,7 +318,12 @@ class Schema_WP_Welcome {
 
 			<div class="changelog">
 				<h3><?php _e( 'Need Help?', 'schema-wp' );?></h3>
-
+				
+                <div class="feature-section">
+					<h4><?php _e( 'Documentation','schema-wp' );?></h4>
+					<p><?php _e( 'Docs are on its way! We will update <a href="http://schema.press/">schema.press</a> site with plugin documentation soon.', 'schema-wp' );?></p>
+				</div>
+                
 				<div class="feature-section">
 					<h4><?php _e( 'Support','schema-wp' );?></h4>
 					<p><?php _e( 'We do our best to provide support we can. If you encounter a problem, report it to <a href="https://wordpress.org/support/plugin/schema">support</a>.', 'schema-wp' );?></p>

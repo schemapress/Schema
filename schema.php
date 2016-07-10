@@ -5,7 +5,7 @@
  * Description: The next generation of Structured Data.
  * Author: Hesham
  * Author URI: http://zebida.com
- * Version: 1.5.4
+ * Version: 1.5.6
  * Text Domain: schema-wp
  * Domain Path: languages
  *
@@ -24,7 +24,7 @@
  * @package Schema
  * @category Core
  * @author Hesham Zebida
- * @version 1.5.4
+ * @version 1.5.6
  */
 
 // Exit if accessed directly
@@ -51,7 +51,7 @@ final class Schema_WP {
 	 *
 	 * @since 1.0
 	 */
-	private $version = '1.5.4';
+	private $version = '1.5.6';
 
 	/**
 	 * The settings instance variable
@@ -190,6 +190,7 @@ final class Schema_WP {
 		
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/metaboxes/meta_box.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/schema-post-meta.php';
+			
 		
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-menu.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-notices.php';
@@ -203,6 +204,8 @@ final class Schema_WP {
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/misc-functions.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/scripts.php';
 		
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/exclude-post-meta.php';
+		
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/knowledge-graph.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/search-results.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/blog.php';
@@ -215,6 +218,8 @@ final class Schema_WP {
 		// Integrations
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/amp.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/wp-rich-snippets.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/yoast-seo.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/seo-framework.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/genesis.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/thesis.php';
 		

@@ -18,7 +18,7 @@ add_action('wp_head', 'schema_wp_output_knowledge_graph');
 function schema_wp_output_knowledge_graph() {
 	
 	// Run only on front page and make sure Yoast SEO isn't active
-	if (is_front_page() && !defined('WPSEO_VERSION') ) {
+	if ( is_front_page() ) {
 		
 		$json = schema_wp_get_knowledge_graph_json( 'Organization' );
 		
@@ -31,6 +31,8 @@ function schema_wp_output_knowledge_graph() {
 			$knowledge_graph .= '<script type="application/ld+json">' . json_encode($json) . '</script>';
 			$knowledge_graph .= "\n\n";
 		}
+		
+		$knowledge_graph = apply_filters( 'schema_wp_output_knowledge_graph', $knowledge_graph );
 		
 		echo $knowledge_graph;
 	}
@@ -78,7 +80,7 @@ function schema_wp_get_knowledge_graph_json( $type ) {
 		$schema["sameAs"] = $social;
 	}
 	
-	return $schema;
+	return apply_filters( 'schema_wp_knowledge_graph_json', $schema );
 }
 
 

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, about, contact, amp, mobile
 Requires at least: 3.0
 Tested up to: 4.5.3
-Stable tag: 1.5.4
+Stable tag: 1.5.6
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -16,7 +16,9 @@ Enhanced Presentation in Search Results By including structured data appropriate
 
 Check out the [Plugin Homepage](http://schema.press/) for more info and documentation.
 
-Developers? Feel free to [fork the project on GitHub](https://github.com/schemapress/Schema) and submit your contributions via pull request.
+** Developers?**
+
+Feel free to [fork the project on GitHub](https://github.com/schemapress/Schema) and submit your contributions via pull request.
 
 **What is Schema markup?**
 
@@ -62,13 +64,14 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 * [VideoObject](https://schema.org/VideoObject) enabled VideoObject markup automatically on all videos embedded with oEmbed.
 
 * Supported Plugins: 
- * Yoast SEO plugin.
- * AMP plugin.
- * WPRichSnippets plugin.
+ * Yoast SEO
+ * AMP plugin
+ * WPRichSnippets
+ * The SEO Framework
 
 * Supported Themes
- * Genesis Framework 2.x 
- * Thesis Theme 2.x 
+ * Genesis 2.x 
+ * Thesis 2.x 
  
 == Installation ==
 
@@ -99,6 +102,20 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 3. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.5.6 =
+* Fixed a notice on front end caused when admin bar menu is called.
+* Added new post meta box for Schema exclusions, turn off Schema on specific posts.
+* Added new integration for SEO Framework plugin.
+* Modified search_term to search_term_string search variable in SiteLinks Search Box.
+* Enhanced WPRichSnippets integration, put code on its own file.
+* Enhanced Yoast SEO integration, put code on its own file.
+* Enhanced functions naming to prevent any possible conflict with Schema Removal.
+* Updated the plugin welcome page.
+* Modified ready.txt file.
+
+= 1.5.5 =
+* Fixed a fatal error when Genesis is not the active Theme.
 
 = 1.5.4 =
 * Added admin notification for feedback.
@@ -239,7 +256,13 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 
 == Upgrade Notice ==
 
-= 1.5.3 =
+= 1.5.6 =
+In this release, new integration for SEO Framework plugin and other cool features has been introduced. Please, update the plugin on your website now to get the new enhancements.
+
+= 1.5.5 =
+Fixed a fatal error. Please, update the plugin on your website now to get the new enhancements.
+
+= 1.5.4 =
 In this release, a good set of enhancements has been added, also introduced new Schema type Blog, which markup your Blog posts page automatically. Also added integration for Genesis Framework. Please, update the plugin on your website now to get the new enhancements.
 
 = 1.5.3 =

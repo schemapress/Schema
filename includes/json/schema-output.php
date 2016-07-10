@@ -24,9 +24,9 @@ function schema_wp_output() {
 	
 	// Check for WPRichSnippets plugin
 	// @since 1.4.5
-	if (function_exists('wprs_is_enabled')) {
-		if ( wprs_is_enabled( $post->ID ) ) return;
-	}
+	//if (function_exists('wprs_is_enabled')) {
+	//	if ( wprs_is_enabled( $post->ID ) ) return;
+	//}
 	
 	$output = '';
 	$json = array();
