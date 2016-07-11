@@ -16,7 +16,7 @@ Enhanced Presentation in Search Results By including structured data appropriate
 
 Check out the [Plugin Homepage](http://schema.press/) for more info and documentation.
 
-** Developers?**
+**Developers?**
 
 Feel free to [fork the project on GitHub](https://github.com/schemapress/Schema) and submit your contributions via pull request.
 
