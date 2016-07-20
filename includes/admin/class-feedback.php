@@ -243,16 +243,7 @@ class Schema_DotOrg_Plugin_Feedback {
 			</div>
 		</div>
         <?php
-                        echo '
-                        <div class="updated schema-notice">
-							<h3>'. sprintf( __( 'You have been using the %s plugin for %s now, do you like it? If so, please leave us a review with your feedback!', 'spam-destroyer' ), $this->name, $time ) .'</h3>
-                                <p>' . sprintf( __( 'You have been using the %s plugin for %s now, do you like it? If so, please leave us a review with your feedback!', 'spam-destroyer' ), $this->name, $time ) . '
-                                        <br /><br />
-                                        <a onclick="location.href=\'' . esc_url( $no_bug_url ) . '\';" class="button button-primary" href="' . esc_url( 'https://wordpress.org/support/view/plugin-reviews/' . $this->slug . '#postform' ) . '" target="_blank">' . __( 'Leave A Review', 'spam-destroyer' ) . '</a>
-                                           
-                                        <a href="' . esc_url( $no_bug_url ) . '">' . __( 'No thanks', 'spam-destroyer' ) . '</a>
-                                </p>
-                        </div>';
+   
 
                 }
 

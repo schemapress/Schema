@@ -131,7 +131,7 @@ jQuery(function($) {
 		var row = $(this).closest('.meta_box_repeatable').find('tbody tr:last-child');
 		var clone = row.clone();
 		clone.find('select.chosen').removeAttr('style', '').removeAttr('id', '').removeClass('chzn-done').data('chosen', null).next().remove();
-		clone.find('input.regular-text, textarea, select').val('');
+		clone.find('input.regular-text, input.small-text, textarea, select').val('');
 		clone.find('input[type=checkbox], input[type=radio]').attr('checked', false);
 		row.after(clone);
 		// increment name and id

@@ -207,6 +207,10 @@ class Schema_WP_Welcome {
                     
                     - <?php _e( 'Blog', 'schema-wp' );?> (<?php _e( 'for Blog posts list page', 'schema-wp' );?>)
                     
+                     <br>
+                    
+                    - <?php _e( 'CollectionPage', 'schema-wp' );?> (<?php _e( 'for Categories', 'schema-wp' );?>)
+                    
                     <br>
                     
                     - <?php _e( 'AboutPage', 'schema-wp' );?> (<?php _e( 'for the about page', 'schema-wp' );?>)

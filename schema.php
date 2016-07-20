@@ -5,7 +5,7 @@
  * Description: The next generation of Structured Data.
  * Author: Hesham
  * Author URI: http://zebida.com
- * Version: 1.5.6
+ * Version: 1.5.7
  * Text Domain: schema-wp
  * Domain Path: languages
  *
@@ -24,7 +24,7 @@
  * @package Schema
  * @category Core
  * @author Hesham Zebida
- * @version 1.5.6
+ * @version 1.5.7
  */
 
 // Exit if accessed directly
@@ -51,7 +51,7 @@ final class Schema_WP {
 	 *
 	 * @since 1.0
 	 */
-	private $version = '1.5.6';
+	private $version = '1.5.7';
 
 	/**
 	 * The settings instance variable
@@ -189,12 +189,13 @@ final class Schema_WP {
 		if( is_admin() ) {
 		
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/metaboxes/meta_box.php';
-			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/schema-post-meta.php';
+			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/post-meta-schema.php';
+			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/post-meta-exclude.php';
 			
-		
+			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/settings/display-settings.php';
+			
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-menu.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-notices.php';
-			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/settings/display-settings.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-welcome.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-feedback.php';
 			
@@ -204,11 +205,10 @@ final class Schema_WP {
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/misc-functions.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/scripts.php';
 		
-		require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/exclude-post-meta.php';
-		
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/knowledge-graph.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/search-results.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/blog.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/category.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/author.php';
 		
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/schema-output.php';
@@ -224,9 +224,11 @@ final class Schema_WP {
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/thesis.php';
 		
 		// Core Extensions
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/post-meta-generator.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/page-about.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/page-contact.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/video-object.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/comment.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/comment.php';
 	}
 

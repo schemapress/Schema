@@ -95,14 +95,14 @@
 	display:block;
 	width:20px;
 	height:17px;
-	background:url(../images/sprite.png) no-repeat -68px -100px;
+	/*background:url(../images/sprite.png) no-repeat -68px -100px;*/
 }
 
 .meta_box_repeatable .sort {
 	display:block;
 	width:20px;
 	height:15px;
-	background:url(../images/sprite.png) 0 -100px;
+	/*background:url(../images/sprite.png) 0 -100px;*/
 	margin-top:6px;
 	cursor:move;
 }
@@ -112,8 +112,9 @@
 	display:block;
 	width:18px;
 	height:16px;
-	background:url(../images/sprite.png);
+	/*background:url(../images/sprite.png);*/
 	margin-top:5px;
+	text-decoration:none;
 }
 
 .meta_box_repeatable_add {
@@ -211,6 +212,65 @@
 	}
 
 
+/**
+ * Repeatable Row Styles
+ */
+.form-table.meta_box .meta_box_repeatable_row {
+	width:100%;
+}
+.form-table.meta_box .meta_box_repeatable_row td * {
+	display:inline;	
+}
+.form-table.meta_box .meta_box_repeatable_row td {
+	background-color: #fbfbfb;
+}
+.form-table.meta_box .meta_box_repeatable_row li {
+	display:block;
+	float: left;
+	padding: 5px;
+}
+.form-table.meta_box .meta_box_repeatable_row select/*,
+.form-table.meta_box .meta_box_repeatable_row textarea */ {
+	max-width: 120px;
+	width:120px;
+}
+.form-table.meta_box .meta_box_repeatable_row .small-text{
+	max-width: 280px;
+    width: 280px;
+    height: 28px;
+}
+.form-table.meta_box .meta_box_repeatable_row input[type=radio],
+.form-table.meta_box .meta_box_repeatable_row input[type=checkbox] {
+	float: left;
+    display: block;
+    margin-top: 7px;
+}
+.form-table.meta_box .meta_box_repeatable_row td label {
+	line-height:inherit;
+	float:none;
+}
+.form-table.meta_box .meta_box_repeatable_row .description {
+	font-size:11px;
+	font-weight:300;
+}
+.form-table.meta_box .meta_box_repeatable_row  .meta_box_repeatable_remove,
+.form-table.meta_box .meta_box_repeatable_row .ui-sortable-handle {
+	color:#ccc;
+	border: none;
+}
+.form-table.meta_box .meta_box_repeatable_row  .meta_box_repeatable_remove:hover {
+	color:#cc0000;
+}
+.form-table.meta_box .meta_box_repeatable_row .ui-sortable-handle:hover {
+	color:#333;
+}
+.form-table.meta_box .meta_box_repeatable_row .dashicons {
+	font-size:14px;
+	width: 14px;
+    height: 14px;
+}
+
+
 
 /**
  * Tooltip Styles
@@ -223,15 +283,18 @@
   cursor: pointer;
 }
 
-.form-table  .dashicons-info { 
+.form-table.meta_box .dashicons-info { 
 	width: 16px;
     height: 16px;
     font-size: 16px;
     line-height: 20px;
-	color: #9EA3A8;
 	display: inline-block;
 }
-	
+
+.form-table .dashicons-info:before {
+	color:#ccc;
+}
+
 /* Base styles for the entire tooltip */
 [data-tooltip]:before,
 [data-tooltip]:after,
@@ -450,6 +513,28 @@
 	display:none;
 }
 
-#preview-action {
-	display: none;
+/* Input & Textarea placeholder */
+#schema_post_meta_box input::-webkit-input-placeholder {
+	color: #ccc;
+}
+#schema_post_meta_box input:-moz-placeholder { /* older Firefox*/
+	color: #ccc;
+}
+#schema_post_meta_box input::-moz-placeholder { /* Firefox 19+ */ 
+	color: #ccc;
+} 
+#schema_post_meta_box input:-ms-input-placeholder { 
+	color: #ccc;
+}
+#schema_post_meta_box textarea::-webkit-input-placeholder {
+	color: #ccc;
+}
+#schema_post_meta_box textarea:-moz-placeholder { /* older Firefox*/
+	color: #ccc;
+}
+#schema_post_meta_box textarea::-moz-placeholder { /* Firefox 19+ */ 
+	color: #ccc;
+} 
+#schema_post_meta_box textarea:-ms-input-placeholder { 
+	color: #ccc;
 }

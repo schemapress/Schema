@@ -31,12 +31,14 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 	$label = isset( $field['label'] ) ? $field['label'] : null;
 	$desc = isset( $field['desc'] ) ? '<span class="description">' . $field['desc'] . '</span>' : null;
 	$tip = isset( $field['tip'] ) ? '<span data-tooltip="'.$field['tip'].'"><span class="dashicons dashicons-info"></span></span>' : null;
+	$placeholder = isset( $field['placeholder'] ) ? $field['placeholder'] : null;
 	$place = isset( $field['place'] ) ? $field['place'] : null;
 	$size = isset( $field['size'] ) ? $field['size'] : 'regular';
 	$post_type = isset( $field['post_type'] ) ? $field['post_type'] : null;
 	$options = isset( $field['options'] ) ? $field['options'] : null;
 	$settings = isset( $field['settings'] ) ? $field['settings'] : null;
 	$repeatable_fields = isset( $field['repeatable_fields'] ) ? $field['repeatable_fields'] : null;
+	$selectone = isset( $field['selectone'] ) ? $field['selectone'] : __('Select One', 'schema-wp');
 	
 	// the id and name for each field
 	$id = $name = isset( $field['id'] ) ? $field['id'] : null;
@@ -54,7 +56,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 		case 'tel':
 		case 'email':
 		default:
-			echo '<input type="' . $type . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="' . esc_attr( $meta ) . '" class="'.$size.'-text" size="30" />
+			echo '<input type="' . $type . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="' . esc_attr( $meta ) . '" class="'.$size.'-text" size="30" placeholder="' . $placeholder . '" />
 					<br />' . $desc;
 		break;
 		case 'url':
@@ -67,7 +69,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 		break;
 		// textarea
 		case 'textarea':
-			echo '<textarea name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" cols="60" rows="4">' . esc_textarea( $meta ) . '</textarea>
+			echo '<textarea name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" placeholder="' . $placeholder . '" cols="60" rows="4">' . esc_textarea( $meta ) . '</textarea>
 					<br />' . $desc;
 		break;
 		// editor
@@ -83,7 +85,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 		case 'select':
 		case 'chosen':
 			echo '<select name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '"' , $type == 'chosen' ? ' class="chosen"' : '' , isset( $multiple ) && $multiple == true ? ' multiple="multiple"' : '' , '>
-					<option value="">Select One</option>'; // Select One
+					<option value="">' . $selectone . '</option>'; // Select One
 			foreach ( $options as $option )
 				echo '<option' . selected( $meta, $option['value'], false ) . ' value="' . $option['value'] . '">' . $option['label'] . '</option>';
 			echo '</select><br />' . $desc;
@@ -94,7 +96,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 			foreach ( $options as $option )
 				echo '<li><input type="radio" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '-' . $option['value'] . '" value="' . $option['value'] . '" ' . checked( $meta, $option['value'], false ) . ' />
 						<label for="' . esc_attr( $id ) . '-' . $option['value'] . '">' . $option['label'] . '</label></li>';
-			echo '</ul>' . $desc;
+			echo '</ul><p>' . $desc . '</p>';
 		break;
 		// checkbox_group
 		case 'checkbox_group':
@@ -102,7 +104,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 			foreach ( $options as $option )
 				echo '<li><input type="checkbox" value="' . $option['value'] . '" name="' . esc_attr( $name ) . '[]" id="' . esc_attr( $id ) . '-' . $option['value'] . '"' , is_array( $meta ) && in_array( $option['value'], $meta ) ? ' checked="checked"' : '' , ' /> 
 						<label for="' . esc_attr( $id ) . '-' . $option['value'] . '">' . $option['label'] . '</label></li>';
-			echo '</ul>' . $desc;
+			echo '</ul><p>' . $desc . '</p>';
 		break;
 		// color
 		case 'color':
@@ -267,9 +269,9 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 			echo '<table id="' . esc_attr( $id ) . '-repeatable" class="meta_box_repeatable" cellspacing="0">
 				<thead>
 					<tr>
-						<th><span class="sort_label"></span></th>
+						<th><span class="sort_label"><span class="dashicons dashicons-menu"></span></span></th>
 						<th>Fields</th>
-						<th><a class="meta_box_repeatable_add" href="#"></a></th>
+						<th><a class="meta_box_repeatable_add" href="#"><span class="dashicons dashicons-plus-alt"></span></a></th>
 					</tr>
 				</thead>
 				<tbody>';
@@ -282,7 +284,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 			$meta = array_values( $meta );
 			foreach( $meta as $row ) {
 				echo '<tr>
-						<td><span class="sort hndle"></span></td><td>';
+						<td><span class="sort hndle"><span class="dashicons dashicons-menu"></span></span></td><td>';
 				foreach ( $repeatable_fields as $repeatable_field ) {
 					if ( ! array_key_exists( $repeatable_field['id'], $meta[$i] ) )
 						$meta[$i][$repeatable_field['id']] = null;
@@ -290,20 +292,67 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 					echo custom_meta_box_field( $repeatable_field, $meta[$i][$repeatable_field['id']], array( $id, $i ) );
 					echo '</p>';
 				} // end each field
-				echo '</td><td><a class="meta_box_repeatable_remove" href="#"></a></td></tr>';
+				echo '</td><td><a class="meta_box_repeatable_remove repeatable-remove" href="#"><span class="dashicons dashicons-dismiss"></span></a></td></tr>';
 				$i++;
 			} // end each row
 			echo '</tbody>';
 			echo '
 				<tfoot>
 					<tr>
-						<th><span class="sort_label"></span></th>
-						<th>Fields</th>
-						<th><a class="meta_box_repeatable_add" href="#"></a></th>
+						<th><span class="sort_label"><span class="dashicons dashicons-menu"></span></span></th>
+						<th>' . __('Fields', 'schema-wp') . '</th>
+						<th><a class="meta_box_repeatable_add" href="#"><span class="dashicons dashicons-plus-alt"></span></a></th>
 					</tr>
 				</tfoot>';
 			echo '</table>
 				' . $desc;
+		break;
+		
+		// repeatable
+		case 'repeatable_row':
+			echo '<table id="' . esc_attr( $id ) . '-repeatable" class="meta_box_repeatable meta_box_repeatable_row" cellspacing="0">
+				<thead>
+					<tr>
+						<th><span class="sort_label"><span class="dashicons dashicons-menu"></span></span></th>
+						<th>Fields</th>
+						<th><a class="meta_box_repeatable_add" href="#"><span class="dashicons dashicons-plus-alt"></span></a></th>
+					</tr>
+				</thead>
+				<tbody>';
+			$i = 0;
+			// create an empty array
+			if ( $meta == '' || $meta == array() ) {
+				$keys = wp_list_pluck( $repeatable_fields, 'id' );
+				$meta = array ( array_fill_keys( $keys, null ) );
+			}
+			$meta = array_values( $meta );
+			//echo '<pre>'; print_r($meta); echo '</pre>';// exit;
+			foreach( $meta as $row ) {
+				echo '<tr>
+						<td><span class="sort hndle"><span class="dashicons dashicons-menu"></span></span></td><td><ul>';
+				foreach ( $repeatable_fields as $repeatable_field ) {
+					if ( ! array_key_exists( $repeatable_field['id'], $meta[$i] ) )
+						$meta[$i][$repeatable_field['id']] = null;
+					//echo '<li><label>' . $repeatable_field['label']  . '</label>';
+					echo '<li><label></label>';
+					//echo '<li>';
+					echo custom_meta_box_field( $repeatable_field, $meta[$i][$repeatable_field['id']], array( $id, $i ) );
+					echo '</li>';
+				} // end each field
+				echo '</td><td><a class="meta_box_repeatable_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a></td></tr>';
+				$i++;
+			} // end each row
+			echo '</tbody>';
+			echo '
+				<tfoot>
+					<tr>
+						<th><span class="sort_label"><span class="dashicons dashicons-menu"></span></span></th>
+						<th>Fields</th>
+						<th><a class="meta_box_repeatable_add" href="#"><span class="dashicons dashicons-plus-alt"></span></a></th>
+					</tr>
+				</tfoot>';
+			echo '</table>
+				  <p><br />' . $desc . '</p>';
 		break;
 	} //end switch
 		
@@ -321,6 +370,8 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 function meta_box_find_field_type( $needle, $haystack ) {
 	foreach ( $haystack as $h )
 		if ( isset( $h['type'] ) && $h['type'] == 'repeatable' )
+			return meta_box_find_field_type( $needle, $h['repeatable_fields'] );
+		elseif ( isset( $h['type'] ) && $h['type'] == 'repeatable_row' )
 			return meta_box_find_field_type( $needle, $h['repeatable_fields'] );
 		elseif ( ( isset( $h['type'] ) && $h['type'] == $needle ) || ( isset( $h['repeatable_type'] ) && $h['repeatable_type'] == $needle ) )
 			return true;
@@ -342,6 +393,27 @@ function meta_box_find_field_type( $needle, $haystack ) {
  * @return	bool				whether or not the type is in the provided array
  */
 function meta_box_find_repeatable( $needle = 'repeatable', $haystack ) {
+	foreach ( $haystack as $h )
+		if ( isset( $h['type'] ) && $h['type'] == $needle )
+			return true;
+	return false;
+}
+
+/**
+ * Find repeatable_row
+ *
+ * This function does almost the same exact thing that the above function 
+ * does, except we're exclusively looking for the repeatable field. The 
+ * reason is that we need a way to look for other fields nested within a 
+ * repeatable, but also need a way to stop at repeatable being true. 
+ * Hopefully I'll find a better way to do this later.
+ *
+ * @param	string	$needle 	field type to look for
+ * @param	array	$haystack	an array to search the type in
+ *
+ * @return	bool				whether or not the type is in the provided array
+ */
+function meta_box_find_repeatable_row( $needle = 'repeatable_row', $haystack ) {
 	foreach ( $haystack as $h )
 		if ( isset( $h['type'] ) && $h['type'] == $needle )
 			return true;
@@ -501,6 +573,7 @@ class Schema_Custom_Add_Meta_Box {
 				meta_box_find_field_type( 'chosen', $this->fields ),
 				meta_box_find_field_type( 'post_chosen', $this->fields ),
 				meta_box_find_repeatable( 'repeatable', $this->fields ),
+				meta_box_find_repeatable( 'repeatable_row', $this->fields ),
 				meta_box_find_field_type( 'image', $this->fields ),
 				meta_box_find_field_type( 'file', $this->fields )
 			) ) )
@@ -509,7 +582,7 @@ class Schema_Custom_Add_Meta_Box {
 			if ( in_array( true, array( 
 				meta_box_find_field_type( 'select', $this->fields )
 			) ) )
-				wp_enqueue_script( 'meta_box', SCHEMA_CUSTOM_METABOXES_DIR . '/js/schema.js', $deps );
+				wp_enqueue_script( 'schema_meta_box', SCHEMA_CUSTOM_METABOXES_DIR . '/js/schema.js', $deps );
 			
 			// Load media uploader required scripts
 			if ( in_array( true, array( 
@@ -653,7 +726,7 @@ class Schema_Custom_Add_Meta_Box {
 					wp_set_object_terms( $post_id, $term, $field['id'] );
 				}
 			}
-			else {
+			/*else {
 				// save the rest
 				$new = false;
 				$old = get_post_meta( $post_id, $field['id'], true );
@@ -667,6 +740,30 @@ class Schema_Custom_Add_Meta_Box {
 						$new = meta_box_array_map_r( 'meta_box_sanitize', $new, $sanitizer );
 					else
 						$new = meta_box_sanitize( $new, $sanitizer );
+					update_post_meta( $post_id, $field['id'], $new );
+				}
+			}*/
+			
+			else {
+				// save the rest
+				$new = false;
+				$old = get_post_meta( $post_id, $field['id'], true );
+				if ( isset( $_POST[$field['id']] ) )
+					$new = $_POST[$field['id']];
+				if($field['type'] == 'repeatable' || $field['type'] == 'repeatable_row' )
+					$new = array_values($new);
+				if ( isset( $new ) && '' == $new && $old ) {
+					delete_post_meta( $post_id, $field['id'], $old );
+				} elseif ( isset( $new ) && $new != $old ) {
+					$sanitizer = isset( $field['sanitizer'] ) ? $field['sanitizer'] : 'sanitize_text_field';
+					if ( is_array( $new ) )
+						$new = meta_box_array_map_r( 'meta_box_sanitize', $new, $sanitizer );
+					else
+						$new = meta_box_sanitize( $new, $sanitizer );
+					if( $field['type'] == 'date') {
+						$new = strtotime($new);
+					}
+
 					update_post_meta( $post_id, $field['id'], $new );
 				}
 			}

@@ -60,7 +60,7 @@ function schema_wp_output() {
 			if ( empty($categories_enabled) ) {
 				
 				// Apply on all posts
-				$type = $schema_enabled['type_sub'] ? $schema_enabled['type_sub'] : $schema_enabled['type'];
+				$type = ($schema_enabled['type_sub'] && $schema_enabled['type']=='Article') ? $schema_enabled['type_sub'] : $schema_enabled['type'];
 				$json = schema_wp_get_schema_json( $type );
 			
 			} else {
@@ -76,7 +76,7 @@ function schema_wp_output() {
 							
 							//print_r($value); exit;
 					
-							$type = $schema_enabled['type_sub'] ? $schema_enabled['type_sub'] : $schema_enabled['type'];
+							$type = ($schema_enabled['type_sub'] && $schema_enabled['type']=='Article') ? $schema_enabled['type_sub'] : $schema_enabled['type'];
 							$json = schema_wp_get_schema_json( $type );
 					
 					//	} // end if
@@ -204,7 +204,7 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	$full_content		= str_replace(']]>', ']]&gt;', $full_content);
 	$full_content		= strip_tags($full_content);
 	$short_content		= wp_trim_words( $full_content, 49, '' ); 
-	$description		= ( $excerpt != '' ) ? $excerpt : $short_content; 
+	$description		= apply_filters ( 'schema_wp_filter_description', ( $excerpt != '' ) ? $excerpt : $short_content ); 
 	
 	// Stuff for any page, if it exists
 	$permalink			= get_permalink($post_id);
@@ -212,6 +212,7 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	$keywords			= schema_wp_get_post_tags($post_id);
 	
 	// Get data for the user who wrote that particular item
+	// not used!
 	$author				= get_userdata($content_post->post_author); 
 	//$author_link		= get_the_author_link();
 	$author_posts_link	= get_author_posts_url( $author->ID ); 
@@ -222,11 +223,16 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	//
 	// Putting all together
 	//
-	$json["headline"]		= $content_post->post_title;
+	$json["headline"]		= apply_filters ( 'schema_wp_filter_headline', $content_post->post_title );
 	$json['description']	= $description;
 	$json['permalink']		= $permalink;
-	$json["datePublished"]	= $content_post->post_date;
-	$json["dateModified"]	= $content_post->post_modified;
+	
+	//$json["datePublished"]	= $content_post->post_date;
+	//$json["dateModified"]	= $content_post->post_modified;
+	$json["datePublished"]	= get_the_date( 'c', $post_id);
+	$json["dateModified"]	= get_post_modified_time( 'c', false, $post_id, false );
+	
+	
 	
 	$json['author'] 		= schema_wp_get_author_array();
 	

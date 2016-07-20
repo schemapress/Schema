@@ -177,8 +177,7 @@ function schema_wp_get_publisher_array() {
 		)
 	);
 	
-	// Return an empty array
-	return $publisher;
+	return apply_filters( 'schema_wp_publisher', $publisher );
 }
 
 
@@ -207,7 +206,7 @@ function schema_wp_get_author_array( $post_id = null ) {
 	
 	$author = array (
 		'@type'	=> 'Person',
-		'name'	=> $post_author->display_name,
+		'name'	=> apply_filters ( 'schema_wp_filter_author_name', $post_author->display_name ),
 		'url'	=> esc_url( get_author_posts_url( $post_author->ID ) )
 	);
 	
@@ -258,8 +257,7 @@ function schema_wp_get_author_array( $post_id = null ) {
 		$author["sameAs"] = $social;
 	}
 	
-	
-	return $author;
+	return apply_filters( 'schema_wp_author', $author );
 }
 
 
@@ -403,7 +401,7 @@ function schema_wp_get_media( $id = null) {
 	// debug
 	//echo '<pre>'; print_r($media); echo '</pre>';
 	
-	return $media;
+	return apply_filters( 'schema_wp_filter_media', $media );
 }
 
 
@@ -673,7 +671,7 @@ function schema_wp_get_categories( $post_id ) {
 	// Flat
 	$categories = schema_wp_array_flatten($cats);
 	
-	return $categories;
+	return apply_filters( 'schema_wp_filter_categories', $categories );
 }
 
 
@@ -773,40 +771,102 @@ function schema_wp_get_comments() {
 			);
 		}
 
-		return $Comments;
+		return apply_filters( 'schema_wp_filter_comments', $Comments );
 	}
 }
 
 
-
-function schema_wp_getAuthor()
-	{	
+/**
+* Create post post box
+*
+* Uses class Schema_Custom_Add_Meta_Box
+*
+* @since 1.5.7
+* @return true 
+*/
+function schema_wp_getAuthor() {	
 	
-	
-		$Author = array
-		(
-			'@type' => 'Person',
-			'name' => get_the_author(),
-			'url' => esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-		);
+	$Author = array
+	(
+		'@type' => 'Person',
+		'name' => get_the_author(),
+		'url' => esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+	);
 
-		if ( get_the_author_meta( 'description' ) )
-		{
-			$Author['description'] = get_the_author_meta( 'description' );
-		}
-
-		$author_img_url = get_avatar_url( get_the_author_meta( 'user_email' ), 96 );
-
-		if ( $AuthorImage )
-		{
-			$Author['image'] = array
-			(
-				'@type' => 'ImageObject',
-				'url' => $author_img_url,
-				'height' => 96,
-				'width' => 96
-			);
-		}
-
-		return $Author;
+	if ( get_the_author_meta( 'description' ) )	{
+		$Author['description'] = get_the_author_meta( 'description' );
 	}
+	
+	$author_img_url = get_avatar_url( get_the_author_meta( 'user_email' ), 96 );
+	
+	if ( $AuthorImage ) {
+		$Author['image'] = array
+		(
+			'@type' => 'ImageObject',
+			'url' => $author_img_url,
+			'height' => 96,
+			'width' => 96
+		);
+	}
+
+	return $Author;
+}
+
+
+/**
+* Create post post box
+*
+* Uses class Schema_Custom_Add_Meta_Box
+*
+* @since 1.5.7
+* @return true 
+*/
+function schema_wp_do_post_meta( $args ) {
+	
+	if ( empty( $args ) ) return;
+	
+	$id 		 = $args['id'];
+	$title 		 = $args['title'];
+	$schema_type = $args['type'];
+	$fields 	 = $args['fields'];
+	
+	if ( empty( $fields ) ) return;
+	
+	/**
+	* Get enabled post types to create a meta box on
+	*/
+	$schemas_enabled = array();
+	
+	// Get schame enabled array
+	$schemas_enabled = schema_wp_cpt_get_enabled();
+	
+	if ( empty($schemas_enabled) ) return;
+
+	// Get post type from current screen
+	$current_screen = get_current_screen();
+	$post_type = $current_screen->post_type;
+	
+	foreach( $schemas_enabled as $schema_enabled ) : 
+		
+		$type = $schema_enabled['type'];
+		
+		if ( ! isset($type) || $type == '' ) return;
+		
+		// Get Schema enabled post types array
+		$schema_cpt = $schema_enabled['post_type'];
+	
+		if ( ! empty($schema_cpt) && in_array( $post_type, $schema_cpt, true ) ) {
+			
+			if ( $type == $schema_type && $schema_enabled['post_type'][0] == $post_type ) {
+				$new_post_meta = new Schema_Custom_Add_Meta_Box( $id, $title, $fields, $post_type, 'normal', 'high', true );
+			}
+
+		}
+		
+		// debug
+		//print_r($schema_enabled);
+		
+	endforeach;
+	
+	return true;
+}

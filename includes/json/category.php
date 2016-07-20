@@ -1,26 +1,26 @@
 <?php
 /**
- * Blog
+ * Category
  *
- * @since 1.5.4
+ * @since 1.5.7
  */
  
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-add_action('wp_head', 'schema_wp_output_blog');
+add_action('wp_head', 'schema_wp_output_category');
 /**
  * The main function responsible for output schema json-ld 
  *
- * @since 1.5.4
+ * @since 1.5.7
  * @return schema json-ld final output
  */
-function schema_wp_output_blog() {
+function schema_wp_output_category() {
 		
-	// Run only on blog list page
-	if ( ! is_front_page() && is_home() || is_home() ) {
+	// Run only on category pages
+	if ( is_category() ) {
 		
-		$json = schema_wp_get_blog_json( 'Blog' );
+		$json = schema_wp_get_category_json( 'Category' );
 		
 		$output = '';
 		
@@ -41,10 +41,10 @@ function schema_wp_output_blog() {
  * The main function responsible for putting shema array all together
  *
  * @param string $type for schema type (example: Person)
- * @since 1.5.4
+ * @since 1.5.7
  * @return schema output
  */
-function schema_wp_get_blog_json( $type ) {
+function schema_wp_get_category_json( $type ) {
 	
 	if ( ! isset($type) ) return;
 	
@@ -71,15 +71,18 @@ function schema_wp_get_blog_json( $type ) {
             );
 
         endwhile;
+		
+        $category_link = get_category_link( get_the_category() );
+        $category_headline = single_cat_title('', false) . " Category";
 
         $schema = array
         (
 			'@context' => 'http://schema.org/',
-			'@type' => "Blog",
-			'headline' => get_option( 'page_for_posts' ) ? get_the_title( get_option( 'page_for_posts' ) ) : get_bloginfo( 'name' ),
-			'description' => get_bloginfo( 'description' ),
-			'url' => get_option( 'page_for_posts' ) ? get_permalink( get_option( 'page_for_posts' ) ) : get_site_url(),
-			'blogPost' => $blogPost,
+			'@type' => "CollectionPage",
+			'headline' => $category_headline,
+			'description' => category_description(),
+			'url' => $category_link,
+			'hasPart' => $blogPost
         );
 
         return $schema;

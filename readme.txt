@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, about, contact, amp, mobile
 Requires at least: 3.0
 Tested up to: 4.5.3
-Stable tag: 1.5.6
+Stable tag: 1.5.7
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -55,6 +55,8 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 * [Blog](https://schema.org/Blog) to markup Blog posts list page.
 
+* [CollectionPage](https://schema.org/CollectionPage) to markup Categories.
+
 * [AboutPage](https://schema.org/AboutPage) to markup the About page.
 
 * [ContactPage](https://schema.org/ContactPage) to markup the Contact page.
@@ -102,6 +104,22 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 3. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.5.8 =
+* Fixed datePublished and dateModified markups, make sure it is in ISO 8601 format.
+* Fixed Preview button was not showing in edit screen.
+* Extended the plugin settings extensibility with new repeatable field type.
+* Added new extension Post Meta box generator.
+* Added new fields to override values with defined post meta key.
+* Added feature to allow overriding headline, description and author name in markup.   
+
+= 1.5.7 =
+* Added support for schema type CollectionPage for Categories.
+* Added new filter schema_wp_types to override or extend options.
+* Added new filter schema_wp_publisher to override publisher array.
+* Added new filter schema_wp_author to override author array.
+* Added new function schema_wp_do_post_meta to allow adding custom post meta boxes.
+* Added new function to return Author array.
 
 = 1.5.6 =
 * Fixed a notice on front end caused when admin bar menu is called.
@@ -255,6 +273,9 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.5.7 =
+In this release, a new Schema type CollectionPage has been added to empower your site Categories. Please, update the plugin on your website now to get the new enhancements.
 
 = 1.5.6 =
 In this release, new integration for SEO Framework plugin and other cool features has been introduced. Please, update the plugin on your website now to get the new enhancements.

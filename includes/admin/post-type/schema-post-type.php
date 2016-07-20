@@ -125,7 +125,7 @@ function schema_wp_cpt_updated_messages( $messages ) {
 }
 
 
-add_filter( 'post_row_actions', 'schema_wp_cpt_remove_row_actions', 10, 2 );
+//add_filter( 'post_row_actions', 'schema_wp_cpt_remove_row_actions', 10, 2 );
 /**
  * Remove quick edit and preview links for custom post type schema
  *
@@ -139,13 +139,16 @@ function schema_wp_cpt_remove_row_actions( $actions, $post ) {
 	
 	global $current_screen;
 	
-	if ( $current_screen->post_type != 'schema' ) return $actions;
+	//if ( $current_screen->post_type != 'schema' ) return $actions;
+	
+	if( get_post_type() === 'schema' ) {
+	
 	//unset( $actions['edit'] );
 	unset( $actions['view'] );
 	//unset( $actions['trash'] );
 	unset( $actions['inline hide-if-no-js'] );
 	//$actions['inline hide-if-no-js'] .= __( 'Quick&nbsp;Edit' );
-
+	}
 	return $actions;
 }
 
