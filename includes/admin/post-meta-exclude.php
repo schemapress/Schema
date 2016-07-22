@@ -33,8 +33,8 @@ function schema_wp_exclude_post_meta() {
 	*/
 	$fields = array(
 		array( // Single checkbox
-			'label'	=> __('Turns Schema OFF', 'schema-wp'), // <label>
-			'desc'	=> __('Tick this checkbox to tell turn off Schema output on this entry.', 'schema-wp'), // description
+			'label'	=> __('Turn Schema OFF', 'schema-wp'), // <label>
+			'desc'	=> __('Tick this checkbox to turn off Schema output on this entry.', 'schema-wp'), // description
 			'id'	=> $prefix.'exclude', // field id and name
 			'type'	=> 'checkbox' // type of field
 		),

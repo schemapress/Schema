@@ -5,7 +5,7 @@
  * Description: The next generation of Structured Data.
  * Author: Hesham
  * Author URI: http://zebida.com
- * Version: 1.5.7
+ * Version: 1.5.8
  * Text Domain: schema-wp
  * Domain Path: languages
  *
@@ -24,7 +24,7 @@
  * @package Schema
  * @category Core
  * @author Hesham Zebida
- * @version 1.5.7
+ * @version 1.5.8
  */
 
 // Exit if accessed directly
@@ -51,7 +51,7 @@ final class Schema_WP {
 	 *
 	 * @since 1.0
 	 */
-	private $version = '1.5.7';
+	private $version = '1.5.8';
 
 	/**
 	 * The settings instance variable
@@ -224,11 +224,9 @@ final class Schema_WP {
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/thesis.php';
 		
 		// Core Extensions
-		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/post-meta-generator.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/page-about.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/page-contact.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/video-object.php';
-		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/comment.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/comment.php';
 	}
 
