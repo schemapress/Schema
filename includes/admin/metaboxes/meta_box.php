@@ -47,6 +47,13 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 		$id = $repeatable[0] . '_' . $repeatable[1] . '_' . $id;
 	}
 	switch( $type ) {
+		// HTML div
+		case 'div_open':
+			echo '<div id="' . esc_attr( $id ) . '">';
+		break;
+		case 'div_close':
+			echo '</div>';
+		break;
 		// headline
 		case 'desc':
 			echo '<p>'.$desc.'</p>';
@@ -750,8 +757,9 @@ class Schema_Custom_Add_Meta_Box {
 				$old = get_post_meta( $post_id, $field['id'], true );
 				if ( isset( $_POST[$field['id']] ) )
 					$new = $_POST[$field['id']];
-				if($field['type'] == 'repeatable' || $field['type'] == 'repeatable_row' )
-					$new = array_values($new);
+				if($field['type'] == 'repeatable' || $field['type'] == 'repeatable_row' ) {
+					if (is_array($new)) $new = array_values($new);
+				}
 				if ( isset( $new ) && '' == $new && $old ) {
 					delete_post_meta( $post_id, $field['id'], $old );
 				} elseif ( isset( $new ) && $new != $old ) {

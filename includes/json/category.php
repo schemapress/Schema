@@ -16,7 +16,9 @@ add_action('wp_head', 'schema_wp_output_category');
  * @return schema json-ld final output
  */
 function schema_wp_output_category() {
-		
+	
+	if ( is_admin() ) return;
+	
 	// Run only on category pages
 	if ( is_category() ) {
 		
@@ -40,7 +42,7 @@ function schema_wp_output_category() {
 /**
  * The main function responsible for putting shema array all together
  *
- * @param string $type for schema type (example: Person)
+ * @param string $type for schema type (example: CollectionPage)
  * @since 1.5.7
  * @return schema output
  */
@@ -48,12 +50,16 @@ function schema_wp_get_category_json( $type ) {
 	
 	if ( ! isset($type) ) return;
 	
-	global $post;
+	global $post, $query_string;
 	
 	$blogPost = array();
-        
-        while ( have_posts() ) : the_post();
-
+	
+	$secondary_loop = new WP_Query( $query_string );
+	
+	if( $secondary_loop->have_posts() ):
+	    
+		while( $secondary_loop->have_posts() ): $secondary_loop->the_post();
+    
             $blogPost[] = array
             (
 				'@type' => 'BlogPosting',
@@ -70,20 +76,24 @@ function schema_wp_get_category_json( $type ) {
 				'comment' => schema_wp_get_comments(),
             );
 
-        endwhile;
+        	endwhile;
 		
-        $category_link = get_category_link( get_the_category() );
-        $category_headline = single_cat_title('', false) . " Category";
+			wp_reset_postdata();
 
-        $schema = array
-        (
-			'@context' => 'http://schema.org/',
-			'@type' => "CollectionPage",
-			'headline' => $category_headline,
-			'description' => category_description(),
-			'url' => $category_link,
-			'hasPart' => $blogPost
-        );
+        	$category_link = get_category_link( get_the_category() );
+        	$category_headline = single_cat_title('', false) . ' Category';
+
+        	$schema = array
+       		(
+				'@context' => 'http://schema.org/',
+				'@type' => "CollectionPage",
+				'headline' => $category_headline,
+				'description' => strip_tags(category_description()),
+				'url' => $category_link,
+				'hasPart' => $blogPost
+       		);
+				
+		endif;
 
         return $schema;
 }

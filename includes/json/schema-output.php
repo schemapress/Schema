@@ -200,9 +200,17 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	// Get description
 	$full_content		= $content_post->post_content;
 	$excerpt			= $content_post->post_excerpt;
-	$full_content		= apply_filters('the_content', $full_content);
+	
+	// Removed this line below to support Themes with Drag & Drop Page Builders
+	// @since 1.5.9
+	//$full_content		= apply_filters('the_content', $full_content);
 	$full_content		= str_replace(']]>', ']]&gt;', $full_content);
-	$full_content		= strip_tags($full_content);
+	$full_content 		= wp_strip_all_tags( $full_content );
+	
+	// Filter content before it gets shorter ;)
+	// @since 1.5.9
+	$full_content 		= apply_filters( 'schema_wp_filter_content', $full_content );
+	
 	$short_content		= wp_trim_words( $full_content, 49, '' ); 
 	$description		= apply_filters ( 'schema_wp_filter_description', ( $excerpt != '' ) ? $excerpt : $short_content ); 
 	

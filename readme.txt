@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, about, contact, amp, mobile
 Requires at least: 3.0
 Tested up to: 4.5.3
-Stable tag: 1.5.8
+Stable tag: 1.5.9
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -73,7 +73,8 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 * Supported Themes
  * Genesis 2.x 
- * Thesis 2.x 
+ * Thesis 2.x
+ * Divi
  
 == Installation ==
 
@@ -86,7 +87,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 = The plugin isn't working or have a bug? =
 
-Post detailed information about the issue in the [support forum]() and we will work to fix it.
+Post detailed information about the issue in the [support forum](http://wordpress.org/support/plugin/schema) and we will work to fix it.
 
 = Knowledge Graph is not showing? =
 
@@ -101,15 +102,29 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 == Screenshots ==
 1. Knowledge Graph settings tab.
 2. Create new schema type screen.
-3. Google Structured Data Testing Tool.
+3. Create post meta fields with Post Meta Box generator feature.
+4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.5.9 =
+* Fixed query conflicts on category pages by creating a secondary loop.
+* Fixed category description, apply strip_tags function to remove HTML tags.
+* Added check to prevent processing code in backend when runs category schema.
+* Added new Post Meta Box feature.
+* Added a new schema_wp_filter_content filter.
+* Added new integration filter function for Divi theme.
+* Use wp_strip_all_tags instead of strip_tags for short content.
+* Updated plugin screenshots, added a new screenshot for post meta box feature.
+* Corrected a typo in plugin settings page.
+* Modified readme.txt file, corrected link to support forum and some typos.  
 
 = 1.5.8 =
 * Fixed datePublished and dateModified markups, make sure it is in ISO 8601 format.
 * Fixed Preview button was not showing in edit screen.
 * Extended the plugin settings extensibility with new repeatable field type.
-* Enhanced post meta wording and fixed typos.   
+* Enhanced post meta wording and fixed typos.
+* Modified readme.txt file, corrected link to support forum and some typos.  
 
 = 1.5.7 =
 * Added support for schema type CollectionPage for Categories.
@@ -128,7 +143,7 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 * Enhanced Yoast SEO integration, put code on its own file.
 * Enhanced functions naming to prevent any possible conflict with Schema Removal.
 * Updated the plugin welcome page.
-* Modified ready.txt file.
+* Modified readme.txt file.
 
 = 1.5.5 =
 * Fixed a fatal error when Genesis is not the active Theme.
@@ -143,7 +158,7 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 * Enhanced Media function, check for images in content if Featured image not found.
 * Enhanced plugin wording in menu, change Schema Types to read Types, make it simple.
 * Updated the plugin welcome page.
-* Modified ready.txt file.
+* Modified readme.txt file.
 
 = 1.5.3 =
 * Added better support for enabled AMP post types.
@@ -161,7 +176,7 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 * Added new schema type ContactPage, core extension for the contact page.
 * Added new settings under the Content tab to select About and Contact pages.
 * Updated the plugin welcome page.
-* Modified ready.txt file.
+* Modified readme.txt file.
 
 = 1.5.1 =
 * Fixed an error, AMP was not working because a call to wrong function.
@@ -191,14 +206,14 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 * Removed the Preview button from Create Schema meta box.
 * Modified the Publish button in Create Schema meta box to read “Create Schema”.
 * Updated the plugin welcome page.
-* Modified ready.txt file.
+* Modified readme.txt file.
 
 = 1.4.6 =
 * Added ability to set Featured image automatically.
 * Added back settings Content tab.
 * Fixed post id in schema output function.
 * Fixed admin notices.
-* Modified ready.txt file.
+* Modified readme.txt file.
 
 = 1.4.5 =
 * Added Person schema to author archive pages.
@@ -242,7 +257,7 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 * Cleaned admin styles file.
 * Enhanced the plugin Welcome page.
 * Updated plugin screenshots.
-* Modified ready.txt file.
+* Modified readme.txt file.
 
 = 1.3 =
 * Added integration for AMP plugin, Schema will take over for better schema output handling.
@@ -255,12 +270,12 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 * Added new filters schema_blog_posting to override schema BlogPosting array output.
 * Added new filters schema_article to override schema Article array output.
 * Added new screenshot.
-* Modified ready.txt file.
+* Modified readme.txt file.
 
 = 1.1.1 =
 * Now play nicely with Yoast SEO plugin.
 * Updated screenshot.
-* Modified ready.txt file.
+* Modified readme.txt file.
 
 = 1.1 =
 * Added new settings tab for content.
@@ -271,6 +286,9 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.5.9 =
+In this release, reported bugs has been fixed. Also, new fixes and integration for Divi theme has been introduced. Please, update the plugin on your website now to get fixes and enhancements.
 
 = 1.5.8 =
 In this release, reported bugs has been fixed. Please, update the plugin on your website now to get fixes and enhancements.

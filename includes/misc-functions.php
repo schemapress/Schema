@@ -814,7 +814,7 @@ function schema_wp_getAuthor() {
 
 
 /**
-* Create post post box
+* Create post meta box
 *
 * Uses class Schema_Custom_Add_Meta_Box
 *

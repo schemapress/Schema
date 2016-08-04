@@ -254,7 +254,11 @@ class Schema_WP_Welcome {
                     
                     <h3><?php _e( 'The SEO Framework plugin is active?', 'schema-wp' );?></h3>
 					<p><?php _e( 'No problem! The Schema plugin will automatically indicate that and show respect for SEO Framework.', 'schema-wp' );?></p>
-				</div>
+					
+                    <h3><?php _e( 'Is Divi your Theme?', 'schema-wp' );?></h3>
+					<p><?php _e( 'If Divi theme is active, Schema plugin will clear shortcodes to be able to output the content description.', 'schema-wp' );?></p>
+                
+                </div>
              	
                	<div class="schema-types-section sub-section">
                 

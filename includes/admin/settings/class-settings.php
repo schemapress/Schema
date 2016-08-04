@@ -337,7 +337,7 @@ class Schema_WP_Settings {
 					),
 					'logo' => array(
 						'name' => __( 'Logo', 'schema-wp' ),
-						'desc' => __( 'Logos should have a wide aspect ratio, not a square icon, it should be no wider than 600px, and no taller than 60px.', 'schema-wp' ) . ' <a href="https://developers.google.com/search/docs/data-types/articles#amp-logo-guidelines" target="_blank">'.__('Gogo guidelines', 'schema-wp').'</a>',
+						'desc' => __( 'Logos should have a wide aspect ratio, not a square icon, it should be no wider than 600px, and no taller than 60px.', 'schema-wp' ) . ' <a href="https://developers.google.com/search/docs/data-types/articles#amp-logo-guidelines" target="_blank">'.__('Logo guidelines', 'schema-wp').'</a>',
 						'type' => 'image_upload',
 						'std' => ''
 					),

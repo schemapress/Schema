@@ -20,4 +20,22 @@ jQuery(function($) {
       }
     });
 	
+	
+	// repeated post meta group
+	$('#schema_post_meta_box').hide();
+	
+	var post_meta_enabled = $("#_schema_post_meta_box_enabled").attr('checked');
+	
+	if (post_meta_enabled)
+		$('#schema_post_meta_box').show();
+		
+	$('#_schema_post_meta_box_enabled').change(function(){
+        var checked = $(this).attr('checked');
+        if (checked) {
+           $('#schema_post_meta_box').show();             
+        } else {
+            $('#schema_post_meta_box').hide();
+        }
+    });
+	
 });
