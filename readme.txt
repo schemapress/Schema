@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, about, contact, amp, mobile
 Requires at least: 3.0
 Tested up to: 4.5.3
-Stable tag: 1.5.9
+Stable tag: 1.5.9.2
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -54,15 +54,10 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
   * [TechArticle](https://schema.org/TechArticle)
 
 * [Blog](https://schema.org/Blog) to markup Blog posts list page.
-
 * [CollectionPage](https://schema.org/CollectionPage) to markup Categories.
-
 * [AboutPage](https://schema.org/AboutPage) to markup the About page.
-
 * [ContactPage](https://schema.org/ContactPage) to markup the Contact page.
-
 * [Person](https://schema.org/Person) enabled on Author pages
-
 * [VideoObject](https://schema.org/VideoObject) enabled VideoObject markup automatically on all videos embedded with oEmbed.
 
 * Supported Plugins: 
@@ -106,6 +101,14 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.5.9.2 =
+* Removed the Disable SiteLinks Search Box feature, not needed in the plugin.
+* Removed the Content tab within the plugin settings page.
+* Enhanced the plugin settings page, rearranged settings in a simpler way.
+
+= 1.5.9.1 =
+* Fixed a warning notice when saving drafts in editor, editing posts was not possible.
 
 = 1.5.9 =
 * Fixed query conflicts on category pages by creating a secondary loop.
@@ -286,6 +289,12 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.5.9.2 =
+in this release, the disable SiteLinks Search Box feature has been removed, this feature was causing issues and having a bug. Please, upgrade now to get this fix. 
+
+= 1.5.9.1 =
+This release has a bug fix for a warning notice when saving drafts in editor, editing posts was not possible. Please update the plugin on your website to git this important fix.
 
 = 1.5.9 =
 In this release, reported bugs has been fixed. Also, new fixes and integration for Divi theme has been introduced. Please, update the plugin on your website now to get fixes and enhancements.

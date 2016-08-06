@@ -276,7 +276,26 @@ class Schema_WP_Settings {
 		$settings = array(
 			/** General Settings */
 			'general' => apply_filters( 'schema_wp_settings_general',
+			
 				array(
+					'about_page' => array(
+						'name' => __( 'About Page', 'schema-wp' ),
+						'desc' => __( 'Select the about page', 'schema-wp' ),
+						'type' => 'post_select',
+						'post_type' => 'page'
+					),
+					'contact_page' => array(
+						'name' => __( 'Contact Page', 'schema-wp' ),
+						'desc' => __( 'Select the contact page', 'schema-wp' ),
+						'type' => 'post_select',
+						'post_type' => 'page'
+					),
+					'auto_featured_img' => array(
+						'name' => __( 'Set Featured image automatically?', 'schema-wp' ),
+						'desc' => __( 'Check this box if you would like Schema to try setting Featured image while you create or edit the post.', 'schema-wp' ),
+						'type' => 'checkbox'
+					),
+					/*
 					'currency_settings' => array(
 						'name' => '<strong>' . __( 'Currency Settings', 'schema-wp' ) . '</strong>',
 						'desc' => __( 'Configure the currency options', 'schema-wp' ),
@@ -288,7 +307,7 @@ class Schema_WP_Settings {
 						'type' => 'select',
 						'options' => schema_wp_get_currencies()
 					),
-					/*
+					
 					'currency_position' => array(
 						'name' => __( 'Currency Position', 'schema-wp' ),
 						'desc' => __( 'Choose the location of the currency sign.', 'schema-wp' ),
@@ -314,6 +333,7 @@ class Schema_WP_Settings {
 					)*/
 				)
 			),
+		
 			
 			/** Knowledge Graph Settings */
 			'knowledge_graph' => apply_filters( 'schema_wp_settings_knowledge_graph',
@@ -426,7 +446,7 @@ class Schema_WP_Settings {
 						'desc' => '',
 						'type' => 'text',
 						'std' => ''
-					),
+					)
 				)
 			),
 			
@@ -443,11 +463,13 @@ class Schema_WP_Settings {
 						'desc' => __( 'Tell Google to show a Sitelinks search box.', 'schema-wp' ),
 						'type' => 'checkbox'
 					),
+					/*
 					'sitelinks_search_box_disable' => array(
 						'name' => __( 'Disable Sitelinks Search Box?', 'schema-wp' ),
 						'desc' => __( 'Tell Google not to show a Sitelinks search box when your site appears in the search results.', 'schema-wp' ),
 						'type' => 'checkbox'
 					),
+					*/
 					'site_name_settings' => array(
 						'name' => '<strong>' . __( 'Include Your Site Name in Search Results', 'schema-wp' ) . '</strong>',
 						'desc' => __( 'Indicate the preferred name you want Google to display in Search results.', 'schema-wp' ),
@@ -473,33 +495,6 @@ class Schema_WP_Settings {
 				)
 			),
 			
-			/** Content Settings */
-			'content' => apply_filters( 'schema_wp_settings_content',
-				array(
-					'content_settings' => array(
-						'name' => '<strong>' . __( 'Schema for Content', 'schema-wp' ) . '</strong>',
-						'desc' => __( 'Have control over content.', 'schema-wp' ),
-						'type' => 'header'
-					),
-					'auto_featured_img' => array(
-						'name' => __( 'Set Featured image automatically?', 'schema-wp' ),
-						'desc' => __( 'Check this box if you would like Schema to try setting Featured image while you create or edit the post.', 'schema-wp' ),
-						'type' => 'checkbox'
-					),
-					'about_page' => array(
-						'name' => __( 'About Page', 'schema-wp' ),
-						'desc' => __( 'Select the about page', 'schema-wp' ),
-						'type' => 'post_select',
-						'post_type' => 'page'
-					),
-					'contact_page' => array(
-						'name' => __( 'Contact Page', 'schema-wp' ),
-						'desc' => __( 'Select the contact page', 'schema-wp' ),
-						'type' => 'post_select',
-						'post_type' => 'page'
-					)
-				)
-			),
 			
 			/** Misc Settings */
 			'misc' => apply_filters( 'schema_wp_settings_misc',

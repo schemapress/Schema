@@ -73,7 +73,6 @@ function schema_wp_get_settings_tabs() {
 	$tabs['general']			= __( 'General',			'schema-wp' );
 	$tabs['knowledge_graph']	= __( 'Knowledge Graph',	'schema-wp' );
 	$tabs['search_results']		= __( 'Search Results',		'schema-wp' );
-	$tabs['content']			= __( 'Content',			'schema-wp' );
 	$tabs['misc']				= __( 'Misc',				'schema-wp' );
 	
 	//if( schema_wp()->settings->get( 'debug_mode', false ) ) {	

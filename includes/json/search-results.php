@@ -1,6 +1,6 @@
 <?php
 /**
- * Main Search Results
+ *	SiteLinks Search Box
  *
  * @since 1.0
  */
@@ -54,13 +54,15 @@ function schema_wp_output_sitelinks_search_box() {
 
 
 
-add_action('wp_head', 'schema_wp_output_sitelinks_search_box_disable');
+//add_action('wp_head', 'schema_wp_output_sitelinks_search_box_disable');
 /**
  * Disable SiteLinks Search Box
  *
+ * This function was disabled @since 1.5.9.2, I don't see it important!
  * @since 1.0
  * @return meta
  */
+ /*
 function schema_wp_output_sitelinks_search_box_disable() {
 	
 	// Run only on front page 
@@ -68,12 +70,13 @@ function schema_wp_output_sitelinks_search_box_disable() {
 		
 		$sitelinks_search_box_disable	= schema_wp_get_setting( 'sitelinks_search_box_disable' );
 		
-		if ( ! isset($sitelinks_search_box_disable) ) return;
-		
-		echo "\n";
-		echo '<!-- Tell Google not to show a Sitelinks search box -->';
-		echo "\n";
-		echo '<meta name="google" content="nositelinkssearchbox" />';
-		echo "\n\n";
+		if ( isset($sitelinks_search_box_disable) && $sitelinks_search_box_disable == 1 ) {
+			echo "\n";
+			echo '<!-- Tell Google not to show a Sitelinks search box -->';
+			echo "\n";
+			echo '<meta name="google" content="nositelinkssearchbox" />';
+			echo "\n\n";
+		}
 	}
 }
+*/
