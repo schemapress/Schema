@@ -65,6 +65,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
  * AMP plugin
  * WPRichSnippets
  * The SEO Framework
+ * Visual Composer
 
 * Supported Themes
  * Genesis 2.x 
@@ -101,6 +102,9 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.5.9.3 =
+* Added new integration for Visual Composer plugin.
 
 = 1.5.9.2 =
 * Removed the Disable SiteLinks Search Box feature, not needed in the plugin.

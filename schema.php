@@ -215,11 +215,14 @@ final class Schema_WP {
 		
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/admin-bar-menu.php';
 		
-		// Integrations
+		// Plugin Integrations
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/yoast-seo.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/amp.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/wp-rich-snippets.php';
-		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/yoast-seo.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/seo-framework.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/visual-composer.php';
+		
+		// Theme Integrations
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/genesis.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/thesis.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/divi.php';
