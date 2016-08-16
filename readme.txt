@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, about, contact, amp, mobile
 Requires at least: 3.0
 Tested up to: 4.5.3
-Stable tag: 1.5.9.3
+Stable tag: 1.5.9.4
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -91,9 +91,10 @@ The plugin meant to validate markup in Google Structured Data Testing Tool, we d
 
 = I see an error in Google Structure Data Testing Tool =
 
-* Image error: This is a missing WordPress Featured image, try to upload a Featured image.
+This could be for the following reasons:
 
-* Logo error: This is a missing Publisher logo, it can be set in the plugin settings page, Schema > Settings > General > Publisher Logo.
+ * Image error: This is a missing WordPress Featured image, try to upload a Featured image.
+ * Logo error: This is a missing Publisher logo, it can be set in the plugin settings page, Schema > Settings > General > Publisher Logo.
 
 = Compatible with Yoast SEO? =
 
@@ -106,6 +107,10 @@ Yes, Schema plugin will detect Yoast SEO plugin and it will not output any marku
 4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.5.9.4 =
+* Fixed capabilities issue, plugin settings was not saving properly.
+* Modified readme.txt file, added more info to the FAQ section.
 
 = 1.5.9.3 =
 * Added new integration file for Visual Composer plugin.
@@ -310,6 +315,9 @@ Yes, Schema plugin will detect Yoast SEO plugin and it will not output any marku
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.5.9.4 =
+This update has an important fix for capabilities, plugin settings was not saving properly on newly installed sites. Please, upgrade now to get this fix. 
 
 = 1.5.9.3 =
 This update has several features and enhancements, fix for Publisher Logo image, and support for Visual Composer plugin. Please, upgrade now to get this fix. 

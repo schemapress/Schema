@@ -17,7 +17,7 @@ class Schema_WP_Admin_Menu {
 		$schema_wp_options_page = add_menu_page(
 			__( 'Schema', 'schema-wp' ),
 			__( 'Schema', 'schema-wp' ),
-			'manage_schema',
+			'manage_schema_options',
 			'schema',
 			'schema_wp_options_page'
 		);
@@ -26,7 +26,7 @@ class Schema_WP_Admin_Menu {
 			'schema',
 			__( 'Schema Settings', 'schema-wp' ),
 			__( 'Settings', 'schema-wp' ),
-			'manage_schema',
+			'manage_schema_options',
 			'schema',
 			'schema_wp_options_page'
 		);
@@ -35,7 +35,7 @@ class Schema_WP_Admin_Menu {
 			'schema',
 			__( 'Types', 'schema-wp' ),
 			__( 'Types', 'schema-wp' ),
-			'manage_schema',
+			'manage_schema_options',
 			'edit.php?post_type=schema'
 		);
 		

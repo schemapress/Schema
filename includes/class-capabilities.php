@@ -61,7 +61,10 @@ class Schema_WP_Capabilities {
 			'publish_pages'          => true,
 			'publish_posts'          => true,
 			'read_private_pages'     => true,
-			'read_private_posts'     => true
+			'read_private_posts'     => true,
+			
+			'activate_plugins'     	=> true,
+			'manage_options'     	=> true
 		) );
 	}
 	

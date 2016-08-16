@@ -232,7 +232,7 @@ class Schema_WP_License {
 
 		}
 
-		if ( ! current_user_can( 'manage_shop_settings' ) ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
@@ -320,7 +320,7 @@ class Schema_WP_License {
 
 		}
 
-		if( ! current_user_can( 'manage_shop_settings' ) ) {
+		if( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
@@ -420,7 +420,7 @@ class Schema_WP_License {
 			return;
 		}
 
-		if( ! current_user_can( 'manage_shop_settings' ) ) {
+		if( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
