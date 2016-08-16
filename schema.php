@@ -5,7 +5,7 @@
  * Description: The next generation of Structured Data.
  * Author: Hesham
  * Author URI: http://zebida.com
- * Version: 1.5.9.2
+ * Version: 1.5.9.3
  * Text Domain: schema-wp
  * Domain Path: languages
  *
@@ -24,7 +24,7 @@
  * @package Schema
  * @category Core
  * @author Hesham Zebida
- * @version 1.5.9.2
+ * @version 1.5.9.3
  */
 
 // Exit if accessed directly
@@ -51,7 +51,7 @@ final class Schema_WP {
 	 *
 	 * @since 1.0
 	 */
-	private $version = '1.5.9.2';
+	private $version = '1.5.9.3';
 
 	/**
 	 * The settings instance variable
@@ -179,7 +179,11 @@ final class Schema_WP {
 	 */
 	private function includes() {
 		
-		require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/settings/class-settings.php';
+		global $schema_wp_options;
+		
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/settings/register-settings.php';
+		$schema_wp_options = schema_wp_get_settings();
+		
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/class-capabilities.php';
 		
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/post-type/schema-post-type.php';
@@ -193,7 +197,10 @@ final class Schema_WP {
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/post-meta-exclude.php';
 			
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/settings/display-settings.php';
+			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/settings/contextual-help.php';
 			
+			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/admin-pages.php';
+			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/scripts.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-menu.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-notices.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-welcome.php';
@@ -201,7 +208,6 @@ final class Schema_WP {
 			
 		}
 
-		require_once SCHEMAWP_PLUGIN_DIR . 'includes/install.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/misc-functions.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/scripts.php';
 		
@@ -214,6 +220,7 @@ final class Schema_WP {
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/schema-output.php';
 		
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/admin-bar-menu.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/updater/class-license-handler.php';
 		
 		// Plugin Integrations
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/yoast-seo.php';
@@ -233,6 +240,8 @@ final class Schema_WP {
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/page-contact.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/video-object.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/comment.php';
+		
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/install.php';
 	}
 
 	/**
@@ -244,7 +253,7 @@ final class Schema_WP {
 	 */
 	public function setup_objects() {
 
-		self::$instance->settings       = new Schema_WP_Settings;
+		//self::$instance->settings       = new Schema_WP_Settings;
 	}
 
 	

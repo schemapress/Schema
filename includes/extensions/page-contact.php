@@ -18,7 +18,7 @@ add_filter( 'schema_output', 'schema_wp_no_sceham_output_if_page_contact' );
  */
 function schema_wp_no_sceham_output_if_page_contact( $schema ) {
 	
-	$contact_page_id = schema_wp_get_setting( 'contact_page' );
+	$contact_page_id = schema_wp_get_option( 'contact_page' );
 	
 	if ( ! $contact_page_id ) return $schema;
 	
@@ -39,7 +39,7 @@ add_action('wp_head', 'schema_wp_output_page_contact');
  */
 function schema_wp_output_page_contact() {
 	
-	$contact_page_id = schema_wp_get_setting( 'contact_page' );
+	$contact_page_id = schema_wp_get_option( 'contact_page' );
 	
 	if ( ! $contact_page_id ) return;
  		

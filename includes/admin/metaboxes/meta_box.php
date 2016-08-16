@@ -47,13 +47,6 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 		$id = $repeatable[0] . '_' . $repeatable[1] . '_' . $id;
 	}
 	switch( $type ) {
-		// HTML div
-		case 'div_open':
-			echo '<div id="' . esc_attr( $id ) . '">';
-		break;
-		case 'div_close':
-			echo '</div>';
-		break;
 		// headline
 		case 'desc':
 			echo '<p>'.$desc.'</p>';
@@ -71,7 +64,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 					<br />' . $desc;
 		break;
 		case 'number':
-			echo '<input type="' . $type . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="' . intval( $meta ) . '" class="regular-text" size="30" />
+			echo '<input type="' . $type . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="' . intval( $meta ) . '" class="'.$size.'-text" size="30" />
 					<br />' . $desc;
 		break;
 		// textarea

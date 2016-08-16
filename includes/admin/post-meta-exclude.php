@@ -31,14 +31,14 @@ function schema_wp_exclude_post_meta() {
 	/**
 	* Create meta box on active post types edit screens
 	*/
-	$fields = array(
+	$fields = apply_filters( 'schema_wp_exclude', array(
 		array( // Single checkbox
 			'label'	=> __('Turn Schema OFF', 'schema-wp'), // <label>
 			'desc'	=> __('Tick this checkbox to turn off Schema output on this entry.', 'schema-wp'), // description
 			'id'	=> $prefix.'exclude', // field id and name
 			'type'	=> 'checkbox' // type of field
 		),
-	);
+	));
 	
 	
 	/**

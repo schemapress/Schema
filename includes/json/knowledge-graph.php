@@ -52,12 +52,12 @@ function schema_wp_get_knowledge_graph_json( $type ) {
 	
 	$schema = array();
 	
-	$name = schema_wp_get_setting( 'name' );
-	$url = esc_attr( stripslashes( schema_wp_get_setting( 'url' ) ) );
+	$name = schema_wp_get_option( 'name' );
+	$url = esc_attr( stripslashes( schema_wp_get_option( 'url' ) ) );
 	
 	if ( empty($name) || empty($url) ) return;
 	
-	$logo = esc_attr( stripslashes( schema_wp_get_setting( 'logo' ) ) );
+	$logo = esc_attr( stripslashes( schema_wp_get_option( 'logo' ) ) );
 	
 	$schema['@context'] = "http://schema.org";
 	$schema['@type'] = $type;
@@ -94,8 +94,8 @@ function schema_wp_get_corporate_contacts_types_array() {
 	
 	$contact_type = array();
 	
-	$corporate_contacts_telephone		= schema_wp_get_setting( 'corporate_contacts_telephone' );
-	$corporate_contacts_contact_type	= schema_wp_get_setting( 'corporate_contacts_contact_type' );
+	$corporate_contacts_telephone		= schema_wp_get_option( 'corporate_contacts_telephone' );
+	$corporate_contacts_contact_type	= schema_wp_get_option( 'corporate_contacts_contact_type' );
 	
 	// Remove dashes and replace it with a space
 	$corporate_contacts_telephone = str_replace("_", " ", $corporate_contacts_telephone);
@@ -125,16 +125,16 @@ function schema_wp_get_social_array() {
 	
 	$social = array();
 	
-	$google 	= esc_attr( stripslashes( schema_wp_get_setting( 'google' ) ) );
-	$facebook 	= esc_attr( stripslashes( schema_wp_get_setting( 'facebook') ) );
-	$twitter 	= esc_attr( stripslashes( schema_wp_get_setting( 'twitter' ) ) );
-	$instagram 	= esc_attr( stripslashes( schema_wp_get_setting( 'instagram' ) ) );
-	$youtube 	= esc_attr( stripslashes( schema_wp_get_setting( 'youtube' ) ) );
-	$linkedin 	= esc_attr( stripslashes( schema_wp_get_setting( 'linkedin' ) ) );
-	$myspace 	= esc_attr( stripslashes( schema_wp_get_setting( 'myspace' ) ) );
-	$pinterest 	= esc_attr( stripslashes( schema_wp_get_setting( 'pinterest' ) ) );
-	$soundcloud = esc_attr( stripslashes( schema_wp_get_setting( 'soundcloud' ) ) );
-	$tumblr 	= esc_attr( stripslashes( schema_wp_get_setting( 'tumblr' ) ) );
+	$google 	= esc_attr( stripslashes( schema_wp_get_option( 'google' ) ) );
+	$facebook 	= esc_attr( stripslashes( schema_wp_get_option( 'facebook') ) );
+	$twitter 	= esc_attr( stripslashes( schema_wp_get_option( 'twitter' ) ) );
+	$instagram 	= esc_attr( stripslashes( schema_wp_get_option( 'instagram' ) ) );
+	$youtube 	= esc_attr( stripslashes( schema_wp_get_option( 'youtube' ) ) );
+	$linkedin 	= esc_attr( stripslashes( schema_wp_get_option( 'linkedin' ) ) );
+	$myspace 	= esc_attr( stripslashes( schema_wp_get_option( 'myspace' ) ) );
+	$pinterest 	= esc_attr( stripslashes( schema_wp_get_option( 'pinterest' ) ) );
+	$soundcloud = esc_attr( stripslashes( schema_wp_get_option( 'soundcloud' ) ) );
+	$tumblr 	= esc_attr( stripslashes( schema_wp_get_option( 'tumblr' ) ) );
 	
 	$social_links = array( $google, $facebook, $twitter, $instagram, $youtube, $linkedin, $myspace, $pinterest, $soundcloud, $tumblr);
 	

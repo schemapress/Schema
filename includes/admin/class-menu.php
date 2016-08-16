@@ -12,12 +12,14 @@ class Schema_WP_Admin_Menu {
 
 	public function register_menus() {
 		
-		add_menu_page(
+		global $schema_wp_options_page;
+		
+		$schema_wp_options_page = add_menu_page(
 			__( 'Schema', 'schema-wp' ),
 			__( 'Schema', 'schema-wp' ),
 			'manage_schema',
 			'schema',
-			'schema_wp_settings_admin'
+			'schema_wp_options_page'
 		);
 		
 		add_submenu_page(
@@ -26,7 +28,7 @@ class Schema_WP_Admin_Menu {
 			__( 'Settings', 'schema-wp' ),
 			'manage_schema',
 			'schema',
-			'schema_wp_settings_admin'
+			'schema_wp_options_page'
 		);
 		
 		add_submenu_page(
@@ -37,6 +39,10 @@ class Schema_WP_Admin_Menu {
 			'edit.php?post_type=schema'
 		);
 		
+		// Contextual Help
+		// @since 1.5.9.3
+		if ( $schema_wp_options_page )
+		add_action( 'load-' . $schema_wp_options_page, 'schema_wp_settings_contextual_help' );	
 	}
 
 }

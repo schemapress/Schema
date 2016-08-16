@@ -24,7 +24,47 @@ class Schema_WP_Capabilities {
 	 * @since 1.0
 	 */
 	public function __construct() { /* Do nothing here */ }
-
+	
+	/**
+	 * Add new shop roles with default WP caps
+	 *
+	 * @access public
+	 * @since 1.5.9.3
+	 * @return void
+	 */
+	public function add_roles() {
+		add_role( 'manage_schema_options', __( 'Manage Schema Options', 'schema-wp' ), array(
+			'read'                   => true,
+			'edit_posts'             => true,
+			'delete_posts'           => true,
+			'unfiltered_html'        => true,
+			'upload_files'           => true,
+			'export'                 => true,
+			'import'                 => true,
+			'delete_others_pages'    => true,
+			'delete_others_posts'    => true,
+			'delete_pages'           => true,
+			'delete_private_pages'   => true,
+			'delete_private_posts'   => true,
+			'delete_published_pages' => true,
+			'delete_published_posts' => true,
+			'edit_others_pages'      => true,
+			'edit_others_posts'      => true,
+			'edit_pages'             => true,
+			'edit_private_pages'     => true,
+			'edit_private_posts'     => true,
+			'edit_published_pages'   => true,
+			'edit_published_posts'   => true,
+			'manage_categories'      => true,
+			'manage_links'           => true,
+			'moderate_comments'      => true,
+			'publish_pages'          => true,
+			'publish_posts'          => true,
+			'read_private_pages'     => true,
+			'read_private_posts'     => true
+		) );
+	}
+	
 	/**
 	 * Add new capabilities
 	 *
@@ -43,10 +83,9 @@ class Schema_WP_Capabilities {
 		}
 
 		if ( is_object( $wp_roles ) ) {
-
-			$wp_roles->add_cap( 'administrator', 'export_schema_data' );
+			
 			$wp_roles->add_cap( 'administrator', 'manage_schema_options' );
-			$wp_roles->add_cap( 'administrator', 'manage_schema' );
+		
 		}
 	}
 
@@ -69,9 +108,7 @@ class Schema_WP_Capabilities {
 		if ( is_object( $wp_roles ) ) {
 
 			/** Site Administrator Capabilities */
-			$wp_roles->remove_cap( 'administrator', 'export_schema_data' );
 			$wp_roles->remove_cap( 'administrator', 'manage_schema_options' );
-			$wp_roles->remove_cap( 'administrator', 'manage_schema' );
 
 		}
 	}

@@ -18,7 +18,7 @@ add_filter( 'schema_output', 'schema_wp_no_sceham_output_if_page_about' );
  */
 function schema_wp_no_sceham_output_if_page_about( $schema ) {
 	
-	$about_page_id = schema_wp_get_setting( 'about_page' );
+	$about_page_id = schema_wp_get_option( 'about_page' );
 	
 	if ( ! $about_page_id ) return $schema;
 	
@@ -39,7 +39,7 @@ add_action('wp_head', 'schema_wp_output_page_about');
  */
 function schema_wp_output_page_about() {
 	
-	$about_page_id = schema_wp_get_setting( 'about_page' );
+	$about_page_id = schema_wp_get_option( 'about_page' );
 	
 	if ( ! $about_page_id ) return;
  		

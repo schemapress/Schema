@@ -54,7 +54,7 @@ function schema_wp_get_blog_json( $type ) {
         
         while ( have_posts() ) : the_post();
 
-            $blogPost[] = array
+            $blogPost[] = apply_filters( 'schema_output_blog_post', array
             (
 				'@type' => 'BlogPosting',
 				'headline' => get_the_title(),
@@ -68,7 +68,7 @@ function schema_wp_get_blog_json( $type ) {
 				'keywords' => schema_wp_get_post_tags($post->ID),
 				'commentCount' => get_comments_number(),
 				'comment' => schema_wp_get_comments(),
-            );
+            ));
 
         endwhile;
 

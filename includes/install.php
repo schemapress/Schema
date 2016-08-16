@@ -12,12 +12,15 @@ function schema_wp_install() {
 
 	// Create caps
 	$roles = new Schema_WP_Capabilities;
+	$roles->add_roles();
 	$roles->add_caps();
 
-	$schema_wp_install                 = new stdClass();
-	$schema_wp_install->settings       = new Schema_WP_Settings;
-	
 	$older_plugin_version = get_option( 'schema_wp_version' );
+	
+	// Add Upgraded From Option
+	if ( $older_plugin_version ) {
+		update_option( 'schema_wp_version_upgraded_from', $older_plugin_version );
+	}
 	
 	if ( ! get_option( 'schema_wp_is_installed' ) || $older_plugin_version < 1.4 ) {
 		
@@ -92,7 +95,7 @@ function schema_wp_install() {
 		}
 		
 		// Update plugin settings
-		$options = $schema_wp_install->settings->get_all();
+		$options = schema_wp_get_settings();
 		$options['schema_wp_post'] = $schema_post;
 		$options['schema_wp_page'] = $schema_page;
 		update_option( 'schema_wp_settings', $options );
@@ -122,3 +125,32 @@ function schema_wp_check_if_installed() {
 	}
 }
 add_action( 'admin_init', 'schema_wp_check_if_installed' );
+
+
+/**
+ * Install user roles on sub-sites of a network
+ *
+ * Roles do not get created when Schema is network activation so we need to create them during admin_init
+ *
+ * @since 1.5.9.3
+ * @return void
+ */
+function schema_wp_install_roles_on_network() {
+
+	global $wp_roles;
+
+	if( ! is_object( $wp_roles ) ) {
+		return;
+	}
+
+	if( ! in_array( 'manage_schema', $wp_roles->roles ) ) {
+
+		// Create EDD shop roles
+		$roles = new Schema_WP_Capabilities;
+		$roles->add_roles();
+		$roles->add_caps();
+
+	}
+
+}
+add_action( 'admin_init', 'schema_wp_install_roles_on_network' );

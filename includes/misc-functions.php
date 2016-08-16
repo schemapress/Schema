@@ -13,22 +13,27 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Get plugin setting field value 
+ * Sanitizes a string key for Schema Settings
  *
- * @param string $key setting name, $format, $default value
- * @since 1.0
- * @return string
+ * Keys are used as internal identifiers. Alphanumeric characters, dashes, underscores, stops, colons and slashes are allowed
+ *
+ * @since  1.5.9.3
+ * @param  string $key String key
+ * @return string Sanitized key
  */
-function schema_wp_get_setting( $key, $default = false ) {
-	
-	if ( ! isset($key) ) return;
-	$schema_wp  			= new stdClass();
-	$schema_wp->settings	= new Schema_WP_Settings;
-	$setting				= $schema_wp->settings->get( $key, $default );
-			
-	return $setting;
-}
+function schema_wp_sanitize_key( $key ) {
+	$raw_key = $key;
+	$key = preg_replace( '/[^a-zA-Z0-9_\-\.\:\/]/', '', $key );
 
+	/**
+	 * Filter a sanitized key string.
+	 *
+	 * @since 2.5.8
+	 * @param string $key     Sanitized key.
+	 * @param string $raw_key The key prior to sanitization.
+	 */
+	return apply_filters( 'schema_wp_sanitize_key', $key, $raw_key );
+}
 
 /**
  * Get Currencies
@@ -160,11 +165,12 @@ function schema_wp_get_publisher_array() {
 	
 	$publisher = array();
 	
-	$name = schema_wp_get_setting( 'name' );
+	$name = schema_wp_get_option( 'name' );
 	
 	if ( empty($name) ) return;
 	
-	$logo = esc_attr( stripslashes( schema_wp_get_setting( 'logo'  ) ) );
+	// @since 1.5.9.3
+	$logo = esc_attr( stripslashes( schema_wp_get_option( 'publisher_logo'  ) ) );
 	
 	$publisher = array(
 		"@type"	=> "Organization",	// default required value
@@ -607,7 +613,7 @@ function schema_wp_auto_featured_img_featured() {
 	
 	global $post;
 	
-	$auto_featured_img = schema_wp_get_setting( 'auto_featured_img' );
+	$auto_featured_img = schema_wp_get_option( 'auto_featured_img' );
 	
 	if ( $auto_featured_img == true ) {
 		
@@ -870,3 +876,21 @@ function schema_wp_do_post_meta( $args ) {
 	
 	return true;
 }
+
+
+function schema_wp_set_default_image_12345( $json ) {
+	
+	// If image is already defiend,
+	// return our $json array and do not do anything
+	if ( isset($json['media']) && ! empty($json['media']) ) return $json;
+	
+	// There is no image defined in Schema array, 
+	// set default ImageObject url, width, and height
+	$json['media']['@type'] = 'ImageObject'; // schema type, do not chage this!
+	$json['media']['url'] = 'http://default-image-url.png'; // set default image url
+	$json['media']['width'] = 720; // set image width
+	$json['media']['height'] = 400;	// set image height
+	
+	return $json;
+}
+add_filter('schema_json', 'schema_wp_set_default_image_12345');

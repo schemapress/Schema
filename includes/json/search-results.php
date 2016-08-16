@@ -20,10 +20,10 @@ function schema_wp_output_sitelinks_search_box() {
 	// Run only on front page 
 	if ( is_front_page() ) {
 		$output 				= '';
-		$sitelinks_search_box	= schema_wp_get_setting( 'sitelinks_search_box' );
-		$site_name_enable		= schema_wp_get_setting( 'site_name_enable' );
-		$site_name				= schema_wp_get_setting( 'site_name' );
-		$site_alternate_name	= schema_wp_get_setting( 'site_alternate_name' );
+		$sitelinks_search_box	= schema_wp_get_option( 'sitelinks_search_box' );
+		$site_name_enable		= schema_wp_get_option( 'site_name_enable' );
+		$site_name				= schema_wp_get_option( 'site_name' );
+		$site_alternate_name	= schema_wp_get_option( 'site_alternate_name' );
 		
 		if ( ! isset($sitelinks_search_box) ) return;
 		
@@ -68,7 +68,7 @@ function schema_wp_output_sitelinks_search_box_disable() {
 	// Run only on front page 
 	if ( is_front_page() ) {
 		
-		$sitelinks_search_box_disable	= schema_wp_get_setting( 'sitelinks_search_box_disable' );
+		$sitelinks_search_box_disable	= schema_wp_get_option( 'sitelinks_search_box_disable' );
 		
 		if ( isset($sitelinks_search_box_disable) && $sitelinks_search_box_disable == 1 ) {
 			echo "\n";

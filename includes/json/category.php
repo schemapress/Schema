@@ -60,7 +60,7 @@ function schema_wp_get_category_json( $type ) {
 	    
 		while( $secondary_loop->have_posts() ): $secondary_loop->the_post();
     
-            $blogPost[] = array
+            $blogPost[] = apply_filters( 'schema_output_category_post', array
             (
 				'@type' => 'BlogPosting',
 				'headline' => get_the_title(),
@@ -74,8 +74,8 @@ function schema_wp_get_category_json( $type ) {
 				'keywords' => schema_wp_get_post_tags($post->ID),
 				'commentCount' => get_comments_number(),
 				'comment' => schema_wp_get_comments(),
-            );
-
+            ));
+			
         	endwhile;
 		
 			wp_reset_postdata();
