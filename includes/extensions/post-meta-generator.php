@@ -154,13 +154,14 @@ function schema_wp_generate_custom_post_meta_box() {
 								$id 	= isset($repeated_value['key']) ? $repeated_value['key'] : '';
 								$label 	= isset($repeated_value['label']) ? $repeated_value['label'] : '';
 								$type	= isset($repeated_value['type']) ? $repeated_value['type'] : '';
+								$desc	= isset($repeated_value['desc']) ? $repeated_value['desc'] : '';
 							
 								if ( $id )
 							
 									$fields[] = array
 										( 
 											'label'	=> $label, 	// <label>
-											'desc'	=> '', 		// description
+											'desc'	=> $desc, 	// description
 											'id'	=> $id, 	// field id and name
 											'type'	=> $type, 	// type of field
 										); 

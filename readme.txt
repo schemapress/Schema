@@ -3,7 +3,7 @@ Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, about, contact, amp, mobile
 Requires at least: 3.0
-Tested up to: 4.5.3
+Tested up to: 4.6
 Stable tag: 1.5.9.4
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
@@ -14,7 +14,7 @@ Super fast, light-weight plugin for adding schema.org structured data markup in 
 
 Enhanced Presentation in Search Results By including structured data appropriate to your content, your site can enhance its search results and presentation.
 
-Check out the [Plugin Homepage](http://schema.press/) for more info and documentation.
+Check out the [Plugin Homepage](http://schema.press/) for more info and [documentation](http://schema.press/docs/).
 
 **Developers?**
 
@@ -26,10 +26,11 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 **Schema Key Features**
 
-* Easy to use, set it and forget it minimal settings. 
+* Easy to use, set it and forget it, with minimal settings. 
 * Enable Schema types at once per custom post type or post category.
 * Provide a valid markup, test it in Google Structured Data Testing Tool.
 * Output JSON-LD format, the most recommended by Google.
+* Can reuse data saved in post meta that is created by other plugins.
 * Extensible, means you can extend its functionality via other plugins, extensions or within your Theme’s functions.php file.
 
 **Supported Google/Schema Markups**
@@ -107,6 +108,12 @@ Yes, Schema plugin will detect Yoast SEO plugin and it will not output any marku
 4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.5.9.5 =
+* Fixed post meta generator missing description. 
+* Updated plugin settings page screenshot.
+* Pumped WordPress version, checked and tested with 4.6 release.
+* Modified readme.txt file, added link to updated plugin documentation page.
 
 = 1.5.9.4 =
 * Fixed capabilities issue, plugin settings was not saving properly.
