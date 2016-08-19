@@ -26,12 +26,11 @@ function schema_wp_settings_contextual_help() {
 		'<p><strong>' . sprintf( __( 'For more information:', 'schema-wp' ) . '</strong></p>' .
 		'<p>' . sprintf( __( 'Visit the <a href="%s">documentation</a> on the schema.press website.', 'schema-wp' ), esc_url( 'http://schema.press/docs/' ) ) ) . '</p>' .
 		'<p>' . sprintf(
-					__( '<a href="%s">Post an issue</a> on <a href="%s">GitHub</a>. View <a href="%s">extensions</a> or <a href="%s">themes</a>.', 'schema-wp' ),
+					__( '<a href="%s">Post an issue</a> on <a href="%s">GitHub</a>. View <a href="%s">extensions</a>', 'schema-wp' ),
 					esc_url( 'https://github.com/schemapress/Schema/issues' ),
 					esc_url( 'https://github.com/schemapress/Schema' ),
-					esc_url( 'https://easydigitaldownloads.com/downloads/?utm_source=plugin-settings-page&utm_medium=contextual-help-sidebar&utm_term=extensions&utm_campaign=ContextualHelp' ),
-					esc_url( 'https://easydigitaldownloads.com/themes/?utm_source=plugin-settings-page&utm_medium=contextual-help-sidebar&utm_term=themes&utm_campaign=ContextualHelp' )
-				) . '</p>'
+					esc_url( 'https://wpsite.tools/vendor/schemapress/?utm_source=plugin-settings-page&utm_medium=contextual-help-sidebar&utm_term=extensions&utm_campaign=ContextualHelp' )
+					) . '</p>'
 	);
 
 	$screen->add_help_tab( array(

@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, about, contact, amp, mobile
 Requires at least: 3.0
 Tested up to: 4.6
-Stable tag: 1.5.9.4
+Stable tag: 1.5.9.5
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -111,6 +111,8 @@ Yes, Schema plugin will detect Yoast SEO plugin and it will not output any marku
 
 = 1.5.9.5 =
 * Fixed post meta generator missing description. 
+* Fixed Publisher logo image, image url was not used correctly in some cases.
+* Updated plugin settings text fields with placeholder info.
 * Updated plugin settings page screenshot.
 * Pumped WordPress version, checked and tested with 4.6 release.
 * Modified readme.txt file, added link to updated plugin documentation page.
@@ -322,6 +324,9 @@ Yes, Schema plugin will detect Yoast SEO plugin and it will not output any marku
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.5.9.5 =
+This update has an important fix for Publisher logo and some other functions in the plugin. Please, upgrade now to get this fix. 
 
 = 1.5.9.4 =
 This update has an important fix for capabilities, plugin settings was not saving properly on newly installed sites. Please, upgrade now to get this fix. 

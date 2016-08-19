@@ -167,7 +167,9 @@ function schema_wp_get_publisher_array() {
 	
 	$name = schema_wp_get_option( 'name' );
 	
-	if ( empty($name) ) return;
+	// Use site name as organization name for publisher if not presented in plugin settings
+	// @since 1.5.9.5
+	if ( empty($name) ) $name = get_bloginfo( 'name' );
 	
 	// @since 1.5.9.3
 	$logo = esc_attr( stripslashes( schema_wp_get_option( 'publisher_logo'  ) ) );

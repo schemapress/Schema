@@ -78,6 +78,21 @@ a.schema-wp-delete:hover {
 	color: #f00;
 }
 
+
+/* Fields */
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #ccc;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #ccc;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #ccc;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #ccc;
+}
+
 /* General Settings Styles
 -------------------------------------------------------------- */
 

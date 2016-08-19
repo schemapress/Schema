@@ -278,6 +278,7 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'Name', 'schema-wp' ),
 						'desc' => __( 'Your Organization name, or your name.', 'schema-wp' ),
 						'type' => 'text',
+						'placeholder' => get_bloginfo( 'name' ),
 						'std' => ''
 					),
 					'url' => array(
@@ -285,6 +286,7 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'Website', 'schema-wp' ),
 						'desc' => __( 'Your Organization website URL.', 'schema-wp' ),
 						'type' => 'text',
+						'placeholder' => 'http://',
 						'std' => ''
 					),
 					'logo' => array(
@@ -324,6 +326,7 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'Facebook', 'schema-wp' ),
 						'desc' => '',
 						'type' => 'text',
+						'placeholder' => 'http://',
 						'std' => ''
 					),
 					'twitter' => array(
@@ -331,6 +334,7 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'Twitter', 'schema-wp' ),
 						'desc' => '',
 						'type' => 'text',
+						'placeholder' => 'http://',
 						'std' => ''
 					),
 					'google' => array(
@@ -338,6 +342,7 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'Google+', 'schema-wp' ),
 						'desc' => '',
 						'type' => 'text',
+						'placeholder' => 'http://',
 						'std' => ''
 					),
 					'instagram' => array(
@@ -345,6 +350,7 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'Instagram', 'schema-wp' ),
 						'desc' => '',
 						'type' => 'text',
+						'placeholder' => 'http://',
 						'std' => ''
 					),
 					'youtube' => array(
@@ -352,6 +358,7 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'YouTube', 'schema-wp' ),
 						'desc' => '',
 						'type' => 'text',
+						'placeholder' => 'http://',
 						'std' => ''
 					),
 					'linkedin' => array(
@@ -359,12 +366,14 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'LinkedIn', 'schema-wp' ),
 						'desc' => '',
 						'type' => 'text',
+						'placeholder' => 'http://',
 						'std' => ''
 					),
 					'myspace' => array(
 						'name' => __( 'myspace', 'schema-wp' ),
 						'desc' => '',
 						'type' => 'text',
+						'placeholder' => 'http://',
 						'std' => ''
 					),
 					'pinterest' => array(
@@ -372,6 +381,7 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'Pinterest', 'schema-wp' ),
 						'desc' => '',
 						'type' => 'text',
+						'placeholder' => 'http://',
 						'std' => ''
 					),
 					'soundcloud' => array(
@@ -379,6 +389,7 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'SoundCloud', 'schema-wp' ),
 						'desc' => '',
 						'type' => 'text',
+						'placeholder' => 'http://',
 						'std' => ''
 					),
 					'tumblr' => array(
@@ -386,6 +397,7 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'Tumblr', 'schema-wp' ),
 						'desc' => '',
 						'type' => 'text',
+						'placeholder' => 'http://',
 						'std' => ''
 					)
 				)
@@ -880,7 +892,7 @@ function schema_wp_text_callback( $args ) {
 
 	$readonly = $args['readonly'] === true ? ' readonly="readonly"' : '';
 	$size     = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
-	$html     = '<input type="text" class="' . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" ' . $name . ' value="' . esc_attr( stripslashes( $value ) ) . '"' . $readonly . '/>';
+	$html     = '<input type="text" class="' . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" ' . $name . ' value="' . esc_attr( stripslashes( $value ) ) . '" placeholder="' . $args['placeholder'] . '" ' . $readonly . '/>';
 	$html    .= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
 
 	echo apply_filters( 'schema_wp_after_setting_output', $html, $args );
@@ -943,7 +955,7 @@ function schema_wp_textarea_callback( $args ) {
 		$value = isset( $args['std'] ) ? $args['std'] : '';
 	}
 
-	$html = '<textarea class="large-text" cols="50" rows="5" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']">' . esc_textarea( stripslashes( $value ) ) . '</textarea>';
+	$html = '<textarea class="large-text" cols="50" rows="5" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']">' . esc_textarea( stripslashes( $value ) ) . ' placeholder="' . $args['placeholder'] .'"</textarea>';
 	$html .= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
 
 	echo apply_filters( 'schema_wp_after_setting_output', $html, $args );
