@@ -41,13 +41,13 @@ function schema_wp_settings_contextual_help() {
 	
 	$screen->add_help_tab( array(
 		'id'	    => 'schema-wp-settings-knowledge-graph',
-		'title'	    => __( 'General', 'schema-wp' ),
+		'title'	    => __( 'Knowledge Graph', 'schema-wp' ),
 		'content'	=> '<p>' . __( 'This screen provides settings for configuring your Knowledge Graph. You can set Organization Info and Corporate Contacts.', 'schema-wp' ) . '</p>'
 	) );
 	
 	$screen->add_help_tab( array(
 		'id'	    => 'schema-wp-settings-search-results',
-		'title'	    => __( 'General', 'schema-wp' ),
+		'title'	    => __( 'Search Results', 'schema-wp' ),
 		'content'	=> '<p>' . __( 'This screen provides settings for configuring Search Results. You can set Sitelinks Search Box and Site Name.', 'schema-wp' ) . '</p>'
 	) );
 

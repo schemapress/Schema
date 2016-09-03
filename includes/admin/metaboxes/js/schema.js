@@ -38,4 +38,23 @@ jQuery(function($) {
         }
     });
 	
+	// repeated post meta group
+	$('.meta_box_repeatable_row div').hide();
+	/*
+	$('.meta_box_repeatable_row input[type="checkbox"]').on('change', function() {
+   		$('#' + this.id + '_div_open').toggle( this.checked ); 
+	});
+	*/
+	
+	
+	$('.meta_box_repeatable_row .toggle').toggle(function() {
+    	$('#' + this.id + '_wrap').show();
+		//$(this).parent().next('.toggle_div').show();
+    	$(this).html('Less');
+	}, function() {
+    	$('#' + this.id + '_wrap').hide();
+    	$(this).html(this.id);
+	});
+	
+	
 });

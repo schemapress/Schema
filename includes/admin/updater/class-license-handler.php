@@ -202,7 +202,7 @@ class Schema_WP_License {
 
 		echo '<p>' . sprintf(
 			__( 'Enter your extension license keys here to receive updates for purchased extensions. If your license key has expired, please <a href="%s" target="_blank">renew your license</a>.', 'schema-wp' ),
-			'http://docs.easydigitaldownloads.com/article/1000-license-renewal'
+			'https://wpsite.tools/'
 		) . '</p>';
 
 		$has_ran = true;

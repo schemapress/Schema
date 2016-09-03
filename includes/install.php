@@ -25,17 +25,20 @@ function schema_wp_install() {
 	if ( ! get_option( 'schema_wp_is_installed' ) || $older_plugin_version < 1.4 ) {
 		
 		// Auto create Schema entries for Post and Page post types 
-		//@since 1.4
+		// @since 1.4
 		
 		// Check if Schema post type exists,
 		// if not then initiate the function so we can insert post 
 		if ( ! post_type_exists( 'schema' ) )  schema_wp_cpt_init();
-
-
+		
+		// Check if Post already exists
+		// @since 1.5.9.6
+		$check_old_post = get_page_by_title( 'Post' );
+		
 		/*
 		*	Insert schema for posts
 		*/
-		$schema_post = wp_insert_post(
+		$schema_post = ($check_old_post) ? wp_insert_post(
 			array(
 				'post_title'     => __( 'Post', 'schema-wp' ),
 				'post_content'   => '',
@@ -43,7 +46,7 @@ function schema_wp_install() {
 				'post_author'    => 1,
 				'post_type'      => 'schema'
 			)
-		);
+		) : false; // set to false if already exists
 		
 		// update post meta
 		if ($schema_post) {
@@ -59,15 +62,22 @@ function schema_wp_install() {
 		
 			foreach( $posts as $p ) :
 				// - Update the post's metadata.
-				update_post_meta( $p->ID, '_schema_ref', $schema_post);
-		 	endforeach;
+				$check_ref = get_post_meta( $p->ID, '_schema_ref', true );
+				if ( ! isset($check_ref) || $check_ref =='' ) {
+					update_post_meta( $p->ID, '_schema_ref', $schema_post);
+				}
+			endforeach;
 		}
 		
-		 
+		
+		// Check if Page already exists
+		// @since 1.5.9.6
+		$check_old_page = get_page_by_title( 'Page' );
+		
 		/*
 		*	Insert schema for pages
 		*/
-		$schema_page = wp_insert_post(
+		$schema_page = ($check_old_page) ? wp_insert_post(
 			array(
 				'post_title'     => __( 'Page', 'schema-wp' ),
 				'post_content'   => '',
@@ -75,7 +85,7 @@ function schema_wp_install() {
 				'post_author'    => 1,
 				'post_type'      => 'schema'
 			)
-		);
+		) : false; // set to false if already exists
 		
 		// Update post meta
 		if ( $schema_page ) {
@@ -90,7 +100,10 @@ function schema_wp_install() {
 		
 			foreach( $pages as $p ) :
 				// - Update the page's metadata.
-				update_post_meta( $p->ID, '_schema_ref', $schema_page);
+				$check_ref = get_post_meta( $p->ID, '_schema_ref', true );
+				if ( ! isset($check_ref) || $check_ref =='' ) {
+					update_post_meta( $p->ID, '_schema_ref', $schema_post);
+				}
 		 	endforeach;
 		}
 		
@@ -116,6 +129,7 @@ function schema_wp_install() {
 
 }
 register_activation_hook( SCHEMAWP_PLUGIN_FILE, 'schema_wp_install' );
+
 
 function schema_wp_check_if_installed() {
 
@@ -149,7 +163,6 @@ function schema_wp_install_roles_on_network() {
 		$roles = new Schema_WP_Capabilities;
 		$roles->add_roles();
 		$roles->add_caps();
-
 	}
 
 }

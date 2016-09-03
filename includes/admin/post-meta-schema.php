@@ -183,6 +183,11 @@ $fields_post_meta_box =  array (
 				'type'	=> 'checkbox'
 			),
 			
+			'div_open' => array(
+				'id' => 'div_open',
+				'type' => 'div_open',
+			),
+			
 			array( 
 				'label'	=> __('Type', 'schema-wp'),
 				'desc'	=> __('Select field type', 'schema-wp'),
@@ -221,6 +226,11 @@ $fields_post_meta_box =  array (
 				'id' 	=> 'desc',
 				'type'	=> 'textarea',
 				'placeholder' => __('Description for this field', 'schema-wp'),
+			),
+			
+			'div_close' => array(
+				'id' => 'div_close',
+				'type' => 'div_close',
 			),
 			
 		)

@@ -339,6 +339,45 @@ function schema_wp_cpt_get_enabled() {
 }
 
 
+/**
+ * Get an array of enabled post types
+ *
+ * @since 1.5.9.6
+ * @return array of enabled post types, schema type
+ */
+function schema_wp_cpt_get_enabled_post_types() {
+	
+	$cpt_enabled = array();
+	
+	$args = array(
+					'post_type'			=> 'schema',
+					'post_status'		=> 'publish',
+					'posts_per_page'	=> -1
+				);
+				
+	$schemas_query = new WP_Query( $args );
+	
+	$schemas = $schemas_query->get_posts();
+	
+	// If there is no schema types set, return and empty array
+	if ( empty($schemas) ) return array();
+	
+	foreach( $schemas as $schema ) : 
+		
+		$schema_post_types = get_post_meta( $schema->ID, '_schema_post_types'	, true );
+		
+		// Build our array
+		$cpt_enabled[] = reset($schema_post_types);
+		
+		
+	endforeach;
+	
+	// debug
+	//echo '<pre>'; print_r($cpt_enabled); echo '</pre>'; exit;
+	//echo reset($cpt_enabled[0]);
+	return apply_filters('schema_wp_cpt_enabled_post_types', $cpt_enabled);
+}
+
 
 /**
  * Get an array of enabled post types
@@ -418,7 +457,9 @@ add_action( 'wp_insert_post', 'schema_wp_add_ref', 10, 1 );
 /**
  * Add schema reference Id
  * 
+ * Save ref on new post creation
  * To allow extentions to add their own meta boxes to a specific Schema type
+ *
  * @since 1.4.4
  * @return array of enabled post types, schema type
  */
@@ -435,11 +476,27 @@ function schema_wp_add_ref($post_id) {
 }
 
 
+add_action( 'wp', 'schema_wp_add_ref_on_page_view' );
 /**
- * Update post meta with a ref Schema Id
+ * Add post meta with a ref Schema Id on page view
  *
  * @param int $post_id The post ID.
- * @since 1.4.4
+ * @since 1.5.9.6
+ */
+function schema_wp_add_ref_on_page_view() {
+    
+	if ( is_singular() )
+		$meta_ref = schema_update_meta_ref( get_the_ID() );
+}
+
+
+/**
+ * Update post meta with a ref Schema Id 
+ *
+ * Used by schema_wp_add_ref_on_page_view() & schema_wp_add_ref()
+ *
+ * @param int $post_id The post ID.
+ * @since 1.5.9.6
  */
 function schema_update_meta_ref( $post_id ) {
 	
@@ -449,10 +506,16 @@ function schema_update_meta_ref( $post_id ) {
 	$schemas_enabled = schema_wp_cpt_get_enabled();
 	
 	if ( empty($schemas_enabled) ) return false;
-
-	// Get post type from current screen
-	$current_screen = get_current_screen();
-	$post_type = $current_screen->post_type;
+	
+	// Get post type
+	if ( is_admin() ) {
+		// on back-end
+		$current_screen = get_current_screen();
+		$post_type = $current_screen->post_type;
+	} else {
+		// on front-end
+		$post_type = get_post_type($post_id);
+	}
 	
 	foreach( $schemas_enabled as $schema_enabled ) : 
 	
@@ -466,88 +529,22 @@ function schema_update_meta_ref( $post_id ) {
 			
 			// Get schema post id
 			$schema_id = $schema_enabled['id'];
-			// insert schema post id into post mea
-			update_post_meta( $post_id, '_schema_ref', $schema_id);
+			
+			// Get old ref value
+			$old_ref = get_post_meta( $post_id, '_schema_ref', true );
+			
+			// Compare values and update post meta according
+			if ( isset($old_ref) ) {
+				if ( $old_ref != $post_id )
+					update_post_meta( $post_id, '_schema_ref', $schema_id );
+			} else {	
+				update_post_meta( $post_id, '_schema_ref', $schema_id );
+			}
 		}
 		
 	endforeach;
 	
 	return true;	
-}
-
-
-add_action( 'save_post', 'schema_save_ref', 10, 3 );
-/**
- * Save post metadata when a Schema post is saved.
- * Add schema reference Id
- *
- * @param int $post_id The post ID.
- * @param post $post The post object.
- * @param bool $update Whether this is an existing post being updated or not.
- * @since 1.4.4
- */
-function schema_save_ref( $post_id, $post, $update ) {
-	
-	if( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
-    || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) 
-		return $post_id;
-		
-	$slug = 'schema';
-
-    // If this isn't a 'schema' post, don't update it.
-    if ( $slug != $post->post_type ) {
-        return $post_id;
-    }
-	
-	// If this is just a revision, don't save ref.
-	if ( wp_is_post_revision( $post_id ) )
-		 return $post_id;
-		
-    // - Update the post's metadata.
-	schema_update_all_meta_ref( $post_id );
-	
-	// Debug
-	//$msg = 'Is this un update? ';
-  	//$msg .= $update ? 'Yes.' : 'No.';
-  	//wp_die( $msg );
-	
-	 return $post_id;
-}
-
-
-
-/**
- * Update post meta with a ref Schema Id for post types
- *
- * @param int $schema_id The schema post ID.
- * @since 1.4.4
- */
-function schema_update_all_meta_ref( $schema_id ) {
-	
-	if ( ! isset( $schema_id ) ) return;
-	
-	// Get enabled post types array
-	$schema_type = get_post_meta( $schema_id, '_schema_post_types' , true );
-	
-	// Debug
-	//echo '<pre>'; print_r($schema_type); echo '</pre>';exit; 
-	
-	if ( ! is_array( $schema_type ) || empty( $schema_type) ) return false;
-	 
-	foreach( $schema_type as $schema_enabled ) :  
-		
-		// Get all posts within this specific post type
-		$posts = get_posts( array( 'post_type' => $schema_enabled, 'numberposts' => -1 ) );
-		
-		foreach($posts as $p) :
-			// - Update the post's metadata.
-			update_post_meta( $p->ID, '_schema_ref', $schema_id);
-		 endforeach;
-
-    endforeach;
-	
-	return true;
-	
 }
 
 
@@ -784,42 +781,6 @@ function schema_wp_get_comments() {
 }
 
 
-/**
-* Create post post box
-*
-* Uses class Schema_Custom_Add_Meta_Box
-*
-* @since 1.5.7
-* @return true 
-*/
-function schema_wp_getAuthor() {	
-	
-	$Author = array
-	(
-		'@type' => 'Person',
-		'name' => get_the_author(),
-		'url' => esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-	);
-
-	if ( get_the_author_meta( 'description' ) )	{
-		$Author['description'] = get_the_author_meta( 'description' );
-	}
-	
-	$author_img_url = get_avatar_url( get_the_author_meta( 'user_email' ), 96 );
-	
-	if ( $AuthorImage ) {
-		$Author['image'] = array
-		(
-			'@type' => 'ImageObject',
-			'url' => $author_img_url,
-			'height' => 96,
-			'width' => 96
-		);
-	}
-
-	return $Author;
-}
-
 
 /**
 * Create post meta box
@@ -877,4 +838,42 @@ function schema_wp_do_post_meta( $args ) {
 	endforeach;
 	
 	return true;
+}
+
+
+/**
+ * Get time Seconds in ISO format
+ *
+ * @link http://stackoverflow.com/questions/13301142/php-how-to-convert-string-duration-to-iso-8601-duration-format-ie-30-minute
+ * @param string $time
+ * @since 1.5
+ * @return string The time Seconds in ISO format
+ */
+function schema_wp_get_time_second_to_iso8601_duration( $time ) {
+	
+	$units = array(
+        "Y" => 365*24*3600,
+        "D" =>     24*3600,
+        "H" =>        3600,
+        "M" =>          60,
+        "S" =>           1,
+    );
+
+    $str = "P";
+    $istime = false;
+
+    foreach ($units as $unitName => &$unit) {
+        $quot  = intval($time / $unit);
+        $time -= $quot * $unit;
+        $unit  = $quot;
+        if ($unit > 0) {
+            if (!$istime && in_array($unitName, array("H", "M", "S"))) { // There may be a better way to do this
+                $str .= "T";
+                $istime = true;
+            }
+            $str .= strval($unit) . $unitName;
+        }
+    }
+
+    return $str;
 }

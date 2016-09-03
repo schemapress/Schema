@@ -47,6 +47,15 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 		$id = $repeatable[0] . '_' . $repeatable[1] . '_' . $id;
 	}
 	switch( $type ) {
+		// opening div
+		case 'div_open':
+			echo '<span id="' . esc_attr( $id ) . '" class="toggle">'.__('Advanced', 'schema-wp').'</span>';
+			echo '</li></ul><span style="clear:both;display:block;"></span><div id="' . esc_attr( $id ) . '_wrap" class="toggle_div"><ul>';
+		break;
+		// closing div
+		case 'div_close':
+			echo '</li></ul></div>';
+		break;
 		// headline
 		case 'desc':
 			echo '<p>'.$desc.'</p>';
@@ -308,7 +317,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 				' . $desc;
 		break;
 		
-		// repeatable
+		// repeatable row
 		case 'repeatable_row':
 			echo '<table id="' . esc_attr( $id ) . '-repeatable" class="meta_box_repeatable meta_box_repeatable_row" cellspacing="0">
 				<thead>

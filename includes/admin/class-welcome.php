@@ -272,6 +272,10 @@ class Schema_WP_Welcome {
 					<p><?php _e( 'Schema allow you to enable VideoObject markup automatically whenever oEmbed is called on your page.', 'schema-wp' );?></p>
                     <p><?php _e( 'Supported oEmbed videos: Dailymotion, TED, Vimeo, VideoPress, Vine, YouTube.', 'schema-wp' );?></p>
                     
+                    <h2><?php _e( 'Automatically add AudioObject to oEmbed', 'schema-wp' );?></h2>
+					<p><?php _e( 'Schema allow you to enable AudioObject markup automatically whenever oEmbed is called on your page.', 'schema-wp' );?></p>
+                    <p><?php _e( 'Supported oEmbed audios: SoundCloud, and Mixcloud.', 'schema-wp' );?></p>
+                    
                     
                     
                 </div>    

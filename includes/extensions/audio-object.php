@@ -1,36 +1,36 @@
 <?php
 
 /**
- *  VideoObject extention
+ *  AudioObject extention
  *
- *  Adds schema VideoObject to oEmbed
+ *  Adds schema AudioObject to oEmbed
  *
- *  @since 1.5
+ *  @since 1.5.9.6
  */
  
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 
-add_action( 'admin_init', 'schema_wp_video_object_admin_init' );
+add_action( 'admin_init', 'schema_wp_audio_object_admin_init' );
 /**
- * Schema VideoObject init
+ * Schema AudioObject init
  *
- * @since 1.5
+ * @since 1.5.9.6
  */
-function schema_wp_video_object_admin_init() {
+function schema_wp_audio_object_admin_init() {
 	
 	if ( ! is_admin() ) return;
 	
 	if ( ! class_exists( 'Schema_WP' ) ) return;
 	
-	$prefix = '_schema_video_object_';
+	$prefix = '_schema_audio_object_';
 
 	$fields = array(
 	
 		array ( // Radio group
-		'label'	=> __('Video Markups', 'schema-wp'), // <label>
-		'tip'	=> __('Select video markup type.', 'schema-wp'),
-		'desc'	=> __('Note: You can enable markups to multiple videos on the same page. However, this may slow down your site, make sure your site is hosted on a reliable web host and cache your site pages by a good caching plugin. (Recommended setting: Single Video)', 'schema-wp'), // description
+		'label'	=> __('Audio Markups', 'schema-wp'), // <label>
+		'tip'	=> __('Select audio markup type.', 'schema-wp'),
+		'desc'	=> __('Note: You can enable markups to multiple audios on the same page. However, this may slow down your site, make sure your site is hosted on a reliable web host and cache your site pages by a good caching plugin. (Recommended setting: Single Audio)', 'schema-wp'), // description
 		'id'	=> $prefix.'type', // field id and name
 		'type'	=> 'radio', // type of field
 		'options' => array ( // array of options
@@ -39,11 +39,11 @@ function schema_wp_video_object_admin_init() {
 				'value'	=> 'none' // value stored for the option
 				),
 			'one' => array (
-				'label' => __('Single video', 'schema-wp'),
+				'label' => __('Single audio', 'schema-wp'),
 				'value'	=> 'single'
 				),
 			'two' => array (
-				'label' => __('Multiple videos', 'schema-wp'),
+				'label' => __('Multiple audios', 'schema-wp'),
 				'value'	=> 'multiple'
 				)
 			)
@@ -60,17 +60,17 @@ function schema_wp_video_object_admin_init() {
 	* var $priority string meta box priority (high, core, default, low) 
 	* var $js bool including javascript or not
 	*/
-	$schema_wp_video_object = new Schema_Custom_Add_Meta_Box( 'schema_video_object', 'VideoObject', $fields, 'schema', 'normal', 'high', true );
+	$schema_wp_audio_object = new Schema_Custom_Add_Meta_Box( 'schema_audio_object', 'AudioObject', $fields, 'schema', 'normal', 'high', true );
 }
 
 
-add_action( 'current_screen', 'schema_wp_video_object_post_meta' );
+add_action( 'current_screen', 'schema_wp_audio_object_post_meta' );
 /**
- * Create VideoObject post meta box for active post types edit screens
+ * Create AudioObject post meta box for active post types edit screens
  *
- * @since 1.5
+ * @since 1.5.9.6
  */
-function schema_wp_video_object_post_meta() {
+function schema_wp_audio_object_post_meta() {
 	
 	if ( ! is_admin() ) return;
 	
@@ -78,7 +78,7 @@ function schema_wp_video_object_post_meta() {
 	
 	global $post;
 	
-	$prefix = '_schema_video_object_';
+	$prefix = '_schema_audio_object_';
 
 	/**
 	* Create meta box on active post types edit screens
@@ -87,37 +87,37 @@ function schema_wp_video_object_post_meta() {
 		
 		array( 
 			'label'	=> '', 
-			'desc'	=> __('You have enabled VideoObject, if you see an error in the <a target="_blank" href="https://search.google.com/structured-data/testing-tool">testing tool</a>, use the fields below to fill the missing fields, correct markup errors, and add additional details about the video embedded in your content editor.', 'schema-wp'), 
+			'desc'	=> __('You have enabled AudioObject, if you see an error in the <a target="_blank" href="https://search.google.com/structured-data/testing-tool">testing tool</a>, use the fields below to fill the missing fields, correct markup errors, and add additional details about the audio embedded in your content editor.', 'schema-wp'), 
 			'id'	=> $prefix.'headline', 
 			'type'	=> 'desc' 
 		),
 		array( // Text Input
 			'label'	=> __('Title', 'schema-wp'), // <label>
-			'tip'	=> __('Video title', 'schema-wp'), // tooltip
+			'tip'	=> __('Audio title', 'schema-wp'), // tooltip
 			'desc'	=> __('', 'schema-wp'), // description
 			'id'	=> $prefix.'name', // field id and name
 			'type'	=> 'text' // type of field
 		),
 		array( 
-			'label'	=> __('Upload Date', 'schema-wp'), 
-			'tip'	=> __('Video upload date in ISO 8601 format YYYY-MM-DD example: 2016-06-23', 'schema-wp'), 
+			'label'	=> __('Upload Date', 'schema-wp'),  
+			'tip'	=> __('Audio upload date in ISO 8601 format YYYY-MM-DD example: 2016-06-23', 'schema-wp'), 
 			'desc'	=> __('', 'schema-wp'), 
 			'id'	=> $prefix.'upload_date', 
 			'type'	=> 'text' 
 		),
 		array( 
 			'label'	=> __('Duration', 'schema-wp'), 
-			'tip'	=> __('Video duration, example: if duration is 1 Hour 35 MIN, use: PT1H35M', 'schema-wp'), 
+			'tip'	=> __('Audio duration, example: if duration is 1 Hour 35 MIN, use: PT1H35M', 'schema-wp'),  
 			'desc'	=> __('', 'schema-wp'), 
 			'id'	=> $prefix.'duration', 
 			'type'	=> 'text' 
 		),
 		array( // Textarea
 			'label'	=> __('Description', 'schema-wp'), 
-			'tip'	=> __('Video short description.', 'schema-wp'),  
+			'tip'	=> __('Audio short description.', 'schema-wp'), 
 			'desc'	=> __('', 'schema-wp'), 
 			'id'	=> $prefix.'description',  
-			'type'	=> 'textarea' 
+			'type'	=> 'textarea'  
 		),
 	);
 	
@@ -137,9 +137,9 @@ function schema_wp_video_object_post_meta() {
 	
 	foreach( $schemas_enabled as $schema_enabled ) : 
 		
-		$type = $schema_enabled['video_object_type'] != '' ? $schema_enabled['video_object_type'] : '';
+		$type = (isset($schema_enabled['audio_object_type']) && $schema_enabled['audio_object_type'] != '') ? $schema_enabled['audio_object_type'] : '';
 		
-		// Add meta box only for type signle, preset an entry with one embed video
+		// Add meta box only for type signle, preset an entry with one embed audio
 		if ( $type == 'single' )  {
 		
 		// Get Schema enabled post types array
@@ -147,7 +147,7 @@ function schema_wp_video_object_post_meta() {
 		
 			if ( ! empty($schema_cpt) && in_array( $post_type, $schema_cpt, true ) ) {
 		
-				$schema_wp_video_object_active = new Schema_Custom_Add_Meta_Box( 'schema_video_object', 'VideoObject', $fields, $schema_cpt, 'normal', 'high', true );
+				$schema_wp_audio_object_active = new Schema_Custom_Add_Meta_Box( 'schema_audio_object', 'AudioObject', $fields, $schema_cpt, 'normal', 'high', true );
 			}
 		}
 		
@@ -159,13 +159,13 @@ function schema_wp_video_object_post_meta() {
 
 
 
-add_filter('schema_wp_cpt_enabled', 'schema_wp_schema_video_object_extend_cpt_enabled');
+add_filter('schema_wp_cpt_enabled', 'schema_wp_schema_audio_object_extend_cpt_enabled');
 /**
  * Extend the CPT Enabled array
  *
- * @since 1.5
+ * @since 1.5.9.6
  */
-function schema_wp_schema_video_object_extend_cpt_enabled( $cpt_enabled ) {
+function schema_wp_schema_audio_object_extend_cpt_enabled( $cpt_enabled ) {
 
 	if ( empty($cpt_enabled) ) return;
 	
@@ -187,13 +187,13 @@ function schema_wp_schema_video_object_extend_cpt_enabled( $cpt_enabled ) {
 	foreach ( $schemas as $schema ) : 
 		
 		// Get post meta
-		$type = get_post_meta( $schema->ID, '_schema_video_object_type', true );
+		$type = get_post_meta( $schema->ID, '_schema_audio_object_type', true );
 		
 		if ( ! isset($type) ) $type = 'none'; // default
 	
 		if ( $type != 'none' ) {
-			// Append video object type
-			$cpt_enabled[$i]['video_object_type']  = $type;
+			// Append audio object type
+			$cpt_enabled[$i]['audio_object_type']  = $type;
 		}
 		
 		// Or maybe use...
@@ -213,16 +213,19 @@ function schema_wp_schema_video_object_extend_cpt_enabled( $cpt_enabled ) {
 
 
 
-add_filter( 'schema_output', 'schema_wp_video_object_output' );
+add_filter( 'schema_output', 'schema_wp_audio_object_output' );
 /**
- * Video qoject output, filter the schema_output
+ * Audio qoject output, filter the schema_output
  *
  * @param array $schema
- * @since 1.5
+ * @since 1.5.9.6
  * @return array $schema 
  */
-function schema_wp_video_object_output( $schema ) {
+function schema_wp_audio_object_output( $schema ) {
 	
+	//echo'<pre>'; print_r( $schema ); echo'</pre>';
+	//exit;
+			
 	// Debug - start of script
 	//$time_start = microtime(true); 
 
@@ -233,20 +236,22 @@ function schema_wp_video_object_output( $schema ) {
 	// Maybe this is not needed!
 	if ( ! $wp_query->is_main_query() ) return $schema;
 	
-	if ( $wp_embed->last_url == '' || ! isset($wp_embed->last_url) ) return $schema;
+	// This didn't work, that's why it's commented
+	//if ( $wp_embed->last_url == '' || ! isset($wp_embed->last_url) ) return $schema;
 	
 	// Get post meta
-	$schema_ref = get_post_meta( $post->ID, '_schema_ref'			, true );
+	$schema_ref = get_post_meta( $post->ID, '_schema_ref', true );
 	
 	// Check for ref, if is not presented, then get out!
 	if ( ! isset($schema_ref) || $schema_ref  == '' ) return $schema;
 	
-	// Get video object type value from enabled Schema post type
-	$type	 = get_post_meta( $schema_ref, '_schema_video_object_type', true );
+	// Get audio object type value from enabled Schema post type
+	$type = get_post_meta( $schema_ref, '_schema_audio_object_type', true );
 	
 	//if ( ! isset($enabled) ) $enabled = false; // default
-	//if ( ! isset($video_object_type_enabled)  || $video_object_type_enabled == '' )	$video_object_type_enabled	= false;		// default
+	//if ( ! isset($audio_object_type_enabled)  || $audio_object_type_enabled == '' )	$audio_object_type_enabled	= false;		// default
 	if ( ! isset($type) ) $type = 'none'; // default
+	
 	
 	if ( $type != 'none' ) {
 		
@@ -266,19 +271,20 @@ function schema_wp_video_object_output( $schema ) {
 		
 		if ( $type == 'single') {
 		
-			// Get one video
+			// Get one audio
 			$reg = preg_match( $regex, $content, $matches );
 			//$matches = schema_wp_get_string_urls($content);
 			
 			if ( ! $reg ) return $schema;
 			
 			$autoembed = new WP_oEmbed();
+			
 			$url = trim($matches[0]); // also, use trim to remove white spaces if any
 			$provider = $autoembed->discover( $url );
 			if (filter_var($provider, FILTER_VALIDATE_URL) != FALSE) {
 				$data = $autoembed->fetch( $provider, $url );
 				if (!empty($data) ) {
-					$schema['video'] = schema_wp_get_video_object_array( $data );
+					$schema['audio'] = schema_wp_get_audio_object_array( $data );
 				}
 			}
 		
@@ -289,7 +295,7 @@ function schema_wp_video_object_output( $schema ) {
 				if (filter_var($provider, FILTER_VALIDATE_URL) != FALSE) {
 					$data = $autoembed->fetch( $provider, $url );
 					if (!empty($data) ) {
-						$schema['video'] = schema_wp_get_video_object_array( $data );
+						$schema['audio'] = schema_wp_get_audio_object_array( $data );
 					}
 				}
 			}*/
@@ -305,14 +311,14 @@ function schema_wp_video_object_output( $schema ) {
 			
 			//$matches = schema_wp_get_string_urls($content);
 			$autoembed = new WP_oEmbed();
-			$schema['video'] = array();
+			$schema['audio'] = array();
 			foreach ( $matches as $key => $url ) {
 				$url = trim($url); // remove white spaces if any
 				$provider = $autoembed->discover( $url );
 				if (filter_var($provider, FILTER_VALIDATE_URL) != FALSE) {
 					$data = $autoembed->fetch( $provider, $url );
 					if (!empty($data) ) {
-						$schema['video'][] = schema_wp_get_video_object_array( $data );
+						$schema['audio'][] = schema_wp_get_audio_object_array( $data );
 					}
 				}
 			}
@@ -334,13 +340,13 @@ function schema_wp_video_object_output( $schema ) {
 
 
 /**
- * Get video qoject array 
+ * Get audio qoject array 
  *
  * @param array $data
  * @since 1.5
  * @return array 
  */
-function schema_wp_get_video_object_array( $data ) {
+function schema_wp_get_audio_object_array( $data ) {
 	
 	global $post;
 	
@@ -349,39 +355,42 @@ function schema_wp_get_video_object_array( $data ) {
 	//	if ( wprs_is_enabled($post->ID) ) return;
 	//}
 	
-	//print_r($data); exit;
+	//echo'<pre>'; print_r( $data ); echo'</pre>'; //exit;
 	
-	$video_id		= '';		
+	$audio_id		= '';		
 	$name			= '';
 	$description	= '';
+	$image			= '';
 	$thumbnail_url	= '';
 	$upload_date	= '';		
 	$duration 		= '';
 			
 	$host 			= isset($data->provider_name) ? $data->provider_name : '';
 	
-	$supported_hosts = array ( 'TED', 'Vimeo', 'Dailymotion', 'VideoPress', 'Vine', 'YouTube' );
+	$supported_hosts = array ( 'SoundCloud', 'Mixcloud', 'Spotify' ); // Spotify not tested!
 	
 	if ( ! in_array( $host, $supported_hosts) ) return;
 	
 	// Get values from post meta
-	$meta_name			= get_post_meta( $post->ID, '_schema_video_object_name', true );
-	$meta_description	= get_post_meta( $post->ID, '_schema_video_object_description', true );
-	$meta_upload_date	= get_post_meta( $post->ID, '_schema_video_object_upload_date', true );
-	$meta_duration		= get_post_meta( $post->ID, '_schema_video_object_duration', true );
+	$meta_name			= get_post_meta( $post->ID, '_schema_audio_object_name', true );
+	$meta_description	= get_post_meta( $post->ID, '_schema_audio_object_description', true );
+	$meta_upload_date	= get_post_meta( $post->ID, '_schema_audio_object_upload_date', true );
+	$meta_duration		= get_post_meta( $post->ID, '_schema_audio_object_duration', true );
 	
 	// Override values if found via parsing the data
-	$video_id		= isset($data->video_id) ? $data->video_id : '';
+	$audio_id		= isset($data->audio_id) ? $data->audio_id : '';
 	$name			= isset($data->title) ? $data->title : $meta_name;
 	$description	= isset($data->description) ? $data->description : $meta_description;
+	$image			= isset($data->image) ? $data->image : '';
 	$thumbnail_url	= isset($data->thumbnail_url) ? $data->thumbnail_url : '';
 	$upload_date	= isset($data->upload_date) ? $data->upload_date : $meta_upload_date;
 	$duration		= isset($data->duration) ? schema_wp_get_time_second_to_iso8601_duration( $data->duration ) : $meta_duration;
 	
 	$schema = array( 
-						'@type'			=> 'VideoObject',
+						'@type'			=> 'AudioObject',
 						"name"			=> $name,
 						"description"	=> $description,
+						"image"			=> $image,
 						"thumbnailUrl"	=> $thumbnail_url,
 						'uploadDate'	=> $upload_date,
 						"duration"		=> $duration
