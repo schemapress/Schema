@@ -3,8 +3,8 @@ Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, about, contact, amp, mobile
 Requires at least: 3.0
-Tested up to: 4.6
-Stable tag: 1.5.9.6
+Tested up to: 4.6.1
+Stable tag: 1.5.9.7
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -113,6 +113,15 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.5.9.7 =
+* Fixed slow performance by reducing number of queries made by the plugin.
+* Fixed post meta generator, empty meta box display.
+* Fixed an error on post save, global post variable needed to be called.
+* Enhanced overall performance by caching JSON-LD array in post meta. 
+* Enhanced author output, now it has been added as a core extension.
+* Cleaned up some code and moved admin and other functions to its own files.
+* Pumped WordPress version, checked and tested with 4.6.1 release.
 
 = 1.5.9.6 =
 * Added new extension support for AudioObject.
@@ -339,6 +348,9 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.5.9.7 =
+This update includes enhancement to performance by caching JSON-LD output in post meta, this will reduce database queries and make your site loads faster. Please, upgrade now to get these enhancements. 
 
 = 1.5.9.6 =
 This update includes enhancement to plugin activation, support for schema.org AudioObject and more. Please, upgrade now to get these enhancements. 

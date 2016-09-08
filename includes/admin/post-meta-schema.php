@@ -253,3 +253,61 @@ $schema_article_box = new Schema_Custom_Add_Meta_Box( 'schema_article', __('Arti
 $schema_cpt_box = new Schema_Custom_Add_Meta_Box( 'schema_cpt', __('Post Types', 'schema-wp'), $fields_post_types, 'schema', 'side', 'default', true );
 $schema_post_meta_box = new Schema_Custom_Add_Meta_Box( 'schema_post_meta_box', __('Post Meta', 'schema-wp'), $fields_post_meta_box, 'schema', 'normal', 'default', true );
 
+
+/**
+* Create post meta box
+*
+* Uses class Schema_Custom_Add_Meta_Box
+*
+* @since 1.5.7
+* @return true 
+*/
+function schema_wp_do_post_meta( $args ) {
+	
+	if ( empty( $args ) ) return;
+	
+	$id 		 = $args['id'];
+	$title 		 = $args['title'];
+	$schema_type = $args['type'];
+	$fields 	 = $args['fields'];
+	
+	if ( empty( $fields ) ) return;
+	
+	/**
+	* Get enabled post types to create a meta box on
+	*/
+	$schemas_enabled = array();
+	
+	// Get schame enabled array
+	$schemas_enabled = schema_wp_cpt_get_enabled();
+	
+	if ( empty($schemas_enabled) ) return;
+
+	// Get post type from current screen
+	$current_screen = get_current_screen();
+	$post_type = $current_screen->post_type;
+	
+	foreach( $schemas_enabled as $schema_enabled ) : 
+		
+		$type = $schema_enabled['type'];
+		
+		if ( ! isset($type) || $type == '' ) return;
+		
+		// Get Schema enabled post types array
+		$schema_cpt = $schema_enabled['post_type'];
+	
+		if ( ! empty($schema_cpt) && in_array( $post_type, $schema_cpt, true ) ) {
+			
+			if ( $type == $schema_type && $schema_enabled['post_type'][0] == $post_type ) {
+				$new_post_meta = new Schema_Custom_Add_Meta_Box( $id, $title, $fields, $post_type, 'normal', 'high', true );
+			}
+
+		}
+		
+		// debug
+		//print_r($schema_enabled);
+		
+	endforeach;
+	
+	return true;
+}

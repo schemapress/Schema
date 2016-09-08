@@ -166,9 +166,15 @@ add_filter('schema_wp_cpt_enabled', 'schema_wp_schema_audio_object_extend_cpt_en
  * @since 1.5.9.6
  */
 function schema_wp_schema_audio_object_extend_cpt_enabled( $cpt_enabled ) {
-
-	if ( empty($cpt_enabled) ) return;
+		
+	if ( empty($cpt_enabled) )
+		return;
 	
+	$audio_object_enable = schema_wp_get_option( 'audio_object_enable' );
+	
+	if ( $audio_object_enable != true )
+		return $cpt_enabled;
+		
 	$args = array(
 					'post_type'			=> 'schema',
 					'post_status'		=> 'publish',
@@ -180,7 +186,8 @@ function schema_wp_schema_audio_object_extend_cpt_enabled( $cpt_enabled ) {
 	$schemas = $schemas_query->get_posts();
 	
 	// If there is no schema types set, return and empty array
-	if ( empty($schemas) ) return array();
+	if ( empty($schemas) ) 
+		return array();
 	
 	$i = 0;
 	
@@ -227,14 +234,21 @@ function schema_wp_audio_object_output( $schema ) {
 	//exit;
 			
 	// Debug - start of script
-	//$time_start = microtime(true); 
+	//$time_start = microtime(true);
 
-	if ( empty($schema) ) return;
+	if ( empty($schema) ) 
+		return;
+	
+	$audio_object_enable = schema_wp_get_option( 'audio_object_enable' );
+	
+	if ( $audio_object_enable != true )
+		return $schema;
 	
 	global $wp_query, $post, $wp_embed;
 	
 	// Maybe this is not needed!
-	if ( ! $wp_query->is_main_query() ) return $schema;
+	if ( ! $wp_query->is_main_query() )
+		return $schema;
 	
 	// This didn't work, that's why it's commented
 	//if ( $wp_embed->last_url == '' || ! isset($wp_embed->last_url) ) return $schema;

@@ -74,5 +74,3 @@ function schema_wp_admin_bar_styles() {
 	</style>
 <?php
 }
-
-

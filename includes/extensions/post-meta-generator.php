@@ -30,9 +30,9 @@ class Schema_Post_Meta_Generator {
 		if ( $ref ) {
 			
 			// Check if enabled
-			$enabled = get_post_meta( $ref, '_schema_post_meta_box_enabled' , true );
+			//$enabled = get_post_meta( $ref, '_schema_post_meta_box_enabled' , true );
 			
-			if ( ! isset($enabled) || $enabled != 1 ) return;
+			//if ( ! isset($enabled) || $enabled != 1 ) return;
 			
 			// Start working....
 
@@ -47,7 +47,7 @@ class Schema_Post_Meta_Generator {
 					// This is not needed as it will stop filtering meta keys with no post meta fields
 					//if ( isset($value['field']) && $value['field'] == 1 ) { // check if field is enabled
 						
-						if ( isset($value['filter']) && $value['filter'] != '' && isset($value['key']) && $value['key'] != '') {
+						if ( isset($value['filter']) && $value['filter'] != '' && isset($value['key']) && $value['key'] != '' ) {
 						
 							$filter_name	= $value['filter'];
 							$meta_key		= $value['key'];
@@ -62,7 +62,7 @@ class Schema_Post_Meta_Generator {
 						
 							if ( isset($post_meta_value) && $post_meta_value != '' ) {
 						
-								add_filter( $filter_name,  function ($field_value) use ( $meta_key ) { 
+								add_filter( $filter_name, function ($field_value) use ( $meta_key ) { 
 									$field_value = get_post_meta( $this->post_id, $meta_key, true );
 									return $field_value;
 								} );
@@ -79,6 +79,7 @@ class Schema_Post_Meta_Generator {
 }
 
 
+
 add_action( 'template_redirect', 'schema_wp_post_meta_generator_init' );
 /**
  * init post meta generator class
@@ -88,6 +89,7 @@ add_action( 'template_redirect', 'schema_wp_post_meta_generator_init' );
 function schema_wp_post_meta_generator_init() {
     $schema_post_meta_generator = new Schema_Post_Meta_Generator();
 }
+
 
 
 add_action( 'current_screen', 'schema_wp_generate_custom_post_meta_box' );
@@ -170,7 +172,9 @@ function schema_wp_generate_custom_post_meta_box() {
 						endforeach;
 					
 						//echo '<pre>'; print_r($fields); echo '</pre>'; exit;
-					
+						
+						if ( empty($fields) ) return;
+						
 						$meta = new Schema_Custom_Add_Meta_Box( 'schema_custom_post_meta', $title, $fields, $post_type, 'normal', 'high', true );
 					} // end if
 				} // end if

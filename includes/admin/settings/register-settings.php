@@ -269,6 +269,31 @@ function schema_wp_get_registered_settings() {
 			)
 		),
 		
+		'content' => apply_filters( 'schema_wp_settings_content',
+			array(
+				'comments' => array(
+						'id' => 'comments_enable',
+						'name' => __( 'Enable Comments markup?', 'schema-wp' ),
+						'desc' => __( 'Check this box if you would like Schema to output Comments markup.', 'schema-wp' ),
+						'type' => 'checkbox'
+					),
+				'main' => array(
+					'video' => array(
+						'id' => 'video_object_enable',
+						'name' => __( 'Enable VideoObject markup?', 'schema-wp' ),
+						'desc' => __( 'Check this box if you would like Schema to output VideoObject markup.', 'schema-wp' ),
+						'type' => 'checkbox'
+					),
+					'audio' => array(
+						'id' => 'audio_object_enable',
+						'name' => __( 'Enable AudioObject markup?', 'schema-wp' ),
+						'desc' => __( 'Check this box if you would like Schema to output AudioObject markup.', 'schema-wp' ),
+						'type' => 'checkbox'
+					)
+				)
+			)
+		),
+		
 		/** Knowledge Graph Settings */
 		'knowledge_graph' => apply_filters('schema_wp_settings_knowledge_graph',
 			array(
@@ -656,6 +681,7 @@ function schema_wp_get_settings_tabs() {
 
 	$tabs						= array();
 	$tabs['general']			= __( 'General',			'schema-wp' );
+	$tabs['content']			= __( 'Content',			'schema-wp' );
 	$tabs['knowledge_graph']	= __( 'Knowledge Graph',	'schema-wp' );
 	$tabs['search_results']		= __( 'Search Results',		'schema-wp' );
 	
@@ -712,6 +738,9 @@ function schema_wp_get_registered_settings_sections() {
 
 	$sections = array(
 		'general'    => apply_filters( 'schema_wp_settings_sections_general', array(
+			'main'		=> '',
+		) ),
+		'content'    => apply_filters( 'schema_wp_settings_sections_content', array(
 			'main'		=> '',
 		) ),
 		'knowledge_graph'	=> apply_filters( 'schema_wp_settings_sections_knowledge_graph', array(

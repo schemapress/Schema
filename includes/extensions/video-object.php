@@ -166,9 +166,14 @@ add_filter('schema_wp_cpt_enabled', 'schema_wp_schema_video_object_extend_cpt_en
  * @since 1.5
  */
 function schema_wp_schema_video_object_extend_cpt_enabled( $cpt_enabled ) {
-
+	
 	if ( empty($cpt_enabled) ) return;
 	
+	$video_object_enable = schema_wp_get_option( 'video_object_enable' );
+	
+	if ( $video_object_enable != true )
+		return $cpt_enabled;
+		
 	$args = array(
 					'post_type'			=> 'schema',
 					'post_status'		=> 'publish',
@@ -225,9 +230,14 @@ function schema_wp_video_object_output( $schema ) {
 	
 	// Debug - start of script
 	//$time_start = microtime(true); 
-
+	
 	if ( empty($schema) ) return;
 	
+	$video_object_enable = schema_wp_get_option( 'video_object_enable' );
+	
+	if ( $video_object_enable != true )
+		return $schema;
+		
 	global $wp_query, $post, $wp_embed;
 	
 	// Maybe this is not needed!

@@ -19,114 +19,91 @@ function schema_wp_output() {
 	
 	global $post;
 	
-	// do not run on front, home page, archive pages, search result pages, and 404 error pages
+	// Do not run on front, home page, archive pages, search result pages, and 404 error pages
 	if ( is_archive() || is_home() || is_front_page() || is_search() || is_404() ) return;
 	
-	// check for WPRichSnippets plugin
+	// Check for WPRichSnippets plugin
 	// @since 1.4.5
 	//if (function_exists('wprs_is_enabled')) {
 	//	if ( wprs_is_enabled( $post->ID ) ) return;
 	//}
 	
-	$pttimestamp 	 = time() + get_option('gmt_offset') * 60*60;
-	$pttimestamp_old = get_post_meta( $post->ID, '_schema_json_timestamp', true );
+	$output = '';
+	$json = array();
 	
-	// compare time stamp and check if json post meta value already exists
-	// @since 1.5.9.7
-	if ( isset($pttimestamp_old) ) {
-		$time_diff = $pttimestamp - $pttimestamp_old;
-		if ( $time_diff <= DAY_IN_SECONDS ) { 
-			$json = get_post_meta( $post->ID, '_schema_json', true );
-		} else {
-			delete_post_meta( $post->ID, '_schema_json' );
-			$json = array();
-		}
-	} 
+	$schemas_enabled = array();
 	
-	if ( !isset($json) || empty($json) ) {
+	// Get schame enabled array
+	$schemas_enabled = schema_wp_cpt_get_enabled();
 	
-		$schemas_enabled = array();
+	if ( empty($schemas_enabled) ) return;
 	
-		// get schame enabled array
-		$schemas_enabled = schema_wp_cpt_get_enabled();
+	$post_type = get_post_type();
 	
-		if ( empty($schemas_enabled) ) return;
-	
-		$post_type = get_post_type();
-	
-		foreach( $schemas_enabled as $schema_enabled ) : 
-		
-			// debug
-			//print_r($schema_enabled);
-		
-			// get Schema enabled post types array
-			$schema_cpt = $schema_enabled['post_type'];
-		
-			if ( ! empty($schema_cpt) && in_array( $post_type, $schema_cpt, true ) ) {
-			
-				// get enabled categories
-				$categories = schema_wp_get_categories( $post->ID );
-				$categories_enabled = $schema_enabled['categories'];
-				// Get an array of common categories between the two arrays
-				$categories_intersect = array_intersect($categories, $categories_enabled);
-				//print_r($result); exit;
-			
-				if ( empty($categories_enabled) ) {
-				
-					// apply on all posts
-					$type = ($schema_enabled['type_sub'] && $schema_enabled['type']=='Article') ? $schema_enabled['type_sub'] : $schema_enabled['type'];
-					$json = schema_wp_get_schema_json( $type );
-			
-				} else {
-				
-					// Apply only on enabled categories
-					$cat_enabled = array_intersect_key( $categories, $categories_enabled );
-				
-					if ( ! empty($cat_enabled) && ! empty($categories_intersect) ) {
-					
-						//foreach( $categories as $key => $value  ){
-    					
-						//	if ( in_array( $value, $cat_enabled, true ) ) {
-							
-								//print_r($value); exit;
-					
-								$type = ($schema_enabled['type_sub'] && $schema_enabled['type']=='Article') ? $schema_enabled['type_sub'] : $schema_enabled['type'];
-								$json = schema_wp_get_schema_json( $type );
-					
-						//	} // end if
-						//} // end foreach
-					
-					
-					}
-				
-				}
-			
-			}
-		
+	foreach( $schemas_enabled as $schema_enabled ) : 
 		
 		// debug
 		//print_r($schema_enabled);
 		
-		endforeach;
-	
-	} // end if
-	
-	$output = '';
+		// Get Schema enabled post types array
+		$schema_cpt = $schema_enabled['post_type'];
+		
+		if ( ! empty($schema_cpt) && in_array( $post_type, $schema_cpt, true ) ) {
+			
+			// Get enabled categories
+			$categories = schema_wp_get_categories( $post->ID );
+			$categories_enabled = $schema_enabled['categories'];
+			// Get an array of common categories between the two arrays
+			$categories_intersect = array_intersect($categories, $categories_enabled);
+			//print_r($result); exit;
+			
+			if ( empty($categories_enabled) ) {
+				
+				// Apply on all posts
+				$type = ($schema_enabled['type_sub'] && $schema_enabled['type']=='Article') ? $schema_enabled['type_sub'] : $schema_enabled['type'];
+				$json = schema_wp_get_schema_json( $type );
+			
+			} else {
+				
+				// Apply only on enabled categories
+				$cat_enabled = array_intersect_key( $categories, $categories_enabled );
+				
+				if ( ! empty($cat_enabled) && ! empty($categories_intersect) ) {
+					
+					//foreach( $categories as $key => $value  ){
+    					
+					//	if ( in_array( $value, $cat_enabled, true ) ) {
+							
+							//print_r($value); exit;
+					
+							$type = ($schema_enabled['type_sub'] && $schema_enabled['type']=='Article') ? $schema_enabled['type_sub'] : $schema_enabled['type'];
+							$json = schema_wp_get_schema_json( $type );
+					
+					//	} // end if
+					//} // end foreach
+					
+					
+				}
+				
+			}
+			
+		}
+		
+		// debug
+		//print_r($schema_enabled);
+		
+	endforeach;
 	
 	if ( ! empty($json) ) {
-		$output .= "\n\n";
-		$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - http://schema.press -->';
-		$output .= "\n";
-		$output .= '<script type="application/ld+json">' . json_encode($json) .'</script>';
-		$output .= "\n\n";
-	}
-	
-	// update post meta with new generated json value and time stamp 
-	// @since 1.5.9.7 
-	update_post_meta( $post->ID, '_schema_json', $json );
-	update_post_meta( $post->ID, '_schema_json_timestamp', $pttimestamp );
-	
+			$output .= "\n\n";
+			$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - http://schema.press -->';
+			$output .= "\n";
+			$output .= '<script type="application/ld+json">' . json_encode($json) .'</script>';
+			$output .= "\n\n";
+		}
+
 	echo $output;
+
 }
 
 
