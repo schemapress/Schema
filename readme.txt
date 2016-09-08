@@ -120,6 +120,7 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Fixed an error on post save, global post variable needed to be called.
 * Enhanced overall performance by caching JSON-LD array in post meta. 
 * Enhanced author output, now it has been added as a core extension.
+* Added new settings to control AudioObject, VideoObject, and Comments.
 * Cleaned up some code and moved admin and other functions to its own files.
 * Pumped WordPress version, checked and tested with 4.6.1 release.
 
