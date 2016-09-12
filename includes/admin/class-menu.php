@@ -39,6 +39,14 @@ class Schema_WP_Admin_Menu {
 			'edit.php?post_type=schema'
 		);
 		
+		add_submenu_page(
+			'schema',
+			__( 'About', 'schema-wp' ),
+			__( 'About', 'schema-wp' ),
+			'manage_schema_options',
+			'?page=schema-wp-what-is-new'
+		);
+		
 		// Contextual Help
 		// @since 1.5.9.3
 		if ( $schema_wp_options_page )

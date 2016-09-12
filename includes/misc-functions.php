@@ -377,3 +377,41 @@ function schema_wp_get_time_second_to_iso8601_duration( $time ) {
 
     return $str;
 }
+
+
+add_action( 'save_post', 'schema_wp_clear_json_on_post_save', 10, 3 );
+/**
+ * Clear schema json on post save
+ *
+ * @param int $post_id The post ID.
+ * @param post $post The post object.
+ * @param bool $update Whether this is an existing post being updated or not.
+ * @since 1.5.9.8
+ */
+function schema_wp_clear_json_on_post_save( $post_id, $post, $update ) {
+	
+	if( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+    || ( defined( 'DOING_AJAX' ) && DOING_AJAX ) ) 
+		return $post_id;
+		
+	$slug = 'schema';
+
+    // If this is a 'schema' post, don't update it.
+    if ( $slug == $post->post_type ) {
+        return $post_id;
+    }
+	
+	// If this is just a revision, don't save ref.
+	if ( wp_is_post_revision( $post_id ) )
+		 return $post_id;
+		
+    // - Delete the post's metadata.
+	delete_post_meta( $post_id, '_schema_json' );
+	
+	// Debug
+	//$msg = 'Is this un update? ';
+  	//$msg .= $update ? 'Yes.' : 'No.';
+  	//wp_die( $msg );
+	
+	 return $post_id;
+}

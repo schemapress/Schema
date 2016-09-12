@@ -1,7 +1,7 @@
 === Schema ===
 Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
-Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, about, contact, amp, mobile
+Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, about, contact, amp, mobile
 Requires at least: 3.0
 Tested up to: 4.6.1
 Stable tag: 1.5.9.7
@@ -9,6 +9,8 @@ Stable tag: 1.5.9.7
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
 == Description ==
+
+Like Schema plugin? Consider leaving a [5 star review](https://wordpress.org/support/plugin/schema/reviews/).
 
 Super fast, light-weight plugin for adding schema.org structured data markup in recommended JSON-LD format automatically to WordPress sites.
 
@@ -113,6 +115,12 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.5.9.8 =
+* Added new function to clear/delete schema son post meta value on post save.
+* Added new admin link to the plugin About page. 
+* Corrected names of some functions.
+* Modified readme.txt file.
 
 = 1.5.9.7 =
 * Fixed slow performance by reducing number of queries made by the plugin.
