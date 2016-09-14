@@ -194,9 +194,11 @@ final class Schema_WP {
 		
 		if( is_admin() ) {
 		
-			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/metaboxes/meta_box.php';
-			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/post-meta-schema.php';
-			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/post-meta-exclude.php';
+			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/meta/class-meta.php';
+			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/meta-tax/class-meta-tax.php';
+			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/meta.php';
+			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/meta-tax.php';
+			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/meta-exclude.php';
 			
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/settings/display-settings.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/settings/contextual-help.php';

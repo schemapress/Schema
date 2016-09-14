@@ -117,9 +117,11 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 == Changelog ==
 
 = 1.5.9.8 =
-* Added new function to clear/delete schema son post meta value on post save.
+* Added new function to clear/delete schema json post meta value on post save.
+* Added support for schema.org sameAS property for category pages.
+* Added new custom taxonomy meta fields class.  
 * Added new admin link to the plugin About page. 
-* Corrected names of some functions.
+* Corrected names of some functions, and renamed files.
 * Modified readme.txt file.
 
 = 1.5.9.7 =

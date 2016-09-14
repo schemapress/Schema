@@ -52,48 +52,55 @@ function schema_wp_get_category_json( $type ) {
 	
 	global $post, $query_string;
 	
+	// debug
+	//echo'<pre>';print_r(query_string);echo'</pre>';exit;
+	
 	$blogPost = array();
 	
 	$secondary_loop = new WP_Query( $query_string );
 	
-	if( $secondary_loop->have_posts() ):
+	if ( $secondary_loop->have_posts() ):
 	    
 		while( $secondary_loop->have_posts() ): $secondary_loop->the_post();
     
             $blogPost[] = apply_filters( 'schema_output_category_post', array
             (
-				'@type' => 'BlogPosting',
-				'headline' => get_the_title(),
-				'url' => get_the_permalink(),
-				'datePublished' => get_the_date('c'),
-				'dateModified' => get_the_modified_date('c'),
-				'mainEntityOfPage' => get_the_permalink(),
-				'author' => schema_wp_get_author_array(),
-				'publisher' => schema_wp_get_publisher_array(),
-				'image' => schema_wp_get_media(),
-				'keywords' => schema_wp_get_post_tags($post->ID),
-				'commentCount' => get_comments_number(),
-				'comment' => schema_wp_get_comments(),
+				'@type' 			=> 'BlogPosting',
+				'headline' 			=> get_the_title(),
+				'url' 				=> get_the_permalink(),
+				'datePublished' 	=> get_the_date('c'),
+				'dateModified' 		=> get_the_modified_date('c'),
+				'mainEntityOfPage' 	=> get_the_permalink(),
+				'author' 			=> schema_wp_get_author_array(),
+				'publisher' 		=> schema_wp_get_publisher_array(),
+				'image' 			=> schema_wp_get_media(),
+				'keywords' 			=> schema_wp_get_post_tags($post->ID),
+				'commentCount' 		=> get_comments_number(),
+				'comment' 			=> schema_wp_get_comments(),
             ));
 			
-        	endwhile;
+        endwhile;
 		
-			wp_reset_postdata();
+		wp_reset_postdata();
+			
+		$category 			= get_the_category(); 
+		$category_id 		= intval($category[0]>term_id); 
+       	$category_link 		= get_category_link( get_the_category() );
+       	$category_headline 	= single_cat_title( '', false ) . __(' Category', 'schema-wp');
+		$sameAs 			= get_term_meta( $category_id, 'schema_wp_sameAs' );
 
-        	$category_link = get_category_link( get_the_category() );
-        	$category_headline = single_cat_title('', false) . ' Category';
-
-        	$schema = array
+		$schema = array
        		(
-				'@context' => 'http://schema.org/',
-				'@type' => "CollectionPage",
-				'headline' => $category_headline,
-				'description' => strip_tags(category_description()),
-				'url' => $category_link,
-				'hasPart' => $blogPost
+				'@context' 		=> 'http://schema.org/',
+				'@type' 		=> "CollectionPage",
+				'headline' 		=> $category_headline,
+				'description' 	=> strip_tags(category_description()),
+				'url'		 	=> $category_link,
+				'sameAs' 		=> $sameAs,
+				'hasPart' 		=> $blogPost
        		);
 				
-		endif;
+	endif;
 
-        return $schema;
+	return $schema;
 }
