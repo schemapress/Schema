@@ -44,7 +44,7 @@ function schema_wp_output_category() {
  *
  * @param string $type for schema type (example: CollectionPage)
  * @since 1.5.7
- * @return schema output
+ * @return array json 
  */
 function schema_wp_get_category_json( $type ) {
 	
@@ -53,7 +53,7 @@ function schema_wp_get_category_json( $type ) {
 	global $post, $query_string;
 	
 	// debug
-	//echo'<pre>';print_r(query_string);echo'</pre>';exit;
+	//echo'<pre>';print_r($query_string);echo'</pre>';exit;
 	
 	$blogPost = array();
 	
@@ -84,12 +84,14 @@ function schema_wp_get_category_json( $type ) {
 		wp_reset_postdata();
 			
 		$category 			= get_the_category(); 
-		$category_id 		= intval($category[0]>term_id); 
-       	$category_link 		= get_category_link( get_the_category() );
+		
+		$category_id 		= intval($category[0]->term_id); 
+       	$category_link 		= get_category_link( $category_id );
+		//$category_link 	= get_term_link( $category[0]->term_id , 'category' );
        	$category_headline 	= single_cat_title( '', false ) . __(' Category', 'schema-wp');
 		$sameAs 			= get_term_meta( $category_id, 'schema_wp_sameAs' );
 
-		$schema = array
+		$json = array
        		(
 				'@context' 		=> 'http://schema.org/',
 				'@type' 		=> "CollectionPage",
@@ -101,6 +103,6 @@ function schema_wp_get_category_json( $type ) {
        		);
 				
 	endif;
-
-	return $schema;
+	
+	return apply_filters( 'schema_category_json', $json );
 }
