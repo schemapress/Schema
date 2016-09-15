@@ -137,7 +137,7 @@ function schema_wp_video_object_post_meta() {
 	
 	foreach( $schemas_enabled as $schema_enabled ) : 
 		
-		$type = $schema_enabled['video_object_type'] != '' ? $schema_enabled['video_object_type'] : '';
+		$type = (isset($schema_enabled['video_object_type']) && $schema_enabled['video_object_type'] != '') ? $schema_enabled['video_object_type'] : '';
 		
 		// Add meta box only for type signle, preset an entry with one embed video
 		if ( $type == 'single' )  {
