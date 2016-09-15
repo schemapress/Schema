@@ -5,7 +5,7 @@
  * Description: The next generation of Structured Data.
  * Author: Hesham
  * Author URI: http://zebida.com
- * Version: 1.5.9.7
+ * Version: 1.5.9.9
  * Text Domain: schema-wp
  * Domain Path: languages
  *
@@ -51,7 +51,7 @@ final class Schema_WP {
 	 *
 	 * @since 1.0
 	 */
-	private $version = '1.5.9.7';
+	private $version = '1.5.9.9';
 
 	/**
 	 * The settings instance variable
@@ -248,6 +248,7 @@ final class Schema_WP {
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/page-contact.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/video-object.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/audio-object.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/sameAs.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/comment.php';
 		
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/install.php';
@@ -288,10 +289,10 @@ final class Schema_WP {
 		$mofile_global = WP_LANG_DIR . '/schema-wp/' . $mofile;
 
 		if ( file_exists( $mofile_global ) ) {
-			// Look in global /wp-content/languages/affiliate-wp/ folder
+			// Look in global /wp-content/languages/schema/ folder
 			load_textdomain( 'schema-wp', $mofile_global );
 		} elseif ( file_exists( $mofile_local ) ) {
-			// Look in local /wp-content/plugins/affiliate-wp/languages/ folder
+			// Look in local /wp-content/plugins/schema/languages/ folder
 			load_textdomain( 'schema-wp', $mofile_local );
 		} else {
 			// Load the default language files

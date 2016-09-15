@@ -39,6 +39,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 	$settings = isset( $field['settings'] ) ? $field['settings'] : null;
 	$repeatable_fields = isset( $field['repeatable_fields'] ) ? $field['repeatable_fields'] : null;
 	$selectone = isset( $field['selectone'] ) ? $field['selectone'] : __('Select One', 'schema-wp');
+	$sanitizer = isset( $field['sanitizer'] ) ? $field['sanitizer'] : null;
 	
 	// the id and name for each field
 	$id = $name = isset( $field['id'] ) ? $field['id'] : null;
@@ -465,6 +466,8 @@ function meta_box_sanitize( $string, $function = 'sanitize_text_field' ) {
 			return sanitize_title( $string );
 		case 'santitize_boolean':
 			return santitize_boolean( $string );
+		case 'no_santitize':
+			return $string;
 		case 'sanitize_text_field':
 		default:
 			return sanitize_text_field( $string );

@@ -529,7 +529,7 @@ class Schema_Custom_Add_Meta_Tax {
    */
   public function show_field_text( $field, $meta) {  
     $this->show_field_begin( $field, $meta );
-    echo "<input type='text' class='at-text' name='{$field['id']}' id='{$field['id']}' value='{$meta}' style='{$field['style']}' size='30' />";
+    echo "<input type='text' class='at-text' name='{$field['id']}' id='{$field['id']}' value='{$meta}' style='{$field['style']}' size='50' />";
     $this->show_field_end( $field, $meta );
   }
   

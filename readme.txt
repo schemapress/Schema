@@ -1,10 +1,10 @@
 === Schema ===
 Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
-Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, about, contact, amp, mobile
+Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 1.5.9.7
+Stable tag: 1.5.9.9
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -18,9 +18,6 @@ Enhanced Presentation in Search Results By including structured data appropriate
 
 Check out the [Plugin Homepage](http://schema.press/) for more info and [documentation](http://schema.press/docs/).
 
-**Developers?**
-
-Feel free to [fork the project on GitHub](https://github.com/schemapress/Schema) and submit your contributions via pull request.
 
 **What is Schema markup?**
 
@@ -64,18 +61,24 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 * [VideoObject](https://schema.org/VideoObject) enable automatically on all videos embedded with oEmbed. Supports VideoPress, YouTube, TED, Vimeo, Dailymotion, and Vine.
 * [AudioObject](https://schema.org/AudioObject) enable automatically on all audio embedded with oEmbed. Supports SoundCloud, and Mixcloud.
 
-* Supported Plugins: 
+**Supported Plugins**
+
  * Yoast SEO
  * AMP plugin
  * WPRichSnippets
  * The SEO Framework
  * Visual Composer
 
-* Supported Themes
+**Supported Themes**
+
  * Genesis 2.x 
  * Thesis 2.x
  * Divi
- 
+
+**Developers?**
+
+Feel free to [fork the project on GitHub](https://github.com/schemapress/Schema) and submit your contributions via pull request.
+
 == Installation ==
 
 1. Upload the entire `schema` folder to the `/wp-content/plugins/` directory
@@ -116,7 +119,17 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 
 == Changelog ==
 
+= 1.5.9.9 =
+* Fixed category id on category pages.
+* Fixed a notice on VideoObject function.
+* Fixed Schema JSON-LD not updating by flushing cache on schema type save.
+* Added Schema property sameAs core extension.
+* Added delete Schema JSON-LD post meta on plugin uninstall.
+* Added delete Schema Exclude post meta on plugin uninstall.
+
 = 1.5.9.8 =
+* Fixed missing translation in category title.
+* Added new filter to schema_category_json to extend category markup.
 * Added new function to clear/delete schema json post meta value on post save.
 * Added support for schema.org sameAS property for category pages.
 * Added new custom taxonomy meta fields class.  
@@ -359,6 +372,12 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.5.9.9 =
+Several bug fixes and enhancement has been made to the plugin in this release, plus a new sameAs property for your content. Please, upgrade now to get these enhancements.
+
+= 1.5.9.8 =
+More enhancement has been made to the plugin in this release, plus a couple of new features. Please, upgrade now to get these enhancements.
 
 = 1.5.9.7 =
 This update includes enhancement to performance by caching JSON-LD output in post meta, this will reduce database queries and make your site loads faster. Please, upgrade now to get these enhancements. 
