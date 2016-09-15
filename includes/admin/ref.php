@@ -43,6 +43,10 @@ function schema_wp_save_ref( $post_id, $post, $update ) {
     // - Update the post's metadata.
 	schema_wp_update_all_meta_ref( $post_id );
 	
+	// Delete cached data in post meta
+	// @since 1.5.9.9
+	delete_post_meta_by_key( '_schema_json' );
+	
 	// Debug
 	//$msg = 'Is this un update? ';
   	//$msg .= $update ? 'Yes.' : 'No.';
