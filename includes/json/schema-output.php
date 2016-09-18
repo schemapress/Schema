@@ -31,6 +31,12 @@ function schema_wp_output() {
 	$pttimestamp 	 = time() + get_option('gmt_offset') * 60*60;
 	$pttimestamp_old = get_post_meta( $post->ID, '_schema_json_timestamp', true );
 	
+	// exclude post
+	// @since 1.6
+	$exclude = get_post_meta( $post->ID, '_schema_exclude' , true );
+	if ( $exclude )
+		return;
+	
 	// compare time stamp and check if json post meta value already exists
 	// @since 1.5.9.7
 	if ( isset($pttimestamp_old) ) {

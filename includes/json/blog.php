@@ -52,13 +52,25 @@ function schema_wp_get_blog_json( $type ) {
 	
 	$blogPost = array();
         
-        while ( have_posts() ) : the_post();
-
-            $blogPost[] = apply_filters( 'schema_output_blog_post', array
+	while ( have_posts() ) : the_post();
+	
+	// check JSON-LD in post meta
+	// @since 1.6
+	$blog_post_json = get_post_meta( $post->ID, '_schema_json', true );
+	
+	if ( isset($blog_post_json) && !empty($blog_post_json) ) {
+		
+		$blogPost[] = $blog_post_json;
+		
+	} else {
+    
+		$blogPost[] = apply_filters( 'schema_output_blog_post', array
             (
 				'@type' => 'BlogPosting',
 				'headline' => get_the_title(),
+				//'description' => strip_shortcodes( get_the_excerpt($post->ID) ),
 				'url' => get_the_permalink(),
+				'sameAs' => schema_wp_get_sameAs($post->ID),
 				'datePublished' => get_the_date('c'),
 				'dateModified' => get_the_modified_date('c'),
 				'mainEntityOfPage' => get_the_permalink(),
@@ -69,10 +81,11 @@ function schema_wp_get_blog_json( $type ) {
 				'commentCount' => get_comments_number(),
 				'comment' => schema_wp_get_comments(),
             ));
+	}
+	
+	endwhile;
 
-        endwhile;
-
-        $schema = array
+	$schema = array
         (
 			'@context' => 'http://schema.org/',
 			'@type' => "Blog",
@@ -82,5 +95,5 @@ function schema_wp_get_blog_json( $type ) {
 			'blogPost' => $blogPost,
         );
 
-        return $schema;
+	return apply_filters( 'schema_blog_output', $schema );
 }

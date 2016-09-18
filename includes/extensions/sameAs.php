@@ -79,7 +79,9 @@ function schema_wp_sameAs_post_meta() {
 }
 
 
-add_filter('schema_output', 'schema_wp_sameAs_output' );
+add_filter('schema_output',					'schema_wp_sameAs_output' );
+add_filter('schema_about_page_output',		'schema_wp_sameAs_output' );
+add_filter('schema_contact_page_output',	'schema_wp_sameAs_output' );
 /**
  * sameAs Schema output
  *
@@ -106,4 +108,32 @@ function schema_wp_sameAs_output( $schema ) {
 	$schema['sameAs'] =  $sameAs_array;
 	
 	return $schema;
+}
+
+
+/**
+ * Get sameAs 
+ *
+ * @since 1.6
+ */
+function schema_wp_get_sameAs( $post_id = null ) {
+	
+	global $post;
+	
+	// Set post ID
+	If ( ! isset($post_id) ) $post_id = $post->ID;
+	
+	$sameAs = get_post_meta( $post_id, '_schema_sameAs' , true );
+	
+	// make sure is set and it is not empty array
+	if ( !isset($sameAs) || empty($sameAs) ) return;
+	
+	//$sameAs_array = explode("\n", $sameAs);
+	//$sameAs_array = preg_split ('/$\R?^/m', $sameAs);
+	$sameAs_array = preg_split("/\r\n|\n|\r/", $sameAs);
+	
+	// debug
+	//echo '<pre>'; print_r($sameAs_array); echo '</pre>';exit;
+	
+	return $sameAs_array;
 }

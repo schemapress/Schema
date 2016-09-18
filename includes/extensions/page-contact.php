@@ -125,5 +125,5 @@ function schema_wp_get_page_contact_json( $type ) {
 		$schema["description"] = $json["description"];
 	}
 	
-	return $schema;
+	return apply_filters( 'schema_contact_page_output', $schema );
 }

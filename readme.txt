@@ -119,6 +119,18 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 
 == Changelog ==
 
+= 1.6 =
+* Fixed exclude post was not working properly.
+* Enhanced gravatar validation function.
+* Enhanced Blog markup performance by pulling data from cached post meta.
+* Added missing BlogPosting description in Blog page markup.
+* Added sameAs markup to BlogPosting property in Blog page markup.
+* Added sameAs markup to About page.
+* Added sameAs markup to Contact page.
+* Added new filter schema_blog_output to allow dev extend markups.
+* Added new filter schema_about_page_output to allow dev extend markups.
+* Added new filter schema_contact_page_output to allow dev extend markups.
+
 = 1.5.9.9 =
 * Fixed category id on category pages.
 * Fixed a notice on VideoObject function.

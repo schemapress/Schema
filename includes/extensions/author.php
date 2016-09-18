@@ -115,21 +115,35 @@ function schema_wp_get_author_array( $post_id = null ) {
 
 
 /**
- * Validate gravatar by email
+ * Validate gravatar by email or id
  *
- * Check if email has a gravatar photo
- * @since 1.5.3
- * @return true or false
+ * Utility function to check if a gravatar exists for a given email or id
+ *
+ * @link https://gist.github.com/justinph/5197810
+ *
+ * @since 1.6
+ * @param int|string|object $id_or_email A user ID,  email address, or comment object
+ * @return bool if the gravatar exists or not
  */
-function schema_wp_validate_gravatar($email) {
-	// Craft a potential url and test its headers
-	$hash = md5($email);
-	$uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
-	$headers = @get_headers($uri);
-	if (!preg_match("|200|", $headers[0])) {
-		$has_valid_avatar = FALSE;
+function schema_wp_validate_gravatar( $email ) {
+
+	$hashkey = md5(strtolower(trim($email)));
+	$uri = 'http://www.gravatar.com/avatar/' . $hashkey . '?d=404';
+
+	$data = wp_cache_get($hashkey);
+	if (false === $data) {
+		$response = wp_remote_head($uri);
+		if( is_wp_error($response) ) {
+			$data = 'not200';
+		} else {
+			$data = $response['response']['code'];
+		}
+	    wp_cache_set($hashkey, $data, $group = '', $expire = 60*5);
+
+	}		
+	if ($data == '200'){
+		return true;
 	} else {
-		$has_valid_avatar = TRUE;
+		return false;
 	}
-	return $has_valid_avatar;
 }
