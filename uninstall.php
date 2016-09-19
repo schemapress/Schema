@@ -39,6 +39,9 @@ if ( !is_multisite() ) {
 		// Delete all meta keys 
 		// @since 1.4.4
 		delete_post_meta_by_key( '_schema_ref' );
+		delete_post_meta_by_key( '_schema_json' );
+		delete_post_meta_by_key( '_schema_json_timestamp' );
+		delete_post_meta_by_key( '_schema_exclude' );
 		
 		// Remove all plugin settings
 		delete_option( $option_name );
@@ -77,6 +80,7 @@ if ( !is_multisite() ) {
 			// @since 1.5.9.9
 			delete_post_meta_by_key( '_schema_ref' );
 			delete_post_meta_by_key( '_schema_json' );
+			delete_post_meta_by_key( '_schema_json_timestamp' );
 			delete_post_meta_by_key( '_schema_exclude' );
 		
 			// Remove all plugin settings

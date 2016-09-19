@@ -407,6 +407,7 @@ function schema_wp_clear_json_on_post_save( $post_id, $post, $update ) {
 		
     // - Delete the post's metadata.
 	delete_post_meta( $post_id, '_schema_json' );
+	delete_post_meta( $post_id, '_schema_json_timestamp' );
 	
 	// Debug
 	//$msg = 'Is this un update? ';

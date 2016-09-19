@@ -26,7 +26,7 @@ function schema_wp_cpt_init() {
 		'singular_name'      => _x( 'Schema', 'post type singular name', 'schema-wp' ),
 		'menu_name'          => _x( 'Schema', 'admin menu', 'schema-wp' ),
 		'name_admin_bar'     => _x( 'Schema', 'add new on admin bar', 'schema-wp' ),
-		'add_new'            => _x( 'Add New', 'book', 'schema-wp' ),
+		'add_new'            => _x( 'Add New', 'schema', 'schema-wp' ),
 		'add_new_item'       => __( 'Add New Schema', 'schema-wp' ),
 		'new_item'           => __( 'New Schema', 'schema-wp' ),
 		'edit_item'          => __( 'Edit Schema', 'schema-wp' ),

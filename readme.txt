@@ -121,6 +121,9 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 
 = 1.6 =
 * Fixed exclude post was not working properly.
+* Fixed cached post meta timestamp should be deleted on post save.
+* Fixed Schema post type label value.
+* Fixed Schema post types was not created on plugin activation.
 * Enhanced gravatar validation function.
 * Enhanced Blog markup performance by pulling data from cached post meta.
 * Added missing BlogPosting description in Blog page markup.
@@ -130,6 +133,7 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Added new filter schema_blog_output to allow dev extend markups.
 * Added new filter schema_about_page_output to allow dev extend markups.
 * Added new filter schema_contact_page_output to allow dev extend markups.
+* Added missing post meta to the plugin uninstall function.
 
 = 1.5.9.9 =
 * Fixed category id on category pages.

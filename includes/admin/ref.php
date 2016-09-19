@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 add_action( 'save_post', 'schema_wp_save_ref', 10, 3 );
 /**
- * Save post metadata when a Schema post is saved.
+ * Save post metadata when a Schema Type is saved.
  * Add schema reference Id
  *
  * @param int $post_id The post ID.
@@ -46,6 +46,7 @@ function schema_wp_save_ref( $post_id, $post, $update ) {
 	// Delete cached data in post meta
 	// @since 1.5.9.9
 	delete_post_meta_by_key( '_schema_json' );
+	delete_post_meta_by_key( '_schema_json_timestamp' );
 	
 	// Debug
 	//$msg = 'Is this un update? ';
@@ -75,7 +76,7 @@ function schema_wp_update_all_meta_ref( $schema_id ) {
 	//echo '<pre>'; print_r($schema_type); echo '</pre>';exit; 
 	
 	if ( ! is_array( $schema_type ) || empty( $schema_type) ) return false;
-	 
+	
 	foreach( $schema_type as $schema_enabled ) :  
 		
 		$query = $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type = '%s'", $schema_enabled );
@@ -174,7 +175,7 @@ function schema_wp_add_ref($post_id) {
     
 	//$current_screen = get_current_screen();
 	//$post_type 		= $current_screen->post_type;
-	$slug 			= 'schema';
+	$slug = 'schema';
 
     // If this isn't a 'schema' post, don't update it.
     if ( $slug != $post->post_type ) {

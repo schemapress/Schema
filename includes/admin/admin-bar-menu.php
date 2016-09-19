@@ -31,7 +31,7 @@ function schema_wp_admin_bar_menu_items( $admin_bar ) {
 	
 	// Get current page url
 	$url =  'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-
+	
 	// If user can't edit posts, then get out
 	if ( ! current_user_can( 'edit_post', $post->ID ) ) return;
 	
