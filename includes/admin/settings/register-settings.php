@@ -2,9 +2,9 @@
 /**
  * Register Settings
  *
- * @package     EDD
+ * @package     Schema
  * @subpackage  Admin/Settings
- * @copyright   Copyright (c) 2015, Pippin Williamson
+ * @copyright   Copyright (c) 2016, Hesham Zebida
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       1.0
 */
@@ -19,7 +19,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  * Looks to see if the specified setting exists, returns default if not
  *
  * @since 1.8.4
- * @global $schema_wp_options Array of all the EDD Options
+ * @global $schema_wp_options Array of all the Schema Options
  * @return mixed
  */
 function schema_wp_get_option( $key = '', $default = false ) {
@@ -39,7 +39,7 @@ function schema_wp_get_option( $key = '', $default = false ) {
  * @since 2.3
  * @param string $key The Key to update
  * @param string|bool|int $value The value to set the key to
- * @global $schema_wp_options Array of all the EDD Options
+ * @global $schema_wp_options Array of all the Schema Options
  * @return boolean True if updated, false if not.
  */
 function schema_wp_update_option( $key = '', $value = false ) {
@@ -68,7 +68,6 @@ function schema_wp_update_option( $key = '', $value = false ) {
 	if ( $did_update ){
 		global $schema_wp_options;
 		$schema_wp_options[ $key ] = $value;
-
 	}
 
 	return $did_update;
@@ -83,7 +82,7 @@ function schema_wp_update_option( $key = '', $value = false ) {
  *
  * @since 2.3
  * @param string $key The Key to delete
- * @global $schema_wp_options Array of all the EDD Options
+ * @global $schema_wp_options Array of all the Schema Options
  * @return boolean True if removed, false if not.
  */
 function schema_wp_delete_option( $key = '' ) {
@@ -120,7 +119,7 @@ function schema_wp_delete_option( $key = '' ) {
  * Retrieves all plugin settings
  *
  * @since 1.0
- * @return array EDD settings
+ * @return array Schema settings
  */
 function schema_wp_get_settings() {
 
@@ -230,7 +229,7 @@ add_action( 'admin_init', 'schema_wp_register_settings' );
 function schema_wp_get_registered_settings() {
 
 	/**
-	 * 'Whitelisted' EDD settings, filters are provided for each settings
+	 * 'Whitelisted' Schema settings, filters are provided for each settings
 	 * section to allow extensions and other plugins to add their own settings
 	 */
 	$schema_wp_settings = array(
@@ -501,7 +500,7 @@ function schema_wp_get_registered_settings() {
  * @since 1.0.8.2
  *
  * @param array $input The value inputted in the field
- * @global $schema_wp_options Array of all the EDD Options
+ * @global $schema_wp_options Array of all the Schema Options
  *
  * @return string $input Sanitizied value
  */
@@ -1474,7 +1473,7 @@ function schema_wp_hook_callback( $args ) {
 }
 
 /**
- * Set manage_schema_options as the cap required to save EDD settings pages
+ * Set manage_schema_options as the cap required to save Schema settings pages
  *
  * @since 1.9
  * @return string capability required

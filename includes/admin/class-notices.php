@@ -15,6 +15,9 @@ class Schema_WP_Admin_Notices {
 
 		if ( isset( $_GET['settings-updated'] ) && $_GET['settings-updated'] && isset( $_GET['page'] ) && $_GET['page'] == 'schema' ) {
 			$message = __( 'Settings updated.', 'schema-wp' );
+			
+			// do action after settings updated
+			do_action( 'schema_wp_do_after_settings_updated' );
 		}
 
 		if ( isset( $_GET['schema_wp_notice'] ) && $_GET['schema_wp_notice'] ) {

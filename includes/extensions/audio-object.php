@@ -23,6 +23,11 @@ function schema_wp_audio_object_admin_init() {
 	
 	if ( ! class_exists( 'Schema_WP' ) ) return;
 	
+	$audio_object_enable = schema_wp_get_option( 'audio_object_enable' );
+	
+	if ( $audio_object_enable != true )
+		return;
+		
 	$prefix = '_schema_audio_object_';
 
 	$fields = array(

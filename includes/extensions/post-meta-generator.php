@@ -188,5 +188,4 @@ function schema_wp_generate_custom_post_meta_box() {
 		//print_r($schema_enabled);
 		
 	endforeach;
-	
 }

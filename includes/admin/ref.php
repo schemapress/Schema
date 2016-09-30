@@ -44,9 +44,8 @@ function schema_wp_save_ref( $post_id, $post, $update ) {
 	schema_wp_update_all_meta_ref( $post_id );
 	
 	// Delete cached data in post meta
-	// @since 1.5.9.9
-	delete_post_meta_by_key( '_schema_json' );
-	delete_post_meta_by_key( '_schema_json_timestamp' );
+	// @since 1.6.1
+	schema_wp_json_delete_cache();
 	
 	// Debug
 	//$msg = 'Is this un update? ';
@@ -167,7 +166,7 @@ add_action( 'wp_insert_post', 'schema_wp_add_ref', 10, 1 );
  * @since 1.4.4
  * @return array of enabled post types, schema type
  */
-function schema_wp_add_ref($post_id) {
+function schema_wp_add_ref( $post_id ) {
 	
 	global $post;
 	
@@ -188,4 +187,16 @@ function schema_wp_add_ref($post_id) {
     }
 	
 	return true;
+}
+
+
+add_action( 'future_post',  'schema_wp_add_ref_on_post_scheduled', 10, 2 );
+/**
+ * Add schema reference for scheduled posts
+ * 
+ * @since 1.6
+ */
+function schema_wp_add_ref_on_post_scheduled( $ID, $post ) {
+    // A function to perform actions when a post is scheduled to be published.
+	schema_wp_update_meta_ref( $ID );
 }

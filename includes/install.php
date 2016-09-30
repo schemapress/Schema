@@ -173,25 +173,3 @@ function schema_wp_install_roles_on_network() {
 
 }
 add_action( 'admin_init', 'schema_wp_install_roles_on_network' );
-
-
-/**
-* Retrieve a post given its title.
-*
-* @since 1.6
-*
-* @uses $wpdb
-*
-* @param string $post_title Page title
-* @param string $post_type post type ('post','page','any custom type')
-* @param string $output Optional. Output type. OBJECT, ARRAY_N, or ARRAY_A.
-* @return mixed
-*/
-function schema_wp_get_post_by_title($page_title, $post_type = 'post' , $output = OBJECT) {
-    global $wpdb;
-        $post = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_title = %s AND post_type= %s", $page_title, $post_type));
-        if ( $post )
-            return get_post($post, $output);
-
-    return null;
-}

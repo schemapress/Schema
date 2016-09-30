@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 1.5.9.9
+Stable tag: 1.6.1
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -31,6 +31,10 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 * Output JSON-LD format, the most recommended by Google.
 * Can reuse data saved in post meta that is created by other plugins.
 * Extensible, means you can extend its functionality via other plugins, extensions or within your Theme’s functions.php file.
+
+**Plugin Extensions**
+
+* [Schema Review](https://wordpress.org/plugins/schema-review/): extend Schema functionality by adding review and rating Structured Data functionality for Editors and Authors. 
 
 **Supported Google/Schema Markups**
 
@@ -119,11 +123,18 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 
 == Changelog ==
 
+= 1.6.1 =
+* Fixed hide VideoObject and AudioObject meta boxes if not enabled in settings.
+* Added new hook schema_wp_do_after_settings_updated.
+* Added new function schema_wp_json_delete_cache to flush cached json-ld post meta.
+* Added flush cached json-ld post meta whenever plugin settings got updated.
+
 = 1.6 =
 * Fixed exclude post was not working properly.
 * Fixed cached post meta timestamp should be deleted on post save.
 * Fixed Schema post type label value.
 * Fixed Schema post types was not created on plugin activation.
+* Fixed schema reference post meta was not saved for scheduled posts.
 * Enhanced gravatar validation function.
 * Enhanced Blog markup performance by pulling data from cached post meta.
 * Added missing BlogPosting description in Blog page markup.
@@ -134,6 +145,8 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Added new filter schema_about_page_output to allow dev extend markups.
 * Added new filter schema_contact_page_output to allow dev extend markups.
 * Added missing post meta to the plugin uninstall function.
+* Added new function for recursive array search to admin functions file.
+* Modified readme.txt file.
 
 = 1.5.9.9 =
 * Fixed category id on category pages.
@@ -388,6 +401,12 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.6.1 =
+In this update, a bug got fixed and a couple of other enhancements which enhance plugin settings usability has been applied. Please, upgrade now to get these enhancements.
+
+= 1.6 =
+Several bug fixes and enhancement has been done in this release, plus a new extension release for Schema Review. Please, upgrade now to get these enhancements.
 
 = 1.5.9.9 =
 Several bug fixes and enhancement has been made to the plugin in this release, plus a new sameAs property for your content. Please, upgrade now to get these enhancements.

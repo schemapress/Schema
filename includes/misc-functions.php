@@ -409,6 +409,10 @@ function schema_wp_clear_json_on_post_save( $post_id, $post, $update ) {
 	delete_post_meta( $post_id, '_schema_json' );
 	delete_post_meta( $post_id, '_schema_json_timestamp' );
 	
+	// update ref
+	// @since 1.6
+	schema_wp_update_meta_ref( $post_id );
+	
 	// Debug
 	//$msg = 'Is this un update? ';
   	//$msg .= $update ? 'Yes.' : 'No.';

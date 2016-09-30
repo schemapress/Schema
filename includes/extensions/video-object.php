@@ -21,7 +21,13 @@ function schema_wp_video_object_admin_init() {
 	
 	if ( ! is_admin() ) return;
 	
-	if ( ! class_exists( 'Schema_WP' ) ) return;
+	if ( ! class_exists( 'Schema_WP' ) )
+		return;
+	
+	$video_objec_enable = schema_wp_get_option( 'video_object_enable' );
+	
+	if ( $video_objec_enable != true )
+		return;
 	
 	$prefix = '_schema_video_object_';
 

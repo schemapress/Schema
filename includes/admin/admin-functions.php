@@ -13,6 +13,34 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 
+add_action( 'schema_wp_do_after_settings_updated', 'schema_wp_after_update_settings' );
+/**
+ * Delete Schema KSON-LD cached data in post meta  on plugin settings update
+ *
+ *
+ * @since  1.6.1
+ */
+function schema_wp_after_update_settings() {
+    
+	// Delete cached data in post meta
+	schema_wp_json_delete_cache();
+}
+
+
+/**
+ * Delete Schema KSON-LD cached data in post meta 
+ *
+ *
+ * @since  1.6.1
+ */
+function schema_wp_json_delete_cache() {
+    
+	// Delete cached data in post meta
+	delete_post_meta_by_key( '_schema_json' );
+	delete_post_meta_by_key( '_schema_json_timestamp' );
+}
+
+
 /**
  * Sanitizes a string key for Schema Settings
  *
