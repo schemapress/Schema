@@ -197,10 +197,10 @@ function schema_wp_get_media( $id = null) {
 	if ( ! isset($image_height) || $image_height == '' ) return $media;
 	
 	$media = array (
-		'@type' => 'ImageObject',
-			'url' => $image_url,
-			'width' => $image_width,
-			'height' => $image_height,
+		'@type' 	=> 'ImageObject',
+		'url' 		=> $image_url,
+		'width' 	=> $image_width,
+		'height' 	=> $image_height,
 		);
 	
 	// debug
