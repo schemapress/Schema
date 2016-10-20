@@ -97,7 +97,7 @@ final class Schema_WP {
 			self::$instance->includes();
 
 			add_action( 'plugins_loaded', array( self::$instance, 'setup_objects' ), -1 );
-			add_action( 'plugins_loaded', array( self::$instance, 'load_textdomain' ) );
+			// add_action( 'plugins_loaded', array( self::$instance, 'load_textdomain' ) );
 		}
 		return self::$instance;
 	}
@@ -265,40 +265,7 @@ final class Schema_WP {
 
 		//self::$instance->settings       = new Schema_WP_Settings;
 	}
-
 	
-	/**
-	 * Loads the plugin language files
-	 *
-	 * @access public
-	 * @since 1.0
-	 * @return void
-	 */
-	public function load_textdomain() {
-
-		// Set filter for plugin's languages directory
-		$lang_dir = dirname( plugin_basename( SCHEMAWP_PLUGIN_FILE ) ) . '/languages/';
-		$lang_dir = apply_filters( 'schema_wp_languages_directory', $lang_dir );
-
-		// Traditional WordPress plugin locale filter
-		$locale        = apply_filters( 'plugin_locale',  get_locale(), 'schema-wp' );
-		$mofile        = sprintf( '%1$s-%2$s.mo', 'schema-wp', $locale );
-
-		// Setup paths to current locale file
-		$mofile_local  = $lang_dir . $mofile;
-		$mofile_global = WP_LANG_DIR . '/schema-wp/' . $mofile;
-
-		if ( file_exists( $mofile_global ) ) {
-			// Look in global /wp-content/languages/schema/ folder
-			load_textdomain( 'schema-wp', $mofile_global );
-		} elseif ( file_exists( $mofile_local ) ) {
-			// Look in local /wp-content/plugins/schema/languages/ folder
-			load_textdomain( 'schema-wp', $mofile_local );
-		} else {
-			// Load the default language files
-			load_plugin_textdomain( 'schema-wp', false, $lang_dir );
-		}
-	}
 }
 
 endif; // End if class_exists check
@@ -320,3 +287,13 @@ function schema_wp() {
 	return Schema_WP::instance();
 }
 schema_wp();
+
+add_action( 'init', 'schema_wp_load_textdomain' );
+/**
+ * Load plugin textdomain.
+ *
+ * @since 1.0.0
+ */
+function schema_wp_load_textdomain() {
+  load_plugin_textdomain( 'schema-wp', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
+}
