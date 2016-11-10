@@ -130,7 +130,7 @@ function schema_wp_validate_gravatar( $email ) {
 	$hashkey = md5(strtolower(trim($email)));
 	$uri = 'http://www.gravatar.com/avatar/' . $hashkey . '?d=404';
 
-	$data = wp_cache_get($hashkey);
+	$data = get_transient($hashkey);
 	if (false === $data) {
 		$response = wp_remote_head($uri);
 		if( is_wp_error($response) ) {
@@ -138,7 +138,7 @@ function schema_wp_validate_gravatar( $email ) {
 		} else {
 			$data = $response['response']['code'];
 		}
-	    wp_cache_set($hashkey, $data, $group = '', $expire = 60*5);
+	    set_transient( $hashkey, $data, $expiration = 60*5);
 
 	}		
 	if ($data == '200'){
