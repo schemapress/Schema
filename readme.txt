@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile
 Requires at least: 3.0
 Tested up to: 4.6.1
-Stable tag: 1.6.1
+Stable tag: 1.6.2
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -16,7 +16,7 @@ Super fast, light-weight plugin for adding schema.org structured data markup in 
 
 Enhanced Presentation in Search Results By including structured data appropriate to your content, your site can enhance its search results and presentation.
 
-Check out the [Plugin Homepage](http://schema.press/) for more info and [documentation](http://schema.press/docs/).
+Check out the [Plugin Homepage](https://schema.press/) for more info and [documentation](http://schema.press/docs/).
 
 
 **What is Schema markup?**
@@ -34,7 +34,8 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 **Plugin Extensions**
 
-* [Schema Review](https://wordpress.org/plugins/schema-review/): extend Schema functionality by adding review and rating Structured Data functionality for Editors and Authors. 
+* [Schema Review](https://wordpress.org/plugins/schema-review/): Extend Schema functionality by adding review and rating Structured Data functionality for Editors and Authors.
+* [Schema Default Image](https://wordpress.org/plugins/schema-default-image/): Add ability to set a default WordPress Featured image for schema.org markup.
 
 **Supported Google/Schema Markups**
 
@@ -122,6 +123,12 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.6.2 =
+* Fixed fatal error when previewing or activating non-Genesis themes.
+* Fixed fatal error when calling get_current_screen in admin pages.
+* Fixes gravatar cached response problem.
+* Modified readme.txt file.
 
 = 1.6.1 =
 * Fixed hide VideoObject and AudioObject meta boxes if not enabled in settings.
@@ -401,6 +408,9 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.6.2 =
+In this update, important bugs has been fixed, prevent fatal errors on admin pages and with older versions of Genesis. Please, upgrade now to get this fix.
 
 = 1.6.1 =
 In this update, a bug got fixed and a couple of other enhancements which enhance plugin settings usability has been applied. Please, upgrade now to get these enhancements.

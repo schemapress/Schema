@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Schema
- * Plugin URI: http://schema.press
+ * Plugin URI: https://schema.press
  * Description: The next generation of Structured Data.
  * Author: Hesham
  * Author URI: http://zebida.com
- * Version: 1.6.1
+ * Version: 1.6.2
  * Text Domain: schema-wp
  * Domain Path: languages
  *
@@ -51,7 +51,7 @@ final class Schema_WP {
 	 *
 	 * @since 1.0
 	 */
-	private $version = '1.6.1';
+	private $version = '1.6.2';
 
 	/**
 	 * The settings instance variable
