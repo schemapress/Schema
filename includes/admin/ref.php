@@ -117,6 +117,9 @@ function schema_wp_update_meta_ref( $post_id ) {
 	// Get post type
 	if ( is_admin() ) {
 		// on back-end
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/screen.php' );
+		}
 		$current_screen = get_current_screen();
 		$post_type = $current_screen->post_type;
 	} else {
