@@ -185,7 +185,7 @@ function schema_wp_get_schema_json( $type ) {
 	}
 	
 	if ( $json['category'] != '' ) {
-		$schema["ArticleSection"] = $json['category'];
+		$schema["articleSection"] = $json['category'];
 	}
 	
 	if ( $json['keywords'] != '' && $type == 'BlogPosting' ) {
