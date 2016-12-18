@@ -77,8 +77,6 @@ function schema_wp_do_comment( $schema ) {
 function schema_wp_get_comments() {
 		
 	global $post;
-	
-	//$comments_number = get_comments_number($post->ID);
 		
 	$number	= apply_filters( 'schema_wp_do_comments', '10'); // default = 10
 		

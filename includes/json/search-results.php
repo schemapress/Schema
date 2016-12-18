@@ -31,6 +31,7 @@ function schema_wp_output_sitelinks_search_box() {
 		$output .= '{' . PHP_EOL;
 		$output .= '  "@context": "http://schema.org",' . PHP_EOL;
 		$output .= '  "@type": "WebSite",' . PHP_EOL;
+		$output .= '  "@id": "#website",' . PHP_EOL;
 		
 		if ( $site_name_enable ) {
 			$output .= '  "name": "' . $site_name . '",' . PHP_EOL;

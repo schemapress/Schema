@@ -297,10 +297,22 @@ function schema_wp_get_registered_settings() {
 		'knowledge_graph' => apply_filters('schema_wp_settings_knowledge_graph',
 			array(
 				'organization' => array( // section
+					'organization_or_person' => array(
+						'id' => 'organization_or_person',
+						'name' => __( 'Organization or Person?', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'select',
+						'options' => array(
+							'' 				=> __('Select Type', 'schema-wp'),
+							'organization'	=> 'Organization',
+							'person' 		=> 'Person'
+						),
+						'std' => ''
+					),
 					'name' => array(
 						'id' => 'name',
 						'name' => __( 'Name', 'schema-wp' ),
-						'desc' => __( 'Your Organization name, or your name.', 'schema-wp' ),
+						'desc' => __( 'Organization or Person name.', 'schema-wp' ),
 						'type' => 'text',
 						'placeholder' => get_bloginfo( 'name' ),
 						'std' => ''
@@ -308,7 +320,7 @@ function schema_wp_get_registered_settings() {
 					'url' => array(
 						'id' => 'url',
 						'name' => __( 'Website', 'schema-wp' ),
-						'desc' => __( 'Your Organization website URL.', 'schema-wp' ),
+						'desc' => __( 'Organization or Person website URL.', 'schema-wp' ),
 						'type' => 'text',
 						'placeholder' => 'http://',
 						'std' => ''
@@ -316,12 +328,13 @@ function schema_wp_get_registered_settings() {
 					'logo' => array(
 						'id' => 'logo',
 						'name' => __( 'Logo', 'schema-wp' ),
-						'desc' => __( 'Your Organization logo.', 'schema-wp' ) . ' <a href="https://developers.google.com/search/docs/data-types/logo" target="_blank">'.__('Logo guidelines', 'schema-wp').'</a>',
+						'desc' => __( 'Organization logo.', 'schema-wp' ) . ' <a href="https://developers.google.com/search/docs/data-types/logo" target="_blank">'.__('Logo guidelines', 'schema-wp').'</a>',
 						'type' => 'image_upload',
 						'std' => ''
 					)
 				),
 				
+				/** Corporate Contacts Settings */
 				'corporate_contacts' => array( // section
 					'corporate_contacts_telephone' => array(
 						'id' => 'corporate_contacts_telephone',
@@ -424,11 +437,11 @@ function schema_wp_get_registered_settings() {
 						'placeholder' => 'http://',
 						'std' => ''
 					)
-				)
+				) 
 			)
 		),
 		
-		/** Styles Settings */
+		/** Search Results Settings */
 		'search_results' => apply_filters('schema_wp_settings_search_results',
 			array(
 				'sitelinks' => array( // section

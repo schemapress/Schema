@@ -102,9 +102,14 @@ add_filter( 'get_search_form', 'wp_schema_genesis_search_form' );
  *
  * @return string HTML markup.
  */
-function wp_schema_genesis_search_form() {
+function wp_schema_genesis_search_form( $form) {
 	
-	if ( ! function_exists('genesis_html5') ) return;
+	// Added extra checks for older versions of Genesis to prevent errors
+	// @since 1.6.2
+	if ( ! function_exists('genesis_html5') ) return $form;
+	if ( ! function_exists('genesis_a11y') ) return $form;
+	if ( ! function_exists('genesis_attr') ) return $form;
+	
 	
 	$search_text = get_search_query() ? apply_filters( 'the_search_query', get_search_query() ) : apply_filters( 'genesis_search_text', __( 'Search this website', 'genesis' ) . ' &#x02026;' );
 

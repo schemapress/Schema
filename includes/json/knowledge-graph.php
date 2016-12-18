@@ -17,10 +17,10 @@ add_action('wp_head', 'schema_wp_output_knowledge_graph');
  */
 function schema_wp_output_knowledge_graph() {
 	
-	// Run only on front page and make sure Yoast SEO isn't active
+	// Run only on front page
 	if ( is_front_page() ) {
 		
-		$json = schema_wp_get_knowledge_graph_json( 'Organization' );
+		$json = schema_wp_get_knowledge_graph_json();
 		
 		$knowledge_graph = '';
 		
@@ -46,9 +46,23 @@ function schema_wp_output_knowledge_graph() {
  * @since 1.0
  * @return schema output
  */
-function schema_wp_get_knowledge_graph_json( $type ) {
+function schema_wp_get_knowledge_graph_json() {
 	
-	if ( ! isset($type) ) return;
+	//if ( ! isset($type) ) return;
+	
+	$organization_or_person = schema_wp_get_option( 'organization_or_person' );
+	
+	if ( empty($organization_or_person) ) return;
+	
+	
+	switch ( $organization_or_person ) {
+		case "organization":
+		$type = 'Organization';
+			break;
+		case "person":
+		$type = 'Person';
+			break;
+	}
 	
 	$schema = array();
 	
@@ -57,10 +71,17 @@ function schema_wp_get_knowledge_graph_json( $type ) {
 	
 	if ( empty($name) || empty($url) ) return;
 	
-	$logo = esc_attr( stripslashes( schema_wp_get_option( 'logo' ) ) );
+	// Set logo only when type = Organization
+	if ( $type == 'Organization' ) {
+		$logo = esc_attr( stripslashes( schema_wp_get_option( 'logo' ) ) );
+	} else {
+		$logo = '';
+	}
 	
 	$schema['@context'] = "http://schema.org";
 	$schema['@type'] = $type;
+	$schema['@id'] = '#' . $organization_or_person; // @todo this needs to be dynamic so we can add #person as well!
+	
 	
 	if ( !empty($name) ) $schema['name'] = $name;
 	if ( !empty($url) ) $schema['url'] = $url;

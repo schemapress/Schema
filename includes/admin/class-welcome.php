@@ -108,23 +108,26 @@ class Schema_WP_Welcome {
 			text-align: center;
 			background: url('<?php echo esc_url( $badge_url ); ?>') no-repeat;
 		}
-
 		.schema-wp-badge span {
 			position: absolute;
 			bottom: -30px;
 			left: 0;
 			width: 100%;
 		}
-
 		.about-wrap .schema-wp-badge {
 			position: absolute;
 			top: 0;
 			right: 0;
 		}
-
 		.schema-wp-welcome-screenshots {
 			float: right;
 			margin-left: 60px !important;
+		}
+		.schema-wp-info-notice {
+			border-left: 4px solid #5b9dd9;
+		}
+		.schema-wp-info-notice i {
+			color: #5b9dd9;
 		}
 		@media (max-width: 800px) {
     		.schema-wp-welcome-screenshots {
@@ -185,9 +188,15 @@ class Schema_WP_Welcome {
 			
 			<div class="changelog">
 				
+                <div class="update-nag schema-wp-info-notice">
+                 <h3><?php _e( 'Please update Knowledge Graph settings!', 'schema-wp' );?></h3>
+					<p><?php _e( 'The Knowledge Graph settings has been updated with a new feature, support for \'Person\' has been added, please configure the', 'schema-wp' );?> <a href="<?php echo esc_url( admin_url( 'admin.php?page=schema&tab=knowledge_graph' ) ); ?>"><?php _e( 'plugin settings', 'schema-wp' ); ?></a></p> 
+					
+					<p><i class="dashicons dashicons-warning"></i> <?php _e( 'If you are caching your site, make sure to clear cache for changes to take effect.', 'schema-wp' );?></p>
+                   
+                </div>
                  
 				<div class="feature-section sub-section">
-					
                     
                     <h2><?php _e( 'Support More Schema Types', 'schema-wp' );?></h2>
 					<p><?php _e( 'Now, Schema plugin supports more schema.org types.', 'schema-wp' );?></p>
@@ -239,7 +248,7 @@ class Schema_WP_Welcome {
                     <p><?php _e( 'Schema plays nicely  and support themes mentioned below.', 'schema-wp' );?></p>
                     
                     <h3><?php _e( 'Play nicely with Yoast SEO', 'schema-wp' );?></h3>
-					<p><?php _e( 'Now Schema plugin plays nicely with Yoast SEO plugin, you can have both plugins active with no conflicts. Also, no settings need to be changed.', 'schema-wp' );?></p>
+					<p><?php _e( 'Now Schema plugin plays nicely with Yoast SEO plugin, you can have both plugins active with no conflicts.', 'schema-wp' );?></p>
                     
                     <h3><?php _e( 'Hello AMP!', 'schema-wp' );?></h3>
 					<p><?php _e( 'If you are using the AMP plugin, Schema got you covered!', 'schema-wp' );?></p>
@@ -300,8 +309,8 @@ class Schema_WP_Welcome {
 		<div class="wrap about-wrap">
 			<h1><?php printf( __( 'Welcome to Schema v%s', 'schema-wp' ), esc_html( $display_version ) ); ?></h1>
 			<div class="about-text"><?php echo __( 'Thank you for installing Schema. The best schema.org plugin for WordPress.', 'schema-wp' ); ?></div>
-			<div class="schema-wp-badge"><span><?php printf( __( 'Version %s', 'schema-wp' ), esc_html( $display_version ) ); ?></span></div>
-
+            <div class="schema-wp-badge"><span><?php printf( __( 'Version %s', 'schema-wp' ), esc_html( $display_version ) ); ?></span></div>
+			        
 			<?php $this->tabs(); ?>
 
 			<p class="about-description"><?php _e( 'Hang on! We are going to add more schema integration and cool features to Schema plugin.', 'schema-wp' ); ?></p>
