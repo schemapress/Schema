@@ -33,7 +33,7 @@ function schema_wp_remove_yoast_json( $data ){
 
 add_action( 'admin_init', 'schema_wp_yoast_seo_register_settings', 1 );
 /*
-* Register Yoast SEo plugin settings 
+* Register Yoast SEO plugin settings 
 *
 * @since 1.6.4
 */
@@ -45,7 +45,7 @@ function schema_wp_yoast_seo_register_settings() {
 }
 
 /*
-* Add Yoast SEo plugin settings 
+* Add Yoast SEO plugin settings 
 *
 * @since 1.6.4
 */
@@ -75,7 +75,7 @@ function schema_wp_yoast_knowledge_graph_remove( $knowledge_graph ) {
 	$use_yoast_seo_json = schema_wp_get_option( 'use_yoast_seo_json' );
 	
 	if ( ! empty($use_yoast_seo_json) && defined('WPSEO_VERSION') ) {
-		$knowledge_graph = array();
+		return; // do nothing!
 	}
 	
 	return $knowledge_graph;
@@ -95,7 +95,7 @@ function schema_wp_yoast_sitelinks_search_box_remove( $sitelinks_search_box ) {
 	$use_yoast_seo_json = schema_wp_get_option( 'use_yoast_seo_json' );
 	
 	if ( ! empty($use_yoast_seo_json) && defined('WPSEO_VERSION') ) {
-		$sitelinks_search_box = array();
+		return; // do nothing!
 	}
 	
 	return $sitelinks_search_box;
