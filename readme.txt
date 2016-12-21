@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile
 Requires at least: 4.0
 Tested up to: 4.7
-Stable tag: 1.6.4
+Stable tag: 1.6.5
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -124,6 +124,10 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.6.5 =
+* Fixed empty array output on front page when set Yoast SEO output to true.
+* Cleaned comments in code files and corrected a couple of typos.
 
 = 1.6.4 =
 * Removed Yoast SEO plugin check, now it is done via the plugin settings.
@@ -424,6 +428,9 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.6.5 =
+This update include an important fixed for empty array output on front page when set Yoast SEO output to true. Please, update the plugin on your site to get this fix.
 
 = 1.6.4 =
 In this update, Schema will override Yoast SEO plugin JSON-LD output on the front page, also a new feature has been added to allow you define the site for an Organization or a Person. Upgrade now to get these enhancements, Note: you will need to configure the Knowledge Graph settings after the upgrade. 
