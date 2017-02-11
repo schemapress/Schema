@@ -260,7 +260,7 @@ function schema_wp_get_registered_settings() {
 					'publisher_logo' => array(
 						'id' => 'publisher_logo',
 						'name' => __( 'Publisher Logo', 'schema-wp' ),
-						'desc' => __( 'Publisher Logo should have a wide aspect ratio, not a square icon, it should be no wider than 600px, and no taller than 60px.', 'schema-wp' ) . ' <a href="https://developers.google.com/search/docs/data-types/articles#amp-logo-guidelines" target="_blank">'.__('Logo guidelines', 'schema-wp').'</a>',
+						'desc' => __( 'Publisher Logo should have a wide aspect ratio, not a square icon, it should be no wider than 600px, and no taller than 60px.', 'schema-wp' ) . ' <a href="https://developers.google.com/search/docs/data-types/articles#logo-guidelines" target="_blank">'.__('Logo guidelines', 'schema-wp').'</a>',
 						'type' => 'image_upload',
 						'std' => ''
 					)

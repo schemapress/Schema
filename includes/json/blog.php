@@ -91,7 +91,7 @@ function schema_wp_get_blog_json( $type ) {
 			'@type' => "Blog",
 			'headline' => get_option( 'page_for_posts' ) ? get_the_title( get_option( 'page_for_posts' ) ) : get_bloginfo( 'name' ),
 			'description' => get_bloginfo( 'description' ),
-			'url' => get_option( 'page_for_posts' ) ? get_permalink( get_option( 'page_for_posts' ) ) : get_site_url(),
+			'url' => get_option( 'page_for_posts' ) ? get_permalink( get_option( 'page_for_posts' ) ) : get_home_url(),
 			'blogPost' => $blogPost,
         );
 

@@ -45,7 +45,3 @@ function schema_wp_amp( $jason_array ) {
 	// Return the un-filtered array
 	return $jason_array;
 }
-
-
-
-

@@ -48,12 +48,9 @@ function schema_wp_output_knowledge_graph() {
  */
 function schema_wp_get_knowledge_graph_json() {
 	
-	//if ( ! isset($type) ) return;
-	
 	$organization_or_person = schema_wp_get_option( 'organization_or_person' );
 	
 	if ( empty($organization_or_person) ) return;
-	
 	
 	switch ( $organization_or_person ) {
 		case "organization":
@@ -80,7 +77,7 @@ function schema_wp_get_knowledge_graph_json() {
 	
 	$schema['@context'] = "http://schema.org";
 	$schema['@type'] = $type;
-	$schema['@id'] = '#' . $organization_or_person; // @todo this needs to be dynamic so we can add #person as well!
+	$schema['@id'] = '#' . $organization_or_person;
 	
 	
 	if ( !empty($name) ) $schema['name'] = $name;

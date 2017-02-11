@@ -125,6 +125,13 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 
 == Changelog ==
 
+= 1.6.7 =
+* Fixed site url by using get_home_url instead of get_site_url.
+* Fixed a few notices in about and contact pages markup.
+
+= 1.6.6 =
+* Fixed logo guidelines link in plugin settings.
+
 = 1.6.5 =
 * Fixed empty array output on front page when set Yoast SEO output to true.
 * Cleaned comments in code files and corrected a couple of typos.

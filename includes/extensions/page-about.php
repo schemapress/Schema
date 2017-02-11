@@ -110,9 +110,9 @@ function schema_wp_get_page_about_json( $type ) {
 	if ( ! empty( $json["media"] ) ) {
 		$schema["image"] = array(
     		"@type"		=> "ImageObject",
-    		"url"		=> $json["media"]["image_url"],
-    		"width"		=> $json["media"]["image_width"],
-			"height"	=> $json["media"]["image_height"]
+    		"url"		=> isset($json["media"]["image_url"]) ? $json["media"]["image_url"] : '',
+    		"width"		=> isset($json["media"]["image_width"]) ? $json["media"]["image_width"] : '',
+			"height"	=> isset($json["media"]["image_height"]) ? $json["media"]["image_height"] : ''
 		);
 	}
 	

@@ -38,7 +38,7 @@ function schema_wp_output_sitelinks_search_box() {
 			if ( $site_alternate_name ) $output .= '  "alternateName": "' . $site_alternate_name . '",' . PHP_EOL;
 		}
 		
-		$output .= '  "url": "' . get_site_url() . '/",' . PHP_EOL;
+		$output .= '  "url": "' . get_home_url() . '/",' . PHP_EOL;
 		$output .= '  "potentialAction": {' . PHP_EOL;
 		$output .= '    "@type": "SearchAction",' . PHP_EOL;
 		$output .= '    "target": "' . get_home_url() . '/?s={search_term_string}",' . PHP_EOL;
