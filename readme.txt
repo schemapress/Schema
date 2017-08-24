@@ -3,8 +3,8 @@ Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile
 Requires at least: 4.0
-Tested up to: 4.7
-Stable tag: 1.6.5
+Tested up to: 4.8.1
+Stable tag: 1.6.7
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -126,11 +126,23 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 == Changelog ==
 
 = 1.6.7 =
-* Fixed site url by using get_home_url instead of get_site_url.
-* Fixed a few notices in about and contact pages markup.
+* Added new class for admin post list columns, not Schema type has new columns.
+* Added new columns to Schema post type, example Schema Type, Post Type, and Content.
+* Removed the View and Quick Edit links from actions column.
+* Updated custom post meta class, added required and default options for fields.
+* Updated a few wording in the Types section in backend.
+* Updated custom post meta boxes CSS, set select input field width to auto.
+* Cleaned some code and removed code comments.
+* Tested with PHP version 7.0.22
 
 = 1.6.6 =
 * Fixed logo guidelines link in plugin settings.
+* Fixed site url by using get_home_url instead of get_site_url.
+* Fixed a few notices in about, contact, category, and 404 pages.
+* Fixed a Trying to get property of non-object warning when saving ref.
+* Fixed unwanted field id was showing in the repeated post meta generator.
+* Updated to version 1.6.13 of license handler for EDD.
+* Updated to version 1.6.11 of EDD updater class. 
 
 = 1.6.5 =
 * Fixed empty array output on front page when set Yoast SEO output to true.
@@ -436,8 +448,14 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 
 == Upgrade Notice ==
 
+= 1.6.7 =
+This update include important functions, and introduce a new columns in Schema post type. Please, update the plugin on your site to get these new features.
+
+= 1.6.6 =
+This update include an important fixes. Please, update the plugin on your site to get this fix.
+
 = 1.6.5 =
-This update include an important fixed for empty array output on front page when set Yoast SEO output to true. Please, update the plugin on your site to get this fix.
+This update include important fixes for empty array output on front page when set Yoast SEO output to true. Please, update the plugin on your site to get this fix.
 
 = 1.6.4 =
 In this update, Schema will override Yoast SEO plugin JSON-LD output on the front page, also a new feature has been added to allow you define the site for an Organization or a Person. Upgrade now to get these enhancements, Note: you will need to configure the Knowledge Graph settings after the upgrade. 
@@ -446,7 +464,7 @@ In this update, Schema will override Yoast SEO plugin JSON-LD output on the fron
 This update includes a fix for articleSection which caused an error in schema.org markup. Please, upgrade now to get this fix.
 
 = 1.6.2 =
-In this update, important bugs has been fixed, prevent fatal errors on admin pages and with older versions of Genesis. Please, upgrade now to get this fix.
+In this update, important bug fixes has been made, prevent fatal errors on admin pages and with older versions of Genesis. Please, upgrade now to get this fix.
 
 = 1.6.1 =
 In this update, a bug got fixed and a couple of other enhancements which enhance plugin settings usability has been applied. Please, upgrade now to get these enhancements.
