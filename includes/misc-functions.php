@@ -143,16 +143,16 @@ function schema_wp_cpt_get_enabled_post_types() {
  * @since 1.4
  * @return array of enabled post types, schema type
  */
-function schema_wp_get_media( $id = null) {
+function schema_wp_get_media( $post_id = null) {
 	
 	global $post;
 	
-	if ( ! isset( $id ) ) $id = $post->ID;
+	if ( ! isset( $post_id ) ) $post_id = $post->ID;
 	
 	$media = array();
 	
 	// Featured image
-	$image_attributes	= wp_get_attachment_image_src( get_post_thumbnail_id($id), 'full' );
+	$image_attributes	= wp_get_attachment_image_src( get_post_thumbnail_id($post_id), 'full' );
 	$image_url			= $image_attributes[0];
 	$image_width		= ( $image_attributes[1] > 696 ) ? $image_attributes[1] : 696; // Images should be at least 696 pixels wide
 	$image_height		= $image_attributes[2];
@@ -160,7 +160,7 @@ function schema_wp_get_media( $id = null) {
 	// Thesis 2.x Post Image
 	$my_theme = wp_get_theme();
 	if ( $my_theme->get( 'Name' ) == 'Thesis') {
-		$image_attributes	= get_post_meta( $id, '_thesis_post_image', true);
+		$image_attributes	= get_post_meta( $post_id, '_thesis_post_image', true);
 		if ( ! empty($image_attributes) ) {
 			$image_url			= $image_attributes['image']['url'];
 			// Make sure url is valid
@@ -187,7 +187,7 @@ function schema_wp_get_media( $id = null) {
 				$image_height	= $DocumentImages->item( 0 )->getAttribute( 'height' );
 			}
 		}
-	}
+	}	
 			
 	// Check if there is no image, then return an empy array
 	// @since 1.4.3 
@@ -397,7 +397,7 @@ function schema_wp_clear_json_on_post_save( $post_id, $post, $update ) {
 	$slug = 'schema';
 
     // If this is a 'schema' post, don't update it.
-    if ( $slug == $post->post_type ) {
+	if ( get_post_type( $post_id ) == $slug ) {
         return $post_id;
     }
 	

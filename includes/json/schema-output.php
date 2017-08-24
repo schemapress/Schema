@@ -28,8 +28,9 @@ function schema_wp_output() {
 	//	if ( wprs_is_enabled( $post->ID ) ) return;
 	//}
 	
-	$pttimestamp 	 = time() + get_option('gmt_offset') * 60*60;
-	$pttimestamp_old = get_post_meta( $post->ID, '_schema_json_timestamp', true );
+	$pttimestamp 	 	= time() + get_option('gmt_offset') * 60*60;
+	$pttimestamp_old 	= get_post_meta( $post->ID, '_schema_json_timestamp', true );
+	$json 				= array();
 	
 	// exclude post
 	// @since 1.6
@@ -39,7 +40,7 @@ function schema_wp_output() {
 	
 	// compare time stamp and check if json post meta value already exists
 	// @since 1.5.9.7
-	if ( isset($pttimestamp_old) ) {
+	if ( isset($pttimestamp_old) && is_numeric($pttimestamp_old) ) {
 		$time_diff = $pttimestamp - $pttimestamp_old;
 		if ( $time_diff <= DAY_IN_SECONDS ) { 
 			$json = get_post_meta( $post->ID, '_schema_json', true );

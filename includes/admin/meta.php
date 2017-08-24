@@ -30,8 +30,8 @@ $prefix = '_schema_';
 $fields_main = array(
 	
 	array( // Select box
-		'label'	=> __('Type', 'schema-wp'), // <label>
-		'desc'	=> __('Select Schema type.', 'schema-wp'), // description
+		'label'	=> __('Schema Markup Type', 'schema-wp'), // <label>
+		'desc'	=> __('Select Schema type which describes your content best', 'schema-wp'), // description
 		'id'	=> $prefix.'type', // field id and name
 		'type'	=> 'select', // type of field
 		'options' => apply_filters( 'schema_wp_types', array ( // array of options
@@ -44,7 +44,7 @@ $fields_main = array(
 	
 	'post_meta_enabled' => array(
 		'label' => __('Post meta', 'schema-wp'),
-		'tip'	=> __('Enable custom post meta box.', 'schema-wp'),
+		'tip'	=> __('Enable custom post meta box', 'schema-wp'),
 		'desc'	=> __('Enable post meta box?', 'schema-wp'), 
 		'id' 	=> $prefix.'post_meta_box_enabled',
 		'type'	=> 'checkbox'
@@ -62,7 +62,7 @@ $fields_article = array(
 	
 	array( // Select box
 		'label'	=> __('Article Type', 'schema-wp'), // <label>
-		'desc'	=> __('Select more specific article type.', 'schema-wp'), // description
+		'desc'	=> __('Select more specific article type', 'schema-wp'), // description
 		'tip'	=> __('It is recommended to set type BlogPosting for posts, and leave empty or set to General for page post type', 'schema-wp'),
 		'id'	=> $prefix.'article_type', // field id and name
 		'type'	=> 'select', // type of field
@@ -248,7 +248,7 @@ $fields_post_meta_box =  array (
  * var $priority string meta box priority (high, core, default, low) 
  * var $js bool including javascript or not
  */
-$schema_box = new Schema_Custom_Add_Meta_Box( 'schema', __('Settings', 'schema-wp'), $fields_main, 'schema', 'normal', 'high', true );
+$schema_box = new Schema_Custom_Add_Meta_Box( 'schema', __('Schema Settings', 'schema-wp'), $fields_main, 'schema', 'normal', 'high', true );
 $schema_article_box = new Schema_Custom_Add_Meta_Box( 'schema_article', __('Article', 'schema-wp'), $fields_article, 'schema', 'normal', 'high', true );
 $schema_cpt_box = new Schema_Custom_Add_Meta_Box( 'schema_cpt', __('Post Types', 'schema-wp'), $fields_post_types, 'schema', 'side', 'default', true );
 $schema_post_meta_box = new Schema_Custom_Add_Meta_Box( 'schema_post_meta_box', __('Post Meta', 'schema-wp'), $fields_post_meta_box, 'schema', 'normal', 'default', true );

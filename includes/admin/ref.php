@@ -171,16 +171,12 @@ add_action( 'wp_insert_post', 'schema_wp_add_ref', 10, 1 );
  */
 function schema_wp_add_ref( $post_id ) {
 	
-	global $post;
-	
 	if ( ! isset( $_POST['post_status'] ) ) return false;
     
-	//$current_screen = get_current_screen();
-	//$post_type 		= $current_screen->post_type;
 	$slug = 'schema';
 
     // If this isn't a 'schema' post, don't update it.
-    if ( $slug != $post->post_type ) {
+	if ( get_post_type( $post_id ) == $slug ) {
         return $post_id;
     }
 	

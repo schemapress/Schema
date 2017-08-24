@@ -28,7 +28,7 @@
 
 /* repeatable */
 .form-table.meta_box .meta_box_repeatable {
-	width:510px;
+	width:100%;
 }
 .form-table.meta_box .meta_box_repeatable th {
 	width:auto !important;
@@ -37,6 +37,7 @@
 	text-transform:uppercase;
 	font-size:10px;
 	text-shadow:none;
+	color:#ccc;
 }
 
 .form-table.meta_box .meta_box_repeatable tfoot th {
@@ -48,7 +49,7 @@
 	vertical-align:top;
 	padding:10px;
 	border-bottom:1px dashed #ccc;
-	background:#eee;
+	background:#fbfbfb;
 }
 
 .form-table.meta_box .meta_box_repeatable tr:nth-child(even) td {
@@ -160,7 +161,7 @@
 
 /* Select */
 .form-table select {
-	width:25em;
+	width:auto;
 }
 
 .widget-content .meta_box_repeatable select {
@@ -215,7 +216,7 @@
 /**
  * Repeatable Row Styles
  */
-.form-table.meta_box .meta_box_repeatable_row {
+.meta_box_repeatable .meta_box_repeatable_row {
 	width:100%;
 }
 .form-table.meta_box .meta_box_repeatable_row td * {
@@ -250,22 +251,28 @@
 	line-height:inherit;
 	float:none;
 }
-.form-table.meta_box .meta_box_repeatable_row .description {
+.meta_box_repeatable .description {
 	font-size:11px;
 	font-weight:300;
 }
-.form-table.meta_box .meta_box_repeatable_row  .meta_box_repeatable_remove,
-.form-table.meta_box .meta_box_repeatable_row .ui-sortable-handle {
-	color:#ccc;
+.meta_box_repeatable .meta_box_repeatable_remove,
+.meta_box_repeatable .ui-sortable-handle {
 	border: none;
 }
-.form-table.meta_box .meta_box_repeatable_row  .meta_box_repeatable_remove:hover {
+.meta_box_repeatable .meta_box_repeatable_remove:hover,
+.meta_box_repeatable .ui-sortable-handle:hover {
+	cursor:move;
+}
+.meta_box_repeatable .meta_box_repeatable_remove{
+	color:#ccc;
+}
+.meta_box_repeatable .meta_box_repeatable_remove:hover {
 	color:#cc0000;
 }
-.form-table.meta_box .meta_box_repeatable_row .ui-sortable-handle:hover {
+.meta_box_repeatable .ui-sortable-handle:hover {
 	color:#333;
 }
-.form-table.meta_box .meta_box_repeatable_row .dashicons {
+.meta_box_repeatable .dashicons {
 	font-size:14px;
 	width: 14px;
     height: 14px;
@@ -508,7 +515,13 @@
 	margin-bottom: 20px;
 	display: block;
 }
-
+#_schema_review_pros-repeatable input,
+#_schema_review_cons-repeatable input {
+	float:left;
+}
+.form-table.meta_box .meta_box_repeatable td * {
+	margin:0;
+}
 /* Remove "+ Add New Category" */
 #category-adder {
 	display:none;

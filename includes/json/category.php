@@ -55,7 +55,8 @@ function schema_wp_get_category_json( $type ) {
 	// debug
 	//echo'<pre>';print_r($query_string);echo'</pre>';exit;
 	
-	$blogPost = array();
+	$blogPost 	= array();
+	$json 		= array();
 	
 	$secondary_loop = new WP_Query( $query_string );
 	

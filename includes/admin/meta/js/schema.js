@@ -21,7 +21,7 @@ jQuery(function($) {
     });
 	
 	
-	// repeated post meta group
+	// repeated post meta group / show hide main meta box
 	$('#schema_post_meta_box').hide();
 	
 	var post_meta_enabled = $("#_schema_post_meta_box_enabled").attr('checked');
@@ -38,22 +38,18 @@ jQuery(function($) {
         }
     });
 	
-	// repeated post meta group
+	// repeated post meta group fields
+	// first, hide all divs inside the repeatable row, which has the advanmced options
 	$('.meta_box_repeatable_row div').hide();
-	/*
-	$('.meta_box_repeatable_row input[type="checkbox"]').on('change', function() {
-   		$('#' + this.id + '_div_open').toggle( this.checked ); 
-	});
-	*/
 	
-	
+	// do toggle
 	$('.meta_box_repeatable_row .toggle').toggle(function() {
     	$('#' + this.id + '_wrap').show();
-		//$(this).parent().next('.toggle_div').show();
-    	$(this).html('Less');
+    	$(this).html('Less <span class="dashicons dashicons-arrow-up-alt2"></span>'); // Less options
 	}, function() {
     	$('#' + this.id + '_wrap').hide();
-    	$(this).html(this.id);
+    	$(this).html('Advanced <span class="dashicons dashicons-arrow-down-alt2"></span>'); // Advanced options
+		//$(this).html(this.id);
 	});
 	
 	

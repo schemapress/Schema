@@ -205,7 +205,6 @@ function schema_wp_register_settings() {
 						'faux'          => isset( $option['faux'] )          ? $option['faux']          : false,
 						'tooltip_title' => isset( $option['tooltip_title'] ) ? $option['tooltip_title'] : false,
 						'tooltip_desc'  => isset( $option['tooltip_desc'] )  ? $option['tooltip_desc']  : false,
-						
 						'post_type'		=> isset( $option['post_type'] )  	 ? $option['post_type']  	: false,
 					)
 				);
@@ -1287,6 +1286,8 @@ function schema_wp_post_select_callback( $args ) {
 		
 	echo $html;
 }
+
+
 	
 /**
  * Registers the license field callback for Software Licensing

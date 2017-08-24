@@ -17,8 +17,6 @@ add_action( 'admin_bar_menu', 'schema_wp_admin_bar_menu_items', 99 );
 * @since 1.5.4
 */
 function schema_wp_admin_bar_menu_items( $admin_bar ) {
-	
-	global $post;
 		
 	/* This print_r will show you the current contents of the admin menu bar, use it if you want to examine the $admin_bar array
 	* echo "<pre>";
@@ -32,8 +30,8 @@ function schema_wp_admin_bar_menu_items( $admin_bar ) {
 	// Get current page url
 	$url =  'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 	
-	// If user can't edit posts, then get out
-	if ( ! current_user_can( 'edit_post', $post->ID ) ) return;
+	// If user can't publish posts, then get out
+	if ( ! current_user_can( 'publish_posts' ) ) return;
 	
 	$admin_bar->add_menu( array(
 		'id'	=> 'schema-test-item',

@@ -244,4 +244,3 @@ function schema_wp_get_corporate_contacts_types() {
 
 	return apply_filters( 'schema_wp_corporate_contacts_types', $corporate_contacts_types );
 }
-
