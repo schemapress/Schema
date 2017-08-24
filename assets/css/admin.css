@@ -93,6 +93,21 @@ a.schema-wp-delete:hover {
   color: #ccc;
 }
 
+/* rating scale table */
+table.schema-review-rating-scale {
+	background: none;
+	background-color:inherit;
+	max-width: 680px;
+}
+
+.schema-review-rating-scale tr th {
+	padding: 6px 10px 6px 10px
+}
+
+.schema-review-rating-scale td {
+	padding: 6px 5px 6px 10px;
+}
+	
 /* General Settings Styles
 -------------------------------------------------------------- */
 
