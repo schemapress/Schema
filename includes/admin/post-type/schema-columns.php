@@ -81,9 +81,10 @@ add_filter( 'post_row_actions', 'remove_row_actions', 10, 1 );
  * @return array
  */
 function remove_row_actions( $actions ) {
-    if( get_post_type() === 'schema' )
+    if( get_post_type() === 'schema' ) {
         unset( $actions['view'] );
 		unset( $actions['inline hide-if-no-js'] );
+	}
 		 
     return $actions;
 }
