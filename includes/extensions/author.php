@@ -85,7 +85,7 @@ function schema_wp_get_author_array( $post_id = null ) {
 	
 	// sameAs
 	$website 	= esc_attr( stripslashes( get_the_author_meta( 'user_url', $post_author->ID ) ) );
-	$google 	= esc_attr( stripslashes( get_the_author_meta( 'google', $post_author->ID ) ) );
+	$googleplus = esc_attr( stripslashes( get_the_author_meta( 'googleplus', $post_author->ID ) ) );
 	$facebook 	= esc_attr( stripslashes( get_the_author_meta( 'facebook', $post_author->ID) ) );
 	$twitter 	= esc_attr( stripslashes( get_the_author_meta( 'twitter', $post_author->ID ) ) );
 	$instagram 	= esc_attr( stripslashes( get_the_author_meta( 'instagram', $post_author->ID ) ) );
@@ -97,7 +97,7 @@ function schema_wp_get_author_array( $post_id = null ) {
 	$tumblr 	= esc_attr( stripslashes( get_the_author_meta( 'tumblr', $post_author->ID ) ) );
 	$github 	= esc_attr( stripslashes( get_the_author_meta( 'github', $post_author->ID ) ) );
 	
-	$sameAs_links = array( $website, $google, $facebook, $twitter, $instagram, $youtube, $linkedin, $myspace, $pinterest, $soundcloud, $tumblr, $github);
+	$sameAs_links = array( $website, $googleplus, $facebook, $twitter, $instagram, $youtube, $linkedin, $myspace, $pinterest, $soundcloud, $tumblr, $github);
 	
 	$social = array();
 	
