@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile
 Requires at least: 4.0
 Tested up to: 4.8.1
-Stable tag: 1.6.7
+Stable tag: 1.6.9
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -124,6 +124,17 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.6.9 =
+* Fixed using JSON_UNESCAPED_UNICODE of PHP 5.4 or later.
+* Added new function schema_wp_get_currency_symbol to misc functions file.
+* Moved function schema_wp_get_currencies to misc file so it can be used globally.
+* Deprecate schema_wp_get_currency function, never been used.
+* Update: Bumped minimum required PHP version from 5.3 to 5.4 
+
+= 1.6.8 =
+* Fixed googleplus key in user profile meta.
+* Fixed Quick Edit links removed on all post types, this should be limited only to schema.
 
 = 1.6.7 =
 * Added new class for admin post list columns, not Schema type has new columns.
@@ -447,6 +458,12 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.6.9 =
+This update include bug fixes, and more. Also minimum version of PHP is set to 5.4, so make sure you have this version running on your server. Please, update the plugin on your site to get these fixes.
+
+= 1.6.8 =
+This update include bug fixes. Please, update the plugin on your site to get these fixes.
 
 = 1.6.7 =
 This update include important functions, and introduce a new columns in Schema post type. Please, update the plugin on your site to get these new features.

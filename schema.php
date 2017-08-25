@@ -5,7 +5,7 @@
  * Description: The next generation of Structured Data.
  * Author: Hesham
  * Author URI: http://zebida.com
- * Version: 1.6.7
+ * Version: 1.6.9
  * Text Domain: schema-wp
  * Domain Path: languages
  *
@@ -51,7 +51,7 @@ final class Schema_WP {
 	 *
 	 * @since 1.0
 	 */
-	private $version = '1.6.7';
+	private $version = '1.6.9';
 
 	/**
 	 * The settings instance variable
@@ -86,7 +86,7 @@ final class Schema_WP {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof SCHEMA_WP ) ) {
 			self::$instance = new SCHEMA_WP;
 
-			if( version_compare( PHP_VERSION, '5.3', '<' ) ) {
+			if( version_compare( PHP_VERSION, '5.4', '<' ) ) {
 
 				add_action( 'admin_notices', array( 'SCHEMA_WP', 'below_php_version_notice' ) );
 
@@ -137,7 +137,7 @@ final class Schema_WP {
 	 * @return void
 	 */
 	public function below_php_version_notice() {
-		echo '<div class="error"><p>' . __( 'Your version of PHP is below the minimum version of PHP required by Schema plugin. Please contact your host and request that your version be upgraded to 5.3 or later.', 'schema-wp' ) . '</p></div>';
+		echo '<div class="error"><p>' . __( 'Your version of PHP is below the minimum version of PHP required by Schema plugin. Please contact your host and request that your version be upgraded to 5.4 or later.', 'schema-wp' ) . '</p></div>';
 	}
 
 	/**
