@@ -154,7 +154,7 @@ function schema_wp_recursive_array_search( $needle, $haystack ) {
  * @since 1.0
  * @return array $currencies A list of the available currencies
  */
-function schema_wp_get_currencies() {
+function schema_wp_get_currenciesxxx() {
 
 	$currencies = array(
 		'USD' => __( 'US Dollars', 'schema-wp' ),
@@ -205,18 +205,6 @@ function schema_wp_get_currencies() {
 	);
 
 	return apply_filters( 'schema_wp_currencies', $currencies );
-}
-
-
-/**
- * Get the store's set currency
- *
- * @since 1.0
- * @return string The currency code
- */
-function schema_wp_get_currency() {
-	$currency = schema_wp()->settings->get( 'currency', 'USD' );
-	return apply_filters( 'schema_wp_currency', $currency );
 }
 
 

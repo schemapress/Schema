@@ -420,3 +420,197 @@ function schema_wp_clear_json_on_post_save( $post_id, $post, $update ) {
 	
 	 return $post_id;
 }
+
+
+
+/**
+ * Retrieves all the available currencies.
+ *
+ * @since   1.6.9
+ * @return  array
+ */
+function schema_wp_get_currencies() {
+	$currencies = array(
+		'AUD' => __( 'Australian Dollars', 'schema-wp' ),
+		'BDT' => __( 'Bangladeshi Taka', 'schema-wp' ),
+		'BRL' => __( 'Brazilian Real', 'schema-wp' ),
+		'BGN' => __( 'Bulgarian Lev', 'schema-wp' ),
+		'CAD' => __( 'Canadian Dollars', 'schema-wp' ),
+		'CLP' => __( 'Chilean Peso', 'schema-wp' ),
+		'CNY' => __( 'Chinese Yuan', 'schema-wp' ),
+		'COP' => __( 'Colombian Peso', 'schema-wp' ),
+		'CZK' => __( 'Czech Koruna', 'schema-wp' ),
+		'DKK' => __( 'Danish Krone', 'schema-wp' ),
+		'DOP' => __( 'Dominican Peso', 'schema-wp' ),
+		'EUR' => __( 'Euros', 'schema-wp' ),
+		'HKD' => __( 'Hong Kong Dollar', 'schema-wp' ),
+		'HRK' => __( 'Croatia kuna', 'schema-wp' ),
+		'HUF' => __( 'Hungarian Forint', 'schema-wp' ),
+		'ISK' => __( 'Icelandic krona', 'schema-wp' ),
+		'IDR' => __( 'Indonesia Rupiah', 'schema-wp' ),
+		'INR' => __( 'Indian Rupee', 'schema-wp' ),
+		'NPR' => __( 'Nepali Rupee', 'schema-wp' ),
+		'ILS' => __( 'Israeli Shekel', 'schema-wp' ),
+		'JPY' => __( 'Japanese Yen', 'schema-wp' ),
+		'KIP' => __( 'Lao Kip', 'schema-wp' ),
+		'KRW' => __( 'South Korean Won', 'schema-wp' ),
+		'MYR' => __( 'Malaysian Ringgits', 'schema-wp' ),
+		'MXN' => __( 'Mexican Peso', 'schema-wp' ),
+		'NGN' => __( 'Nigerian Naira', 'schema-wp' ),
+		'NOK' => __( 'Norwegian Krone', 'schema-wp' ),
+		'NZD' => __( 'New Zealand Dollar', 'schema-wp' ),
+		'PYG' => __( 'Paraguayan Guaraní', 'schema-wp' ),
+		'PHP' => __( 'Philippine Pesos', 'schema-wp' ),
+		'PLN' => __( 'Polish Zloty', 'schema-wp' ),
+		'GBP' => __( 'Pounds Sterling', 'schema-wp' ),
+		'RON' => __( 'Romanian Leu', 'schema-wp' ),
+		'RUB' => __( 'Russian Ruble', 'schema-wp' ),
+		'SGD' => __( 'Singapore Dollar', 'schema-wp' ),
+		'ZAR' => __( 'South African rand', 'schema-wp' ),
+		'SEK' => __( 'Swedish Krona', 'schema-wp' ),
+		'CHF' => __( 'Swiss Franc', 'schema-wp' ),
+		'TWD' => __( 'Taiwan New Dollars', 'schema-wp' ),
+		'THB' => __( 'Thai Baht', 'schema-wp' ),
+		'TRY' => __( 'Turkish Lira', 'schema-wp' ),
+		'USD' => __( 'US Dollars', 'schema-wp' ),
+		'VND' => __( 'Vietnamese Dong', 'schema-wp' ),
+		'EGP' => __( 'Egyptian Pound', 'schema-wp' ),
+	);
+
+	return apply_filters( 'schema_wp_currencies', $currencies );
+}
+
+
+/**
+ * Retrieves symbol of the given currency.
+ *
+ * @since 1.6.9
+ *
+ * @param string $currency Currency code.
+ *
+ * @return string $currency_symbol Currency symbol.
+ */
+function schema_wp_get_currency_symbol( $currency ) {
+	switch ( $currency ) {
+		case 'BDT':
+			$currency_symbol = '&#2547;&nbsp;';
+			break;
+		case 'BRL' :
+			$currency_symbol = '&#82;&#36;';
+			break;
+		case 'BGN' :
+			$currency_symbol = '&#1083;&#1074;.';
+			break;
+		case 'AUD' :
+		case 'CAD' :
+		case 'CLP' :
+		case 'COP' :
+		case 'MXN' :
+		case 'NZD' :
+		case 'HKD' :
+		case 'SGD' :
+		case 'USD' :
+			$currency_symbol = '&#36;';
+			break;
+		case 'EUR' :
+			$currency_symbol = '&euro;';
+			break;
+		case 'CNY' :
+		case 'RMB' :
+		case 'JPY' :
+			$currency_symbol = '&yen;';
+			break;
+		case 'RUB' :
+			$currency_symbol = '&#1088;&#1091;&#1073;.';
+			break;
+		case 'KRW' :
+			$currency_symbol = '&#8361;';
+			break;
+		case 'PYG' :
+			$currency_symbol = '&#8370;';
+			break;
+		case 'TRY' :
+			$currency_symbol = '&#8378;';
+			break;
+		case 'NOK' :
+			$currency_symbol = '&#107;&#114;';
+			break;
+		case 'ZAR' :
+			$currency_symbol = '&#82;';
+			break;
+		case 'CZK' :
+			$currency_symbol = '&#75;&#269;';
+			break;
+		case 'MYR' :
+			$currency_symbol = '&#82;&#77;';
+			break;
+		case 'DKK' :
+			$currency_symbol = 'kr.';
+			break;
+		case 'HUF' :
+			$currency_symbol = '&#70;&#116;';
+			break;
+		case 'IDR' :
+			$currency_symbol = 'Rp';
+			break;
+		case 'INR' :
+			$currency_symbol = '&#8377;';
+			break;
+		case 'NPR' :
+			$currency_symbol = 'Rs.';
+			break;
+		case 'ISK' :
+			$currency_symbol = 'Kr.';
+			break;
+		case 'ILS' :
+			$currency_symbol = '&#8362;';
+			break;
+		case 'PHP' :
+			$currency_symbol = '&#8369;';
+			break;
+		case 'PLN' :
+			$currency_symbol = '&#122;&#322;';
+			break;
+		case 'SEK' :
+			$currency_symbol = '&#107;&#114;';
+			break;
+		case 'CHF' :
+			$currency_symbol = '&#67;&#72;&#70;';
+			break;
+		case 'TWD' :
+			$currency_symbol = '&#78;&#84;&#36;';
+			break;
+		case 'THB' :
+			$currency_symbol = '&#3647;';
+			break;
+		case 'GBP' :
+			$currency_symbol = '&pound;';
+			break;
+		case 'RON' :
+			$currency_symbol = 'lei';
+			break;
+		case 'VND' :
+			$currency_symbol = '&#8363;';
+			break;
+		case 'NGN' :
+			$currency_symbol = '&#8358;';
+			break;
+		case 'HRK' :
+			$currency_symbol = 'Kn';
+			break;
+		case 'EGP' :
+			$currency_symbol = 'EGP';
+			break;
+		case 'DOP' :
+			$currency_symbol = 'RD&#36;';
+			break;
+		case 'KIP' :
+			$currency_symbol = '&#8365;';
+			break;
+		default    :
+			$currency_symbol = $currency;
+			break;
+	}
+
+	return apply_filters( 'schema_wp_currency_symbol', $currency_symbol, $currency );
+}

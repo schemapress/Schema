@@ -27,3 +27,15 @@ function schema_wp_exclude_output( $schema ) {
 	if ( $exclude ) return;
 	return $schema;
 }
+
+
+/**
+ * Get the store's set currency
+ *
+ * @since 1.6.9
+ * @return string The currency code
+ */
+function schema_wp_get_currency() {
+	$currency = schema_wp()->settings->get( 'schema_review_currency', 'USD' );
+	return apply_filters( 'schema_review_currency', $currency );
+}

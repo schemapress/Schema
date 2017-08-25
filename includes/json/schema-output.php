@@ -124,7 +124,7 @@ function schema_wp_output() {
 		$output .= "\n\n";
 		$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - http://schema.press -->';
 		$output .= "\n";
-		$output .= '<script type="application/ld+json">' . json_encode($json) .'</script>';
+		$output .= '<script type="application/ld+json">' . json_encode($json, JSON_UNESCAPED_UNICODE) .'</script>';
 		$output .= "\n\n";
 	}
 	
@@ -236,6 +236,7 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	//$full_content		= apply_filters('the_content', $full_content);
 	$full_content		= str_replace(']]>', ']]&gt;', $full_content);
 	$full_content 		= wp_strip_all_tags( $full_content );
+	//$full_content 		= wptexturize( $full_content );
 	
 	// Filter content before it gets shorter ;)
 	// @since 1.5.9
