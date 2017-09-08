@@ -175,20 +175,3 @@ function schema_wp_get_social_array() {
 	
 	return $social;
 }
-
-
-remove_filter( 'schema_wp_filter_output_knowledge_graph', 	'schema_wp_do_output_knowledge_graph' );
-add_filter( 'schema_wp_filter_output_knowledge_graph',		'schema_wp_do_output_knowledge_graph_71837615376457563' );
-/*
-* Output Knowledge Graph, this function overrides Schema output
-* so we can control where it should shown (not only the front page)
-*
-* @since 1.6.9.2
-*/
-function schema_wp_do_output_knowledge_graph_71837615376457563( $knowledge_graph ) {
-	
-	if ( ! class_exists( 'Schema_WP' ) ) 
-			return; // Schema not present
-
-	return $knowledge_graph;
-}
