@@ -4,7 +4,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile
 Requires at least: 4.0
 Tested up to: 4.8.1
-Stable tag: 1.6.9
+Requires PHP: 5.4
+Stable tag: 1.6.9.2
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -73,6 +74,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
  * WPRichSnippets
  * The SEO Framework
  * Visual Composer
+ * ThirstyAffiliates
 
 **Supported Themes**
 
@@ -124,6 +126,28 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.6.9.2 =
+* Fixed post meta fields array, it was not defined properly.
+* Fixed minifying admin css file.
+* Fixed a bug in the Knowledge Graph markup output with other plugins.
+* Tweak modified admin menus to allow ordering admin sub menus by priority. 
+* Added new filter schema_wp_types_post_meta_fields to allow adding fields to post meta.
+* Added new post meta field type for checkbox group inline.
+* Added better way to output Knowledge Graph markup, make it filterable. 
+
+= 1.6.9.1 =
+* Fixed a notice when WP Rich Snippets plugin is active on a post.
+* Fixed post meta class issue, scripts was not loading properly for some types.
+* Fixed post meta slider field and added range min property for better presentation.
+* Tweak repeated row fields styles, removed the extra li height from post meta CSS. 
+* Tweak remove repeated fields icon link hover, force mouse cursor to pointer.
+* Tweak remove functions from deprecated-functions file.
+* Added new post meta sanitizers, santitize_title_with_dashes and sanitize_html_class.
+* Added new alert when deleting repeated fields to enhance user experience. 
+* Added new function and filter to admin backend schema_wp_get_post_types.
+* Added new integration for ThirstyAffiliates, prevent thirstylink type from showing.
+* Added the required PHP version 5.4 in readme.txt file.
 
 = 1.6.9 =
 * Fixed using JSON_UNESCAPED_UNICODE of PHP 5.4 or later.
@@ -458,6 +482,12 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.6.9.2 =
+This update include several bug fixes and new enhancements. Please, update the plugin on your site to get these fixes and enhancements.
+
+= 1.6.9.1 =
+This update include several bug fixes and user experience enhancements. Please, update the plugin on your site to get these fixes and enhancements.
 
 = 1.6.9 =
 This update include bug fixes, and more. Also minimum version of PHP is set to 5.4, so make sure you have this version running on your server. Please, update the plugin on your site to get these fixes.
