@@ -62,27 +62,27 @@ function schema_wp_settings_knowledge_graph( $settings_knowledge_graph ) {
 }
 
 
-add_action( 'schema_wp_output_knowledge_graph', 'schema_wp_yoast_knowledge_graph_remove' );
+add_filter( 'schema_wp_filter_output_knowledge_graph', 'schema_wp_yoast_knowledge_graph_remove' );
 /*
 * Remove Knowledge Graph
 *
 * @since 1.5.6
 */
 function schema_wp_yoast_knowledge_graph_remove( $knowledge_graph ) {
-	// Run only on front page and if Yoast SEO is active
-	if ( ! is_front_page() ) return;
-	
-	$use_yoast_seo_json = schema_wp_get_option( 'use_yoast_seo_json' );
-	
-	if ( ! empty($use_yoast_seo_json) && defined('WPSEO_VERSION') ) {
-		return; // do nothing!
+	// Plugin is active ?
+	if( is_plugin_active( 'wordpress-seo/wp-seo.php' ) || is_plugin_active( 'wordpress-seo-premium/wp-seo-premium.php' ) ) {
+		
+		$use_yoast_seo_json = schema_wp_get_option( 'use_yoast_seo_json' );
+		
+		if ( ! empty($use_yoast_seo_json) )
+			return; // do nothing!
 	}
 	
 	return $knowledge_graph;
 }
 
 
-add_action( 'schema_wp_output_sitelinks_search_box', 'schema_wp_yoast_sitelinks_search_box_remove' );
+add_filter( 'schema_wp_output_sitelinks_search_box', 'schema_wp_yoast_sitelinks_search_box_remove' );
 /*
 * Remove SiteLinks & Search Box
 *

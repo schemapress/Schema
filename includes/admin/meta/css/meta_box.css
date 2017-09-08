@@ -116,6 +116,7 @@
 	/*background:url(../images/sprite.png);*/
 	margin-top:5px;
 	text-decoration:none;
+	cursor: pointer !important;
 }
 
 .meta_box_repeatable_add {
@@ -229,7 +230,7 @@
 	display:block;
 	float: left;
 	padding: 5px;
-	min-height: 60px;
+	/*min-height: 60px;*/
 }
 .form-table.meta_box .meta_box_repeatable_row select/*,
 .form-table.meta_box .meta_box_repeatable_row textarea */ {
@@ -504,6 +505,12 @@
   margin-bottom: -16px;
 }
 
+/* Criteria fields */
+.criteria_fields {
+	float: left;
+	margin-right: 10px !important;
+}
+	
 /* Custom */
 #schema_article {
 	display: none;

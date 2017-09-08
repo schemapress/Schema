@@ -7,10 +7,12 @@ class Schema_WP_Admin_Menu {
 
 
 	public function __construct() {
-		add_action( 'admin_menu', array( $this, 'register_menus' ) );
+		add_action( 'admin_menu', array( $this, 'register_main_menus' 	),	10 );
+		add_action( 'admin_menu', array( $this, 'register_types_menus' 	),  20 );
+		add_action( 'admin_menu', array( $this, 'register_about_menus' 	),  30 );
 	}
 
-	public function register_menus() {
+	public function register_main_menus() {
 		
 		global $schema_wp_options_page;
 		
@@ -31,6 +33,14 @@ class Schema_WP_Admin_Menu {
 			'schema_wp_options_page'
 		);
 		
+		// Contextual Help
+		// @since 1.5.9.3
+		if ( $schema_wp_options_page )
+		add_action( 'load-' . $schema_wp_options_page, 'schema_wp_settings_contextual_help' );	
+	}
+	
+	public function register_types_menus() {
+		
 		add_submenu_page(
 			'schema',
 			__( 'Types', 'schema-wp' ),
@@ -38,6 +48,9 @@ class Schema_WP_Admin_Menu {
 			'manage_schema_options',
 			'edit.php?post_type=schema'
 		);
+	}
+	
+	public function register_about_menus() {
 		
 		add_submenu_page(
 			'schema',
@@ -46,11 +59,6 @@ class Schema_WP_Admin_Menu {
 			'manage_schema_options',
 			'?page=schema-wp-what-is-new'
 		);
-		
-		// Contextual Help
-		// @since 1.5.9.3
-		if ( $schema_wp_options_page )
-		add_action( 'load-' . $schema_wp_options_page, 'schema_wp_settings_contextual_help' );	
 	}
 
 }

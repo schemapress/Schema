@@ -22,6 +22,8 @@ function schema_wp_do_author( $schema ) {
 	
 	global $post;
 	
+	if ( ! isset($schema["@type"]) ) return $schema;
+	
 	$schema_type			= $schema["@type"];
 	$support_article_types 	= schema_wp_get_support_article_types();
 	

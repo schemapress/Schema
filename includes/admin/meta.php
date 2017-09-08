@@ -25,32 +25,56 @@ $prefix = '_schema_';
  *
  * @since 1.4
  */
- 
-
-$fields_main = array(
+ $fields_main = array( apply_filters( 'schema_wp_types_post_meta_fields',
 	
-	array( // Select box
+		array( // Select box
+			'label'	=> __('Schema Markup Type', 'schema-wp'), // <label>
+			'desc'	=> __('Select Schema type which describes your content best', 'schema-wp'), // description
+			'id'	=> $prefix.'type', // field id and name
+			'type'	=> 'select', // type of field
+			'options' => apply_filters( 'schema_wp_types', array ( // array of options
+				'Article' => array ( // array key needs to be the same as the option value
+					'label' => __('Article', 'schema-wp'), // text displayed as the option
+					'value'	=> __('Article', 'schema-wp'), // value stored for the option
+				)
+			)),
+		), // end of array
+	
+		array(
+			'label' => __('Post meta', 'schema-wp'),
+			'tip'	=> __('Enable custom post meta box', 'schema-wp'),
+			'desc'	=> __('Enable post meta box?', 'schema-wp'), 
+			'id' 	=> $prefix.'post_meta_box_enabled',
+			'type'	=> 'checkbox'
+		)
+	)		
+);
+
+
+$fields_main = apply_filters( 'schema_wp_types_post_meta_fields', array( 
+	
+	'schema_types' => array( // Select box
 		'label'	=> __('Schema Markup Type', 'schema-wp'), // <label>
 		'desc'	=> __('Select Schema type which describes your content best', 'schema-wp'), // description
 		'id'	=> $prefix.'type', // field id and name
 		'type'	=> 'select', // type of field
 		'options' => apply_filters( 'schema_wp_types', array ( // array of options
-			'Article' => array ( // array key needs to be the same as the option value
-				'label' => __('Article', 'schema-wp'), // text displayed as the option
-				'value'	=> __('Article', 'schema-wp'), // value stored for the option
+				'Article' => array ( // array key needs to be the same as the option value
+					'label' => __('Article', 'schema-wp'), // text displayed as the option
+					'value'	=> __('Article', 'schema-wp'), // value stored for the option
+				)
 			)
-		)),
+		)
 	), // end of array
 	
-	'post_meta_enabled' => array(
+	'post_meta_box_enabled' => array(
 		'label' => __('Post meta', 'schema-wp'),
 		'tip'	=> __('Enable custom post meta box', 'schema-wp'),
 		'desc'	=> __('Enable post meta box?', 'schema-wp'), 
 		'id' 	=> $prefix.'post_meta_box_enabled',
 		'type'	=> 'checkbox'
-	),
-			
-);
+	)
+));
 
 
 /**

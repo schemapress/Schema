@@ -149,66 +149,6 @@ function schema_wp_recursive_array_search( $needle, $haystack ) {
 
 
 /**
- * Get Currencies
- *
- * @since 1.0
- * @return array $currencies A list of the available currencies
- */
-function schema_wp_get_currenciesxxx() {
-
-	$currencies = array(
-		'USD' => __( 'US Dollars', 'schema-wp' ),
-		'EUR' => __( 'Euros', 'schema-wp' ),
-		'AUD' => __( 'Australian Dollars', 'schema-wp' ),
-		'BDT' => __( 'Bangladeshi Taka', 'schema-wp' ),
-		'BRL' => __( 'Brazilian Real', 'schema-wp' ),
-		'BGN' => __( 'Bulgarian Lev', 'schema-wp' ),
-		'CAD' => __( 'Canadian Dollars', 'schema-wp' ),
-		'CLP' => __( 'Chilean Peso', 'schema-wp' ),
-		'CNY' => __( 'Chinese Yuan', 'schema-wp' ),
-		'COP' => __( 'Colombian Peso', 'schema-wp' ),
-		'HRK' => __( 'Croatia Kuna', 'schema-wp' ),
-		'CZK' => __( 'Czech Koruna', 'schema-wp' ),
-		'DKK' => __( 'Danish Krone', 'schema-wp' ),
-		'DOP' => __( 'Dominican Peso', 'schema-wp' ),
-		'EGP' => __( 'Egyptian Pound', 'schema-wp' ),
-		'HKD' => __( 'Hong Kong Dollar', 'schema-wp' ),
-		'HUF' => __( 'Hungarian Forint', 'schema-wp' ),
-		'ISK' => __( 'Icelandic Krona', 'schema-wp' ),
-		'IDR' => __( 'Indonesia Rupiah', 'schema-wp' ),
-		'INR' => __( 'Indian Rupee', 'schema-wp' ),
-		'ILS' => __( 'Israeli Shekel', 'schema-wp' ),
-		'JPY' => __( 'Japanese Yen', 'schema-wp' ),
-		'KIP' => __( 'Lao Kip', 'schema-wp' ),
-		'MYR' => __( 'Malaysian Ringgits', 'schema-wp' ),
-		'MXN' => __( 'Mexican Peso', 'schema-wp' ),
-		'NPR' => __( 'Nepali Rupee', 'schema-wp' ),
-		'NGN' => __( 'Nigerian Naira', 'schema-wp' ),
-		'NOK' => __( 'Norwegian Krone', 'schema-wp' ),
-		'NZD' => __( 'New Zealand Dollar', 'schema-wp' ),
-		'PYG' => __( 'Paraguayan Guaraní', 'schema-wp' ),
-		'PHP' => __( 'Philippine Pesos', 'schema-wp' ),
-		'PLN' => __( 'Polish Zloty', 'schema-wp' ),
-		'GBP' => __( 'Pounds Sterling', 'schema-wp' ),
-		'RON' => __( 'Romanian Leu', 'schema-wp' ),
-		'RUB' => __( 'Russian Ruble', 'schema-wp' ),
-		'SGD' => __( 'Singapore Dollar', 'schema-wp' ),
-		'ZAR' => __( 'South African Rand', 'schema-wp' ),
-		'KRW' => __( 'South Korean Won', 'schema-wp' ),
-		'SEK' => __( 'Swedish Krona', 'schema-wp' ),
-		'CHF' => __( 'Swiss Franc', 'schema-wp' ),
-		'TWD' => __( 'Taiwan New Dollars', 'schema-wp' ),
-		'THB' => __( 'Thai Baht', 'schema-wp' ),
-		'TRY' => __( 'Turkish Lira', 'schema-wp' ),
-		'AED' => __( 'United Arab Emirates Dirham', 'schema-wp' ),
-		'VND' => __( 'Vietnamese Dong', 'schema-wp' ),
-	);
-
-	return apply_filters( 'schema_wp_currencies', $currencies );
-}
-
-
-/**
  * Get corporate contacts types
  *
  * @since 1.0
@@ -231,4 +171,33 @@ function schema_wp_get_corporate_contacts_types() {
 	);
 
 	return apply_filters( 'schema_wp_corporate_contacts_types', $corporate_contacts_types );
+}
+
+
+/**
+ * Get post types
+ *
+ * @since 1.6.9.1
+ * @return array $post_types of all registered post types 
+ */
+function schema_wp_get_post_types() {
+
+	$post_types = array();
+	
+	// builtin types needed
+	$builtin = array(
+		'post',
+		'page',
+	);
+	
+	// all CPTs.
+	$cpts = get_post_types( array(
+		'public'   => true,
+		'_builtin' => false
+	) );
+	
+	// merge Builtin types and 'important' CPTs to resulting array to use as argument.
+	$post_types = array_merge( $builtin, $cpts );
+
+	return apply_filters( 'schema_wp_post_types', $post_types );
 }

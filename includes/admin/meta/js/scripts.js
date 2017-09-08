@@ -165,10 +165,11 @@ jQuery(function($) {
     });
     
     $(document).on('click', '.meta_box_repeatable_remove', function(e) {
+		if (!confirm('Are you sure you want to delete this field?')) return false;
         $(this).closest('tr').remove();
         return false;
     });
-
+	
     $('.meta_box_repeatable tbody').sortable({
         opacity: 0.6,
         revert: true,

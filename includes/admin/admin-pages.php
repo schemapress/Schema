@@ -1,7 +1,7 @@
 <?php
 
 /**
- *  Determines whether the current admin page is an Schema  admin page.
+ *  Determines whether the current admin page is an Schema admin page.
  *
  *  Only works after the `wp_loaded` hook, & most effective
  *  starting on `admin_menu` hook.

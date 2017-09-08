@@ -132,6 +132,14 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 						<label for="' . esc_attr( $id ) . '-' . $option['value'] . '">' . $option['label'] . '</label></li>';
 			echo '</ul><p>' . $desc . '</p>';
 		break;
+		// checkbox_group
+		case 'checkbox_group_inline':
+			echo '<ul class="meta_box_items">';
+			foreach ( $options as $option )
+				echo '<input class="'.esc_attr( $option['value'] ).'" type="checkbox" value="' . $option['value'] . '" name="' . esc_attr( $name ) . '[]" id="' . esc_attr( $id ) . '-' . $option['value'] . '"' , is_array( $meta ) && in_array( $option['value'], $meta ) ? ' checked="checked"' : '' , ' /> 
+						<label for="' . esc_attr( $id ) . '-' . $option['value'] . '">' . $option['label'] . '</label><br>';
+			echo '<p>' . $desc . '</p>';
+		break;
 		// color
 		case 'color':
 			$meta = $meta ? $meta : '#';
@@ -222,18 +230,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 		break;
 		// CPT, custom post types
 		case 'cpt':
-		// builtin types needed
-			$builtin = array(
-				'post',
-				'page',
-			);
-			// all CPTs.
-			$cpts = get_post_types( array(
-				'public'   => true,
-				'_builtin' => false
-			) );
-			// merge Builtin types and 'important' CPTs to resulting array to use as argument.
-			$options = array_merge($builtin, $cpts);
+			$options = schema_wp_get_post_types();
 			echo $desc;
 			echo '<ul class="meta_box_items">';
 			foreach ( $options as $option )
@@ -277,18 +274,6 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 			echo '<div id="' . esc_attr( $id ) . '-sliderrating"></div>
 				<br />
 				<input type="text" readonly="readonly" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" class="' . esc_attr( $id ) . '" value="' . $value . '" size="5" />' . $desc;
-				 /*?>
-                <input type="hidden" name="<?php echo esc_attr( $name . '[value]' ); ?>"
-				       value="<?php echo esc_attr( $value );?>">
-                <input type="hidden" name="<?php echo esc_attr( $name . '[type]' ); ?>"
-				       value="<?php echo esc_attr( $rating_type );?>">
-				<input type="hidden" name="<?php echo esc_attr( $name . '[scale][min]' ); ?>"
-				       value="<?php echo esc_attr( $rating_scale['min'] );?>">
-				<input type="hidden" name="<?php echo esc_attr( $name . '[scale][max]' ); ?>"
-				       value="<?php echo esc_attr( $rating_scale['max'] );?>">
-				<input type="hidden" name="<?php echo esc_attr( $name . '[scale][step]' ); ?>"
-				       value="<?php echo esc_attr( $rating_scale['step'] );?>">
-              <?php */
 		break;
 		// image
 		case 'image':
@@ -418,17 +403,35 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
  * @param	array	$haystack	an array to search the type in
  *
  * @return	bool				whether or not the type is in the provided array
+ * @since 1.0
  */
-function meta_box_find_field_type( $needle, $haystack ) {
-	foreach ( $haystack as $h )
-		if ( isset( $h['type'] ) && $h['type'] == 'repeatable' )
-			return meta_box_find_field_type( $needle, $h['repeatable_fields'] );
-		elseif ( isset( $h['type'] ) && $h['type'] == 'repeatable_row' )
-			return meta_box_find_field_type( $needle, $h['repeatable_fields'] );
-		elseif ( ( isset( $h['type'] ) && $h['type'] == $needle ) || ( isset( $h['repeatable_type'] ) && $h['repeatable_type'] == $needle ) )
+function meta_box_find_field_type($keySearch, $array) {
+	
+	if ( ! is_array( $array) ) return;
+	
+    foreach ($array as $key => $item) {
+        
+		if ( isset( $key['type'] ) && $key['type'] == 'repeatable' )
+			return meta_box_find_field_type( $keySearch, $key['repeatable_fields'] );
+		elseif ( isset( $key['type'] ) && $key['type'] == 'repeatable_row' )
+			return meta_box_find_field_type( $keySearch, $h['repeatable_fields'] );
+		elseif ( ( isset( $key['type'] ) && $key['type'] == $keySearch ) || ( isset( $key['repeatable_type'] ) && $key['repeatable_type'] == $keySearch ) )
 			return true;
-	return false;
+		
+		// additional check
+		// @since 1.6.9.1
+		if ($key == $keySearch) {
+            return true;
+        } else {
+            if (is_array($item) && meta_box_find_field_type($item, $keySearch)) {
+               return true;
+            }
+        }
+    }
+
+    return false;
 }
+
 
 /**
  * Find repeatable
@@ -506,8 +509,12 @@ function meta_box_sanitize( $string, $function = 'sanitize_text_field' ) {
 			return is_email( $string );
 		case 'sanitize_title':
 			return sanitize_title( $string );
+		case 'santitize_title_with_dashes':
+			return sanitize_title_with_dashes( $string );
 		case 'santitize_boolean':
 			return santitize_boolean( $string );
+		case 'sanitize_html_class':
+			return sanitize_html_class( $string );
 		case 'no_santitize':
 			return $string;
 		case 'sanitize_text_field':
@@ -662,7 +669,7 @@ class Schema_Custom_Add_Meta_Box {
 			
 			// css
 			$deps = array();
-			wp_register_style( 'jqueryui', SCHEMA_CUSTOM_METABOXES_DIR . 'css/jqueryui.css' ); //$deps[] = 'jqueryui';
+			wp_register_style( 'jqueryui', SCHEMA_CUSTOM_METABOXES_DIR . 'css/jqueryui.css' ); 
 			if ( meta_box_find_field_type( 'date', $this->fields ) || meta_box_find_field_type( 'slider', $this->fields ) || meta_box_find_field_type( 'sliderrating', $this->fields ) )
 				$deps[] = 'jqueryui';
 			if ( meta_box_find_field_type( 'color', $this->fields ) )
@@ -675,6 +682,7 @@ class Schema_Custom_Add_Meta_Box {
 	 * adds scripts to the head for special fields with extra js requirements
 	 */
 	function admin_head() {
+		
 		if ( in_array( get_post_type(), $this->page ) && ( meta_box_find_field_type( 'date', $this->fields ) 
 															|| meta_box_find_field_type( 'slider', $this->fields ) 
 															|| meta_box_find_field_type( 'sliderrating', $this->fields ) ) ) {
@@ -697,6 +705,7 @@ class Schema_Custom_Add_Meta_Box {
 							$value = $field['min'];
 						echo '
 							$( "#' . $field['id'] . '-slider" ).slider({
+								range : "min",
 								value: ' . $value . ',
 								min: ' . $field['min'] . ',
 								max: ' . $field['max'] . ',
@@ -720,6 +729,7 @@ class Schema_Custom_Add_Meta_Box {
 							
 						echo '
 							$( "#' . $field['id'] . '-sliderrating" ).slider({
+								range : "min",
 								value: ' . $value . ',
 								min: ' . $rating_scale['min'] . ',
 								max: ' . $rating_scale['max'] . ',
@@ -748,7 +758,8 @@ class Schema_Custom_Add_Meta_Box {
 								
 								
 								var $slide = $("#' . $field['id'] . '-sliderrating" ).slider({
-        							value: currentVal,
+        							range : "min",
+									value: currentVal,
         							min: newBegin,
         							max: newEnd,
 									step: newStep,
@@ -893,11 +904,8 @@ class Schema_Custom_Add_Meta_Box {
 						$new = strtotime($new);
 					}
 					if( $field['type'] == 'sliderrating') {
-						// always use rating type selected value
-						//$rating_type_selected = isset( $_POST['_schema_review_rating_type'] ) ? $_POST['_schema_review_rating_type'] : '';
-						// adjust rating
+						// adjust rating before saving values
 						$rating_type	= schema_wp_review_get_rating_type( $post_id );
-						//$scale 			= schema_wp_review_get_rating_scale( $rating_type_selected );
 						$scale 			= schema_wp_review_get_rating_scale( $rating_type );
 						$new        	= schema_wp_review_adjust_rating( $new, $scale, true );
 					}

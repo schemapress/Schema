@@ -8,6 +8,23 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+
+
+add_filter( 'schema_wp_filter_output_knowledge_graph', 'schema_wp_do_output_knowledge_graph' );
+/*
+* Output Knowledge Graph markup
+*
+* @since 1.6.9.2
+*/
+function schema_wp_do_output_knowledge_graph( $knowledge_graph ) {
+	// Output Knowledge Graph only on front page
+	if( ! is_front_page() ) 
+		return;
+	
+	return $knowledge_graph;
+}
+
+
 add_action('wp_head', 'schema_wp_output_knowledge_graph');
 /**
  * The main function responsible for output schema json-ld 
@@ -17,14 +34,11 @@ add_action('wp_head', 'schema_wp_output_knowledge_graph');
  */
 function schema_wp_output_knowledge_graph() {
 	
-	// Run only on front page
-	if ( is_front_page() ) {
-		
-		$json = schema_wp_get_knowledge_graph_json();
+	$json = schema_wp_get_knowledge_graph_json();
 		
 		$knowledge_graph = '';
-		
-		if ($json) {
+
+		if ( ! empty($json) )  {
 			$knowledge_graph .= "\n\n";
 			$knowledge_graph .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - http://schema.press -->';
 			$knowledge_graph .= "\n";
@@ -32,10 +46,9 @@ function schema_wp_output_knowledge_graph() {
 			$knowledge_graph .= "\n\n";
 		}
 		
-		$knowledge_graph = apply_filters( 'schema_wp_output_knowledge_graph', $knowledge_graph );
+		$knowledge_graph = apply_filters( 'schema_wp_filter_output_knowledge_graph', $knowledge_graph );
 		
 		echo $knowledge_graph;
-	}
 }
 
 
@@ -44,7 +57,7 @@ function schema_wp_output_knowledge_graph() {
  *
  * @param string $type for schema type (example: Organization)
  * @since 1.0
- * @return schema output
+ * @return array, schema output
  */
 function schema_wp_get_knowledge_graph_json() {
 	
@@ -54,10 +67,10 @@ function schema_wp_get_knowledge_graph_json() {
 	
 	switch ( $organization_or_person ) {
 		case "organization":
-		$type = 'Organization';
+			$type = 'Organization';
 			break;
 		case "person":
-		$type = 'Person';
+			$type = 'Person';
 			break;
 	}
 	
@@ -78,7 +91,6 @@ function schema_wp_get_knowledge_graph_json() {
 	$schema['@context'] = "http://schema.org";
 	$schema['@type'] = $type;
 	$schema['@id'] = '#' . $organization_or_person;
-	
 	
 	if ( !empty($name) ) $schema['name'] = $name;
 	if ( !empty($url) ) $schema['url'] = $url;
@@ -154,7 +166,7 @@ function schema_wp_get_social_array() {
 	$soundcloud = esc_attr( stripslashes( schema_wp_get_option( 'soundcloud' ) ) );
 	$tumblr 	= esc_attr( stripslashes( schema_wp_get_option( 'tumblr' ) ) );
 	
-	$social_links = array( $google, $facebook, $twitter, $instagram, $youtube, $linkedin, $myspace, $pinterest, $soundcloud, $tumblr);
+	$social_links = array( $google, $facebook, $twitter, $instagram, $youtube, $linkedin, $myspace, $pinterest, $soundcloud, $tumblr );
 	
 	// Remove empty fields
 	foreach( $social_links as $profile ) {
@@ -162,4 +174,21 @@ function schema_wp_get_social_array() {
 	}
 	
 	return $social;
+}
+
+
+remove_filter( 'schema_wp_filter_output_knowledge_graph', 	'schema_wp_do_output_knowledge_graph' );
+add_filter( 'schema_wp_filter_output_knowledge_graph',		'schema_wp_do_output_knowledge_graph_71837615376457563' );
+/*
+* Output Knowledge Graph, this function overrides Schema output
+* so we can control where it should shown (not only the front page)
+*
+* @since 1.6.9.2
+*/
+function schema_wp_do_output_knowledge_graph_71837615376457563( $knowledge_graph ) {
+	
+	if ( ! class_exists( 'Schema_WP' ) ) 
+			return; // Schema not present
+
+	return $knowledge_graph;
 }
