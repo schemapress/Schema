@@ -89,12 +89,12 @@ function schema_wp_get_knowledge_graph_json() {
 	}
 	
 	$schema['@context'] = "http://schema.org";
-	$schema['@type'] = $type;
-	$schema['@id'] = '#' . $organization_or_person;
+	$schema['@type'] 	= $type;
+	$schema['@id'] 		= '#' . $organization_or_person;
 	
-	if ( !empty($name) ) $schema['name'] = $name;
-	if ( !empty($url) ) $schema['url'] = $url;
-	if ( !empty($logo) ) $schema['logo'] = $logo;
+	if ( !empty($name) ) $schema['name'] 	= $name;
+	if ( !empty($url) ) $schema['url'] 		= $url;
+	if ( !empty($logo) ) $schema['logo'] 	= $logo;
 	
 	// Get corporate contacts types array
 	$corporate_contacts_types = schema_wp_get_corporate_contacts_types_array();

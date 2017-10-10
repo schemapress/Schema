@@ -22,13 +22,13 @@ function schema_wp_output_category() {
 	// Run only on category pages
 	if ( is_category() ) {
 		
-		$json = schema_wp_get_category_json( 'Category' );
-		
 		$output = '';
+		
+		$json = schema_wp_get_category_json();
 		
 		if ($json) {
 			$output .= "\n\n";
-			$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - http://schema.press -->';
+			$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - https://schema.press -->';
 			$output .= "\n";
 			$output .= '<script type="application/ld+json">' . json_encode($json, JSON_UNESCAPED_UNICODE) . '</script>';
 			$output .= "\n\n";
@@ -46,10 +46,8 @@ function schema_wp_output_category() {
  * @since 1.5.7
  * @return array json 
  */
-function schema_wp_get_category_json( $type ) {
-	
-	if ( ! isset($type) ) return;
-	
+function schema_wp_get_category_json() {
+		
 	global $post, $query_string;
 	
 	// debug
@@ -61,9 +59,21 @@ function schema_wp_get_category_json( $type ) {
 	$secondary_loop = new WP_Query( $query_string );
 	
 	if ( $secondary_loop->have_posts() ):
-	    
+	   
+	   // Faster way to get markup data
+	   // @since 1.6.9.4
+	   if ( ! empty($secondary_loop->posts) ) {
+			foreach ($secondary_loop->posts as $schema_post) {
+				$schema_json = get_post_meta( $schema_post->ID, '_schema_json', true );
+				if ( isset($schema_json) ) {
+					$blogPost[] = $schema_json;
+				}		
+			}
+		}
+		
+		/*
 		while( $secondary_loop->have_posts() ): $secondary_loop->the_post();
-    
+			
             $blogPost[] = apply_filters( 'schema_output_category_post', array
             (
 				'@type' 			=> 'BlogPosting',
@@ -81,6 +91,7 @@ function schema_wp_get_category_json( $type ) {
             ));
 			
         endwhile;
+		*/
 		
 		wp_reset_postdata();
 			

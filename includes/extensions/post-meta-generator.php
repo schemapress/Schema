@@ -9,13 +9,11 @@
  * @since       1.5.9
  */
 
-
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
- * Post Neta Generator Class
+ * Post Meta Generator Class
  *
  * @since 1.5.9
  */
@@ -25,6 +23,13 @@ class Schema_Post_Meta_Generator {
 		
 		global $post, $meta_key;
 		
+		// check if generator is activated
+		// @since 1.6.9.4
+		$activate = apply_filters('schema_wp_post_meta_generator_activate', true);
+		if ( ! $activate )
+			return;
+		
+		// get schema ref
 		$ref = isset($post->ID) ? get_post_meta( $post->ID, '_schema_ref', true ) : false;
 		
 		if ( $ref ) {
@@ -61,8 +66,11 @@ class Schema_Post_Meta_Generator {
 							$post_meta_value = get_post_meta( $this->post_id, $meta_key, true );
 						
 							if ( isset($post_meta_value) && $post_meta_value != '' ) {
-						
+								
+								// Anonymous function: automatically use filters to add values to schema output
 								add_filter( $filter_name, function ($field_value) use ( $meta_key ) { 
+									// Here we can do more conditions
+									// we can modify the output based on complix field types 
 									$field_value = get_post_meta( $this->post_id, $meta_key, true );
 									return $field_value;
 								} );
@@ -102,6 +110,12 @@ function schema_wp_generate_custom_post_meta_box() {
 	
 	if ( ! class_exists( 'Schema_WP' ) ) return;
 	
+	// check if post meta box generator is activated
+	// @since 1.6.9.4
+	$activate = apply_filters('schema_wp_post_meta_box_generator_activate', true);
+	if ( ! $activate )
+		return;
+	
 	global $post;
 	
 	/**
@@ -114,7 +128,8 @@ function schema_wp_generate_custom_post_meta_box() {
 	
 	if ( empty($schemas_enabled) ) return;
 	
-	//echo '<pre>'; print_r($schemas_enabled); echo '</pre>'; 
+	// debug
+	//echo'<pre>';print_r($schemas_enabled);echo'</pre>'; 
 	
 	// Get post type from current screen
 	$current_screen = get_current_screen();

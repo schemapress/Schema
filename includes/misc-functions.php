@@ -138,10 +138,76 @@ function schema_wp_cpt_get_enabled_post_types() {
 
 
 /**
+ * Get schema ref by post type in admin page editor screen
+ *
+ * @since 1.6.9.3
+ * @return array of enabled post types, schema type
+ */
+function schema_wp_get_ref_by_post_type( $post_type = null ) {
+	
+	global $wpdb, $post;
+	
+	if ( ! isset($post_type) ) {
+		// Get post type from current screen
+		$current_screen = get_current_screen();
+		$post_type = $current_screen->post_type;
+	}
+	
+	$schema_posts = $wpdb->get_results ( "
+    	SELECT * 
+    	FROM  $wpdb->posts
+        WHERE post_type = 'schema'
+	" );
+	
+	//echo '<pre>'; print_r($schema_posts); echo '</pre>';exit;
+	if ( empty($schema_posts) ) return false;
+	 
+	foreach ( $schema_posts as $key => $post ) {
+		$supported_types = get_post_meta( $post->ID, '_schema_post_types', true );
+		if ( ! empty($supported_types) && in_array( $post_type, $supported_types, true ) ) {
+			return $post->ID;
+		}	
+	}
+}
+
+/**
+ * Get description 
+ *
+ * @since 1.6.9.4
+ * return string
+ */
+function schema_wp_get_description( $post_id = null ) {
+	
+	global $post;
+	
+	if ( ! isset($post_id) ) $post_id = $post->ID;
+	
+	// Get post content
+	$content_post		= get_post($post_id);
+	
+	// Get description
+	$full_content		= $content_post->post_content;
+	$excerpt			= $content_post->post_excerpt;
+	
+	$full_content		= str_replace(']]>', ']]&gt;', $full_content);
+	$full_content 		= wp_strip_all_tags( $full_content );
+	
+	// Filter content before it gets shorter ;)
+	// @since 1.5.9
+	$full_content 		= apply_filters( 'schema_wp_filter_content', $full_content );
+	
+	$desc_word_count	= apply_filters( 'schema_wp_filter_description_word_count', 49 );
+	$short_content		= wp_trim_words( $full_content, $desc_word_count, '' ); 
+	$description		= apply_filters( 'schema_wp_filter_description', ( $excerpt != '' ) ? $excerpt : $short_content ); 
+	
+	return $description;
+}
+
+/**
  * Get an array of enabled post types
  *
  * @since 1.4
- * @return array of enabled post types, schema type
+ * @return array 
  */
 function schema_wp_get_media( $post_id = null) {
 	
@@ -337,8 +403,6 @@ function schema_wp_get_support_article_types() {
 	
 	return apply_filters( 'schema_wp_support_article_types', $support_article_types );
 }
-
-
 
 
 /**

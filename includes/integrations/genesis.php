@@ -3,9 +3,9 @@
  * Genesis Theme 
  *
  *
- * Remove Geiesis schema output from content
+ * Remove Geiesis schema output
  *
- * plugin url: http://www.studiopress.com/
+ * plugin url: https://www.studiopress.com/
  * @since 1.5.4
  */
  
@@ -65,9 +65,7 @@ function schema_wp_genesis_attributes_removal_function( $attributes ) {
     $attributes['itemtype'] 	= ''; 
 	
   return $attributes;
-
 }
-
 
 add_action( 'init', 'schema_wp_wprs_remove_genesis_search_form' );
 /*
@@ -77,10 +75,8 @@ add_action( 'init', 'schema_wp_wprs_remove_genesis_search_form' );
 */
 function schema_wp_wprs_remove_genesis_search_form() {
 	
-	remove_filter( 'get_search_form', 'genesis_search_form' );
-	
+	remove_filter( 'get_search_form', 'genesis_search_form' );	
 }
-
 
 /*
 * Add Genesis search form without markup
@@ -123,8 +119,6 @@ function wp_schema_genesis_search_form( $form) {
 
 	$value_or_placeholder = ( get_search_query() == '' ) ? 'placeholder' : 'value';
 	
-	
-	
 	if ( genesis_html5() ) {
 
 		$form  = sprintf( '<form %s>', genesis_attr( 'search-form' ) );
@@ -160,7 +154,6 @@ function wp_schema_genesis_search_form( $form) {
 			);
 		}
 
-
 	} else {
 
 		$form = sprintf(
@@ -176,5 +169,42 @@ function wp_schema_genesis_search_form( $form) {
 	}
 
 	return apply_filters( 'genesis_search_form', $form, $search_text, $button_text, $label );
+}
 
+add_action( 'init', 'process_post' );
+/*
+* Remove Genesis Breadcrumbs attributes 
+*
+* @since 1.6.9.4
+*/
+function process_post() {
+    
+	$breadcrumbs_enable = schema_wp_get_option( 'breadcrumbs_enable' );
+	
+	if ( $breadcrumbs_enable ) {
+		
+		add_filter( 'genesis_attr_breadcrumb',				'schema_wp_genesis_attributes_removal_function', 20 );
+		add_filter( 'genesis_attr_breadcrumb-link-wrap',	'schema_wp_genesis_attributes_removal_function', 20 );
+
+     }
+}
+
+add_action( 'genesis_breadcrumb_link', 'schema_wp_wprs_remove_genesis_breadcrumbs_markup' );
+/*
+* Remove Genesis Breadcrumbs itemprop markup
+*
+* @since 1.6.9.4
+*/
+function schema_wp_wprs_remove_genesis_breadcrumbs_markup( $output ) {
+	
+	$breadcrumbs_enable = schema_wp_get_option( 'breadcrumbs_enable' );
+	
+	if ( $breadcrumbs_enable ) {
+		
+		$output = str_replace('itemprop="name"', '', $output);
+		$output = str_replace('itemprop="item"', '', $output);
+	
+	}
+	
+    return $output;
 }

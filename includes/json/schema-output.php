@@ -19,6 +19,10 @@ function schema_wp_output() {
 	
 	global $post;
 	
+	// do not run if default search query has been set (mostly not needed)
+	// @todo remove this if not needed 
+	//if ( isset($_GET['s']) ) return;
+	
 	// do not run on front, home page, archive pages, search result pages, and 404 error pages
 	if ( is_archive() || is_home() || is_front_page() || is_search() || is_404() ) return;
 	
@@ -32,7 +36,7 @@ function schema_wp_output() {
 	$pttimestamp_old 	= get_post_meta( $post->ID, '_schema_json_timestamp', true );
 	$json 				= array();
 	
-	// exclude post
+	// exclude entry, do not output the schema markup
 	// @since 1.6
 	$exclude = get_post_meta( $post->ID, '_schema_exclude' , true );
 	if ( $exclude )
@@ -54,7 +58,7 @@ function schema_wp_output() {
 	
 		$schemas_enabled = array();
 	
-		// get schame enabled array
+		// get Schema enabled array
 		$schemas_enabled = schema_wp_cpt_get_enabled();
 	
 		if ( empty($schemas_enabled) ) return;
@@ -136,7 +140,6 @@ function schema_wp_output() {
 	echo $output;
 }
 
-
 /**
  * The main function responsible for putting shema array all together
  *
@@ -177,9 +180,20 @@ function schema_wp_get_schema_json( $type ) {
 		//$schema["author"] = $json['author'];
 	}
 	
-	$schema["headline"]			= $json["headline"];
-	$schema["datePublished"]	= $json["datePublished"];
-	$schema["dateModified"]		= $json["dateModified"];
+	// ghet supported article types
+	$support_article_types = schema_wp_get_support_article_types();
+	
+	// check if this type is supported Article, or sub of Article
+	// if so, add required markup
+	if ( in_array( $type, $support_article_types) ) {
+		$schema["headline"]			= $json["headline"];
+		$schema["datePublished"]	= $json["datePublished"];
+		$schema["dateModified"]		= $json["dateModified"];
+	
+		if ( ! empty( $json["publisher"] ) ) {
+			$schema["publisher"] = $json["publisher"];
+		}
+	}
 	
 	if ( ! empty( $json["media"] ) ) {
 		$schema["image"] = $json["media"];
@@ -193,17 +207,12 @@ function schema_wp_get_schema_json( $type ) {
 		$schema["keywords"] = $json['keywords'];
 	}
 	
-	if ( ! empty( $json["publisher"] ) ) {
-		$schema["publisher"] = $json["publisher"];
-	}
-	
 	if ( $json["description"] != '' )  {
 		$schema["description"] = $json["description"];
 	}
 	
 	return apply_filters( 'schema_output', $schema );
 }
-
 
 /**
  * Prepare for json array
@@ -221,34 +230,17 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	
 	$jason = array();
 	
+	
 	// Get post content
 	$content_post		= get_post($post_id);
 	
-	// Debug
-	//echo '<pre>'; print_r($content_post); echo '</pre>';
-	
 	// Get description
-	$full_content		= $content_post->post_content;
-	$excerpt			= $content_post->post_excerpt;
-	
-	// Removed this line below to support Themes with Drag & Drop Page Builders
-	// @since 1.5.9
-	//$full_content		= apply_filters('the_content', $full_content);
-	$full_content		= str_replace(']]>', ']]&gt;', $full_content);
-	$full_content 		= wp_strip_all_tags( $full_content );
-	//$full_content 		= wptexturize( $full_content );
-	
-	// Filter content before it gets shorter ;)
-	// @since 1.5.9
-	$full_content 		= apply_filters( 'schema_wp_filter_content', $full_content );
-	
-	$short_content		= wp_trim_words( $full_content, 49, '' ); 
-	$description		= apply_filters ( 'schema_wp_filter_description', ( $excerpt != '' ) ? $excerpt : $short_content ); 
+	$description = schema_wp_get_description( $post_id );
 	
 	// Stuff for any page, if it exists
-	$permalink			= get_permalink($post_id);
-	$category			= schema_wp_get_post_category($post_id);
-	$keywords			= schema_wp_get_post_tags($post_id);
+	$permalink			= get_permalink( $post_id) ;
+	$category			= schema_wp_get_post_category( $post_id );
+	$keywords			= schema_wp_get_post_tags( $post_id );
 	
 	// Get publisher array
 	$publisher			= schema_wp_get_publisher_array();
@@ -260,7 +252,7 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	$json['description']	= $description;
 	$json['permalink']		= $permalink;
 	
-	$json["datePublished"]	= get_the_date( 'c', $post_id);
+	$json["datePublished"]	= get_the_date( 'c', $post_id );
 	$json["dateModified"]	= get_post_modified_time( 'c', false, $post_id, false );
 	
 	$json['category']		= $category;
@@ -270,7 +262,7 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	
 	$json['publisher']		= $publisher;
 	
-	// Debug
+	// debug
 	//echo '<pre>'; print_r($json); echo '</pre>';
 	
 	return apply_filters( 'schema_json', $json );

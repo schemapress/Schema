@@ -38,7 +38,7 @@ function schema_wp_output_author() {
 
 
 /**
- * The main function responsible for putting shema array all together
+ * The main function responsible for putting schema array all together
  *
  * @param string $type for schema type (example: Person)
  * @since 1.4.5

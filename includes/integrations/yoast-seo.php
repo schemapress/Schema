@@ -12,7 +12,6 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 add_filter( 'wpseo_json_ld_output', 'schema_wp_remove_yoast_json', 10, 1 );
 /*
 * Remove Yoast SEO plugin JSON-LD output
@@ -30,6 +29,28 @@ function schema_wp_remove_yoast_json( $data ){
 	return $data;
 }
 
+add_filter( 'wpseo_breadcrumb_output', 'my_wpseo_breadcrumb_output' );
+/*
+* Remove Yoast SEO plugin breadcrumb markup output
+*
+* @since 1.6.9.4
+*/
+function my_wpseo_breadcrumb_output( $output ) {
+  	
+	$breadcrumbs_enable = schema_wp_get_option( 'breadcrumbs_enable' );
+	
+	if ( $breadcrumbs_enable ) {
+				
+		// clean Yoast SEO from RDF markups
+		$output = str_replace('xmlns:v="http://rdf.data-vocabulary.org/#"', '', $output); 
+		$output = str_replace('typeof="v:Breadcrumb"', '', $output);
+		$output = str_replace('rel="v:url"', '', $output);
+		$output = str_replace('property="v:title"', '', $output);
+		$output = str_replace('rel="v:child"', '', $output);
+	}
+	
+    return $output;
+}
 
 add_action( 'admin_init', 'schema_wp_yoast_seo_register_settings', 1 );
 /*
@@ -69,6 +90,9 @@ add_filter( 'schema_wp_filter_output_knowledge_graph', 'schema_wp_yoast_knowledg
 * @since 1.5.6
 */
 function schema_wp_yoast_knowledge_graph_remove( $knowledge_graph ) {
+	
+	include_once(ABSPATH.'wp-admin/includes/plugin.php');
+	
 	// Plugin is active ?
 	if( is_plugin_active( 'wordpress-seo/wp-seo.php' ) || is_plugin_active( 'wordpress-seo-premium/wp-seo-premium.php' ) ) {
 		

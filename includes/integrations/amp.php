@@ -19,7 +19,10 @@ add_filter('amp_post_template_metadata', 'schema_wp_amp');
  */
 function schema_wp_amp( $jason_array ) {
 	
-	global $post;
+	global $wp_query, $post;
+	
+	// Check if wp_query is vailable
+	if ( $wp_query == null ) return;
 	
 	// Check if AMP plugin is active
 	if ( ! defined( 'AMP__FILE__' ) ) return;
