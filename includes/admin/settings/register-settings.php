@@ -269,6 +269,12 @@ function schema_wp_get_registered_settings() {
 		
 		'content' => apply_filters( 'schema_wp_settings_content',
 			array(
+				'breadcrumbs' => array(
+						'id' => 'breadcrumbs_enable',
+						'name' => __( 'Enable Breadcrumbs markup?', 'schema-wp' ),
+						'desc' => __( 'Check this box if you would like Schema to output Breadcrumbs markup.', 'schema-wp' ),
+						'type' => 'checkbox'
+					),
 				'comments' => array(
 						'id' => 'comments_enable',
 						'name' => __( 'Enable Comments markup?', 'schema-wp' ),

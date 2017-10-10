@@ -183,21 +183,43 @@ function schema_wp_get_corporate_contacts_types() {
 function schema_wp_get_post_types() {
 
 	$post_types = array();
+	$builtin = array();
 	
-	// builtin types needed
-	$builtin = array(
-		'post',
-		'page',
+	$builtin['post'] = array(
+		'name' 	=> 'post',
+		'label' => 'Post'
+	);
+	
+	$builtin['page'] = array(
+		'name' 	=> 'page',
+		'label' => 'Page'
 	);
 	
 	// all CPTs.
-	$cpts = get_post_types( array(
+	$cpts_obj = get_post_types( array(
 		'public'   => true,
 		'_builtin' => false
-	) );
+		) , 
+	'objects'); // return post types 'objects'
 	
-	// merge Builtin types and 'important' CPTs to resulting array to use as argument.
-	$post_types = array_merge( $builtin, $cpts );
+	if ( ! empty($cpts_obj) ) {
+		// prepare array
+		foreach ( $cpts_obj as $cpt => $info ) {
+			$cpts[$cpt] = array(
+				'name' 	=> $cpt,
+				'label' => $info->label
+			);
+		}
+		
+		// merge Builtin types and 'important' CPTs to resulting array to use as argument.
+		$post_types = array_merge( $builtin, $cpts );
+	} else {
+		
+		$post_types = $builtin;
+	}
+	
+	// debug
+	//echo'<pre>';print_r($post_types);echo'</pre>';
 
 	return apply_filters( 'schema_wp_post_types', $post_types );
 }

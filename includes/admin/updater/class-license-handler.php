@@ -24,8 +24,8 @@ class Schema_WP_License {
 	private $item_shortname;
 	private $version;
 	private $author;
-	//private $api_url = 'https://wpsite.tools/edd-sl-api/';
-	private $api_url = 'https://wpsite.tools/';
+	//private $api_url = 'https://schema.press/edd-sl-api/';
+	private $api_url = 'https://schema.press/';
 
 	/**
 	 * Class constructor
@@ -202,7 +202,7 @@ class Schema_WP_License {
 
 		echo '<p>' . sprintf(
 			__( 'Enter your extension license keys here to receive updates for purchased extensions. If your license key has expired, please <a href="%s" target="_blank">renew your license</a>.', 'schema-wp' ),
-			'https://wpsite.tools/'
+			'https://schema.press/'
 		) . '</p>';
 
 		$has_ran = true;

@@ -218,6 +218,10 @@ class Schema_WP_Welcome {
                     
                      <br>
                     
+                    - <?php _e( 'BreadcrumbList', 'schema-wp' );?> (<?php _e( 'for Breadcrumbs', 'schema-wp' );?>)
+                    
+                     <br>
+                    
                     - <?php _e( 'CollectionPage', 'schema-wp' );?> (<?php _e( 'for Categories', 'schema-wp' );?>)
                     
                     <br>

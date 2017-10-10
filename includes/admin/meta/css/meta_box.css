@@ -236,12 +236,12 @@
 .form-table.meta_box .meta_box_repeatable_row textarea */ {
 	max-width: 120px;
 	width:120px;
-}
+}/*
 .form-table.meta_box .meta_box_repeatable_row .small-text{
 	max-width: 280px;
     width: 280px;
     height: 28px;
-}
+}*/
 .form-table.meta_box .meta_box_repeatable_row input[type=radio],
 .form-table.meta_box .meta_box_repeatable_row input[type=checkbox] {
 	float: left;

@@ -172,6 +172,7 @@ $fields_post_meta_box =  array (
 				'desc'	=> __('This is the filter name', 'schema-wp'), // description
 				'id'	=> 'filter', // field id and name
 				'type'	=> 'select', // type of field
+				'class' => 'schema_type_filter', // css class
 				'selectone'	=> __('Select Filter', 'schema-wp'), // type of field
 				'options' => apply_filters( 'schema_wp_post_meta', array ( // array of options
 					'author_name' => array ( // array key needs to be the same as the option value
@@ -195,7 +196,7 @@ $fields_post_meta_box =  array (
 				'desc'	=> __('Add post meta key name as source', 'schema-wp'),
 				'id' => 'key',
 				'type' => 'text',
-				'size' => 'small',
+				'size' => 'medium',
 				'placeholder' => __('Meta Key Name', 'schema-wp'),
 			),
 			
@@ -240,7 +241,7 @@ $fields_post_meta_box =  array (
 				'desc'	=> __('Field label', 'schema-wp'),
 				'id' 	=> 'label',
 				'type'	=> 'text',
-				'size'	=> 'small',
+				'size'	=> 'medium',
 				'placeholder' => __('Label', 'schema-wp'),
 			),
 			
@@ -282,6 +283,8 @@ $schema_post_meta_box = new Schema_Custom_Add_Meta_Box( 'schema_post_meta_box', 
 * Create post meta box
 *
 * Uses class Schema_Custom_Add_Meta_Box
+*
+* @todo this function is not used, make sure it's important before removing it!
 *
 * @since 1.5.7
 * @return true 

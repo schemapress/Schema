@@ -76,6 +76,8 @@ function schema_wp_update_all_meta_ref( $schema_id ) {
 	
 	if ( ! is_array( $schema_type ) || empty( $schema_type) ) return false;
 	
+	$results = array();
+	
 	foreach( $schema_type as $schema_enabled ) :  
 		
 		$query = $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type = '%s'", $schema_enabled );
@@ -107,6 +109,8 @@ function schema_wp_update_all_meta_ref( $schema_id ) {
  */
 function schema_wp_update_meta_ref( $post_id ) {
 	
+	global $typenow;
+	
 	$schemas_enabled = array();
 	
 	// Get schame enabled array
@@ -120,8 +124,11 @@ function schema_wp_update_meta_ref( $post_id ) {
 		if ( ! function_exists( 'get_current_screen' ) ) {
 			require_once( ABSPATH . 'wp-admin/includes/screen.php' );
 		}
+		// get the current screen
 		$current_screen = get_current_screen();
-		$post_type = $current_screen->post_type;
+		// check global variable $typenow, this to get post type when do a Quick Edit
+		if ( empty($current_screen) ) { $post_type = $typenow; } else { $post_type = $current_screen->post_type;} 
+		
 	} else {
 		// on front-end
 		$post_type = get_post_type($post_id);
@@ -180,7 +187,9 @@ function schema_wp_add_ref( $post_id ) {
         return $post_id;
     }
 	
-	if( ( $_POST['post_status'] == 'publish' ) && ( $_POST['original_post_status'] != 'publish' ) ) {
+	$original_post_status = isset($_POST['original_post_status']) ? $_POST['original_post_status'] : '';
+	
+	if( ( $_POST['post_status'] == 'publish' ) && ( $original_post_status != 'publish' ) ) {
 		
 		schema_wp_update_meta_ref( $post_id );
     }

@@ -24,25 +24,25 @@ function schema_wp_settings_contextual_help() {
 
 	$screen->set_help_sidebar(
 		'<p><strong>' . sprintf( __( 'For more information:', 'schema-wp' ) . '</strong></p>' .
-		'<p>' . sprintf( __( 'Visit the <a href="%s">documentation</a> on the schema.press website.', 'schema-wp' ), esc_url( 'http://schema.press/docs/' ) ) ) . '</p>' .
+		'<p>' . sprintf( __( 'Visit the <a href="%s">documentation</a> on the schema.press website.', 'schema-wp' ), esc_url( 'https://schema.press/docs/' ) ) ) . '</p>' .
 		'<p>' . sprintf(
 					__( '<a href="%s">Post an issue</a> on <a href="%s">GitHub</a>. View <a href="%s">extensions</a>', 'schema-wp' ),
 					esc_url( 'https://github.com/schemapress/Schema/issues' ),
 					esc_url( 'https://github.com/schemapress/Schema' ),
-					esc_url( 'https://wpsite.tools/vendor/schemapress/?utm_source=plugin-settings-page&utm_medium=contextual-help-sidebar&utm_term=extensions&utm_campaign=ContextualHelp' )
+					esc_url( 'https://schema.press/docs/?utm_source=plugin-settings-page&utm_medium=contextual-help-sidebar&utm_term=extensions&utm_campaign=ContextualHelp' )
 					) . '</p>'
 	);
 
 	$screen->add_help_tab( array(
 		'id'	    => 'schema-wp-settings-general',
 		'title'	    => __( 'General', 'schema-wp' ),
-		'content'	=> '<p>' . __( 'This screen provides the most basic settings for configuring your store. You can set Schema for pages, and turn automatic <em>Feature image</em> on and off.', 'schema-wp' ) . '</p>'
+		'content'	=> '<p>' . __( 'This screen provides the most basic settings for configuring Schema plugin on your site. You can set Schema for About and Contact pages, and turn automatic <em>Feature image</em> on and off...etc', 'schema-wp' ) . '</p>'
 	) );
 	
 	$screen->add_help_tab( array(
 		'id'	    => 'schema-wp-settings-knowledge-graph',
 		'title'	    => __( 'Knowledge Graph', 'schema-wp' ),
-		'content'	=> '<p>' . __( 'This screen provides settings for configuring your Knowledge Graph. You can set Organization Info and Corporate Contacts.', 'schema-wp' ) . '</p>'
+		'content'	=> '<p>' . __( 'This screen provides settings for configuring the Knowledge Graph. You can set Organization Info and Corporate Contacts.', 'schema-wp' ) . '</p>'
 	) );
 	
 	$screen->add_help_tab( array(

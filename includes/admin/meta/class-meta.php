@@ -34,6 +34,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 	$placeholder = isset( $field['placeholder'] ) ? $field['placeholder'] : null;
 	$place = isset( $field['place'] ) ? $field['place'] : null;
 	$size = isset( $field['size'] ) ? $field['size'] : 'regular';
+	$class = isset( $field['class'] ) ? $field['class'] : '';
 	$post_type = isset( $field['post_type'] ) ? $field['post_type'] : null;
 	$options = isset( $field['options'] ) ? $field['options'] : null;
 	$settings = isset( $field['settings'] ) ? $field['settings'] : null;
@@ -45,8 +46,6 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 	$min = isset( $field['min'] ) ? $field['min'] : null;
 	$max = isset( $field['max'] ) ? $field['max'] : null;
 	$step = isset( $field['step'] ) ? $field['step'] : null;
-	
-	
 	
 	// the id and name for each field
 	$id = $name = isset( $field['id'] ) ? $field['id'] : null;
@@ -77,20 +76,21 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 		case 'tel':
 		case 'email':
 		default:
-			echo '<input type="' . $type . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="' . esc_attr( $meta ) . '" class="'.$size.'-text" size="30" placeholder="' . $placeholder . '" />
+			if ( is_array($meta) ) continue; // if $meta has an array, continue to the next case, @since 1.6.9.4 
+			echo '<input type="' . $type . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="' . esc_attr( $meta ) . '" class="'.$size.'-text '.$class.'" size="30" placeholder="' . $placeholder . '" />
 					<br />' . $desc;
 		break;
 		case 'url':
-			echo '<input type="' . $type . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" placeholder="' . $placeholder . '" value="' . esc_url( $meta ) . '" class="regular-text" size="30" />
+			echo '<input type="' . $type . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" placeholder="' . $placeholder . '" value="' . esc_url( $meta ) . '" class="regular-text '.$class.'" size="30" />
 					<br />' . $desc;
 		break;
 		case 'number':
-			echo '<input type="' . $type . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="' . intval( $meta ) . '" class="'.$size.'-text" size="30" />
+			echo '<input type="' . $type . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="' . intval( $meta ) . '" class="'.$size.'-text '.$class.'" size="30" />
 					<br />' . $desc;
 		break;
 		// textarea
 		case 'textarea':
-			echo '<textarea name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" placeholder="' . $placeholder . '" cols="60" rows="4">' . esc_textarea( $meta ) . '</textarea>
+			echo '<textarea name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" placeholder="' . $placeholder . '" cols="60" rows="4" class="'.$class.'">' . esc_textarea( $meta ) . '</textarea>
 					<br />' . $desc;
 		break;
 		// editor
@@ -110,7 +110,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 				$meta = isset($field['default']) ? $field['default'] : '';
 			}
 			
-			echo '<select name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '"' , $type == 'chosen' ? ' class="chosen"' : '' , isset( $multiple ) && $multiple == true ? ' multiple="multiple"' : '' , '>
+			echo '<select name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '"' , $type == 'chosen' ? ' class="'.$class.' chosen"' : ' class="'.$class.'"' , isset( $multiple ) && $multiple == true ? ' multiple="multiple"' : '' , '>
 					<option value="">' . $selectone . '</option>'; // Select One
 			foreach ( $options as $option )
 				echo '<option' . selected( $meta, $option['value'], false ) . ' value="' . $option['value'] . '">' . $option['label'] . '</option>';
@@ -165,7 +165,8 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 			foreach ( $posts as $item )
 				echo '<option value="' . $item->ID . '"' . selected( is_array( $meta ) && in_array( $item->ID, $meta ), true, false ) . '>' . $item->post_title . '</option>';
 			$post_type_object = get_post_type_object( $post_type );
-			echo '</select> &nbsp;<span class="description"><a href="' . admin_url( 'edit.php?post_type=' . $post_type . '">Manage ' . $post_type_object->label ) . '</a></span><br />' . $desc;
+			if(isset($post_type_object->label))
+				echo '</select> &nbsp;<span class="description"><a href="' . admin_url( 'edit.php?post_type=' . $post_type . '">Manage ' . $post_type_object->label ) . '</a></span><br />' . $desc;
 		break;
 		// post_checkboxes
 		case 'post_checkboxes':
@@ -232,11 +233,15 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 		case 'cpt':
 			$options = schema_wp_get_post_types();
 			echo $desc;
-			echo '<ul class="meta_box_items">';
-			foreach ( $options as $option )
-				echo '<li><input type="checkbox" value="' . $option . '" name="' . esc_attr( $name ) . '['.$option.']" id="' . esc_attr( $id ) . '-' . $option . '"' , is_array( $meta ) && in_array( $option, $meta, true ) ? ' checked="checked"' : '' , ' /> 
-						<label for="' . esc_attr( $id ) . '-' . $option. '">' . $option . '</label></li>';
-			echo '</ul>';
+			if (!empty($options)) {
+				echo '<ul class="meta_box_cpt_items">';
+				foreach ( $options as $option => $info )
+					echo '<li><input type="checkbox" value="' . $option . '" name="' . esc_attr( $name ) . '['.$option.']" id="' . esc_attr( $id ) . '-' . $option . '"' , is_array( $meta ) && in_array( $option, $meta, true ) ? ' checked="checked"' : '' , ' /> 
+						<label for="' . esc_attr( $id ) . '-' . $option. '">' . $info['label'] . '</label></li>';
+				echo '</ul>';
+			} else {
+				echo '';
+			}
 		break;
 		// tax_checkboxes
 		case 'tax_checkboxes':
@@ -844,8 +849,8 @@ class Schema_Custom_Add_Meta_Box {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
 			return $post_id;
 		// check permissions
-		if ( ! current_user_can( 'edit_page', $post_id ) )
-			return $post_id;
+		//if ( ! current_user_can( 'edit_page', $post_id ) )
+			//return $post_id;
 		
 		// debug
 		//if ( isset( $_POST['_schema_review_rating_type'] ) ) echo $_POST['_schema_review_rating_type']; 
@@ -905,9 +910,11 @@ class Schema_Custom_Add_Meta_Box {
 					}
 					if( $field['type'] == 'sliderrating') {
 						// adjust rating before saving values
-						$rating_type	= schema_wp_review_get_rating_type( $post_id );
-						$scale 			= schema_wp_review_get_rating_scale( $rating_type );
-						$new        	= schema_wp_review_adjust_rating( $new, $scale, true );
+						if (function_exists('schema_wp_review_adjust_rating')) {
+							$rating_type	= schema_wp_review_get_rating_type( $post_id );
+							$scale 			= schema_wp_review_get_rating_scale( $rating_type );
+							$new        	= schema_wp_review_adjust_rating( $new, $scale, true );
+						}
 					}
 
 					update_post_meta( $post_id, $field['id'], $new );
