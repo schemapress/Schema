@@ -5,7 +5,7 @@
  * Description: The next generation of Structured Data.
  * Author: Hesham
  * Author URI: http://zebida.com
- * Version: 1.6.9.2
+ * Version: 1.6.9.4
  * Text Domain: schema-wp
  * Domain Path: languages
  *
@@ -51,7 +51,7 @@ final class Schema_WP {
 	 *
 	 * @since 1.0
 	 */
-	private $version = '1.6.9.2';
+	private $version = '1.6.9.4';
 
 	/**
 	 * The settings instance variable
@@ -220,12 +220,15 @@ final class Schema_WP {
 		// Misc
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/misc/auto_featured_img.php';
 		
+		// Schema outputs
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/knowledge-graph.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/search-results.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/blog.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/category.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/taxonomy.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/author.php';
 		
+		// Schema main output
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/schema-output.php';
 		
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/admin-bar-menu.php';
@@ -246,6 +249,7 @@ final class Schema_WP {
 		
 		// Core Extensions
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/post-meta-generator.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/breadcrumbs.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/author.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/page-about.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/page-contact.php';

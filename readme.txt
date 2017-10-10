@@ -1,11 +1,11 @@
 === Schema ===
 Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
-Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile
+Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, breadcrumbs, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile, taxonomy
 Requires at least: 4.0
-Tested up to: 4.8.1
+Tested up to: 4.8.2
 Requires PHP: 5.4
-Stable tag: 1.6.9.2
+Stable tag: 1.6.9.4
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -27,10 +27,10 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 **Schema Key Features**
 
 * Easy to use, set it and forget it, with minimal settings. 
-* Enable Schema types at once per custom post type or post category.
-* Provide a valid markup, test it in Google Structured Data Testing Tool.
+* Enable Schema types at once per post type or post category.
+* Valid markup, test it in Google Structured Data Testing Tool.
 * Output JSON-LD format, the most recommended by Google.
-* Can reuse data saved in post meta that is created by other plugins.
+* Reuse data saved in post meta, which is created by other plugins.
 * Extensible, means you can extend its functionality via other plugins, extensions or within your Theme’s functions.php file.
 
 **Plugin Extensions**
@@ -60,6 +60,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
   * [TechArticle](https://schema.org/TechArticle)
 
 * [Blog](https://schema.org/Blog) to markup Blog posts list page.
+* [BreadcrumbList](https://schema.org/BreadcrumbList) to markup Breadcrumbs.
 * [CollectionPage](https://schema.org/CollectionPage) to markup Categories.
 * [AboutPage](https://schema.org/AboutPage) to markup the About page.
 * [ContactPage](https://schema.org/ContactPage) to markup the Contact page.
@@ -100,20 +101,37 @@ Feel free to [fork the project on GitHub](https://github.com/schemapress/Schema)
 
 Post detailed information about the issue in the [support forum](https://wordpress.org/support/plugin/schema) and we will work to fix it.
 
+= Is there any Documentation for this plugin? =
+
+Indeed, detailed information about the plugin can be found on the [documentation section](https://schema.press/docs/) on our website.
+
+= Are you going to add support for new schema.org types in the future? =
+
+Nope! The Schema plugin is meant to add markup to a basic WordPress installation, including those types (mostly Article, BlogPosting) which needs to be supported on a fresh install. 
+
+Other schema.org types shall be added via [documentation section](https://schema.press/downloads/), or a custom code.
+
+
+= Is there a way to add a new schema.org type? =
+
+Luckily… Yes! Schema plugin has a filter which can be used to [add support for new schema.org types](https://schema.press/docs/adding-support-new-schema-org-types/).
+
 = Knowledge Graph is not showing? =
 
 The plugin meant to validate markup in Google Structured Data Testing Tool, we don’t have control over the actual display of Knowledge Graph.
 
 = I see an error in Google Structure Data Testing Tool =
 
-This could be for the following reasons:
+This could be for one -or more- of the following reasons:
 
  * Image error: This is a missing WordPress Featured image, try to upload a Featured image.
  * Logo error: This is a missing Publisher logo, it can be set in the plugin settings page, Schema > Settings > General > Publisher Logo.
 
+P.S. You may encounter errors for sites hosted locally, for accessibility reasons.
+
 = Compatible with Yoast SEO? =
 
-Yes, Schema plugin will detect Yoast SEO plugin and override its output on the front page of your site, this means all Knowledge Graph and Site Search output will be generated by Schema. However, the plugin settings gives you control over which plugin should output Knowledge Graph markup.
+Yes, Schema plugin will detect Yoast SEO plugin and override its output on the front page of your site, this means all Knowledge Graph and Site Search output will be generated by Schema. However, the plugin settings gives you control over which plugin should output Knowledge Graph markup, Search Results, and Breadcrumbs.
 
 = Compatible with AMP plugin? =
 
@@ -126,6 +144,36 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.6.9.4 =
+* Fixed bug in AMP plugin integration, function was called too early.
+* Fixed bug in post meta input field types when object post type is not set.
+* Fixed broken link in Contextual Help with the plugin settings pages.
+* Fixed bad requests happened in the backend for broken links.
+* Fixed PHP notice for undefined variable: results, in schema ref.
+* Fixed PHP notice in post meta Text input field when $meta has an array.
+* Added support for schema.org markup for taxonomy archive pages.
+* Added support for breadcrumbs json-ld, added new settings for it under Content tab.
+* Enhanced integration of Yoast SEO plugin, remove breadcrumb markup output automatically.
+* Enhanced integration of Genesis theme, remove breadcrumb markup output automatically.
+* Enhanced category archives markup, reduced 4 database queries, so now it is faster.
+* Enhanced Article schema output, only output if Article or sub types is chosen.
+* Enhanced post meta generator, added activation filters to generator and meta box.
+* Enhanced the display of post types list in Schema Types edit page.
+* Enhanced post meta save function, remove check for permissions on save.
+* Enhanced description by giving it its own function.
+* Updated readme.txt file, modified the plugin details and extended the FAQ section.
+
+= 1.6.9.3 =
+* Fixed a bug in Yoast SEO integration while checking if plugin is active.
+* Fixed a warning showing when original post status is not set.
+* Fixed a warning when use the Quick Edit screen, could not retrieve post type.
+* Fixed input field styles in post meta.
+* Added new filter schema_wp_filter_description_word_count for description words count.
+* Added new property for post meta called class, to allow styling and targeting inputs.
+* Added new custom Bootstrap 4 styles to be used by extensions.
+* Extended readme.txt file FAQ section with more details about the plugin.
+* Pumped tested version to 4.8.2
 
 = 1.6.9.2 =
 * Fixed post meta fields array, it was not defined properly.
@@ -482,6 +530,12 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.6.9.4 =
+This update include several bug fixes, enhancements, and new features including Breadcrumbs JSON-LD markup, which play nicely with Yoast SEO and Genesis. Please, update the plugin on your site to get these fixes and features.
+
+= 1.6.9.3 =
+This update include several bug fixes and new enhancements. Please, update the plugin on your site to get these fixes and enhancements.
 
 = 1.6.9.2 =
 This update include several bug fixes and new enhancements. Please, update the plugin on your site to get these fixes and enhancements.
