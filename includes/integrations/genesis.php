@@ -171,13 +171,13 @@ function wp_schema_genesis_search_form( $form) {
 	return apply_filters( 'genesis_search_form', $form, $search_text, $button_text, $label );
 }
 
-add_action( 'init', 'process_post' );
+add_action( 'init', 'schema_wp_remove_genesis_breadcrumbs_attr_markup' );
 /*
 * Remove Genesis Breadcrumbs attributes 
 *
 * @since 1.6.9.4
 */
-function process_post() {
+function schema_wp_remove_genesis_breadcrumbs_attr_markup() {
     
 	$breadcrumbs_enable = schema_wp_get_option( 'breadcrumbs_enable' );
 	
@@ -189,13 +189,13 @@ function process_post() {
      }
 }
 
-add_action( 'genesis_breadcrumb_link', 'schema_wp_wprs_remove_genesis_breadcrumbs_markup' );
+add_action( 'genesis_breadcrumb_link', 'schema_wp_remove_genesis_breadcrumbs_link_markup' );
 /*
 * Remove Genesis Breadcrumbs itemprop markup
 *
 * @since 1.6.9.4
 */
-function schema_wp_wprs_remove_genesis_breadcrumbs_markup( $output ) {
+function schema_wp_remove_genesis_breadcrumbs_link_markup( $output ) {
 	
 	$breadcrumbs_enable = schema_wp_get_option( 'breadcrumbs_enable' );
 	
