@@ -241,6 +241,7 @@ final class Schema_WP {
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/seo-framework.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/visual-composer.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/thirstyaffiliates.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/woocommerce.php';
 		
 		// Theme Integrations
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/genesis.php';
@@ -273,7 +274,6 @@ final class Schema_WP {
 		//self::$instance->settings       = new Schema_WP_Settings;
 	}
 
-	
 	/**
 	 * Loads the plugin language files
 	 *

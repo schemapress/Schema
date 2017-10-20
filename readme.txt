@@ -76,6 +76,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
  * The SEO Framework
  * Visual Composer
  * ThirstyAffiliates
+ * WooCommerce
 
 **Supported Themes**
 
@@ -144,6 +145,17 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.6.9.5 =
+* Fixed markup errors on AMP pages, now markup is pulled correctly form Schema.
+* Fixed an error due to conflict with previously declared function in another plugin.
+* Fixed CSS style used to hide the taxonomy add new link, target only schema post type.
+* Fixed Warning raised by delete_term_meta when deleting tags.
+* Fixed breadcrumbs, disabled breadcrumbs on WooCommerce to avoid duplication.
+* Added new function schema_wp_get_type to get schema type by post id.
+* Added new function schema_wp_get_ref to get schema reference by post id.
+* Added two new filters to allow disable default sameAs feature.
+* Added a new filter to disable breadcrumbs.
 
 = 1.6.9.4 =
 * Fixed bug in AMP plugin integration, function was called too early.
@@ -530,6 +542,9 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.6.9.4 =
+This update include several bug fixes and enhancements including AMP and WooCommerce breadcrumb, Please, update the plugin on your site to get these fixes and features.
 
 = 1.6.9.4 =
 This update include several bug fixes, enhancements, and new features including Breadcrumbs JSON-LD markup, which play nicely with Yoast SEO and Genesis. Please, update the plugin on your site to get these fixes and features.
