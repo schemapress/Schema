@@ -1707,7 +1707,7 @@ class Schema_Custom_Add_Meta_Tax {
   public function delete_taxonomy_metadata($term,$term_id) {
     delete_option( 'tax_meta_'.$term_id );
     if ( function_exists( 'delete_term_meta') ){
-      delete_term_meta( $term_id );
+      delete_term_meta( $term, $term_id );
     }
   }
 

@@ -12,6 +12,76 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Get schema ref for a post
+ *
+ * @since 1.6.9.5
+ *
+ * @param int $post_id The post ID.
+ * @return string post ID, or false
+ */
+function schema_wp_get_ref( $post_id = null ) {
+	
+	if ( ! isset($post_id) ) $post_id = isset($_GET['post']) ? $_GET['post'] : null;
+	
+	if ( ! isset($post_id ) ) return false;
+	
+	$schema_ref = get_post_meta( $post_id, '_schema_ref', true);
+	
+	If ( ! isset($schema_ref )) $schema_ref = fasle;
+	
+	return apply_filters( 'schema_wp_ref', $schema_ref );
+}
+
+/**
+ * Get schema type for a post
+ *
+ * @since 1.6.9.5
+ *
+ * @param int $post_id The post ID.
+ * @return string schema type, or false 
+ */
+function schema_wp_get_type( $post_id = null ) {
+	
+	if ( ! isset($post_id) ) $post_id = isset($_GET['post']) ? $_GET['post'] : null;
+	
+	if ( ! isset($post_id ) ) return false;
+	
+	
+	$schema_ref = schema_wp_get_ref();
+	
+	$schema_type = false;
+	
+	if ( $schema_ref ) {
+		
+		$schema_type = get_post_meta( $schema_ref, '_schema_type', true);
+	}
+	
+	return apply_filters( 'schema_wp_type', $schema_type );
+}
+
+/**
+ * Get schema json-ld for a post
+ *
+ * @since 1.6.9.5
+ *
+ * @param int $post_id The post ID.
+ * @return string post ID, or false
+ */
+function schema_wp_get_jsonld( $post_id = null ) {
+	
+	global $post;
+	
+	if ( ! isset($post_id) ) $post_id = $post->ID;
+	
+	if ( ! isset($post_id ) ) return false;
+	
+	$schema_json = get_post_meta( $post_id, '_schema_json', true);
+	
+	If ( ! isset($schema_json )) $schema_json = fasle;
+	
+	return apply_filters( 'schema_wp_json', $schema_json );
+}
 
 /**
  * Get publisher array
@@ -45,7 +115,6 @@ function schema_wp_get_publisher_array() {
 	
 	return apply_filters( 'schema_wp_publisher', $publisher );
 }
-
 
 /**
  * Get an array of enabled post types
@@ -96,7 +165,6 @@ function schema_wp_cpt_get_enabled() {
 	return apply_filters('schema_wp_cpt_enabled', $cpt_enabled);
 }
 
-
 /**
  * Get an array of enabled post types
  *
@@ -135,7 +203,6 @@ function schema_wp_cpt_get_enabled_post_types() {
 	//echo reset($cpt_enabled[0]);
 	return apply_filters('schema_wp_cpt_enabled_post_types', $cpt_enabled);
 }
-
 
 /**
  * Get schema ref by post type in admin page editor screen
@@ -275,7 +342,6 @@ function schema_wp_get_media( $post_id = null) {
 	return apply_filters( 'schema_wp_filter_media', $media );
 }
 
-
 /**
  * Get post single category,
  * the first category
@@ -295,7 +361,6 @@ function schema_wp_get_post_category( $post_id ) {
    
    return $category;
 }
-
 	
 /**
  * Get post tags separate by commas,
@@ -357,7 +422,6 @@ function schema_wp_get_categories( $post_id ) {
 	return apply_filters( 'schema_wp_filter_categories', $categories );
 }
 
-
 add_action( 'save_post', 'schema_save_categories', 10, 3 );
 /**
  * Save categories when a Schema post is saved.
@@ -390,7 +454,6 @@ function schema_save_categories( $post_id, $post, $update ) {
 	update_post_meta($post_id, '_schema_categories', $post_categories);
 }
 
-
 /**
  * Get supported Article types  
  *
@@ -403,7 +466,6 @@ function schema_wp_get_support_article_types() {
 	
 	return apply_filters( 'schema_wp_support_article_types', $support_article_types );
 }
-
 
 /**
  * Get time Seconds in ISO format
@@ -441,7 +503,6 @@ function schema_wp_get_time_second_to_iso8601_duration( $time ) {
 
     return $str;
 }
-
 
 add_action( 'save_post', 'schema_wp_clear_json_on_post_save', 10, 3 );
 /**
@@ -484,8 +545,6 @@ function schema_wp_clear_json_on_post_save( $post_id, $post, $update ) {
 	
 	 return $post_id;
 }
-
-
 
 /**
  * Retrieves all the available currencies.
@@ -543,7 +602,6 @@ function schema_wp_get_currencies() {
 
 	return apply_filters( 'schema_wp_currencies', $currencies );
 }
-
 
 /**
  * Retrieves symbol of the given currency.
@@ -678,3 +736,26 @@ function schema_wp_get_currency_symbol( $currency ) {
 
 	return apply_filters( 'schema_wp_currency_symbol', $currency_symbol, $currency );
 }
+
+
+
+
+//add_filter('acf/fields/relationship/query/name=schema_relationship', 'my_post_object_query_xxxxxxx', 10, 3);
+/**
+ * Exclude post type from relationship field
+ *
+ * @since 1.0
+ */
+function my_post_object_query_xxxxxxx( $args, $field, $post_id ) {
+	
+	// exclude post type
+	$excluded_post_types 	= array('schema');
+	$new_post_types			= array_diff( $args['post_type'], $excluded_post_types );
+	$args['post_type'] 		= $new_post_types;
+	
+	// only published posts
+	// $args['post_status'] = array('publish');
+	
+    return $args;
+}
+

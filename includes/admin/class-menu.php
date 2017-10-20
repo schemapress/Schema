@@ -5,7 +5,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Schema_WP_Admin_Menu {
 
-
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'register_main_menus' 	),	10 );
 		add_action( 'admin_menu', array( $this, 'register_types_menus' 	),  20 );

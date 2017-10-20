@@ -143,12 +143,12 @@ function schema_wp_cpt_remove_row_actions( $actions, $post ) {
 	
 	if( get_post_type() === 'schema' ) {
 	
-	//unset( $actions['edit'] );
-	unset( $actions['view'] );
-	//unset( $actions['trash'] );
-	unset( $actions['inline hide-if-no-js'] );
-	//$actions['inline hide-if-no-js'] .= __( 'Quick&nbsp;Edit' );
-	}
+		//unset( $actions['edit'] );
+		unset( $actions['view'] );
+		//unset( $actions['trash'] );
+		unset( $actions['inline hide-if-no-js'] );
+		//$actions['inline hide-if-no-js'] .= __( 'Quick&nbsp;Edit' );
+		}
 	return $actions;
 }
 
@@ -173,8 +173,6 @@ function schema_wp_change_publish_button( $translation, $text ) {
 
 	return $translation;
 }
-
-
 
 // Not used, found a better option below...
 add_action( 'transition_post_status', 'schema_wp_set_post_status_to_publish', 10, 3 );

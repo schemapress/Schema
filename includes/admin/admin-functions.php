@@ -26,7 +26,6 @@ function schema_wp_after_update_settings() {
 	schema_wp_json_delete_cache();
 }
 
-
 /**
  * Delete Schema KSON-LD cached data in post meta 
  *
@@ -39,7 +38,6 @@ function schema_wp_json_delete_cache() {
 	delete_post_meta_by_key( '_schema_json' );
 	delete_post_meta_by_key( '_schema_json_timestamp' );
 }
-
 
 /**
  * Sanitizes a string key for Schema Settings
@@ -64,7 +62,6 @@ function schema_wp_sanitize_key( $key ) {
 	return apply_filters( 'schema_wp_sanitize_key', $key, $raw_key );
 }
 
-
 /**
  * Convert an object to an associative array.
  *
@@ -86,7 +83,6 @@ function schema_wp_object_to_array( $data ) {
 	return $data;
 }
 
-
 /**
  * Flatten an array
  * 
@@ -103,7 +99,6 @@ function schema_wp_array_flatten($array) {
 	
 	return $return;
 }
-
 
 /**
 * Retrieve a post given its title.
@@ -128,7 +123,6 @@ function schema_wp_get_post_by_title($page_title, $post_type = 'post' , $output 
     return null;
 }
 
-
 /**
  * Recursive array search
  *
@@ -146,7 +140,6 @@ function schema_wp_recursive_array_search( $needle, $haystack ) {
     }
     return false;
 }
-
 
 /**
  * Get corporate contacts types
@@ -172,7 +165,6 @@ function schema_wp_get_corporate_contacts_types() {
 
 	return apply_filters( 'schema_wp_corporate_contacts_types', $corporate_contacts_types );
 }
-
 
 /**
  * Get post types

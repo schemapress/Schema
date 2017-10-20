@@ -374,6 +374,14 @@ if ( ! class_exists( 'SCHEMA_JSON_LD_Breadcrumbs' ) ) {
 		 * @since  1.0.0
 		 */
 		public function set_crumbs() {
+			
+			// Allow disbakle/enable breadcrumbs output
+			// @since 1.6.9.5
+			$breadcrumb_enabled = apply_filters( 'schema_wp_breadcrumb_enabled', true );
+			// check if enabled
+			if ( ! $breadcrumb_enabled )
+				return;
+			
 			$breadcrumb = array();
 			$breadcrumb = $this->initialize_breadcrumb_schema( $breadcrumb );
 

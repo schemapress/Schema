@@ -38,19 +38,31 @@ function schema_wp_auto_featured_img_featured() {
 		
 		$post_type = get_post_type();
 		
+		$args = array(
+			'post_parent' 		=> $post->ID,
+			'post_type'   		=> 'attachment', 
+			'post_mime_type'   	=> 'image', 
+			'numberposts' 		=> 1,
+			'post_status' 		=> 'any' 
+		);
+
 		foreach( $schemas_enabled as $schema_enabled ) : 
 		
 			// Get Schema enabled post types array
 			$schema_cpt = $schema_enabled['post_type'];
 		
 			if ( ! empty($schema_cpt) && in_array( $post_type, $schema_cpt, true ) ) {
-
+				
 				$already_has_thumb = has_post_thumbnail($post->ID);
 		
 				if ( ! $already_has_thumb )  {
-					$attached_image = get_children( "post_parent=$post->ID&post_type=attachment&post_mime_type=image&numberposts=1" );
+					
+					// check for children images
+					$attached_image = get_children( $args);
+					
 					if ($attached_image) {
 						foreach ($attached_image as $attachment_id => $attachment) {
+							echo  $attachment_id;
 							set_post_thumbnail($post->ID, $attachment_id);
 						} // end foreach
 					} // end if

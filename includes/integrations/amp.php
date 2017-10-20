@@ -10,41 +10,20 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-add_filter('amp_post_template_metadata', 'schema_wp_amp');
+add_filter( 'amp_post_template_metadata', 'schema_wp_amp_modify_json_output', 10, 2 );
 /**
- * Override schema json-ld for AMP plugin
+ * Modify AMP json-ld output
  *
- * @since 1.3
- * @return schema json-ld final output
+ * @since 1.6.9.5
  */
-function schema_wp_amp( $jason_array ) {
+function schema_wp_amp_modify_json_output( $metadata, $post ) {
 	
-	global $wp_query, $post;
+	$json = schema_wp_get_jsonld( $post->ID );
 	
-	// Check if wp_query is vailable
-	if ( $wp_query == null ) return;
-	
-	// Check if AMP plugin is active
-	if ( ! defined( 'AMP__FILE__' ) ) return;
-	
-	// Check if AMP function exists
-	if ( ! function_exists('is_amp_endpoint') ) return;
-	
-	// Check if an AMP version of a post is being viewed
-	if ( is_amp_endpoint() && is_single() ) {
-		$json = array();
-		// Get ref of Schema type in post meta 
-		// @since 1.5.3
-		$ref = get_post_meta( $post->ID, '_schema_ref', true );
-		if ( $ref != '' ) {
-			$schema_type 		= get_post_meta( (int)$ref, '_schema_type', true );
-			$schema_sub_type 	= get_post_meta( (int)$ref, '_schema_article_type', true );
-			$type = ($schema_sub_type != '') ? $schema_sub_type : $schema_type;
-			$json = schema_wp_get_schema_json( $type );
-			return $json;
-		}
+	if ( $json ) {
+		return $json;
 	}
 	
 	// Return the un-filtered array
-	return $jason_array;
+	return $metadata;
 }

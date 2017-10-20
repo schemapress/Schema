@@ -50,7 +50,6 @@ $prefix = '_schema_';
 	)		
 );
 
-
 $fields_main = apply_filters( 'schema_wp_types_post_meta_fields', array( 
 	
 	'schema_types' => array( // Select box
@@ -75,7 +74,6 @@ $fields_main = apply_filters( 'schema_wp_types_post_meta_fields', array(
 		'type'	=> 'checkbox'
 	)
 ));
-
 
 /**
  * Schema Article post meta 
@@ -119,7 +117,6 @@ $fields_article = array(
 	),
 );
 
-
 /**
  * Post Types 
  *
@@ -134,8 +131,6 @@ $fields_post_types = array(
 		'type'	=> 'cpt' // type of field
 	),
 );
-
-
 
 /**
  * Post Meta Keys to Filters - post meta 

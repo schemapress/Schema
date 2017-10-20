@@ -9,10 +9,8 @@
  * @since       1.5.9.9
  */
 
-
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
-
 
 add_action( 'current_screen', 'schema_wp_sameAs_post_meta' );
 /**
@@ -23,6 +21,11 @@ add_action( 'current_screen', 'schema_wp_sameAs_post_meta' );
 function schema_wp_sameAs_post_meta() {
 	
 	if ( ! class_exists( 'Schema_WP' ) ) return;
+	
+	// filter this and return false to disable the function
+	$enabled = apply_filters('schema_wp_sameAs_post_meta_enabled', true);
+	if ( ! $enabled)
+		return;
 	
 	global $post;
 	
@@ -78,7 +81,6 @@ function schema_wp_sameAs_post_meta() {
 	endforeach;
 }
 
-
 add_filter('schema_output',					'schema_wp_sameAs_output' );
 add_filter('schema_about_page_output',		'schema_wp_sameAs_output' );
 add_filter('schema_contact_page_output',	'schema_wp_sameAs_output' );
@@ -89,6 +91,11 @@ add_filter('schema_contact_page_output',	'schema_wp_sameAs_output' );
  */
 function schema_wp_sameAs_output( $schema ) {
 	
+	// filter this and return false to disable the function
+	$enabled = apply_filters('schema_wp_sameAs_output_enabled', true);
+	if ( ! $enabled)
+		return $schema;
+		
 	global $post;
 	
 	if ( empty($schema) ) return;
@@ -109,7 +116,6 @@ function schema_wp_sameAs_output( $schema ) {
 	
 	return $schema;
 }
-
 
 /**
  * Get sameAs 

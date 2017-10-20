@@ -530,7 +530,7 @@
 	margin:0;
 }
 /* Remove "+ Add New Category" */
-#category-adder {
+.post-type-schema .taxonomy-add-new {
 	display:none;
 }
 
