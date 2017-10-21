@@ -23,4 +23,5 @@ function schema_wp_breadcrumb_woo_product_disable( $breadcrumb_enabled ){
 	if ( class_exists( 'woocommerce' ) ) { 
 		if ( is_woocommerce() ) return false;
 	}
+	return true;
 }
