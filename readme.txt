@@ -61,7 +61,8 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 * [Blog](https://schema.org/Blog) to markup Blog posts list page.
 * [BreadcrumbList](https://schema.org/BreadcrumbList) to markup Breadcrumbs.
-* [CollectionPage](https://schema.org/CollectionPage) to markup Categories.
+* [CollectionPage](https://schema.org/CollectionPage) to markup Categories Archives.
+* [CollectionPage](https://schema.org/CollectionPage) to markup Tags Archives.
 * [AboutPage](https://schema.org/AboutPage) to markup the About page.
 * [ContactPage](https://schema.org/ContactPage) to markup the Contact page.
 * [Person](https://schema.org/Person) enabled on Author pages
@@ -110,7 +111,7 @@ Indeed, detailed information about the plugin can be found on the [documentation
 
 Nope! The Schema plugin is meant to add markup to a basic WordPress installation, including those types (mostly Article, BlogPosting) which needs to be supported on a fresh install. 
 
-Other schema.org types shall be added via [documentation section](https://schema.press/downloads/), or a custom code.
+Other schema.org types shall be added via [Plugin Extensions](https://schema.press/downloads/), or a custom code.
 
 
 = Is there a way to add a new schema.org type? =
@@ -159,6 +160,7 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Added a new filter to disable breadcrumbs.
 * Added new feature, support for schema.org markup on tags archives pages.
 * Added new features, support for sameAs markup on tag archive pages.
+* Updated readme.txt file.
 
 = 1.6.9.4 =
 * Fixed bug in AMP plugin integration, function was called too early.
