@@ -225,6 +225,7 @@ final class Schema_WP {
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/search-results.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/blog.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/category.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/tag.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/taxonomy.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/author.php';
 		

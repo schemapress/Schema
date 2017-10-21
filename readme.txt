@@ -152,10 +152,13 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Fixed CSS style used to hide the taxonomy add new link, target only schema post type.
 * Fixed Warning raised by delete_term_meta when deleting tags.
 * Fixed breadcrumbs, disabled breadcrumbs on WooCommerce to avoid duplication.
+* Fixed meta tax styles for sameAs input.
 * Added new function schema_wp_get_type to get schema type by post id.
 * Added new function schema_wp_get_ref to get schema reference by post id.
 * Added two new filters to allow disable default sameAs feature.
 * Added a new filter to disable breadcrumbs.
+* Added new feature, support for schema.org markup on tags archives pages.
+* Added new features, support for sameAs markup on tag archive pages.
 
 = 1.6.9.4 =
 * Fixed bug in AMP plugin integration, function was called too early.
@@ -543,8 +546,8 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 
 == Upgrade Notice ==
 
-= 1.6.9.4 =
-This update include several bug fixes and enhancements including AMP and WooCommerce breadcrumb, Please, update the plugin on your site to get these fixes and features.
+= 1.6.9.5 =
+This update include several bug fixes and enhancements including AMP fixes, WooCommerce breadcrumb fixes, and introducing schema markup on tags archives pages. Please, update the plugin on your site to get these fixes and features.
 
 = 1.6.9.4 =
 This update include several bug fixes, enhancements, and new features including Breadcrumbs JSON-LD markup, which play nicely with Yoast SEO and Genesis. Please, update the plugin on your site to get these fixes and features.
