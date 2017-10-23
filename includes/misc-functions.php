@@ -104,6 +104,7 @@ function schema_wp_get_publisher_array() {
 	
 	$publisher = array(
 		"@type"	=> "Organization",	// default required value
+		"@id" => get_bloginfo("url") . "/#organization",
 		"name"	=> $name,
 		"logo"	=> array(
     		"@type" => "ImageObject",
@@ -112,7 +113,7 @@ function schema_wp_get_publisher_array() {
 			"height" => 60
 		)
 	);
-	
+
 	return apply_filters( 'schema_wp_publisher', $publisher );
 }
 
