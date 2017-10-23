@@ -25,7 +25,7 @@ function schema_wp_video_object_admin_init() {
 		return;
 	
 	$video_objec_enable = schema_wp_get_option( 'video_object_enable' );
-	
+
 	if ( $video_objec_enable != true )
 		return;
 	
@@ -243,16 +243,17 @@ function schema_wp_video_object_output( $schema ) {
 	
 	if ( $video_object_enable != true )
 		return $schema;
-		
+			
 	global $wp_query, $post, $wp_embed;
 	
 	// Maybe this is not needed!
 	if ( ! $wp_query->is_main_query() ) return $schema;
 	
-	if ( $wp_embed->last_url == '' || ! isset($wp_embed->last_url) ) return $schema;
+	// This didn't work, that's why it's commented
+	//if ( $wp_embed->last_url == '' || ! isset($wp_embed->last_url) ) return $schema;
 	
 	// Get post meta
-	$schema_ref = get_post_meta( $post->ID, '_schema_ref'			, true );
+	$schema_ref = get_post_meta( $post->ID, '_schema_ref', true );
 	
 	// Check for ref, if is not presented, then get out!
 	if ( ! isset($schema_ref) || $schema_ref  == '' ) return $schema;
@@ -261,7 +262,7 @@ function schema_wp_video_object_output( $schema ) {
 	$type	 = get_post_meta( $schema_ref, '_schema_video_object_type', true );
 	
 	//if ( ! isset($enabled) ) $enabled = false; // default
-	//if ( ! isset($video_object_type_enabled)  || $video_object_type_enabled == '' )	$video_object_type_enabled	= false;		// default
+	//if ( ! isset($video_object_type_enabled)  || $video_object_type_enabled == '' ) $video_object_type_enabled	= false;		// default
 	if ( ! isset($type) ) $type = 'none'; // default
 	
 	if ( $type != 'none' ) {
@@ -337,11 +338,12 @@ function schema_wp_video_object_output( $schema ) {
 	}
 	
 	// Debug
-	//if (current_user_can( 'manage_options' )) {
-			//echo'<pre>'; print_r( $schema ); echo'</pre>';
-			//exit;
-			//echo 'Execution time in seconds: ' . (microtime(true) - $time_start) . '<br>';
-	//}
+	/*if (current_user_can( 'manage_options' )) {
+			echo'<pre>'; print_r( $schema ); echo'</pre>';
+			exit;
+			echo 'Execution time in seconds: ' . (microtime(true) - $time_start) . '<br>';
+	}
+	*/
 	
 	// finally!
 	return $schema;
