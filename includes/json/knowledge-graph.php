@@ -53,7 +53,7 @@ function schema_wp_output_knowledge_graph() {
 
 
 /**
- * The main function responsible for putting shema array all together
+ * The main function responsible for putting schema array all together
  *
  * @param string $type for schema type (example: Organization)
  * @since 1.0

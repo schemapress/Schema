@@ -72,7 +72,10 @@ function schema_wp_get_author_json( $type ) {
 	
 	if ( !empty($name) ) $schema['name'] = $name;
 	//if ( !empty($email) ) $schema['email'] = $email;
-	if ( !empty($url) ) $schema['url'] = $url;
+	if ( !empty($url) )  {
+	    $schema['url'] = $url;
+	    $schema['@id'] = $url;
+    }
 	if ( !empty($desc) ) $schema['description'] = $desc;
 	
 	return $schema;
