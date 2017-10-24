@@ -5,7 +5,7 @@ Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, s
 Requires at least: 4.0
 Tested up to: 4.8.2
 Requires PHP: 5.4
-Stable tag: 1.6.9.4
+Stable tag: 1.6.9.5
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -147,6 +147,10 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 
 == Changelog ==
 
+= 1.6.9.6 =
+* Fixed video object, removed a check for variable that always returns false.
+* Added organization and author ids so Google can identify multiple.
+
 = 1.6.9.5 =
 * Fixed markup errors on AMP pages, now markup is pulled correctly form Schema.
 * Fixed an error due to conflict with previously declared function in another plugin.
@@ -154,6 +158,7 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Fixed Warning raised by delete_term_meta when deleting tags.
 * Fixed breadcrumbs, disabled breadcrumbs on WooCommerce to avoid duplication.
 * Fixed meta tax styles for sameAs input.
+* Fixed Blog posts page markup, create own loop with WP_Query to avoid conflicts.
 * Added new function schema_wp_get_type to get schema type by post id.
 * Added new function schema_wp_get_ref to get schema reference by post id.
 * Added two new filters to allow disable default sameAs feature.
