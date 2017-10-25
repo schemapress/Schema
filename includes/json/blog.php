@@ -76,7 +76,7 @@ function schema_wp_get_blog_json( $type ) {
 				'mainEntityOfPage' => get_the_permalink(),
 				'author' => schema_wp_get_author_array(),
 				'publisher' => schema_wp_get_publisher_array(),
-				'image' => schema_wp_get_media(),
+				'image' => schema_wp_get_media($post->ID),
 				'keywords' => schema_wp_get_post_tags($post->ID),
 				'commentCount' => get_comments_number(),
 				'comment' => schema_wp_get_comments(),
