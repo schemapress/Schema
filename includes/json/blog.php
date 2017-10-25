@@ -24,7 +24,10 @@ function schema_wp_output_blog() {
 		
 		$output = '';
 		
-		if ($json) {
+		// debug
+		//echo'<pre>';print_r($json);echo'</pre>';
+		
+		if ( $json ) {
 			$output .= "\n\n";
 			$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - http://schema.press -->';
 			$output .= "\n";
@@ -41,51 +44,65 @@ function schema_wp_output_blog() {
  * The main function responsible for putting shema array all together
  *
  * @param string $type for schema type (example: Person)
- * @since 1.5.4
+ * @since 1.6.9.5
  * @return schema output
  */
 function schema_wp_get_blog_json( $type ) {
 	
-	if ( ! isset($type) ) return;
+	global $post, $wp_query, $query_string;
 	
-	global $post;
+	// debug
+	//echo'<pre>';print_r($wp_query);echo'</pre>';exit;
+	//var_dump( $GLOBALS['wp_query'] );
 	
-	$blogPost = array();
-        
-	while ( have_posts() ) : the_post();
+	if ( empty($wp_query->query_vars) ) return;
 	
-	// check JSON-LD in post meta
-	// @since 1.6
-	$blog_post_json = get_post_meta( $post->ID, '_schema_json', true );
+	$blogPost 	= array();
+	$schema 	= array();
 	
-	if ( isset($blog_post_json) && !empty($blog_post_json) ) {
+	$secondary_loop = new WP_Query( $wp_query->query_vars );
+	
+	if ( $secondary_loop->have_posts() ):
+	   
+	   // get markup data for each post in the query
+	   if ( ! empty($secondary_loop->posts) ) {
+			foreach ($secondary_loop->posts as $schema_post) {
+				
+				// pull json from post meta
+				$schema_json = get_post_meta( $schema_post->ID, '_schema_json', true );
+				
+				if ( isset($schema_json) && is_array($schema_json) ) {
+					
+					$blogPost[] = $schema_json;
+				
+				} else { 
+				
+					// create it
+					$blogPost[] = apply_filters( 'schema_output_blog_post', array
+           			(
+						'@type' => 'BlogPosting',
+						'headline' => get_the_title(),
+						//'description' => strip_shortcodes( get_the_excerpt($post->ID) ),
+						'url' => get_the_permalink(),
+						'sameAs' => schema_wp_get_sameAs($schema_post->ID),
+						'datePublished' => get_the_date('c'),
+						'dateModified' => get_the_modified_date('c'),
+						'mainEntityOfPage' => get_the_permalink(),
+						'author' => schema_wp_get_author_array(),
+						'publisher' => schema_wp_get_publisher_array(),
+						'image' => schema_wp_get_media($schema_post->ID),
+						'keywords' => schema_wp_get_post_tags($schema_post->ID),
+						'commentCount' => get_comments_number(),
+						'comment' => schema_wp_get_comments(),
+            		));
+				}
+			}
+		}
 		
-		$blogPost[] = $blog_post_json;
+		wp_reset_postdata();
 		
-	} else {
-    
-		$blogPost[] = apply_filters( 'schema_output_blog_post', array
-            (
-				'@type' => 'BlogPosting',
-				'headline' => get_the_title(),
-				//'description' => strip_shortcodes( get_the_excerpt($post->ID) ),
-				'url' => get_the_permalink(),
-				'sameAs' => schema_wp_get_sameAs($post->ID),
-				'datePublished' => get_the_date('c'),
-				'dateModified' => get_the_modified_date('c'),
-				'mainEntityOfPage' => get_the_permalink(),
-				'author' => schema_wp_get_author_array(),
-				'publisher' => schema_wp_get_publisher_array(),
-				'image' => schema_wp_get_media($post->ID),
-				'keywords' => schema_wp_get_post_tags($post->ID),
-				'commentCount' => get_comments_number(),
-				'comment' => schema_wp_get_comments(),
-            ));
-	}
-	
-	endwhile;
-
-	$schema = array
+		// put all together
+		$schema = array
         (
 			'@context' => 'http://schema.org/',
 			'@type' => "Blog",
@@ -94,6 +111,11 @@ function schema_wp_get_blog_json( $type ) {
 			'url' => get_option( 'page_for_posts' ) ? get_permalink( get_option( 'page_for_posts' ) ) : get_home_url(),
 			'blogPost' => $blogPost,
         );
-
+				
+	endif;
+	
+	// debug
+	//echo'<pre>';print_r($schema);echo'</pre>';exit;
+	
 	return apply_filters( 'schema_blog_output', $schema );
 }
