@@ -310,15 +310,20 @@ function schema_wp_get_media( $post_id = null) {
 	// Try something else...
 	// @since 1.5.4
 	if ( ! isset($image_url) || $image_url == '' ) {
-		if ( $post->post_content ) {
-			$Document = new DOMDocument();
-			@$Document->loadHTML( $post->post_content );
-			$DocumentImages = $Document->getElementsByTagName( 'img' );
+		// Make sure that PHP-XML extension is installed before parsing page HTML
+		// @since 1.6.9.6
+		if ( extension_loaded('xml') || extension_loaded('SimpleXML')) {
+			
+			if ( $post->post_content ) {
+				$Document = new DOMDocument();
+				@$Document->loadHTML( $post->post_content );
+				$DocumentImages = $Document->getElementsByTagName( 'img' );
 
-			if ( $DocumentImages->length ) {
-				$image_url 		= $DocumentImages->item( 0 )->getAttribute( 'src' );
-				$image_width 	= ( $DocumentImages->item( 0 )->getAttribute( 'width' ) > 696 ) ? $DocumentImages->item( 0 )->getAttribute( 'width' ) : 696;
-				$image_height	= $DocumentImages->item( 0 )->getAttribute( 'height' );
+				if ( $DocumentImages->length ) {
+					$image_url 		= $DocumentImages->item( 0 )->getAttribute( 'src' );
+					$image_width 	= ( $DocumentImages->item( 0 )->getAttribute( 'width' ) > 696 ) ? $DocumentImages->item( 0 )->getAttribute( 'width' ) : 696;
+					$image_height	= $DocumentImages->item( 0 )->getAttribute( 'height' );
+				}
 			}
 		}
 	}	
@@ -737,26 +742,3 @@ function schema_wp_get_currency_symbol( $currency ) {
 
 	return apply_filters( 'schema_wp_currency_symbol', $currency_symbol, $currency );
 }
-
-
-
-
-//add_filter('acf/fields/relationship/query/name=schema_relationship', 'my_post_object_query_xxxxxxx', 10, 3);
-/**
- * Exclude post type from relationship field
- *
- * @since 1.0
- */
-function my_post_object_query_xxxxxxx( $args, $field, $post_id ) {
-	
-	// exclude post type
-	$excluded_post_types 	= array('schema');
-	$new_post_types			= array_diff( $args['post_type'], $excluded_post_types );
-	$args['post_type'] 		= $new_post_types;
-	
-	// only published posts
-	// $args['post_status'] = array('publish');
-	
-    return $args;
-}
-
