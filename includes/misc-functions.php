@@ -24,11 +24,11 @@ function schema_wp_get_ref( $post_id = null ) {
 	
 	if ( ! isset($post_id) ) $post_id = isset($_GET['post']) ? $_GET['post'] : null;
 	
-	if ( ! isset($post_id ) ) return false;
+	if ( ! isset($post_id) ) return false;
 	
-	$schema_ref = get_post_meta( $post_id, '_schema_ref', true);
+	$schema_ref = get_post_meta( $post_id, '_schema_ref', true );
 	
-	If ( ! isset($schema_ref )) $schema_ref = fasle;
+	If ( ! isset($schema_ref) ) $schema_ref = fasle;
 	
 	return apply_filters( 'schema_wp_ref', $schema_ref );
 }
@@ -45,16 +45,16 @@ function schema_wp_get_type( $post_id = null ) {
 	
 	if ( ! isset($post_id) ) $post_id = isset($_GET['post']) ? $_GET['post'] : null;
 	
-	if ( ! isset($post_id ) ) return false;
+	if ( ! isset($post_id) ) return false;
 	
 	
-	$schema_ref = schema_wp_get_ref();
+	$schema_ref = schema_wp_get_ref( $post_id );
 	
 	$schema_type = false;
 	
 	if ( $schema_ref ) {
 		
-		$schema_type = get_post_meta( $schema_ref, '_schema_type', true);
+		$schema_type = get_post_meta( $schema_ref, '_schema_type', true );
 	}
 	
 	return apply_filters( 'schema_wp_type', $schema_type );
