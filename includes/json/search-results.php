@@ -49,10 +49,9 @@ function schema_wp_output_sitelinks_search_box() {
 		
 		$output = apply_filters( 'schema_wp_output_sitelinks_search_box', $output );;
 		
-		echo $output;
+		return apply_filters( 'schema_sitelinks_search_box_output', $schema );
 	}
 }
-
 
 
 //add_action('wp_head', 'schema_wp_output_sitelinks_search_box_disable');

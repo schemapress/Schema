@@ -231,7 +231,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 		break;
 		// CPT, custom post types
 		case 'cpt':
-			$options = schema_wp_get_post_types();
+			$options = apply_filters('schema_wp_get_post_types_settings', schema_wp_get_post_types() );
 			echo $desc;
 			if (!empty($options)) {
 				echo '<ul class="meta_box_cpt_items">';

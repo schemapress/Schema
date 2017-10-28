@@ -78,5 +78,5 @@ function schema_wp_get_author_json( $type ) {
     }
 	if ( !empty($desc) ) $schema['description'] = $desc;
 	
-	return $schema;
+	return apply_filters( 'schema_author_output', $schema );
 }

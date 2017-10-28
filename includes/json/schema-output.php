@@ -180,7 +180,7 @@ function schema_wp_get_schema_json( $type ) {
 		//$schema["author"] = $json['author'];
 	}
 	
-	// ghet supported article types
+	// get supported article types
 	$support_article_types = schema_wp_get_support_article_types();
 	
 	// check if this type is supported Article, or sub of Article

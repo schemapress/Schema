@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Schema - Schema Post Columns 
+ * @package Schema - Schema Post Type Columns 
  * @category Core
  * @author Hesham Zebida
  * @version 1.6.7
@@ -24,7 +24,7 @@ $post_columns->add_column('title',
 //custom field column
 $post_columns->add_column('schema_type',
   array(
-		'label'    => __('Type', 'schema-wp'),
+		'label'    => __('Schema Type', 'schema-wp'),
 		'type'     => 'post_meta',
 		'meta_key' => '_schema_type', //meta_key
 		'orderby' => 'meta_value', //meta_value,meta_value_num
