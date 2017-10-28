@@ -5,7 +5,7 @@ Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, s
 Requires at least: 4.0
 Tested up to: 4.8.2
 Requires PHP: 5.4
-Stable tag: 1.6.9.5
+Stable tag: 1.6.9.6
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -158,7 +158,10 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Added organization and author ids so Google can identify multiple.
 * Added post id to schema_wp_get_ref in schema_wp_get_type function.
 * Added new filter for overriding post type in Schema > Types screen.
+* Added new filter schema_author_output for overriding author markup output.
+* Added new filter sitelinks_search_box for overriding Sitelinks Search Box.
 * Added new function to get current post type.
+* Updated README.md file.
 
 = 1.6.9.5 =
 * Fixed markup errors on AMP pages, now markup is pulled correctly form Schema.
