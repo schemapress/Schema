@@ -149,7 +149,16 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 
 = 1.6.9.6 =
 * Fixed video object, removed a check for variable that always returns false.
+* Fixed Organization markup output, it was not working. 
+* Fixed error, make sure PHP-XML extension is installed before parsing page HTML.
+* Fixed the query on home page, the blog posts page.
+* Fixed PHP notice when enabled types returns a string instead of an array.
+* Modified some wording and corrected typos across the plugin.
+* Added post id to the media function which is responsible for pulling images.
 * Added organization and author ids so Google can identify multiple.
+* Added post id to schema_wp_get_ref in schema_wp_get_type function.
+* Added new filter for overriding post type in Schema > Types screen.
+* Added new function to get current post type.
 
 = 1.6.9.5 =
 * Fixed markup errors on AMP pages, now markup is pulled correctly form Schema.
@@ -552,6 +561,9 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.6.9.6 =
+This update include several bug fixes and enhancements. Please, update the plugin on your site to get these fixes and enhancements.
 
 = 1.6.9.5 =
 This update include several bug fixes and enhancements including AMP fixes, WooCommerce breadcrumb fixes, and introducing schema markup on tags archives pages. Please, update the plugin on your site to get these fixes and features.
