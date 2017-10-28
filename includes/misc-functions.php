@@ -194,8 +194,7 @@ function schema_wp_cpt_get_enabled_post_types() {
 		$schema_post_types = get_post_meta( $schema->ID, '_schema_post_types'	, true );
 		
 		// Build our array
-		$cpt_enabled[] = reset($schema_post_types);
-		
+		$cpt_enabled[] = (is_array($schema_post_types)) ? reset($schema_post_types) : array();
 		
 	endforeach;
 	
