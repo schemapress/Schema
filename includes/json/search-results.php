@@ -15,7 +15,7 @@ add_action('wp_head', 'schema_wp_output_sitelinks_search_box');
  * @since 1.0
  * @return schema json-ld final output
  */
-function schema_wp_output_sitelinks_search_box() {
+function schema_wp_output_sitelinks_search_box( $schema ) {
 	
 	// Run only on front page 
 	if ( is_front_page() ) {
