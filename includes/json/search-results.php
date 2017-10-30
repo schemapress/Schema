@@ -15,7 +15,7 @@ add_action('wp_head', 'schema_wp_output_sitelinks_search_box');
  * @since 1.0
  * @return schema json-ld final output
  */
-function schema_wp_output_sitelinks_search_box( $schema ) {
+function schema_wp_output_sitelinks_search_box() {
 	
 	// Run only on front page 
 	if ( is_front_page() ) {
@@ -49,7 +49,7 @@ function schema_wp_output_sitelinks_search_box( $schema ) {
 		
 		$output = apply_filters( 'schema_wp_output_sitelinks_search_box', $output );;
 		
-		return apply_filters( 'schema_sitelinks_search_box_output', $schema );
+		echo $output;
 	}
 }
 
