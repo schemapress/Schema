@@ -115,7 +115,7 @@ if ( ! class_exists( 'SCHEMA_JSON_LD_Breadcrumbs' ) ) {
 		private function maybe_add_blog_crumb() {
 			if ( ( 'page' === $this->show_on_front && 'post' === get_post_type() ) && ( ! is_home() && ! is_search() ) ) {
 				if ( $this->page_for_posts ) {
-					$this->add_crumb( get_the_title( $this->page_for_posts ), get_permalink( $this->page_for_posts ) );
+					$this->add_crumb( wp_filter_nohtml_kses( get_the_title( $this->page_for_posts ) ), get_permalink( $this->page_for_posts ) );
 				}
 			}
 		}
@@ -212,7 +212,7 @@ if ( ! class_exists( 'SCHEMA_JSON_LD_Breadcrumbs' ) ) {
 			$ancestors = $this->get_post_ancestors();
 			if ( is_array( $ancestors ) && array() !== $ancestors ) {
 				foreach ( $ancestors as $ancestor ) {
-					$this->add_crumb( get_the_title( $ancestor ), get_permalink( $ancestor ) );
+					$this->add_crumb( wp_filter_nohtml_kses( get_the_title( $ancestor ) ), get_permalink( $ancestor ) );
 				}
 			}
 		}
@@ -314,7 +314,7 @@ if ( ! class_exists( 'SCHEMA_JSON_LD_Breadcrumbs' ) ) {
 			if ( ( 'page' === $this->show_on_front && is_front_page() ) || ( 'posts' === $this->show_on_front && is_home() ) ) {
 				// Do nothing.
 			} elseif ( 'page' == $this->show_on_front && is_home() ) {
-				$this->add_crumb( get_the_title( $this->page_for_posts ), get_permalink( $this->page_for_posts ) );
+				$this->add_crumb( wp_filter_nohtml_kses( get_the_title( $this->page_for_posts ) ), get_permalink( $this->page_for_posts ) );
 			} elseif ( is_singular() ) {
 				$this->maybe_add_pt_archive_crumb_for_post();
 
@@ -325,7 +325,7 @@ if ( ! class_exists( 'SCHEMA_JSON_LD_Breadcrumbs' ) ) {
 				}
 
 				if ( isset( $this->post->ID ) ) {
-					$this->add_crumb( get_the_title( $this->post->ID ), get_permalink( $this->post->ID ), get_the_post_thumbnail_url( $this->post->ID, 'full' ) );
+					$this->add_crumb( wp_filter_nohtml_kses( get_the_title( $this->post->ID ) ), get_permalink( $this->post->ID ), get_the_post_thumbnail_url( $this->post->ID, 'full' ) );
 				}
 			} else {
 				if ( is_post_type_archive() ) {
