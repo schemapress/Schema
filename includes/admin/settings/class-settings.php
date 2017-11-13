@@ -1,4 +1,16 @@
 <?php
+/**
+ * Class Settings
+ *
+ * @package     Schema
+ * @subpackage  Admin/Settings
+ * @copyright   Copyright (c) 2016, Hesham Zebida
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
+ */
+
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 class Schema_WP_Settings {
 

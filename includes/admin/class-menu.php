@@ -1,4 +1,13 @@
 <?php
+/**
+ * Class Menu - admin menues
+ *
+ * @package     Schema
+ * @subpackage  Admin Functions/Formatting
+ * @copyright   Copyright (c) 2016, Hesham Zebida
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
+*/ 
 
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -6,9 +15,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 class Schema_WP_Admin_Menu {
 
 	public function __construct() {
-		add_action( 'admin_menu', array( $this, 'register_main_menus' 	),	10 );
-		add_action( 'admin_menu', array( $this, 'register_types_menus' 	),  20 );
-		add_action( 'admin_menu', array( $this, 'register_about_menus' 	),  30 );
+		add_action( 'admin_menu', array( $this, 'register_main_menus' 		),	10 );
+		add_action( 'admin_menu', array( $this, 'register_types_menus' 		),  20 );
+		add_action( 'admin_menu', array( $this, 'register_extensions_menus' ),  30 );
+		add_action( 'admin_menu', array( $this, 'register_about_menus' 		),  40 );
 	}
 
 	public function register_main_menus() {
@@ -46,6 +56,18 @@ class Schema_WP_Admin_Menu {
 			__( 'Types', 'schema-wp' ),
 			'manage_schema_options',
 			'edit.php?post_type=schema'
+		);
+	}
+	
+	public function register_extensions_menus() {
+		
+		add_submenu_page(
+			'schema',
+			__( 'Extensions', 'schema-wp' ),
+			__( 'Extensions', 'schema-wp' ),
+			'manage_schema_options',
+			'schema-extensions',
+			'schema_wp_admin_extensions_page'
 		);
 	}
 	

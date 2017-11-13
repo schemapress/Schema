@@ -209,7 +209,6 @@ class Schema_WP_Welcome {
                             <li><?php _e( 'Report', 'schema-wp' );?></li>
                         	<li><?php _e( 'ScholarlyArticle', 'schema-wp' );?></li>
                         	<li><?php _e( 'TechArticle', 'schema-wp' );?></li>
-                     		
              		</ul>
                     
                     <br>
@@ -339,7 +338,6 @@ class Schema_WP_Welcome {
                 </div>
 				
 			</div>
-
 
 			<div class="changelog">
 				<h3><?php _e( 'Need Help?', 'schema-wp' );?></h3>

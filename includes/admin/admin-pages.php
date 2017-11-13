@@ -1,5 +1,4 @@
 <?php
-
 /**
  *  Determines whether the current admin page is an Schema admin page.
  *
@@ -20,8 +19,10 @@ function schema_wp_is_admin_page() {
 	}
 
 	$page  = isset( $_GET['page'] ) ? $_GET['page'] : '';
+	
 	$pages = array(
 		'schema',
+		'schema-extensions',
 		'schema-wp-getting-started',
 		'schema-wp-what-is-new',
 		'schema-wp-credits'

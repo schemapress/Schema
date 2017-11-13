@@ -269,31 +269,35 @@ function schema_wp_get_registered_settings() {
 		
 		'content' => apply_filters( 'schema_wp_settings_content',
 			array(
+				'web_page_element' => array(
+					'id' => 'web_page_element_enable',
+					'name' => __( 'WPHeader and WPFooter', 'schema-wp' ),
+					'desc' => __( 'enable?', 'schema-wp' ),
+					'type' => 'checkbox'
+				),
 				'breadcrumbs' => array(
-						'id' => 'breadcrumbs_enable',
-						'name' => __( 'Enable Breadcrumbs markup?', 'schema-wp' ),
-						'desc' => __( 'Check this box if you would like Schema to output Breadcrumbs markup.', 'schema-wp' ),
-						'type' => 'checkbox'
-					),
+					'id' => 'breadcrumbs_enable',
+					'name' => __( 'Breadcrumbs', 'schema-wp' ),
+					'desc' => __( 'enable?', 'schema-wp' ),
+					'type' => 'checkbox'
+				),
 				'comments' => array(
-						'id' => 'comments_enable',
-						'name' => __( 'Enable Comments markup?', 'schema-wp' ),
-						'desc' => __( 'Check this box if you would like Schema to output Comments markup.', 'schema-wp' ),
-						'type' => 'checkbox'
-					),
-				'main' => array(
-					'video' => array(
-						'id' => 'video_object_enable',
-						'name' => __( 'Enable VideoObject markup?', 'schema-wp' ),
-						'desc' => __( 'Check this box if you would like Schema to output VideoObject markup.', 'schema-wp' ),
-						'type' => 'checkbox'
-					),
-					'audio' => array(
-						'id' => 'audio_object_enable',
-						'name' => __( 'Enable AudioObject markup?', 'schema-wp' ),
-						'desc' => __( 'Check this box if you would like Schema to output AudioObject markup.', 'schema-wp' ),
-						'type' => 'checkbox'
-					)
+					'id' => 'comments_enable',
+					'name' => __( 'Comments', 'schema-wp' ),
+					'desc' => __( 'enable?', 'schema-wp' ),
+					'type' => 'checkbox'
+				),
+				'video' => array(
+					'id' => 'video_object_enable',
+					'name' => __( 'VideoObject', 'schema-wp' ),
+					'desc' => __( 'enable?', 'schema-wp' ),
+					'type' => 'checkbox'
+				),
+				'audio' => array(
+					'id' => 'audio_object_enable',
+					'name' => __( 'AudioObject', 'schema-wp' ),
+					'desc' => __( 'enable?', 'schema-wp' ),
+					'type' => 'checkbox'
 				)
 			)
 		),
@@ -341,19 +345,30 @@ function schema_wp_get_registered_settings() {
 				
 				/** Corporate Contacts Settings */
 				'corporate_contacts' => array( // section
-					'corporate_contacts_telephone' => array(
-						'id' => 'corporate_contacts_telephone',
-						'name' => __( 'Telephone', 'schema-wp' ),
-						'desc' => '<br>' . __('Required. An internationalized version of the phone number, starting with the "+" symbol and country code (+1 in the US and Canada).', 'schema-wp'),
-						'type' => 'text',
-						'std' => ''
-					),
+				
 					'corporate_contacts_contact_type' => array(
 						'id' => 'corporate_contacts_contact_type',
 						'name' => __( 'Contact Type', 'schema-wp' ),
 						'desc' => '',
 						'type' => 'select',
 						'options' => schema_wp_get_corporate_contacts_types()
+					),
+					
+					'corporate_contacts_telephone' => array(
+						'id' => 'corporate_contacts_telephone',
+						'name' => __( 'Telephone', 'schema-wp' ),
+						'desc' => '<br>' . __('Recommended. An internationalized version of the phone number, starting with the "+" symbol and country code (+1 in the US and Canada).', 'schema-wp'),
+						'type' => 'text',
+						'std' => ''
+					),
+					
+					'corporate_contacts_url' => array(
+						'id' => 'corporate_contacts_url',
+						'name' => __( 'URL', 'schema-wp' ),
+						'desc' => '<br>' . __('Recommended. The URL of contact page.', 'schema-wp'),
+						'type' => 'text',
+						'placeholder' => 'http://',
+						'std' => ''
 					),
 					
 					// Social Profiles

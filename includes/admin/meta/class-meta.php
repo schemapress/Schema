@@ -189,7 +189,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 						if ( is_array( $meta ) ) {
 							$items = explode( ',', $meta[$area['id']] );
 							foreach ( $items as $item ) {
-								$output = $display == 'thumbnail' ? get_the_post_thumbnail( $item, array( 204, 30 ) ) : get_the_title( $item ); 
+								$output = $display == 'thumbnail' ? get_the_post_thumbnail( $item, array( 204, 30 ) ) : wp_filter_nohtml_kses(get_the_title( $item )); 
 								echo '<li id="' . $item . '">' . $output . '</li>';
 							}
 						}
@@ -209,7 +209,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 			echo '<ul class="post_drop_sort_source sort_list">
 					<li class="post_drop_sort_area_name">Available ' . $label . '</li>';
 			foreach ( $posts as $item ) {
-				$output = $display == 'thumbnail' ? get_the_post_thumbnail( $item->ID, array( 204, 30 ) ) : get_the_title( $item->ID ); 
+				$output = $display == 'thumbnail' ? get_the_post_thumbnail( $item->ID, array( 204, 30 ) ) : wp_filter_nohtml_kses(get_the_title( $item->ID )); 
 				echo '<li id="' . $item->ID . '">' . $output . '</li>';
 			}
 			echo '</ul>';
