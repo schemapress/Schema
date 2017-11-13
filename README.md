@@ -51,6 +51,8 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
   * [TechArticle](https://schema.org/TechArticle)
 
 * [Blog](https://schema.org/Blog) to markup Blog posts list page.
+* [WPHeader](https://schema.org/WPHeader) to markup Web Page Header.
+* [WPFooter](https://schema.org/WPFooter) to markup Web Page Footer.
 * [BreadcrumbList](https://schema.org/BreadcrumbList) to markup Breadcrumbs.
 * [CollectionPage](https://schema.org/CollectionPage) to markup Categories Archives.
 * [CollectionPage](https://schema.org/CollectionPage) to markup Tags Archives.
@@ -59,6 +61,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 * [Person](https://schema.org/Person) enabled on Author pages
 * [VideoObject](https://schema.org/VideoObject) enable automatically on all videos embedded with oEmbed. Supports VideoPress, YouTube, TED, Vimeo, Dailymotion, and Vine.
 * [AudioObject](https://schema.org/AudioObject) enable automatically on all audio embedded with oEmbed. Supports SoundCloud, and Mixcloud.
+
 
 ### Supported Plugins
 
@@ -69,6 +72,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
  * Visual Composer
  * ThirstyAffiliates
  * WooCommerce
+ * Easy Digital Downloads (EDD)
 
 ### Supported Themes
 
