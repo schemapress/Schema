@@ -5,7 +5,7 @@ Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, s
 Requires at least: 4.0
 Tested up to: 4.8.2
 Requires PHP: 5.4
-Stable tag: 1.6.9.6
+Stable tag: 1.6.9.7
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -51,7 +51,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 **Supported Schema Types**
  
-* Creative Works
+* Creative Work
  * [Article](https://schema.org/Article) enabled on Pages
   * [BlogPosting](https://schema.org/BlogPosting) enabled on Posts
   * [NewsArticle](https://schema.org/NewsArticle)
@@ -60,6 +60,8 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
   * [TechArticle](https://schema.org/TechArticle)
 
 * [Blog](https://schema.org/Blog) to markup Blog posts list page.
+* [WPHeader](https://schema.org/WPHeader) to markup Web Page Header.
+* [WPFooter](https://schema.org/WPFooter) to markup Web Page Footer.
 * [BreadcrumbList](https://schema.org/BreadcrumbList) to markup Breadcrumbs.
 * [CollectionPage](https://schema.org/CollectionPage) to markup Categories Archives.
 * [CollectionPage](https://schema.org/CollectionPage) to markup Tags Archives.
@@ -71,6 +73,8 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 **Supported Plugins**
 
+Schema plugin integrates, and play nicely with:
+
  * Yoast SEO
  * AMP plugin
  * WPRichSnippets
@@ -78,6 +82,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
  * Visual Composer
  * ThirstyAffiliates
  * WooCommerce
+ * Easy Digital Downloads (EDD)
 
 **Supported Themes**
 
@@ -146,6 +151,23 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 4. Google Structured Data Testing Tool.
 
 == Changelog ==
+
+= 1.6.9.8 =
+* Fixed reset post query in post type enabled function.
+* Fixed headlines and names, make sure to remove and clean HTML tags.
+* Enhanced the Knowledge Graph functionality by adding a new field for contact URL.
+* Added new feature, support for WPHeader and WPFooter markup.
+* Added new feature, support for ItemList markup on post types archive pages.
+* Added new admin page for plugin Extensions.
+* Added new function schema_wp_get_archive_link to get archive page link.
+* Added new function schema_wp_get_categories_as_keywords to be used by WPHeader.
+* Added new function to get blog posts page URL.
+* Added new integration and fix for Easy Digital Downloads (EDD) plugin.
+* Updated the readme.txt file.
+* Code cleanup.
+
+= 1.6.9.7 =
+* Fix for Sitelinks Search Box markup output, echo the value instead of returning it.
 
 = 1.6.9.6 =
 * Fixed video object, removed a check for variable that always returns false.
@@ -564,6 +586,12 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.6.9.8 =
+In this release, most of the reported bugs has been fixed, including a fix for Easy Digital Downloads plugin. Also, new features has been introduced, example WPHeader and WPFooter markups, and support for ItemList markup on post types archive pages. Please, update the plugin on your website now to get fixes and enhancements.
+
+= 1.6.9.7 =
+This quick update include a fixe for Sitelinks Search Box markup output. Please, update the plugin on your site to get these fixes and enhancements.
 
 = 1.6.9.6 =
 This update include several bug fixes and enhancements. Please, update the plugin on your site to get these fixes and enhancements.
