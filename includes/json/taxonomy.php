@@ -17,6 +17,11 @@ add_action('wp_head', 'schema_wp_output_taxonomy');
  */
 function schema_wp_output_taxonomy() {
 	
+	// filter this and return false to disable the function
+	$enabled = apply_filters('schema_wp_output_taxonomy_enabled', true);
+	if ( ! $enabled)
+		return;
+		
 	if ( is_admin() ) return;
 	
 	// Run only on taxonomy pages
@@ -28,7 +33,7 @@ function schema_wp_output_taxonomy() {
 		
 		if ($json) {
 			$output = "\n\n";
-			$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - http://schema.press -->';
+			$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - https://schema.press -->';
 			$output .= "\n";
 			$output .= '<script type="application/ld+json">' . json_encode($json, JSON_UNESCAPED_UNICODE) . '</script>';
 			$output .= "\n\n";

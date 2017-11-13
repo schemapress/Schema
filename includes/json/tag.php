@@ -17,6 +17,11 @@ add_action('wp_head', 'schema_wp_output_tag');
  */
 function schema_wp_output_tag() {
 	
+	// filter this and return false to disable the function
+	$enabled = apply_filters('schema_wp_output_tag_enabled', true);
+	if ( ! $enabled)
+		return;
+		
 	if ( is_admin() ) return;
 	
 	// Run only on category pages

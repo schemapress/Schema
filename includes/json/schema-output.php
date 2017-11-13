@@ -126,7 +126,7 @@ function schema_wp_output() {
 	
 	if ( ! empty($json) ) {
 		$output .= "\n\n";
-		$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - http://schema.press -->';
+		$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - https://schema.press -->';
 		$output .= "\n";
 		$output .= '<script type="application/ld+json">' . json_encode($json, JSON_UNESCAPED_UNICODE) .'</script>';
 		$output .= "\n\n";
@@ -235,7 +235,7 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	$content_post		= get_post($post_id);
 	
 	// Get description
-	$description = schema_wp_get_description( $post_id );
+	$description 		= schema_wp_get_description( $post_id );
 	
 	// Stuff for any page, if it exists
 	$permalink			= get_permalink( $post_id) ;

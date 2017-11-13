@@ -29,7 +29,7 @@ function schema_wp_output_blog() {
 		
 		if ( $json ) {
 			$output .= "\n\n";
-			$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - http://schema.press -->';
+			$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - https://schema.press -->';
 			$output .= "\n";
 			$output .= '<script type="application/ld+json">' . json_encode($json, JSON_UNESCAPED_UNICODE) . '</script>';
 			$output .= "\n\n";
@@ -81,7 +81,7 @@ function schema_wp_get_blog_json( $type ) {
 					$blogPost[] = apply_filters( 'schema_output_blog_post', array
            			(
 						'@type' => 'BlogPosting',
-						'headline' => get_the_title(),
+						'headline' => wp_filter_nohtml_kses( get_the_title() ),
 						//'description' => strip_shortcodes( get_the_excerpt($post->ID) ),
 						'url' => get_the_permalink(),
 						'sameAs' => schema_wp_get_sameAs($schema_post->ID),
@@ -106,7 +106,7 @@ function schema_wp_get_blog_json( $type ) {
         (
 			'@context' => 'http://schema.org/',
 			'@type' => "Blog",
-			'headline' => get_option( 'page_for_posts' ) ? get_the_title( get_option( 'page_for_posts' ) ) : get_bloginfo( 'name' ),
+			'headline' => get_option( 'page_for_posts' ) ? wp_filter_nohtml_kses( get_the_title( get_option( 'page_for_posts' ) ) ) : get_bloginfo( 'name' ),
 			'description' => get_bloginfo( 'description' ),
 			'url' => get_option( 'page_for_posts' ) ? get_permalink( get_option( 'page_for_posts' ) ) : get_home_url(),
 			'blogPost' => $blogPost,

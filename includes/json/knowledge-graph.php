@@ -8,8 +8,6 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
-
 add_filter( 'schema_wp_filter_output_knowledge_graph', 'schema_wp_do_output_knowledge_graph' );
 /*
 * Output Knowledge Graph markup
@@ -24,7 +22,6 @@ function schema_wp_do_output_knowledge_graph( $knowledge_graph ) {
 	return $knowledge_graph;
 }
 
-
 add_action('wp_head', 'schema_wp_output_knowledge_graph');
 /**
  * The main function responsible for output schema json-ld 
@@ -36,21 +33,20 @@ function schema_wp_output_knowledge_graph() {
 	
 	$json = schema_wp_get_knowledge_graph_json();
 		
-		$knowledge_graph = '';
+	$knowledge_graph = '';
 
-		if ( ! empty($json) )  {
-			$knowledge_graph .= "\n\n";
-			$knowledge_graph .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - http://schema.press -->';
-			$knowledge_graph .= "\n";
-			$knowledge_graph .= '<script type="application/ld+json">' . json_encode($json, JSON_UNESCAPED_UNICODE) . '</script>';
-			$knowledge_graph .= "\n\n";
-		}
+	if ( $json )  {
+		$knowledge_graph .= "\n\n";
+		$knowledge_graph .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - https://schema.press -->';
+		$knowledge_graph .= "\n";
+		$knowledge_graph .= '<script type="application/ld+json">' . json_encode($json, JSON_UNESCAPED_UNICODE) . '</script>';
+		$knowledge_graph .= "\n\n";
+	}
 		
-		$knowledge_graph = apply_filters( 'schema_wp_filter_output_knowledge_graph', $knowledge_graph );
-		
-		echo $knowledge_graph;
+	$knowledge_graph = apply_filters( 'schema_wp_filter_output_knowledge_graph', $knowledge_graph );
+	
+	echo $knowledge_graph;
 }
-
 
 /**
  * The main function responsible for putting schema array all together
@@ -76,8 +72,8 @@ function schema_wp_get_knowledge_graph_json() {
 	
 	$schema = array();
 	
-	$name = schema_wp_get_option( 'name' );
-	$url = esc_attr( stripslashes( schema_wp_get_option( 'url' ) ) );
+	$name	= schema_wp_get_option( 'name' );
+	$url	= esc_attr( stripslashes( schema_wp_get_option( 'url' ) ) );
 	
 	if ( empty($name) || empty($url) ) return;
 	
@@ -113,7 +109,6 @@ function schema_wp_get_knowledge_graph_json() {
 	return apply_filters( 'schema_wp_knowledge_graph_json', $schema );
 }
 
-
 /**
  * Get Get corporate contacts types array
  *
@@ -122,28 +117,28 @@ function schema_wp_get_knowledge_graph_json() {
  */
 function schema_wp_get_corporate_contacts_types_array() {
 	
-	$contact_type = array();
+	$corporate_contacts_types	= array();
 	
-	$corporate_contacts_telephone		= schema_wp_get_option( 'corporate_contacts_telephone' );
-	$corporate_contacts_contact_type	= schema_wp_get_option( 'corporate_contacts_contact_type' );
+	$corporate_contacts_telephone		= ( schema_wp_get_option( 'corporate_contacts_telephone' ) ) ? schema_wp_get_option( 'corporate_contacts_telephone' ) : '';
+	$corporate_contacts_url				= ( schema_wp_get_option( 'corporate_contacts_url' ) ) ? schema_wp_get_option( 'corporate_contacts_url' ) : '';
+	$corporate_contacts_contact_type	= ( schema_wp_get_option( 'corporate_contacts_contact_type' ) ) ? schema_wp_get_option( 'corporate_contacts_contact_type' ) : '';
 	
-	// Remove dashes and replace it with a space
-	$corporate_contacts_telephone = str_replace("_", " ", $corporate_contacts_telephone);
-	$corporate_contacts_contact_type = str_replace("_", " ", $corporate_contacts_contact_type);
+	if ( $corporate_contacts_telephone || $corporate_contacts_url )  {
+		
+		// Remove dashes and replace it with a space
+		$corporate_contacts_telephone		= str_replace("_", " ", $corporate_contacts_telephone);
+		$corporate_contacts_contact_type	= str_replace("_", " ", $corporate_contacts_contact_type);
 	
-	$corporate_contacts_types = array(
-		'@type'			=> 'ContactPoint',	// default required value
-		'telephone'		=> $corporate_contacts_telephone,
-		'contactType'	=> $corporate_contacts_contact_type
+		$corporate_contacts_types = array(
+			'@type'			=> 'ContactPoint',	// default required value
+			'telephone'		=> $corporate_contacts_telephone,
+			'url'			=> $corporate_contacts_url,
+			'contactType'	=> $corporate_contacts_contact_type
 		);
+	}
 	
-	// If phone is provided
-	if ( $corporate_contacts_telephone != '' )  return $corporate_contacts_types;
-	
-	// Return an empty array
-	return array();
+	return $corporate_contacts_types;
 }
-
 
 /**
  * Get social links array

@@ -17,8 +17,13 @@ add_action('wp_head', 'schema_wp_output_category');
  */
 function schema_wp_output_category() {
 	
+	// filter this and return false to disable the function
+	$enabled = apply_filters('schema_wp_output_category_enabled', true);
+	if ( ! $enabled)
+		return;
+		
 	if ( is_admin() ) return;
-	
+		
 	// Run only on category pages
 	if ( is_category() ) {
 		

@@ -62,7 +62,7 @@ function schema_wp_yoast_seo_register_settings() {
 	
 	if ( ! defined('WPSEO_VERSION') ) return;
 	
-	add_filter( 'schema_wp_settings_knowledge_graph', 'schema_wp_settings_knowledge_graph');
+	add_filter( 'schema_wp_settings_knowledge_graph', 'schema_wp_yoast_seo_settings_knowledge_graph');
 }
 
 /*
@@ -70,7 +70,7 @@ function schema_wp_yoast_seo_register_settings() {
 *
 * @since 1.6.4
 */
-function schema_wp_settings_knowledge_graph( $settings_knowledge_graph ) {
+function schema_wp_yoast_seo_settings_knowledge_graph( $settings_knowledge_graph ) {
 
 	$settings_knowledge_graph['organization']['use_yoast_seo_json'] = array(
 		'id' => 'use_yoast_seo_json',
@@ -81,7 +81,6 @@ function schema_wp_settings_knowledge_graph( $settings_knowledge_graph ) {
 	
 	return $settings_knowledge_graph;
 }
-
 
 add_filter( 'schema_wp_filter_output_knowledge_graph', 'schema_wp_yoast_knowledge_graph_remove' );
 /*
@@ -104,7 +103,6 @@ function schema_wp_yoast_knowledge_graph_remove( $knowledge_graph ) {
 	
 	return $knowledge_graph;
 }
-
 
 add_filter( 'schema_wp_output_sitelinks_search_box', 'schema_wp_yoast_sitelinks_search_box_remove' );
 /*
