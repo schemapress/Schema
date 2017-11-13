@@ -290,3 +290,42 @@ table.schema-review-rating-scale {
 .wrap-licenses p.submit {
 	clear: both;
 }
+
+/* Extensions */
+
+#schema-wp-extensions h2 {
+  margin: 0 0 15px;
+}
+
+#schema-wp-extensions .schema-wp-extension {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 11px 14px 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  width: 320px;
+  padding: 14px;
+  min-height: 290px;
+  position: relative;
+}
+
+#schema-wp-extensions .schema-wp-extension h3 {
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
+#schema-wp-extensions .schema-wp-extension .button-secondary {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+}
+
+#schema-wp-extensions .schema-wp-extension .wp-post-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.schema-wp-extensions-footer {
+  padding-top: 10px;
+}
