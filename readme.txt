@@ -5,7 +5,7 @@ Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, s
 Requires at least: 4.0
 Tested up to: 4.9
 Requires PHP: 5.4
-Stable tag: 1.6.9.7
+Stable tag: 1.6.9.8
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -164,7 +164,7 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Added new function schema_wp_get_categories_as_keywords to be used by WPHeader.
 * Added new function to get blog posts page URL.
 * Added new integration and fix for Easy Digital Downloads (EDD) plugin.
-* Updated the readme.txt and README.md files.
+* Updated the readme.txt and README.md files and pumped the tested WP version to 4.9
 * Code cleanup.
 
 = 1.6.9.7 =

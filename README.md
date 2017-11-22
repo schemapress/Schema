@@ -42,7 +42,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 ### Supported Schema Types
  
-* Creative Works
+* Creative Work
  * [Article](https://schema.org/Article) enabled on Pages
   * [BlogPosting](https://schema.org/BlogPosting) enabled on Posts
   * [NewsArticle](https://schema.org/NewsArticle)
@@ -64,6 +64,8 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 
 ### Supported Plugins
+
+Schema plugin integrates, and play nicely with:
 
  * Yoast SEO
  * AMP plugin
