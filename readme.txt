@@ -3,7 +3,7 @@ Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, breadcrumbs, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile, taxonomy
 Requires at least: 4.0
-Tested up to: 4.8.2
+Tested up to: 4.9
 Requires PHP: 5.4
 Stable tag: 1.6.9.7
 
@@ -155,6 +155,7 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 = 1.6.9.8 =
 * Fixed reset post query in post type enabled function.
 * Fixed headlines and names, make sure to remove and clean HTML tags.
+* Fixed front-end styles and scripts is not needed, commented the function for now.
 * Enhanced the Knowledge Graph functionality by adding a new field for contact URL.
 * Added new feature, support for WPHeader and WPFooter markup.
 * Added new feature, support for ItemList markup on post types archive pages.
@@ -163,7 +164,7 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Added new function schema_wp_get_categories_as_keywords to be used by WPHeader.
 * Added new function to get blog posts page URL.
 * Added new integration and fix for Easy Digital Downloads (EDD) plugin.
-* Updated the readme.txt file.
+* Updated the readme.txt and README.md files.
 * Code cleanup.
 
 = 1.6.9.7 =
