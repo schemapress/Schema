@@ -30,28 +30,23 @@ function schema_wp_output_web_page_element() {
 	// disable Genesis footer markup
 	add_filter( 'genesis_attr_site-footer', 'schema_wp_genesis_attributes_removal_function', 20 );
 	
-	// Run only on blog list page
-	//if ( is_post_type_archive() ) { 
+	$json = schema_wp_get_web_page_element_json();
 		
-		$json = schema_wp_get_web_page_element_json();
+	$output = '';
 		
-		$output = '';
+	// debug
+	//echo'<pre>';print_r($json);echo'</pre>';
 		
-		// debug
-		//echo'<pre>';print_r($json);echo'</pre>';
-		
-		if ( $json ) {
-			$output .= "\n\n";
-			$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - https://schema.press -->';
-			$output .= "\n";
-			$output .= '<script type="application/ld+json">' . json_encode($json, JSON_UNESCAPED_UNICODE) . '</script>';
-			$output .= "\n\n";
-		}
-		
-		echo $output;
-	//}
+	if ( $json ) {
+		$output .= "\n\n";
+		$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - https://schema.press -->';
+		$output .= "\n";
+		$output .= '<script type="application/ld+json">' . json_encode($json, JSON_UNESCAPED_UNICODE) . '</script>';
+		$output .= "\n\n";
+	}
+	
+	echo $output;
 }
-
 
 /**
  * The main function responsible for putting header array all together
