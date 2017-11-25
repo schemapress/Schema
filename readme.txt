@@ -152,6 +152,14 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 
 == Changelog ==
 
+= 1.6.9.8.2 =
+* Fixed fatal PHP error in Auto Featured image caused issue in version 1.6.9.8 update.
+* Fixed typos when return false in a couple of functions.
+* Reverted all changes made in version 1.6.9.8 back, since issue has been solved!
+
+= 1.6.9.8.1 =
+* Reverted back all changes made in version 1.6.9.8, since it breaks!
+
 = 1.6.9.8 =
 * Fixed reset post query in post type enabled function.
 * Fixed headlines and names, make sure to remove and clean HTML tags.
