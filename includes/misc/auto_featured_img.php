@@ -12,8 +12,9 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+// Use it temporary to generate all featured images
+//add_action('the_post',				'schema_wp_auto_featured_img_featured');
 
-add_action('the_post',				'schema_wp_auto_featured_img_featured');
 add_action('save_post',				'schema_wp_auto_featured_img_featured');
 add_action('draft_to_publish',		'schema_wp_auto_featured_img_featured');
 add_action('new_to_publish',		'schema_wp_auto_featured_img_featured');
