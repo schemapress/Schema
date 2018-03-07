@@ -61,10 +61,11 @@ function schema_wp_get_author_array( $post_id = null ) {
 	
 	$author = array (
 		'@type'	=> 'Person',
+		'@id'   => esc_url( get_author_posts_url( $post_author->ID ) ),
 		'name'	=> apply_filters ( 'schema_wp_filter_author_name', $post_author->display_name ),
 		'url'	=> esc_url( get_author_posts_url( $post_author->ID ) )
 	);
-	
+
 	if ( get_the_author_meta( 'description', $post_author->ID ) ) {
 		$author['description'] = strip_tags( get_the_author_meta( 'description', $post_author->ID ) );
 	}
