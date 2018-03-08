@@ -35,6 +35,70 @@ function schema_wp_do_author( $schema ) {
 	return $schema;
 }
 
+function schema_wp_get_author_array_from_post_author($post_author) {
+
+    $jason = array();
+    $email 			= $post_author->user_email;
+
+    // Debug
+    //print_r($post_author);exit;
+
+    $author = array (
+        '@type'	=> 'Person',
+        '@id'   => esc_url( get_author_posts_url( $post_author->ID ) ),
+        'name'	=> apply_filters ( 'schema_wp_filter_author_name', $post_author->display_name ),
+        'url'	=> esc_url( get_author_posts_url( $post_author->ID ) )
+    );
+
+    if ( get_the_author_meta( 'description', $post_author->ID ) ) {
+        $author['description'] = strip_tags( get_the_author_meta( 'description', $post_author->ID ) );
+    }
+
+    if ( schema_wp_validate_gravatar($email) ) {
+        // Default = 96px, since it is a squre image, width = height
+        $image_size	= apply_filters( 'schema_wp_get_author_array_img_size', 96);
+        $image_url	= get_avatar_url( $email, $image_size );
+
+        if ( $image_url ) {
+            $author['image'] = array (
+                '@type'		=> 'ImageObject',
+                'url' 		=> $image_url,
+                'height' 	=> $image_size,
+                'width' 	=> $image_size
+            );
+        }
+    }
+
+
+    // sameAs
+    $website 	= esc_attr( stripslashes( get_the_author_meta( 'user_url', $post_author->ID ) ) );
+    $googleplus = esc_attr( stripslashes( get_the_author_meta( 'googleplus', $post_author->ID ) ) );
+    $facebook 	= esc_attr( stripslashes( get_the_author_meta( 'facebook', $post_author->ID) ) );
+    $twitter 	= esc_attr( stripslashes( get_the_author_meta( 'twitter', $post_author->ID ) ) );
+    $instagram 	= esc_attr( stripslashes( get_the_author_meta( 'instagram', $post_author->ID ) ) );
+    $youtube 	= esc_attr( stripslashes( get_the_author_meta( 'youtube', $post_author->ID ) ) );
+    $linkedin 	= esc_attr( stripslashes( get_the_author_meta( 'linkedin', $post_author->ID ) ) );
+    $myspace 	= esc_attr( stripslashes( get_the_author_meta( 'myspace', $post_author->ID ) ) );
+    $pinterest 	= esc_attr( stripslashes( get_the_author_meta( 'pinterest', $post_author->ID ) ) );
+    $soundcloud = esc_attr( stripslashes( get_the_author_meta( 'soundcloud', $post_author->ID ) ) );
+    $tumblr 	= esc_attr( stripslashes( get_the_author_meta( 'tumblr', $post_author->ID ) ) );
+    $github 	= esc_attr( stripslashes( get_the_author_meta( 'github', $post_author->ID ) ) );
+
+    $sameAs_links = array( $website, $googleplus, $facebook, $twitter, $instagram, $youtube, $linkedin, $myspace, $pinterest, $soundcloud, $tumblr, $github);
+
+    $social = array();
+
+    // Remove empty fields
+    foreach( $sameAs_links as $sameAs_link ) {
+        if ( $sameAs_link != '' ) $social[] = $sameAs_link;
+    }
+
+    if ( ! empty($social) ) {
+        $author["sameAs"] = $social;
+    }
+    print_r(apply_filters( 'schema_wp_author', $author ));
+    return apply_filters( 'schema_wp_author', $author );
+}
 
 /**
  * Get author array
@@ -45,75 +109,27 @@ function schema_wp_do_author( $schema ) {
 function schema_wp_get_author_array( $post_id = null ) {
 	
 	global $post;
-	
-	// Set post ID
-	If ( ! isset($post_id) ) $post_id = $post->ID;
-	
-	$jason = array();
-	
-	// Get author from post content
-	$content_post	= get_post($post_id);
-	$post_author	= get_userdata($content_post->post_author);
-	$email 			= $post_author->user_email; 
-	
-	// Debug
-	//print_r($post_author);exit;
-	
-	$author = array (
-		'@type'	=> 'Person',
-		'@id'   => esc_url( get_author_posts_url( $post_author->ID ) ),
-		'name'	=> apply_filters ( 'schema_wp_filter_author_name', $post_author->display_name ),
-		'url'	=> esc_url( get_author_posts_url( $post_author->ID ) )
-	);
+    // Set post ID
+    If ( ! isset($post_id) ) $post_id = $post->ID;
 
-	if ( get_the_author_meta( 'description', $post_author->ID ) ) {
-		$author['description'] = strip_tags( get_the_author_meta( 'description', $post_author->ID ) );
-	}
-	
-	if ( schema_wp_validate_gravatar($email) ) {
-		// Default = 96px, since it is a squre image, width = height
-		$image_size	= apply_filters( 'schema_wp_get_author_array_img_size', 96); 
-		$image_url	= get_avatar_url( $email, $image_size );
+    // support the co-author's plugin
+    if ( function_exists( 'get_coauthors') ) {
+        $post_authors = get_coauthors($post_id);
+        $author_array = array();
+        print "this ran\n\n\n";
+        print_r($post_authors);
+        foreach ( $post_authors as  $post_author ) {
+            $author_array[] = schema_wp_get_author_array_from_post_author($post_author);
+            print_r($author_array);
+        }
+        return $author_array;
+    } else {
+        // Get author from post content
+        $content_post	= get_post($post_id);
+        $post_author = get_userdata($content_post->post_author);
 
-		if ( $image_url ) {
-			$author['image'] = array (
-				'@type'		=> 'ImageObject',
-				'url' 		=> $image_url,
-				'height' 	=> $image_size, 
-				'width' 	=> $image_size
-			);
-		}
-	}
-	
-	
-	// sameAs
-	$website 	= esc_attr( stripslashes( get_the_author_meta( 'user_url', $post_author->ID ) ) );
-	$googleplus = esc_attr( stripslashes( get_the_author_meta( 'googleplus', $post_author->ID ) ) );
-	$facebook 	= esc_attr( stripslashes( get_the_author_meta( 'facebook', $post_author->ID) ) );
-	$twitter 	= esc_attr( stripslashes( get_the_author_meta( 'twitter', $post_author->ID ) ) );
-	$instagram 	= esc_attr( stripslashes( get_the_author_meta( 'instagram', $post_author->ID ) ) );
-	$youtube 	= esc_attr( stripslashes( get_the_author_meta( 'youtube', $post_author->ID ) ) );
-	$linkedin 	= esc_attr( stripslashes( get_the_author_meta( 'linkedin', $post_author->ID ) ) );
-	$myspace 	= esc_attr( stripslashes( get_the_author_meta( 'myspace', $post_author->ID ) ) );
-	$pinterest 	= esc_attr( stripslashes( get_the_author_meta( 'pinterest', $post_author->ID ) ) );
-	$soundcloud = esc_attr( stripslashes( get_the_author_meta( 'soundcloud', $post_author->ID ) ) );
-	$tumblr 	= esc_attr( stripslashes( get_the_author_meta( 'tumblr', $post_author->ID ) ) );
-	$github 	= esc_attr( stripslashes( get_the_author_meta( 'github', $post_author->ID ) ) );
-	
-	$sameAs_links = array( $website, $googleplus, $facebook, $twitter, $instagram, $youtube, $linkedin, $myspace, $pinterest, $soundcloud, $tumblr, $github);
-	
-	$social = array();
-	
-	// Remove empty fields
-	foreach( $sameAs_links as $sameAs_link ) {
-		if ( $sameAs_link != '' ) $social[] = $sameAs_link;
-	}
-	
-	if ( ! empty($social) ) {
-		$author["sameAs"] = $social;
-	}
-	
-	return apply_filters( 'schema_wp_author', $author );
+        return schema_wp_get_author_array_from_post_author($post_author);
+    }
 }
 
 
