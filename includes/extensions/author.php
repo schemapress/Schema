@@ -49,7 +49,7 @@ function schema_wp_get_author_array_from_post_author($post_author) {
     //print_r($post_author);exit;
 
     $author = array (
-        '@type'	=> 'Person',
+		'@type'	=> 'Person',
         '@id'   => esc_url( get_author_posts_url( $post_author->ID ) ),
         'name'	=> apply_filters ( 'schema_wp_filter_author_name', $post_author->display_name ),
         'url'	=> esc_url( get_author_posts_url( $post_author->ID ) )
