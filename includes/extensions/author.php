@@ -35,6 +35,11 @@ function schema_wp_do_author( $schema ) {
 	return $schema;
 }
 
+/**
+ * Used to generate the author json from the post_author array
+ * @param $post_author the post_author array
+ * @return mixed|void
+ */
 function schema_wp_get_author_array_from_post_author($post_author) {
 
     $jason = array();
@@ -96,7 +101,6 @@ function schema_wp_get_author_array_from_post_author($post_author) {
     if ( ! empty($social) ) {
         $author["sameAs"] = $social;
     }
-    print_r(apply_filters( 'schema_wp_author', $author ));
     return apply_filters( 'schema_wp_author', $author );
 }
 
@@ -116,11 +120,8 @@ function schema_wp_get_author_array( $post_id = null ) {
     if ( function_exists( 'get_coauthors') ) {
         $post_authors = get_coauthors($post_id);
         $author_array = array();
-        print "this ran\n\n\n";
-        print_r($post_authors);
         foreach ( $post_authors as  $post_author ) {
             $author_array[] = schema_wp_get_author_array_from_post_author($post_author);
-            print_r($author_array);
         }
         return $author_array;
     } else {
