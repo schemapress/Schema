@@ -207,6 +207,11 @@ function schema_wp_get_address() {
     return $address;
 }
 
+/**
+ * Get the organization geo point if it has one
+ *
+ * @return array
+ */
 function schema_wp_get_geo() {
     $geo = array();
     if(schema_wp_get_option('latitude')) {
