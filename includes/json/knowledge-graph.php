@@ -74,24 +74,38 @@ function schema_wp_get_knowledge_graph_json() {
 	
 	$name	= schema_wp_get_option( 'name' );
 	$url	= esc_attr( stripslashes( schema_wp_get_option( 'url' ) ) );
-	
+	$image = esc_attr( stripslashes( schema_wp_get_option( 'image' ) ) );
+
 	if ( empty($name) || empty($url) ) return;
 	
-	// Set logo only when type = Organization
+	// Set logo, address, etc only when type = Organization
 	if ( $type == 'Organization' ) {
 		$logo = esc_attr( stripslashes( schema_wp_get_option( 'logo' ) ) );
+		$address = schema_wp_get_address();
+		$geo = schema_wp_get_geo();
+		// allow the user to set a subtype like LocalBusiness
+		$additional_type = schema_wp_get_option('organization_subtype');
 	} else {
 		$logo = '';
+		$additional_type = '';
+		$geo = array();
+		$address = array();
 	}
 	
 	$schema['@context'] = "http://schema.org";
 	$schema['@type'] 	= $type;
 	$schema['@id'] 		= '#' . $organization_or_person;
-	
-	if ( !empty($name) ) $schema['name'] 	= $name;
-	if ( !empty($url) ) $schema['url'] 		= $url;
-	if ( !empty($logo) ) $schema['logo'] 	= $logo;
-	
+
+
+	if ( !empty($name) ) $schema['name'] 		= $name;
+	if ( !empty($url) ) $schema['url']			= $url;
+	if ( !empty($logo) ) $schema['logo'] 		= $logo;
+	if ( !empty($address) ) $schema['address']	= $address;
+	if ( !empty($geo) ) $schema['geo']			= $geo;
+	if ( !empty($image) ) $schema['image']		= $image;
+	// if we have a more accurate, additional type, override the @type with it
+	if ( !empty($additional_type) ) $schema['@type'] = $additional_type;
+
 	// Get corporate contacts types array
 	$corporate_contacts_types = schema_wp_get_corporate_contacts_types_array();
 	// Add contact
@@ -169,4 +183,38 @@ function schema_wp_get_social_array() {
 	}
 	
 	return $social;
+}
+
+/**
+ * Get the organization address if it has one
+ *
+ * @return array
+ */
+function schema_wp_get_address() {
+    $address = array();
+    // country is a required field
+    if(schema_wp_get_option('address_country')) {
+        $address = array(
+            '@type' => 'PostalAddress',
+            'addressCountry' => (schema_wp_get_option('address_country')) ? schema_wp_get_option('address_country') : '',
+            'addressLocality' => (schema_wp_get_option('address_locality')) ? schema_wp_get_option('address_locality') : '',
+            'addressRegion' => (schema_wp_get_option('address_region')) ? schema_wp_get_option('address_region') : '',
+            'postalCode' => (schema_wp_get_option('postal_code')) ? schema_wp_get_option('postal_code') : '',
+            'streetAddress' => (schema_wp_get_option('street_address')) ? schema_wp_get_option('street_address') : '',
+        );
+    }
+
+    return $address;
+}
+
+function schema_wp_get_geo() {
+    $geo = array();
+    if(schema_wp_get_option('latitude')) {
+        $geo = array(
+            '@type' => 'GeoCoordinates',
+            'latitude' => ( schema_wp_get_option( 'latitude' ) ) ? schema_wp_get_option( 'latitude' ) : '',
+            'longitude' => ( schema_wp_get_option( 'latitude' ) ) ? schema_wp_get_option( 'latitude' ) : '',
+        );
+    }
+    return $geo;
 }

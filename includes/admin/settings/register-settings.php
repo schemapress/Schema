@@ -2,11 +2,11 @@
 /**
  * Register Settings
  *
- * @package     Schema
+ * @package	 Schema
  * @subpackage  Admin/Settings
  * @copyright   Copyright (c) 2016, Hesham Zebida
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       1.0
+ * @license	 http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since	   1.0
 */
 
 // Exit if accessed directly
@@ -34,7 +34,7 @@ function schema_wp_get_option( $key = '', $default = false ) {
  *
  * Updates an edd setting value in both the db and the global variable.
  * Warning: Passing in an empty, false or null string value will remove
- *          the key from the schema_wp_options array.
+ *		  the key from the schema_wp_options array.
  *
  * @since 2.3
  * @param string $key The Key to update
@@ -129,12 +129,12 @@ function schema_wp_get_settings() {
 
 		// Update old settings with new single option
 
-		$general_settings = is_array( get_option( 'schema_wp_settings_general' ) )    ? get_option( 'schema_wp_settings_general' )    : array();
-		$knowledge_graph_settings = is_array( get_option( 'schema_wp_settings_knowledge_graph' ) )    ? get_option( 'schema_wp_settings_knowledge_graph' )    : array();
-		$search_results_settings = is_array( get_option( 'schema_wp_settings_search_results' ) )    ? get_option( 'schema_wp_settings_search_results' )    : array();
-		$ext_settings     = is_array( get_option( 'schema_wp_settings_extensions' ) ) ? get_option( 'schema_wp_settings_extensions' ) : array();
+		$general_settings = is_array( get_option( 'schema_wp_settings_general' ) )	? get_option( 'schema_wp_settings_general' )	: array();
+		$knowledge_graph_settings = is_array( get_option( 'schema_wp_settings_knowledge_graph' ) )	? get_option( 'schema_wp_settings_knowledge_graph' )	: array();
+		$search_results_settings = is_array( get_option( 'schema_wp_settings_search_results' ) )	? get_option( 'schema_wp_settings_search_results' )	: array();
+		$ext_settings	 = is_array( get_option( 'schema_wp_settings_extensions' ) ) ? get_option( 'schema_wp_settings_extensions' ) : array();
 		$license_settings = is_array( get_option( 'schema_wp_settings_licenses' ) )   ? get_option( 'schema_wp_settings_licenses' )   : array();
-		$misc_settings    = is_array( get_option( 'schema_wp_settings_misc' ) )       ? get_option( 'schema_wp_settings_misc' )       : array();
+		$misc_settings	= is_array( get_option( 'schema_wp_settings_misc' ) )	   ? get_option( 'schema_wp_settings_misc' )	   : array();
 
 		$settings = array_merge( $general_settings, $knowledge_graph_settings, $search_results_settings, $ext_settings, $license_settings, $misc_settings );
 
@@ -188,21 +188,21 @@ function schema_wp_register_settings() {
 					'schema_wp_settings_' . $tab . '_' . $section,
 					'schema_wp_settings_' . $tab . '_' . $section,
 					array(
-						'section'       => $section,
-						'id'            => isset( $option['id'] )            ? $option['id']            : null,
-						'desc'          => ! empty( $option['desc'] )        ? $option['desc']          : '',
-						'name'          => isset( $option['name'] )          ? $option['name']          : null,
-						'size'          => isset( $option['size'] )          ? $option['size']          : null,
-						'options'       => isset( $option['options'] )       ? $option['options']       : '',
-						'std'           => isset( $option['std'] )           ? $option['std']           : '',
-						'min'           => isset( $option['min'] )           ? $option['min']           : null,
-						'max'           => isset( $option['max'] )           ? $option['max']           : null,
-						'step'          => isset( $option['step'] )          ? $option['step']          : null,
-						'chosen'        => isset( $option['chosen'] )        ? $option['chosen']        : null,
+						'section'	   => $section,
+						'id'			=> isset( $option['id'] )			? $option['id']			: null,
+						'desc'		  => ! empty( $option['desc'] )		? $option['desc']		  : '',
+						'name'		  => isset( $option['name'] )		  ? $option['name']		  : null,
+						'size'		  => isset( $option['size'] )		  ? $option['size']		  : null,
+						'options'	   => isset( $option['options'] )	   ? $option['options']	   : '',
+						'std'		   => isset( $option['std'] )		   ? $option['std']		   : '',
+						'min'		   => isset( $option['min'] )		   ? $option['min']		   : null,
+						'max'		   => isset( $option['max'] )		   ? $option['max']		   : null,
+						'step'		  => isset( $option['step'] )		  ? $option['step']		  : null,
+						'chosen'		=> isset( $option['chosen'] )		? $option['chosen']		: null,
 						'placeholder'   => isset( $option['placeholder'] )   ? $option['placeholder']   : null,
 						'allow_blank'   => isset( $option['allow_blank'] )   ? $option['allow_blank']   : true,
-						'readonly'      => isset( $option['readonly'] )      ? $option['readonly']      : false,
-						'faux'          => isset( $option['faux'] )          ? $option['faux']          : false,
+						'readonly'	  => isset( $option['readonly'] )	  ? $option['readonly']	  : false,
+						'faux'		  => isset( $option['faux'] )		  ? $option['faux']		  : false,
 						'tooltip_title' => isset( $option['tooltip_title'] ) ? $option['tooltip_title'] : false,
 						'tooltip_desc'  => isset( $option['tooltip_desc'] )  ? $option['tooltip_desc']  : false,
 						'post_type'		=> isset( $option['post_type'] )  	 ? $option['post_type']  	: false,
@@ -318,6 +318,45 @@ function schema_wp_get_registered_settings() {
 						),
 						'std' => ''
 					),
+					'organization_subtype' => array(
+						'id' => 'organization_subtype',
+						'name' => __( 'Organization sub-type?', 'schema-wp'),
+						'type' => 'select',
+						'options' => array(
+							null => __( 'None', 'schema-wp'),
+							'LocalBusiness' => __( 'Local Business', 'schema-wp'),
+							'Restaurant' => __( 'Restaurant', 'schema-wp'),
+							'DaySpa' => __( 'Day Spa', 'schema-wp'),
+							'HealthClub' => __( 'Health Club', 'schema-wp'),
+							'Store' => __( 'Store', 'schema-wp'),
+							'TelevisionStation' => __( 'TelevisionStation', 'schema-wp'),
+							'AnimalShelter' => __( 'AnimalShelter', 'schema-wp'),
+							'AutomotiveBusiness' => __( 'Automotive Business', 'schema-wp'),
+							'Dentist' => __( 'Dentist', 'schema-wp'),
+							'DryCleaningOrLaundry' => __( 'Dry Cleaning or Laundry', 'schema-wp'),
+							'EmergencyService' => __( 'Emergency Service', 'schema-wp'),
+							'EmploymentAgency' => __( 'Employment Agency', 'schema-wp'),
+							'Entertainment Agency'=> __( 'EntertainmentAgency', 'schema-wp'),
+							'FinancialService' => __( 'Financial Service', 'schema-wp'),
+							'FoodEstablishment' => __( 'Food Establishment', 'schema-wp'),
+							'GovernmentOffice' => __( 'Government Office', 'schema-wp'),
+							'HealthAndBeautyBusiness' => __( 'Health & Beauty', 'schema-wp'),
+							'InternetCafe' => __( 'Internet Cafe', 'schema-wp'),
+							'LegalService' => __( 'Legal Service', 'schema-wp'),
+							'Library' => __( 'Library', 'schema-wp'),
+							'LodgingBusiness' => __( 'Lodging Business', 'schema-wp'),
+							'ProfessionalService' => __( 'Professional Service', 'schema-wp'),
+							'RadioStation' => __( 'Radio Station', 'schema-wp'),
+							'RealEstateAgent' => __( 'Real Estate Agent', 'schema-wp'),
+							'RecyclingCenter' => __( 'Recycling Center', 'schema-wp'),
+							'SelfStorage' => __( 'Self Storage', 'schema-wp'),
+							'ShoppingCenter' => __( 'Shopping Centre', 'schema-wp'),
+							'SportsActivityLocation' => __( 'SportsActivityLocation', 'schema-wp'),
+							'TouristInformationCenter' => __( 'TouristInformationCenter', 'schema-wp'),
+							'TravelAgency'  => __( 'Travel Agency', 'schema-wp')
+						),
+						'std' => 'None'
+					),
 					'name' => array(
 						'id' => 'name',
 						'name' => __( 'Name', 'schema-wp' ),
@@ -338,6 +377,13 @@ function schema_wp_get_registered_settings() {
 						'id' => 'logo',
 						'name' => __( 'Logo', 'schema-wp' ),
 						'desc' => __( 'Organization logo.', 'schema-wp' ) . ' <a href="https://developers.google.com/search/docs/data-types/logo" target="_blank">'.__('Logo guidelines', 'schema-wp').'</a>',
+						'type' => 'image_upload',
+						'std' => ''
+					),
+					'image' => array(
+						'id' => 'image',
+						'name' => __( 'Image', 'schema-wp' ),
+						'desc' => __( 'An image depicting the Person/Organization (optional).', 'schema-wp' ),
 						'type' => 'image_upload',
 						'std' => ''
 					)
@@ -456,8 +502,73 @@ function schema_wp_get_registered_settings() {
 						'type' => 'text',
 						'placeholder' => 'http://',
 						'std' => ''
-					)
-				) 
+					),
+
+					// Address
+					'address' => array(
+						'id' => 'address_settings',
+						'name' => '<strong>' . __( 'Address', 'schema-wp' ) . '</strong>',
+						'desc' => __( 'Use structured data markup embedded in your public website to specify your address.', 'schema-wp' ),
+						'type' => 'header'
+					),
+					'address_country' => array(
+						'id' => 'address_country',
+						'name' => __( 'Country', 'schema-wp' ),
+						'desc' => __( 'Please use a two letter country code', 'schema-wp' ),
+						'type' => 'text',
+						'placeholder' => 'AU',
+						'std' => ''
+					),
+					'address_locality' => array(
+						'id' => 'address_locality',
+						'name' => __( 'Locality', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => '',
+						'std' => ''
+					),
+					'address_region' => array(
+						'id' => 'address_region',
+						'name' => __( 'Region', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => '',
+						'std' => ''
+					),
+					'postal_code' => array(
+						'id' => 'postal_code',
+						'name' => __( 'Post Code', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => '',
+						'std' => ''
+					),
+					'street_address' => array(
+						'id' => 'street_address',
+						'name' => __( 'Street Address', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => '',
+						'std' => ''
+					),
+					'latitude' => array(
+						'id' => 'latitude',
+						'name' => __( 'Latitude', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'geo',
+						'placeholder' => '',
+						'std' => ''
+					),
+					'longitude' => array(
+						'id' => 'longitude',
+						'name' => __( 'Longitude', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'geo',
+						'placeholder' => '',
+						'std' => ''
+					),
+
+				)
 			)
 		),
 		
@@ -546,12 +657,12 @@ function schema_wp_settings_sanitize( $input = array() ) {
 	}
 
 	$setting_types = schema_wp_get_registered_settings_types();
-	$input         = $input ? $input : array();
+	$input		 = $input ? $input : array();
 
 	if ( $doing_section ) {
 
 		parse_str( $_POST['_wp_http_referer'], $referrer ); // Pull out the tab and section
-		$tab      = isset( $referrer['tab'] ) ? $referrer['tab'] : 'general';
+		$tab	  = isset( $referrer['tab'] ) ? $referrer['tab'] : 'general';
 		$section  = isset( $referrer['section'] ) ? $referrer['section'] : 'main';
 
 		// Run a general sanitization for the tab for special fields (like taxes)
@@ -621,7 +732,7 @@ function schema_wp_settings_sanitize( $input = array() ) {
  * @return array Key is the setting ID, value is the type of setting it is registered as
  */
 function schema_wp_get_registered_settings_types() {
-	$settings      = schema_wp_get_registered_settings();
+	$settings	  = schema_wp_get_registered_settings();
 	$setting_types = array();
 	
 	// debug
@@ -659,18 +770,18 @@ function schema_wp_sanitize_text_field( $input ) {
 	$tags = array(
 		'p' => array(
 			'class' => array(),
-			'id'    => array(),
+			'id'	=> array(),
 		),
 		'span' => array(
 			'class' => array(),
-			'id'    => array(),
+			'id'	=> array(),
 		),
 		'a' => array(
 			'href' => array(),
 			'title' => array(),
 			'class' => array(),
 			'title' => array(),
-			'id'    => array(),
+			'id'	=> array(),
 		),
 		'strong' => array(),
 		'em' => array(),
@@ -679,19 +790,19 @@ function schema_wp_sanitize_text_field( $input ) {
 			'src'   => array(),
 			'title' => array(),
 			'alt'   => array(),
-			'id'    => array(),
+			'id'	=> array(),
 		),
 		'div' => array(
 			'class' => array(),
-			'id'    => array(),
+			'id'	=> array(),
 		),
 		'ul' => array(
 			'class' => array(),
-			'id'    => array(),
+			'id'	=> array(),
 		),
 		'li' => array(
 			'class' => array(),
-			'id'    => array(),
+			'id'	=> array(),
 		)
 	);
 
@@ -724,10 +835,10 @@ function schema_wp_get_settings_tabs() {
 		$tabs['licenses'] = __( 'Licenses', 'wp-schema' );
 	}
 
-	$tabs['misc']      = __( 'Misc', 'wp-schema' );
+	$tabs['misc']	  = __( 'Misc', 'wp-schema' );
 	
 	//if( schema_wp()->settings->get( 'debug_mode', false ) ) {	
-	//	$tabs['schema_wp_debug']     = __( 'Debug Assistant', 'schema-wp' );
+	//	$tabs['schema_wp_debug']	 = __( 'Debug Assistant', 'schema-wp' );
 	//}
 	
 	return apply_filters( 'schema_wp_settings_tabs', $tabs );
@@ -741,7 +852,7 @@ function schema_wp_get_settings_tabs() {
  */
 function schema_wp_get_settings_tab_sections( $tab = false ) {
 
-	$tabs     = false;
+	$tabs	 = false;
 	$sections = schema_wp_get_registered_settings_sections();
 
 	if( $tab && ! empty( $sections[ $tab ] ) ) {
@@ -769,10 +880,10 @@ function schema_wp_get_registered_settings_sections() {
 	}
 
 	$sections = array(
-		'general'    => apply_filters( 'schema_wp_settings_sections_general', array(
+		'general'	=> apply_filters( 'schema_wp_settings_sections_general', array(
 			'main'		=> '',
 		) ),
-		'content'    => apply_filters( 'schema_wp_settings_sections_content', array(
+		'content'	=> apply_filters( 'schema_wp_settings_sections_content', array(
 			'main'		=> '',
 		) ),
 		'knowledge_graph'	=> apply_filters( 'schema_wp_settings_sections_knowledge_graph', array(
@@ -780,14 +891,14 @@ function schema_wp_get_registered_settings_sections() {
 			'corporate_contacts'	=> __( 'Corporate Contacts', 'wp-schema' ),
 		) ),
 		'search_results'	=> apply_filters( 'schema_wp_settings_sections_search_results', array(
-			'sitelinks'      	=> __( 'Sitelinks Search Box', 'wp-schema' ),
-			'sitename'          => __( 'Site Name', 'wp-schema' ),
+			'sitelinks'	  	=> __( 'Sitelinks Search Box', 'wp-schema' ),
+			'sitename'		  => __( 'Site Name', 'wp-schema' ),
 		) ),
 		'extensions' => apply_filters( 'schema_wp_settings_sections_extensions', array(
 			'main'		 => __( 'Main', 'wp-schema' ),
 		) ),
 		'licenses'   => apply_filters( 'schema_wp_settings_sections_licenses', array() ),
-		'misc'       => apply_filters( 'schema_wp_settings_sections_misc', array(
+		'misc'	   => apply_filters( 'schema_wp_settings_sections_misc', array(
 			'main'		 => '',
 		) ),
 	);
@@ -857,9 +968,9 @@ function schema_wp_checkbox_callback( $args ) {
 	}
 
 	$checked  = ! empty( $schema_wp_option ) ? checked( 1, $schema_wp_option, false ) : '';
-	$html     = '<input type="hidden"' . $name . ' value="-1" />';
-	$html    .= '<input type="checkbox" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"' . $name . ' value="1" ' . $checked . '/>';
-	$html    .= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
+	$html	 = '<input type="hidden"' . $name . ' value="-1" />';
+	$html	.= '<input type="checkbox" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"' . $name . ' value="1" ' . $checked . '/>';
+	$html	.= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
 
 	echo apply_filters( 'schema_wp_after_setting_output', $html, $args );
 }
@@ -952,9 +1063,9 @@ function schema_wp_text_callback( $args ) {
 	}
 
 	$readonly = $args['readonly'] === true ? ' readonly="readonly"' : '';
-	$size     = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
-	$html     = '<input type="text" class="' . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" ' . $name . ' value="' . esc_attr( stripslashes( $value ) ) . '" placeholder="' . $args['placeholder'] . '" ' . $readonly . '/>';
-	$html    .= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
+	$size	 = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
+	$html	 = '<input type="text" class="' . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" ' . $name . ' value="' . esc_attr( stripslashes( $value ) ) . '" placeholder="' . $args['placeholder'] . '" ' . $readonly . '/>';
+	$html	.= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
 
 	echo apply_filters( 'schema_wp_after_setting_output', $html, $args );
 }
@@ -989,6 +1100,44 @@ function schema_wp_number_callback( $args ) {
 	$max  = isset( $args['max'] ) ? $args['max'] : 999999;
 	$min  = isset( $args['min'] ) ? $args['min'] : 0;
 	$step = isset( $args['step'] ) ? $args['step'] : 1;
+
+	$size = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
+	$html = '<input type="number" step="' . esc_attr( $step ) . '" max="' . esc_attr( $max ) . '" min="' . esc_attr( $min ) . '" class="' . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" ' . $name . ' value="' . esc_attr( stripslashes( $value ) ) . '"/>';
+	$html .= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
+
+	echo apply_filters( 'schema_wp_after_setting_output', $html, $args );
+}
+
+/**
+ * Lat/Long Callback
+ *
+ * Renders number fields.
+ *
+ * @since 1.9
+ * @param array $args Arguments passed by the setting
+ *
+ * @return void
+ */
+function schema_wp_geo_callback( $args ) {
+	$schema_wp_option = schema_wp_get_option( $args['id'] );
+
+	if ( $schema_wp_option ) {
+		$value = $schema_wp_option;
+	} else {
+		$value = isset( $args['std'] ) ? $args['std'] : '';
+	}
+
+	if ( isset( $args['faux'] ) && true === $args['faux'] ) {
+		$args['readonly'] = true;
+		$value = isset( $args['std'] ) ? $args['std'] : '';
+		$name  = '';
+	} else {
+		$name = 'name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']"';
+	}
+
+	$max  = isset( $args['max'] ) ? $args['max'] : 180;
+	$min  = isset( $args['min'] ) ? $args['min'] : -180;
+	$step = isset( $args['step'] ) ? $args['step'] : 0.000000001;
 
 	$size = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
 	$html = '<input type="number" step="' . esc_attr( $step ) . '" max="' . esc_attr( $max ) . '" min="' . esc_attr( $min ) . '" class="' . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" ' . $name . ' value="' . esc_attr( stripslashes( $value ) ) . '"/>';
@@ -1422,7 +1571,7 @@ if ( ! function_exists( 'schema_wp_license_key_callback' ) ) {
 
 						$class = 'valid';
 
-						$now        = current_time( 'timestamp' );
+						$now		= current_time( 'timestamp' );
 						$expiration = strtotime( $license->expires, current_time( 'timestamp' ) );
 
 						if( 'lifetime' === $license->expires ) {
