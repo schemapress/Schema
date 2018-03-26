@@ -250,12 +250,12 @@ function schema_wp_get_registered_settings() {
 						'type' => 'post_select',
 						'post_type' => 'page'
 					),
-					'auto_featured_img' => array(
+					/*'auto_featured_img' => array(
 						'id' => 'auto_featured_img',
 						'name' => __( 'Set Featured image automatically?', 'schema-wp' ),
 						'desc' => __( 'Check this box if you would like Schema to try setting Featured image while you create or edit the post.', 'schema-wp' ),
 						'type' => 'checkbox'
-					),
+					),*/
 					'publisher_logo' => array(
 						'id' => 'publisher_logo',
 						'name' => __( 'Publisher Logo', 'schema-wp' ),
