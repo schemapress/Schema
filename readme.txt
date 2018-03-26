@@ -3,7 +3,7 @@ Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, breadcrumbs, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile, taxonomy
 Requires at least: 4.0
-Tested up to: 4.9
+Tested up to: 4.9.4
 Requires PHP: 5.4
 Stable tag: 1.6.9.8
 
@@ -153,8 +153,9 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 == Changelog ==
 
 = 1.6.9.8.2 =
-* Fixed fatal PHP error in Auto Featured image caused issue in version 1.6.9.8 update.
 * Fixed typos when return false in a couple of functions.
+* Removed the Auto Featured Image feature, it was causing several issues.
+* Removed class_settings.php file, which was not used in the plugin.
 * Reverted all changes made in version 1.6.9.8 back, since issue has been solved!
 
 = 1.6.9.8.1 =
@@ -595,6 +596,12 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.6.9.8.2 =
+In this release, most of the reported bugs has been fixed. Please, update the plugin on your website now to get fixes and enhancements.
+
+= 1.6.9.8.1 =
+In this release, we reverted back to 1.6.9.8, update the plugin on your website now to get fixes.
 
 = 1.6.9.8 =
 In this release, most of the reported bugs has been fixed, including a fix for Easy Digital Downloads plugin. Also, new features has been introduced, example WPHeader and WPFooter markups, and support for ItemList markup on post types archive pages. Please, update the plugin on your website now to get fixes and enhancements.
