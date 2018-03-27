@@ -159,6 +159,7 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Removed the Auto Featured Image feature, it was causing several issues.
 * Removed class-settings.php file, which was not used in the plugin.
 * Reverted all changes made in version 1.6.9.8 back, since issue has been solved!
+* Updated the plugin welcome page.
 * Updated readme.txt file to include GPL license details.
 
 = 1.6.9.8.1 =
