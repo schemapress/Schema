@@ -6,6 +6,8 @@ Requires at least: 4.0
 Tested up to: 4.9.4
 Requires PHP: 5.4
 Stable tag: 1.6.9.8
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -155,8 +157,9 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 = 1.6.9.8.2 =
 * Fixed typos when return false in a couple of functions.
 * Removed the Auto Featured Image feature, it was causing several issues.
-* Removed class_settings.php file, which was not used in the plugin.
+* Removed class-settings.php file, which was not used in the plugin.
 * Reverted all changes made in version 1.6.9.8 back, since issue has been solved!
+* Updated readme.txt file to include GPL license details.
 
 = 1.6.9.8.1 =
 * Reverted back all changes made in version 1.6.9.8, since it breaks!
