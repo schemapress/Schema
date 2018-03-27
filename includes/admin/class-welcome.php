@@ -189,8 +189,8 @@ class Schema_WP_Welcome {
 			<div class="changelog">
 				
                 <div class="update-nag schema-wp-info-notice">
-                 <h3><?php _e( 'Please update Knowledge Graph settings!', 'schema-wp' );?></h3>
-					<p><?php _e( 'The Knowledge Graph settings has been updated with a new feature, support for \'Person\' has been added, please configure the', 'schema-wp' );?> <a href="<?php echo esc_url( admin_url( 'admin.php?page=schema&tab=knowledge_graph' ) ); ?>"><?php _e( 'plugin settings', 'schema-wp' ); ?></a></p> 
+                 <h3><?php _e( 'Please update Schema Content settings!', 'schema-wp' );?></h3>
+					<p><?php _e( 'The Content settings has been updated with new features including support for \'WPHeader\', \'WPFooter\', and \'BreadcrumbList\', please configure the', 'schema-wp' );?> <a href="<?php echo esc_url( admin_url( 'admin.php?page=schema&tab=content' ) ); ?>"><?php _e( 'plugin settings', 'schema-wp' ); ?></a></p> 
 					
 					<p><i class="dashicons dashicons-warning"></i> <?php _e( 'If you are caching your site, make sure to clear cache for changes to take effect.', 'schema-wp' );?></p>
                    
@@ -215,6 +215,14 @@ class Schema_WP_Welcome {
                     
                     - <?php _e( 'Blog', 'schema-wp' );?> (<?php _e( 'for Blog posts list page', 'schema-wp' );?>)
                     
+                    <br>
+                    
+                    - <?php _e( 'WPHeader', 'schema-wp' );?> (<?php _e( 'for Web Page Header', 'schema-wp' );?>)
+                    
+                    <br>
+                    
+                    - <?php _e( 'WPFooter', 'schema-wp' );?> (<?php _e( 'for Web Page Footer', 'schema-wp' );?>)
+                    
                      <br>
                     
                     - <?php _e( 'BreadcrumbList', 'schema-wp' );?> (<?php _e( 'for Breadcrumbs', 'schema-wp' );?>)
@@ -222,6 +230,10 @@ class Schema_WP_Welcome {
                      <br>
                     
                     - <?php _e( 'CollectionPage', 'schema-wp' );?> (<?php _e( 'for Categories', 'schema-wp' );?>)
+                    
+                     <br>
+                    
+                    - <?php _e( 'CollectionPage', 'schema-wp' );?> (<?php _e( 'for Tags', 'schema-wp' );?>)
                     
                     <br>
                     
@@ -239,7 +251,7 @@ class Schema_WP_Welcome {
                     
                     - <?php _e( 'New Schema Type?', 'schema-wp' );?>
                     <ul>
-                        	<li><?php _e( 'coming soon!', 'schema-wp' );?></li>
+                        	<li><?php _e( 'Maybe coming soon!', 'schema-wp' );?></li>
                     </ul>
             		
                     <div class="return-to-dashboard">
