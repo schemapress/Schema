@@ -25,7 +25,7 @@ function schema_wp_output_sitelinks_search_box() {
 		$site_name				= schema_wp_get_option( 'site_name' );
 		$site_alternate_name	= schema_wp_get_option( 'site_alternate_name' );
 		
-		if ( ! isset($sitelinks_search_box) ) return;
+		if ( ! isset($sitelinks_search_box) || ! $sitelinks_search_box ) return;
 		
 		$output .= PHP_EOL . '<script type="application/ld+json">' . PHP_EOL;
 		$output .= '{' . PHP_EOL;

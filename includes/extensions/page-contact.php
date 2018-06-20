@@ -102,17 +102,17 @@ function schema_wp_get_page_contact_json( $type ) {
 		);
 	*/
 	
-	$schema["headline"]			= $json["headline"];
+	$schema["headline"] = $json["headline"];
 	
 	//$schema["datePublished"]	= $json["datePublished"];
-	//$schema["dateModified"]		= $json["dateModified"];
+	//$schema["dateModified"]	= $json["dateModified"];
 	
 	if ( ! empty( $json["media"] ) ) {
 		$schema["image"] = array(
     		"@type"		=> "ImageObject",
-    		"url"		=> isset($json["media"]["image_url"]) ? $json["media"]["image_url"] : '',
-    		"width"		=> isset($json["media"]["image_width"]) ? $json["media"]["image_width"] : '',
-			"height"	=> isset($json["media"]["image_height"]) ? $json["media"]["image_height"] : ''
+    		"url"		=> isset($json["media"]["url"]) ? $json["media"]["url"] : '',
+    		"width"		=> isset($json["media"]["width"]) ? $json["media"]["width"] : '',
+			"height"	=> isset($json["media"]["height"]) ? $json["media"]["height"] : ''
 		);
 	}
 	

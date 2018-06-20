@@ -125,6 +125,10 @@ class Schema_WP_Welcome {
 		}
 		.schema-wp-info-notice {
 			border-left: 4px solid #5b9dd9;
+			display: block;
+		}
+		.schema-wp-info-notice h3 {
+			font-size: 1.6em !important;
 		}
 		.schema-wp-info-notice i {
 			color: #5b9dd9;
@@ -189,11 +193,13 @@ class Schema_WP_Welcome {
 			<div class="changelog">
 				
                 <div class="update-nag schema-wp-info-notice">
-                 <h3><?php _e( 'Please update Schema Content settings!', 'schema-wp' );?></h3>
-					<p><?php _e( 'The Content settings has been updated with new features including support for \'WPHeader\', \'WPFooter\', and \'BreadcrumbList\', please configure the', 'schema-wp' );?> <a href="<?php echo esc_url( admin_url( 'admin.php?page=schema&tab=content' ) ); ?>"><?php _e( 'plugin settings', 'schema-wp' ); ?></a></p> 
+                 <h3><?php _e( 'First-time Schema configuration!', 'schema-wp' );?></h3>
+					<p><?php _e( 'Get started quickly with the Schema configuration wizard!', 'schema-wp' );?></p>
+                    <p>
+                    	<a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=schema' ) ); ?>"><?php _e( 'Plugin Settings', 'schema-wp' ); ?></a>
+                        <a class="button-primary" href="<?php echo esc_url( admin_url( 'admin.php?page=schema-setup' ) ); ?>"><?php _e( 'Quick Configuration Wizard', 'schema-wp' ); ?></a>
+                    </p> 
 					
-					<p><i class="dashicons dashicons-warning"></i> <?php _e( 'If you are caching your site, make sure to clear cache for changes to take effect.', 'schema-wp' );?></p>
-                   
                 </div>
                  
 				<div class="feature-section sub-section">

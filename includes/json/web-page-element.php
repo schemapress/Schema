@@ -25,10 +25,14 @@ function schema_wp_output_web_page_element() {
 	if ( $enable != true )
 		return;
 	
-	// disable Genesis header markup
-	add_filter( 'genesis_attr_site-header', 'schema_wp_genesis_attributes_removal_function', 20 );
-	// disable Genesis footer markup
-	add_filter( 'genesis_attr_site-footer', 'schema_wp_genesis_attributes_removal_function', 20 );
+	// Check if Genesis function exists
+	// Remove Genesis site Header and Footer markup
+	if ( function_exists('genesis_attr') ) { 
+		// disable Genesis header markup
+		add_filter( 'genesis_attr_site-header', 'schema_wp_genesis_attributes_removal_function', 20 );
+		// disable Genesis footer markup
+		add_filter( 'genesis_attr_site-footer', 'schema_wp_genesis_attributes_removal_function', 20 );
+	}
 	
 	$json = schema_wp_get_web_page_element_json();
 		

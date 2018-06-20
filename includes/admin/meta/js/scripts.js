@@ -196,5 +196,10 @@ jQuery(function($) {
 
     // turn select boxes into something magical
     if (!!$.prototype.chosen)
-        $('.chosen').chosen({allow_single_deselect: true});
+        $('.chosen').chosen({
+			//disable_search_threshold: 10,
+			//no_results_text: "Oops, nothing found!",
+			//width: "95%",
+			allow_single_deselect: true,
+		});
 });

@@ -78,7 +78,7 @@ class Schema_WP_Admin_Menu {
 			__( 'About', 'schema-wp' ),
 			__( 'About', 'schema-wp' ),
 			'manage_schema_options',
-			'?page=schema-wp-what-is-new'
+			'admin.php?page=schema-wp-what-is-new'
 		);
 	}
 

@@ -156,7 +156,7 @@ $fields_post_meta_box =  array (
 		'id'	=> $prefix.'post_meta_box', // field id and name
 		'type'	=> 'repeatable_row', // type of field
 		'sanitizer' => array( // array of sanitizers with matching kets to next array
-			'featured' => 'meta_box_santitize_boolean',
+			'featured' => 'schema_wp_meta_box_santitize_boolean',
 			'title' => 'sanitize_text_field',
 			'desc' => 'wp_kses_data'
 		),
