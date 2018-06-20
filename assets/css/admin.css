@@ -329,3 +329,14 @@ table.schema-review-rating-scale {
 .schema-wp-extensions-footer {
   padding-top: 10px;
 }
+
+/* Setup Wizard */
+.schema_wiz_btn {
+	margin: 0px 7px 3px 7px !important;
+}
+
+@media (max-width: 800px) {
+    .schema_wiz_btn {
+		margin: 10px 7px !important;
+	}
+}

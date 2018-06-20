@@ -1,0 +1,40 @@
+body {
+    margin: 25px auto 25px;
+}
+input[type=radio] {
+    border-radius: 50%;
+    margin-right: 4px;
+    line-height: 10px;
+}
+input[type=radio], input[type=checkbox] {
+    border: 1px solid #b4b9be;
+    background: #fff;
+    color: #555;
+    clear: none;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 0;
+    width: 16px !important;
+	height: 16px;
+    margin: -4px 4px 0 0;
+    outline: 0;
+    padding: 0!important;
+    text-align: center;
+    vertical-align: middle;
+    width: 16px;
+    min-width: 16px;
+    /*-webkit-appearance: none;*/
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    transition: .05s border-color ease-in-out;
+}
+.schema-setup-content .description,
+.schema-setup-content .form-table td .description {
+    line-height: 1.5em;
+    display: block;
+    margin-top: .25em;
+    color: #999;
+    font-style: italic;
+}
+.schema-setup-content .schema-setup-actions .button-primary {
+  text-shadow: 0 -1px 1px #a00, 1px 0 1px #a00, 0 1px 1px #a00, -1px 0 1px #a00;
+}
