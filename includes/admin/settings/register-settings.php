@@ -361,7 +361,7 @@ function schema_wp_get_registered_settings() {
 						'desc' => __('Specify the image of your organization\'s logo to be used in Google Search results and in the Knowledge Graph.<br />Learn more about', 'schema-wp') . ' <a href="https://developers.google.com/search/docs/data-types/logo" target="_blank">'.__('Logo guidelines', 'schema-wp').'</a>',
 						'type' => 'image_upload',
 						'std' => ''
-					)
+					),
 					'image' => array(
 						'id' => 'image',
 						'name' => __( 'Image', 'schema-wp' ),
@@ -1162,7 +1162,7 @@ function schema_wp_number_callback( $args ) {
 	echo apply_filters( 'schema_wp_after_setting_output', $html, $args );
 }
 
-**
+/**
  * Lat/Long Callback
  *
  * Renders number fields.
