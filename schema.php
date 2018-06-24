@@ -5,7 +5,7 @@
  * Description: The next generation of Structured Data.
  * Author: Hesham
  * Author URI: http://zebida.com
- * Version: 1.6.9.8
+ * Version: 1.7
  * Text Domain: schema-wp
  * Domain Path: languages
  *
@@ -51,7 +51,7 @@ final class Schema_WP {
 	 *
 	 * @since 1.0
 	 */
-	private $version = '1.6.9.8';
+	private $version = '1.7';
 
 	/**
 	 * The settings instance variable
@@ -98,6 +98,9 @@ final class Schema_WP {
 
 			add_action( 'plugins_loaded', array( self::$instance, 'setup_objects' ), -1 );
 			add_action( 'plugins_loaded', array( self::$instance, 'load_textdomain' ) );
+			
+			// initialize the classes
+        	add_action( 'plugins_loaded', array( self::$instance, 'init_classes' ), 5 );
 		}
 		return self::$instance;
 	}
@@ -181,6 +184,8 @@ final class Schema_WP {
 		global $schema_wp_options;
 		
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/settings/register-settings.php';
+		
+		// get settings
 		$schema_wp_options = schema_wp_get_settings();
 		
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/class-capabilities.php';
@@ -209,6 +214,7 @@ final class Schema_WP {
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-menu.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-notices.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-welcome.php';
+			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-setup-wizard.php';
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/class-feedback.php';
 			
 			require_once SCHEMAWP_PLUGIN_DIR . 'includes/admin/post-type/class-columns.php';
@@ -217,9 +223,6 @@ final class Schema_WP {
 
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/misc-functions.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/scripts.php';
-		
-		// Misc
-		require_once SCHEMAWP_PLUGIN_DIR . 'includes/misc/auto_featured_img.php';
 		
 		// Schema outputs
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/json/web-page-element.php';
@@ -264,9 +267,21 @@ final class Schema_WP {
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/sameAs.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/comment.php';
 		
+		// Install
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/install.php';
 	}
-
+	
+	/**
+     * Init all the classes
+     *
+     * @return void
+     */
+    function init_classes() {
+        if ( is_admin() ) {
+            new Schema_WP_Setup_Wizard();
+        }
+    }
+	
 	/**
 	 * Setup all objects
 	 *

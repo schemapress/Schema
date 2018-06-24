@@ -62,7 +62,7 @@ function schema_wp_yoast_seo_register_settings() {
 	
 	if ( ! defined('WPSEO_VERSION') ) return;
 	
-	add_filter( 'schema_wp_settings_knowledge_graph', 'schema_wp_yoast_seo_settings_knowledge_graph');
+	add_filter( 'schema_wp_settings_advanced', 'schema_wp_yoast_seo_settings_knowledge_graph');
 }
 
 /*
@@ -70,19 +70,21 @@ function schema_wp_yoast_seo_register_settings() {
 *
 * @since 1.6.4
 */
-function schema_wp_yoast_seo_settings_knowledge_graph( $settings_knowledge_graph ) {
+function schema_wp_yoast_seo_settings_knowledge_graph( $settings_advanced ) {
 
-	$settings_knowledge_graph['organization']['use_yoast_seo_json'] = array(
+	$settings_advanced['main']['use_yoast_seo_json'] = array(
 		'id' => 'use_yoast_seo_json',
-		'name' => __( 'Use Yoast SEO markup?', 'schema-wp' ),
-		'desc' => '<span class="dashicons dashicons-warning"></span> '. __( 'Yoast SEO plugin is active!', 'schema-wp'). '<p>'. __('By default, Schema plugin will override Yoast SEO output. Check this box if you would like to disable Schema markup and use Yoast SEO output instead. (This will be enabled on Search Results feature as well)', 'schema-wp') . '</p>',
-		'type' => 'checkbox'
+		'name' => __( 'Disable Duplicate Features that Yoast SEO Offers?', 'schema-wp' ),
+		'desc' => __( 'Yes', 'schema-wp'),
+		'type' => 'checkbox',
+		'tooltip_title' => 'When disabled',
+		'tooltip_desc' => __('Schema plugin will override Yoast SEO output to avoid markup duplication.', 'schema-wp') . '<br /><br />' . __('These are the features that will be disabled:<br /><ol><li>Organization/Person</li><li>Social Profiles</li><li>Breadcrumb</li><li>Sitelink Search Box</li></ol>', 'schema-wp'),
 	);
 	
-	return $settings_knowledge_graph;
+	return $settings_advanced;
 }
 
-add_filter( 'schema_wp_filter_output_knowledge_graph', 'schema_wp_yoast_knowledge_graph_remove' );
+add_filter( 'schema_wp_yoast_knowledge_graph_remove', 'schema_wp_yoast_knowledge_graph_remove' );
 /*
 * Remove Knowledge Graph
 *

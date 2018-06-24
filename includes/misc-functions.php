@@ -50,7 +50,7 @@ function schema_wp_get_ref( $post_id = null ) {
 	
 	$schema_ref = get_post_meta( $post_id, '_schema_ref', true );
 	
-	If ( ! isset($schema_ref) ) $schema_ref = false;
+	If ( ! isset($schema_ref) ) $schema_ref = fasle;
 	
 	return apply_filters( 'schema_wp_ref', $schema_ref );
 }
