@@ -78,7 +78,8 @@ function schema_wp_yoast_seo_settings_knowledge_graph( $settings_advanced ) {
 		'desc' => __( 'Yes', 'schema-wp'),
 		'type' => 'checkbox',
 		'tooltip_title' => 'When disabled',
-		'tooltip_desc' => __('Schema plugin will override Yoast SEO output to avoid markup duplication.', 'schema-wp') . '<br /><br />' . __('These are the features that will be disabled:<br /><ol><li>Organization/Person</li><li>Social Profiles</li><li>Breadcrumb</li><li>Sitelink Search Box</li></ol>', 'schema-wp'),
+		'tooltip_desc' => __('Schema plugin will override Yoast SEO output to avoid markup duplication. Check this box if you would like to disable Schema markup and use Yoast SEO output instead.', 'schema-wp') . '<br /><br />' . __('Features that will be disabled:<br /><ol><li>Organization/Person</li><li>Social Profiles</li><li>Corporate Contacts
+</li><li>Breadcrumb</li><li>Sitelink Search Box</li></ol>', 'schema-wp'),
 	);
 	
 	return $settings_advanced;

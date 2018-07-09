@@ -19,28 +19,18 @@ function schema_wp_output() {
 	
 	global $post;
 	
-	// do not run if default search query has been set (mostly not needed)
-	// @todo remove this if not needed 
-	//if ( isset($_GET['s']) ) return;
-	
 	// do not run on front, home page, archive pages, search result pages, and 404 error pages
 	if ( is_archive() || is_home() || is_front_page() || is_search() || is_404() ) return;
-	
-	// check for WPRichSnippets plugin
-	// @since 1.4.5
-	//if (function_exists('wprs_is_enabled')) {
-	//	if ( wprs_is_enabled( $post->ID ) ) return;
-	//}
-	
-	$pttimestamp 	 	= time() + get_option('gmt_offset') * 60*60;
-	$pttimestamp_old 	= get_post_meta( $post->ID, '_schema_json_timestamp', true );
-	$json 				= array();
 	
 	// exclude entry, do not output the schema markup
 	// @since 1.6
 	$exclude = get_post_meta( $post->ID, '_schema_exclude' , true );
 	if ( $exclude )
 		return;
+		
+	$pttimestamp 	 	= time() + get_option('gmt_offset') * 60*60;
+	$pttimestamp_old 	= get_post_meta( $post->ID, '_schema_json_timestamp', true );
+	$json 				= array();
 	
 	// compare time stamp and check if json post meta value already exists
 	// @since 1.5.9.7
@@ -49,14 +39,42 @@ function schema_wp_output() {
 		if ( $time_diff <= DAY_IN_SECONDS ) { 
 			$json = get_post_meta( $post->ID, '_schema_json', true );
 		} else {
-			delete_post_meta( $post->ID, '_schema_json' );
-			$json = array();
+			//delete_post_meta( $post->ID, '_schema_json' );
+			//$json = array();
+			
 		}
-	} 
+	} 	
 	
 	if ( !isset($json) || empty($json) ) {
+		// get fresh schema
+		$json = schema_wp_get_enabled_json( $post->ID );
+		// update post meta with new generated json value and time stamp 
+		// @since 1.5.9.7 
+		update_post_meta( $post->ID, '_schema_json', $json );
+		update_post_meta( $post->ID, '_schema_json_timestamp', $pttimestamp );
+	}
+			
+	if ( ! empty($json) ) {
+		$output = "\n\n";
+		$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - https://schema.press -->';
+		$output .= "\n";
+		$output .= '<script type="application/ld+json">' . json_encode($json, JSON_UNESCAPED_UNICODE) .'</script>';
+		$output .= "\n\n";
+		echo $output;
+	}
+}
+
+/**
+ * Get enabled schema json-ld 
+ *
+ * @since 1.7.1
+ * @param string $post_id post id
+ * @return array 
+ */
+function schema_wp_get_enabled_json( $post_id ) {
 	
-		$schemas_enabled = array();
+	$json = array();
+	$schemas_enabled = array();
 	
 		// get Schema enabled array
 		$schemas_enabled = schema_wp_cpt_get_enabled();
@@ -76,7 +94,7 @@ function schema_wp_output() {
 			if ( ! empty($schema_cpt) && in_array( $post_type, $schema_cpt, true ) ) {
 			
 				// get enabled categories
-				$categories = schema_wp_get_categories( $post->ID );
+				$categories = schema_wp_get_categories( $post_id );
 				$categories_enabled = $schema_enabled['categories'];
 				// Get an array of common categories between the two arrays
 				$categories_intersect = array_intersect($categories, $categories_enabled);
@@ -107,7 +125,6 @@ function schema_wp_output() {
 						//	} // end if
 						//} // end foreach
 					
-					
 					}
 				
 				}
@@ -116,28 +133,13 @@ function schema_wp_output() {
 		
 		
 		// debug
-		//print_r($schema_enabled);
+		//echo'<pre>';print_r($schema_enabled);echo'</pre>';
 		
 		endforeach;
 	
-	} // end if
+	//echo'<pre>';print_r($json);echo'</pre>'; exit;
 	
-	$output = '';
-	
-	if ( ! empty($json) ) {
-		$output .= "\n\n";
-		$output .= '<!-- This site is optimized with the Schema plugin v'.SCHEMAWP_VERSION.' - https://schema.press -->';
-		$output .= "\n";
-		$output .= '<script type="application/ld+json">' . json_encode($json, JSON_UNESCAPED_UNICODE) .'</script>';
-		$output .= "\n\n";
-	}
-	
-	// update post meta with new generated json value and time stamp 
-	// @since 1.5.9.7 
-	update_post_meta( $post->ID, '_schema_json', $json );
-	update_post_meta( $post->ID, '_schema_json_timestamp', $pttimestamp );
-	
-	echo $output;
+	return $json;
 }
 
 /**
@@ -228,7 +230,7 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	// Set post ID
 	If ( ! isset($post_id) ) $post_id = $post->ID;
 	
-	$jason = array();
+	$json = array();
 	
 	
 	// Get post content

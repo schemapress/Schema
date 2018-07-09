@@ -50,7 +50,7 @@ function schema_wp_get_ref( $post_id = null ) {
 	
 	$schema_ref = get_post_meta( $post_id, '_schema_ref', true );
 	
-	If ( ! isset($schema_ref) ) $schema_ref = fasle;
+	If ( ! isset($schema_ref) ) $schema_ref = false;
 	
 	return apply_filters( 'schema_wp_ref', $schema_ref );
 }
@@ -100,7 +100,7 @@ function schema_wp_get_jsonld( $post_id = null ) {
 	
 	$schema_json = get_post_meta( $post_id, '_schema_json', true);
 	
-	If ( ! isset($schema_json )) $schema_json = fasle;
+	If ( ! isset($schema_json )) $schema_json = false;
 	
 	return apply_filters( 'schema_wp_json', $schema_json );
 }
@@ -126,7 +126,7 @@ function schema_wp_get_publisher_array() {
 	
 	$publisher = array(
 		"@type"	=> "Organization",	// default required value
-		"@id" => get_bloginfo("url") . "/#organization",
+		"@id" => schema_wp_get_home_url() . "#organization",
 		"name"	=> wp_filter_nohtml_kses($name),
 		"logo"	=> array(
     		"@type" => "ImageObject",
@@ -862,4 +862,35 @@ function schema_wp_first_post_date( $format = 'Y-m-d' ) {
 	$output = date($format, strtotime($ax_first_post_date));
 
 	return $output;
+}
+
+/**
+ * Retrieves the home URL
+ *
+ * @since 1.7.1
+ * @return string
+ */
+function schema_wp_get_home_url( $path = '', $scheme = null ) {
+
+	$home_url = home_url( $path, $scheme );
+
+	if ( ! empty( $path ) ) {
+		return $home_url;
+	}
+
+	$home_path = wp_parse_url( $home_url, PHP_URL_PATH );
+	
+	if ( '/' === $home_path ) { // Home at site root, already slashed.
+		return $home_url;
+	}
+
+	if ( is_null( $home_path ) ) { // Home at site root, always slash.
+		return trailingslashit( $home_url );
+	}
+
+	if ( is_string( $home_path ) ) { // Home in subdirectory, slash if permalink structure has slash.
+		return user_trailingslashit( $home_url );
+	}
+
+	return apply_filters( 'schema_wp_home_url', $home_url );
 }
