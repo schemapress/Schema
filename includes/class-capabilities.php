@@ -86,8 +86,9 @@ class Schema_WP_Capabilities {
 		}
 
 		if ( is_object( $wp_roles ) ) {
-			
+			//allow following users to handle admin options
 			$wp_roles->add_cap( 'administrator', 'manage_schema_options' );
+			$wp_roles->add_cap( 'super_admin', 'manage_schema_options' );
 		
 		}
 	}
@@ -110,8 +111,9 @@ class Schema_WP_Capabilities {
 		
 		if ( is_object( $wp_roles ) ) {
 
-			/** Site Administrator Capabilities */
+			/** Site Administrator/super admin Capabilities */
 			$wp_roles->remove_cap( 'administrator', 'manage_schema_options' );
+			$wp_roles->remove_cap( 'super_admin', 'manage_schema_options' );
 
 		}
 	}
