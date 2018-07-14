@@ -136,11 +136,9 @@ function schema_wp_get_web_page_element_json() {
 	$header = array(
 		'@context' 		=> 'http://schema.org/',
 		'@type'			=> 'WPHeader',
-		//'name'			=> get_bloginfo( 'name' ),
 		'url'			=> $url,
       	'headline'		=> wp_strip_all_tags($headline),
       	'description'	=> wp_trim_words( wp_strip_all_tags($description), 18, '...' ),
-		//'keywords'		=> schema_wp_get_categories_as_keywords(),
 	);
 	
 	/*
@@ -149,14 +147,16 @@ function schema_wp_get_web_page_element_json() {
 	$footer = array(
 		'@context' 			=> 'http://schema.org/',
 		'@type'				=> 'WPFooter',
-		//'name'			=> get_bloginfo( 'name' ),
 		'url'				=> $url,
       	'headline'			=> wp_strip_all_tags($headline),
       	'description'		=> wp_trim_words( wp_strip_all_tags($description), 18, '...' ),
-		//'keywords'		=> schema_wp_get_categories_as_keywords(),
-		'copyrightYear' 	=> schema_wp_first_post_date( $format = 'Y' ),
-		//'copyrightHolder' 	=> schema_wp_get_knowledge_graph_json() // Organization or Person, @todo this didn't go well, it breaks Organization markup.
 	);
+	
+	// Add copyrightYear to Footer singulars
+	// @since 1.7.1
+	if (is_singular() ) {
+		$footer['copyrightYear'] = 	get_the_date('Y');
+	}
 	
 	$page_element_output = array($header, $footer);
 	
