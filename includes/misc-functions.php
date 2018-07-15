@@ -835,36 +835,6 @@ function schema_wp_get_blog_posts_page_url() {
 }
 
 /**
- * Get First Post Date Function
- *
- * @since 1.6.9.8
- * @param  $format Type of date format to return, using PHP date standard, default Y-m-d
- * @return Date of first post
- */
-function schema_wp_first_post_date( $format = 'Y-m-d' ) {
-	// Setup get_posts arguments
-	$ax_args = array(
-		'numberposts' => -1,
-		'post_status' => 'publish',
-		'order' => 'ASC'
-	);
-
-	// Get all posts in order of first to last
-	$ax_get_all = get_posts($ax_args);
-
-	// Extract first post from array
-	$ax_first_post = $ax_get_all[0];
-
-	// Assign first post date to var
-	$ax_first_post_date = $ax_first_post->post_date;
-
-	// return date in required format
-	$output = date($format, strtotime($ax_first_post_date));
-
-	return $output;
-}
-
-/**
  * Retrieves the home URL
  *
  * @since 1.7.1
@@ -893,4 +863,20 @@ function schema_wp_get_home_url( $path = '', $scheme = null ) {
 	}
 
 	return apply_filters( 'schema_wp_home_url', $home_url );
+}
+
+/**
+ * Check if is Blog page
+ *
+ * @since 1.7.1
+ * @return true or false
+ */
+function schema_wp_is_blog() {
+	
+	// Return true if is Blog (post list page)
+	if ( ! is_front_page() && is_home() || is_home() ) {
+		return true;
+	}
+	
+	return false;
 }
