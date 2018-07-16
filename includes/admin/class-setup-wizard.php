@@ -28,6 +28,7 @@ class Schema_WP_Setup_Wizard {
     public function __construct() {
         if ( current_user_can( 'manage_options' ) ) {
             add_action( 'admin_menu', array( $this, 'admin_menus' ) );
+			add_action( 'admin_head', array( $this, 'hide_admin_menus' ) );
             add_action( 'admin_init', array( $this, 'setup_wizard' ), 99 );
 		}
     }
@@ -101,7 +102,16 @@ class Schema_WP_Setup_Wizard {
      * Add admin menus/screens.
      */
     public function admin_menus() {
-        add_dashboard_page( '', '', 'manage_options', 'schema-setup', '' );
+        add_dashboard_page( __('Schema Setup', 'schema-wp'), __('Schema Setup Wizard', 'schema-wp'), 'manage_options', 'schema-setup', '' );
+    }
+		
+	/**
+     * Hide admin menus/screens.
+	 *
+	 * @since 1.7.1
+     */
+    public function hide_admin_menus() {
+        remove_submenu_page( 'index.php', 'schema-setup' );
     }
 
     /**
