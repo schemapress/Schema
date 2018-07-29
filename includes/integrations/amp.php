@@ -20,6 +20,7 @@ function schema_wp_amp_modify_json_output( $metadata, $post ) {
 	
 	$about_page_id 		= schema_wp_get_option( 'about_page' );
 	$contact_page_id 	= schema_wp_get_option( 'contact_page' );
+	$json 			= null;
 	
 	if ( isset($about_page_id) && $post->ID == $about_page_id ) {
 		
