@@ -18,7 +18,18 @@ add_filter( 'amp_post_template_metadata', 'schema_wp_amp_modify_json_output', 10
  */
 function schema_wp_amp_modify_json_output( $metadata, $post ) {
 	
-	$json = schema_wp_get_jsonld( $post->ID );
+	$about_page_id 		= schema_wp_get_option( 'about_page' );
+	$contact_page_id 	= schema_wp_get_option( 'contact_page' );
+	
+	if ( isset($about_page_id) && $post->ID == $about_page_id ) {
+		
+		$json = schema_wp_get_page_about_json( 'AboutPage' );
+	}  
+			
+	if ( isset($contact_page_id) && $post->ID == $contact_page_id) {
+		
+		$json = schema_wp_get_page_contact_json( 'ContactPage' );
+	}
 	
 	if ( $json ) {
 		return $json;

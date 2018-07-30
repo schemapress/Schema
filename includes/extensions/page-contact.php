@@ -9,14 +9,14 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 
-add_filter( 'schema_output', 'schema_wp_no_sceham_output_if_page_contact' );
+add_filter( 'schema_output', 'schema_wp_no_schema_output_if_page_contact' );
 /**
  * Do not output schema default json-ld if this is the About page
  *
  * @since 1.5.2
  * @return schema json-ld array or an empy array
  */
-function schema_wp_no_sceham_output_if_page_contact( $schema ) {
+function schema_wp_no_schema_output_if_page_contact( $schema ) {
 	
 	$contact_page_id = schema_wp_get_option( 'contact_page' );
 	

@@ -8,15 +8,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
-add_filter( 'schema_output', 'schema_wp_no_sceham_output_if_page_about' );
+add_filter( 'schema_output', 'schema_wp_no_schema_output_if_page_about' );
 /**
  * Do not output schema default json-ld if this is the About page
  *
  * @since 1.5.2
  * @return schema json-ld array or an empy array
  */
-function schema_wp_no_sceham_output_if_page_about( $schema ) {
+function schema_wp_no_schema_output_if_page_about( $schema ) {
 	
 	$about_page_id = schema_wp_get_option( 'about_page' );
 	
