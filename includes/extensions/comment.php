@@ -74,13 +74,25 @@ function schema_wp_do_comment( $schema ) {
  * @since 1.5.4
  * @return array 
  */
-function schema_wp_get_comments() {
+function schema_wp_get_comments( $post_id = null ) {
 		
-	global $post;
-		
+	if ( isset($post_id) ) {
+		$post = get_post($post_id);
+	} else {
+		global $post;
+	}
+	
+	// Check comments count first, if now comments, then return an empty array
+	// @since 1.7.1
+	$comment_count = get_comments_number( $post->ID );
+	if ( $comment_count < 1 ) {
+		return array();
+	}
+
 	$number	= apply_filters( 'schema_wp_do_comments', '10'); // default = 10
 		
 	$Comments = array();
+	
 	$PostComments = get_comments( array( 'post_id' => $post->ID, 'number' => $number, 'status' => 'approve', 'type' => 'comment' ) );
 
 	if ( count( $PostComments ) ) {

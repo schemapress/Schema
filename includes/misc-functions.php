@@ -283,7 +283,8 @@ function schema_wp_get_description( $post_id = null ) {
 	$full_content		= $content_post->post_content;
 	$excerpt			= $content_post->post_excerpt;
 	
-	$full_content		= str_replace(']]>', ']]&gt;', $full_content);
+	// Strip shortcodes and tags
+	$full_content 		= preg_replace('#\[[^\]]+\]#', '', $full_content);
 	$full_content 		= wp_strip_all_tags( $full_content );
 	
 	// Filter content before it gets shorter ;)
@@ -292,6 +293,8 @@ function schema_wp_get_description( $post_id = null ) {
 	
 	$desc_word_count	= apply_filters( 'schema_wp_filter_description_word_count', 49 );
 	$short_content		= wp_trim_words( $full_content, $desc_word_count, '' ); 
+	
+	// Use excerpt if presnet, or use short_content
 	$description		= apply_filters( 'schema_wp_filter_description', ( $excerpt != '' ) ? $excerpt : $short_content ); 
 	
 	return $description;
@@ -879,4 +882,19 @@ function schema_wp_is_blog() {
 	}
 	
 	return false;
+}
+
+/**
+ * Truncate a string of content to 110 characters, respecting full words.
+ *
+ * @since 1.7.1
+ * @return string
+ */
+function schema_wp_get_truncate_to_word( $value, $limit = 110, $end = '...' ) {
+	
+	$limit 		= apply_filters( 'schema_wp_truncate_to_word_limit', $limit );
+	$limit 		= $limit - mb_strlen($end); // Take into account $end string into the limit
+    $valuelen 	= mb_strlen($value);
+    
+	return $limit < $valuelen ? mb_substr($value, 0, mb_strrpos($value, ' ', $limit - $valuelen)) . $end : $value;	
 }

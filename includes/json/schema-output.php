@@ -247,10 +247,14 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	// Get publisher array
 	$publisher			= schema_wp_get_publisher_array();
 	
+	// Truncate headline 
+	$headline			= schema_wp_get_truncate_to_word( $content_post->post_title );
+	
 	//
 	// Putting all together
 	//
-	$json["headline"]		= apply_filters ( 'schema_wp_filter_headline', $content_post->post_title );
+	$json["headline"]		= apply_filters ( 'schema_wp_filter_headline', $headline );
+	
 	$json['description']	= $description;
 	$json['permalink']		= $permalink;
 	
