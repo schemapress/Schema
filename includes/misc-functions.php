@@ -90,7 +90,7 @@ function schema_wp_get_type( $post_id = null ) {
  * @param int $post_id The post ID.
  * @return string post ID, or false
  */
-function schema_wp_get_jsonld( $post_id = null ) {
+function schema_wp_get_jsonld( $post_id ) {
 	
 	global $post;
 	
@@ -100,7 +100,7 @@ function schema_wp_get_jsonld( $post_id = null ) {
 	
 	$schema_json = get_post_meta( $post_id, '_schema_json', true);
 	
-	If ( ! isset($schema_json )) $schema_json = false;
+	If ( ! isset($schema_json )) $schema_json = array();
 	
 	return apply_filters( 'schema_wp_json', $schema_json );
 }
