@@ -5,7 +5,7 @@ Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, s
 Requires at least: 4.0
 Tested up to: 4.9.8
 Requires PHP: 5.4
-Stable tag: 1.7
+Stable tag: 1.7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -159,7 +159,9 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 = 1.7.2 =
 * Fix: Shortcades was not excluded from description.
 * Fix: Set publicly_queryable to false in Schema post type to disable creation of single pages.
-* Fix: Removed a notice in AMP pages.  
+* Fix: Removed a notice in AMP pages, and fixed markup output.
+* Fix: Media uploader was not working properly in post meta.
+* Enhancement: Improved performance of markup output on AMP pages.   
 * Updated the readme.txt file, and pumped the tested WP version to 4.9.8
 
 = 1.7.1 =
