@@ -20,7 +20,6 @@ function schema_wp_amp_modify_json_output( $metadata, $post ) {
 	
 	// Get AMP plugin settings
 	$options = get_settings('amp-options');
-	//echo'<pre>';print_r($options);echo'</pre>';
 	
 	// Get schema markup json		
 	$json = schema_wp_get_jsonld( $post->ID );
