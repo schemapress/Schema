@@ -159,6 +159,7 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 = 1.7.2 =
 * Fix: Shortcades was not excluded from description.
 * Fix: Set publicly_queryable to false in Schema post type to disable creation of single pages.
+* Fix: Removed a notice in AMP pages.  
 * Updated the readme.txt file, and pumped the tested WP version to 4.9.8
 
 = 1.7.1 =
