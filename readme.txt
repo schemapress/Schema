@@ -79,7 +79,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 Schema plugin integrates and/or play nicely with (not necessarily a full integration):
 
  * Yoast SEO
- * (AMP) Automattic's Accelerated Mobile Pages
+ * AMP plugin (Automattic's Accelerated Mobile Pages)
  * Accelerated Mobile Pages - AMP for WP
  * WPRichSnippets
  * The SEO Framework
