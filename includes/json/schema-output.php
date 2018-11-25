@@ -19,6 +19,9 @@ function schema_wp_output() {
 	
 	global $post;
 	
+	// @since 1.7.3
+	if ( ! isset($post->ID) ) return;
+	
 	// do not run on front, home page, archive pages, search result pages, and 404 error pages
 	if ( is_archive() || is_home() || is_front_page() || is_search() || is_404() ) return;
 	

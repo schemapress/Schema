@@ -21,7 +21,7 @@ add_action( 'schema_wp_post_types', 'schema_wp_thirstyaffiliates_remove_cpt' );
 */
 function schema_wp_thirstyaffiliates_remove_cpt( $post_types ) {
 	
-	if (!is_plugin_active('thirstyaffiliates/thirstyaffiliates.php')) 
+	if ( ! is_plugin_active('thirstyaffiliates/thirstyaffiliates.php') ) 
 		return $post_types;
 		
 	unset($post_types['thirstylink']);
