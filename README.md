@@ -82,4 +82,4 @@ Schema plugin integrates, and play nicely with:
  * Thesis 2.x
  * Divi
 
-More information and documentation can be found at [scema.press](https://schema.press/).
+More information and documentation can be found at [scema.press](https://schema.press/docs/).
