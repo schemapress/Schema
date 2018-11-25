@@ -247,7 +247,6 @@ final class Schema_WP {
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/amp.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/wp-rich-snippets.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/seo-framework.php';
-		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/visual-composer.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/thirstyaffiliates.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/woocommerce.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/edd.php';
@@ -255,7 +254,6 @@ final class Schema_WP {
 		// Theme Integrations
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/genesis.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/thesis.php';
-		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/divi.php';
 		
 		// Core Extensions
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/post-meta-generator.php';

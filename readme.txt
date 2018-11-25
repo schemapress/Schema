@@ -76,10 +76,11 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 **Supported Plugins**
 
-Schema plugin integrates, and play nicely with (not necessarily a full integration):
+Schema plugin integrates and/or play nicely with (not necessarily a full integration):
 
  * Yoast SEO
- * AMP plugin
+ * (AMP) Automattic's Accelerated Mobile Pages
+ * Accelerated Mobile Pages - AMP for WP
  * WPRichSnippets
  * The SEO Framework
  * Visual Composer
@@ -155,6 +156,16 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 5. Configuration Wizard.
 
 == Changelog ==
+
+= 1.7.3 = 
+* Fix: AMP markup when checking if variable hold an array by using is_array function.
+* Fix: Use get_option instead of deprecated function get_settings in AMP.
+* Fix: Put the Author gravatar size variable in an array of args.
+* Fix: Error loading gravatar happen when email not associated with an image.
+* Fix: Added check for post ID before outputting markup on no singular pages.
+* Update: Move VC integration to deprecated functions.
+* Update: Move Divi integration to deprecated functions.
+* Update: Updated the readme.txt file,
 
 = 1.7.2 =
 * Fix: Shortcades was not excluded from description.
@@ -647,6 +658,9 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.7.3 =
+In this release, AMP and fixes and enhancements has been introduced. Please, update the plugin on your website now to get these fixes and enhancements.
 
 = 1.7.1 =
 In this release, several bug fixes and enhancements has been introduced. Please, update the plugin on your website now to get these fixes and enhancements.
