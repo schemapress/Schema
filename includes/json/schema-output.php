@@ -181,10 +181,6 @@ function schema_wp_get_schema_json( $type ) {
 	
 	$schema["url"] = $json['permalink'];
 	
-	if ( ! empty( $json["author"] ) ) {
-		//$schema["author"] = $json['author'];
-	}
-	
 	// get supported article types
 	$support_article_types = schema_wp_get_support_article_types();
 	
