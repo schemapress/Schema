@@ -162,10 +162,11 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Fix: Use get_option instead of deprecated function get_settings in AMP.
 * Fix: Put the Author gravatar size variable in an array of args.
 * Fix: Error loading gravatar happen when email not associated with an image.
-* Fix: Added check for post ID before outputting markup on no singular pages.
+* Fix: Added check for post ID before outputting markup on singular pages.
 * Update: Move VC integration to deprecated functions.
 * Update: Move Divi integration to deprecated functions.
-* Update: Updated the readme.txt file,
+* Update: Replaces “Cheating Huh?”” with “You don’t have permission to do this” to align the error message with recent WP core changes. (core.trac.wordpress.org/ticket/38332)
+* Update: Updated the readme.txt file.
 
 = 1.7.2 =
 * Fix: Shortcades was not excluded from description.
