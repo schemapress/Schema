@@ -41,7 +41,7 @@ function my_wpseo_breadcrumb_output( $output ) {
 	
 	if ( $breadcrumbs_enable ) {
 				
-		// clean Yoast SEO from RDF markups
+		// Clean Yoast SEO from RDF markups
 		$output = str_replace('xmlns:v="http://rdf.data-vocabulary.org/#"', '', $output); 
 		$output = str_replace('typeof="v:Breadcrumb"', '', $output);
 		$output = str_replace('rel="v:url"', '', $output);

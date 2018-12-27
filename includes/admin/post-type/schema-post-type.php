@@ -42,7 +42,7 @@ function schema_wp_cpt_init() {
 		'labels'             	=> $labels,
         'description'        	=> __( 'Description.', 'schema-wp' ),
 		'public'             	=> false,
-		'publicly_queryable' 	=> true,
+		'publicly_queryable' 	=> false,
 		'show_ui'            	=> true,
 		'show_in_menu'       	=> false,
 		'show_in_nav_menus'  	=> false,

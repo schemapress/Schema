@@ -19,6 +19,9 @@ function schema_wp_output() {
 	
 	global $post;
 	
+	// @since 1.7.3
+	if ( ! isset($post->ID) ) return;
+	
 	// do not run on front, home page, archive pages, search result pages, and 404 error pages
 	if ( is_archive() || is_home() || is_front_page() || is_search() || is_404() ) return;
 	
@@ -178,10 +181,6 @@ function schema_wp_get_schema_json( $type ) {
 	
 	$schema["url"] = $json['permalink'];
 	
-	if ( ! empty( $json["author"] ) ) {
-		//$schema["author"] = $json['author'];
-	}
-	
 	// get supported article types
 	$support_article_types = schema_wp_get_support_article_types();
 	
@@ -247,10 +246,14 @@ function schema_wp_get_schema_json_prepare( $post_id = null ) {
 	// Get publisher array
 	$publisher			= schema_wp_get_publisher_array();
 	
+	// Truncate headline 
+	$headline			= schema_wp_get_truncate_to_word( $content_post->post_title );
+	
 	//
 	// Putting all together
 	//
-	$json["headline"]		= apply_filters ( 'schema_wp_filter_headline', $content_post->post_title );
+	$json["headline"]		= apply_filters ( 'schema_wp_filter_headline', $headline );
+	
 	$json['description']	= $description;
 	$json['permalink']		= $permalink;
 	

@@ -68,7 +68,8 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 Schema plugin integrates, and play nicely with:
 
  * Yoast SEO
- * AMP plugin
+ * AMP plugin (Automattic's Accelerated Mobile Pages)
+ * Accelerated Mobile Pages - AMP for WP
  * WPRichSnippets
  * The SEO Framework
  * Visual Composer
@@ -82,4 +83,4 @@ Schema plugin integrates, and play nicely with:
  * Thesis 2.x
  * Divi
 
-More information and documentation can be found at [scema.press](https://schema.press/).
+More information and documentation can be found at [scema.press](https://schema.press/docs/).

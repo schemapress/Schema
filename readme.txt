@@ -3,9 +3,9 @@ Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, breadcrumbs, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile, taxonomy
 Requires at least: 4.0
-Tested up to: 4.9.6
+Tested up to: 4.9.8
 Requires PHP: 5.4
-Stable tag: 1.7
+Stable tag: 1.7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,10 +76,11 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 **Supported Plugins**
 
-Schema plugin integrates, and play nicely with (not necessarily a full integration):
+Schema plugin integrates and/or play nicely with (not necessarily a full integration):
 
  * Yoast SEO
- * AMP plugin
+ * AMP plugin (Automattic's Accelerated Mobile Pages)
+ * Accelerated Mobile Pages - AMP for WP
  * WPRichSnippets
  * The SEO Framework
  * Visual Composer
@@ -155,6 +156,44 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 5. Configuration Wizard.
 
 == Changelog ==
+
+= 1.7.3 = 
+* Fix: AMP markup when checking if variable hold an array by using is_array function.
+* Fix: Use get_option instead of deprecated function get_settings in AMP.
+* Fix: Put the Author gravatar size variable in an array of args.
+* Fix: Error loading gravatar happen when email not associated with an image.
+* Fix: Added check for post ID before outputting markup on singular pages.
+* Update: Move VC integration to deprecated functions.
+* Update: Move Divi integration to deprecated functions.
+* Update: Replaces “Cheating Huh?”” with “You don’t have permission to do this” to align the error message with recent WP core changes. (core.trac.wordpress.org/ticket/38332)
+* Update: Updated the readme.txt file.
+
+= 1.7.2 =
+* Fix: Shortcades was not excluded from description.
+* Fix: Set publicly_queryable to false in Schema post type to disable creation of single pages.
+* Fix: Removed a notice in AMP pages, and fixed markup output.
+* Fix: Media uploader was not working properly in post meta.
+* Enhancement: Improved performance of markup output on AMP pages.   
+* Updated the readme.txt file, and pumped the tested WP version to 4.9.8
+
+= 1.7.1 =
+* Added new function schema_wp_post_meta_fields, stop loading post meta directly.
+* Added new function schema_wp_is_blog, check if is Blog page.
+* Added capability support for super admin.
+* Added new function to truncate headlines to 110 characters per Google guidelines.
+* Enhanced performance by saving json-ld post meta only if has new value.
+* Enhanced some plugin settings description.
+* Enhanced the way plugin check for the Blog page.
+* Enhanced comments markup performance by checking comment number before query.
+* Fixed bug in schema_output function, typo in variable name.
+* Fixed home url when site is installed on its own subfolder.
+* Fixed AMP integration, schema was not present due to empty meta value.
+* Fixed copyrightYear markup in WPFooter, use post published year. 
+* Fixed use of undefined constant notice in misc function file.
+* Fixed description markup in Blog page. 
+* Fixed a PHP notice when settings page sections variable not containing an array.
+* Fixed admin menu item, hide the Schema Wizard empty menu item in dashboard.
+* Updated the readme.txt file, and pumped the tested WP version to 4.9.7
 
 = 1.7 =
 * Fixed some typos and wording in the plugin settings.
@@ -620,6 +659,12 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.7.3 =
+In this release, AMP and fixes and enhancements has been introduced. Please, update the plugin on your website now to get these fixes and enhancements.
+
+= 1.7.1 =
+In this release, several bug fixes and enhancements has been introduced. Please, update the plugin on your website now to get these fixes and enhancements.
 
 = 1.7 =
 In this release, we have introduced new settings page and step-by-step settings Configuration Wizard. Please, update the plugin on your website now to get fixes and enhancements.

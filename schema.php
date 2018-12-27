@@ -5,7 +5,7 @@
  * Description: The next generation of Structured Data.
  * Author: Hesham
  * Author URI: http://zebida.com
- * Version: 1.7
+ * Version: 1.7.2
  * Text Domain: schema-wp
  * Domain Path: languages
  *
@@ -51,7 +51,7 @@ final class Schema_WP {
 	 *
 	 * @since 1.0
 	 */
-	private $version = '1.7';
+	private $version = '1.7.2';
 
 	/**
 	 * The settings instance variable
@@ -117,7 +117,7 @@ final class Schema_WP {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'schema-wp' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'You don’t have permission to do this', 'schema-wp' ), '1.0' );
 	}
 
 	/**
@@ -129,7 +129,7 @@ final class Schema_WP {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden
-		_doing_it_wrong( __FUNCTION__, __( 'Cheatin&#8217; huh?', 'schema-wp' ), '1.0' );
+		_doing_it_wrong( __FUNCTION__, __( 'You don’t have permission to do this', 'schema-wp' ), '1.0' );
 	}
 
 	/**
@@ -222,6 +222,7 @@ final class Schema_WP {
 		}
 
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/misc-functions.php';
+		require_once SCHEMAWP_PLUGIN_DIR . 'includes/deprecated-functions.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/scripts.php';
 		
 		// Schema outputs
@@ -246,7 +247,6 @@ final class Schema_WP {
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/amp.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/wp-rich-snippets.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/seo-framework.php';
-		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/visual-composer.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/thirstyaffiliates.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/woocommerce.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/edd.php';
@@ -254,7 +254,6 @@ final class Schema_WP {
 		// Theme Integrations
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/genesis.php';
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/thesis.php';
-		require_once SCHEMAWP_PLUGIN_DIR . 'includes/integrations/divi.php';
 		
 		// Core Extensions
 		require_once SCHEMAWP_PLUGIN_DIR . 'includes/extensions/post-meta-generator.php';
