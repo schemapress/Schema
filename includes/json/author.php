@@ -72,10 +72,14 @@ function schema_wp_get_author_json( $type ) {
 	
 	if ( !empty($name) ) $schema['name'] = $name;
 	//if ( !empty($email) ) $schema['email'] = $email;
+	// if they haven't specified a url include their post url
+ 	if ( empty($url)) {
+		$url = get_author_posts_url( $curauth->ID );
+	}
 	if ( !empty($url) )  {
 	    $schema['url'] = $url;
 	    $schema['@id'] = $url;
-    }
+	}
 	if ( !empty($desc) ) $schema['description'] = $desc;
 	
 	return apply_filters( 'schema_author_output', $schema );

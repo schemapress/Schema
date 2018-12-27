@@ -35,40 +35,30 @@ function schema_wp_do_author( $schema ) {
 	return $schema;
 }
 
-
 /**
- * Get author array
- *
- * @since 1.5.3
- * @return array
+ * Used to generate the author json from the post_author array
+ * @param $post_author the post_author array
+ * @return mixed|void
  */
-function schema_wp_get_author_array( $post_id = null ) {
-	
-	global $post;
-	
-	// Set post ID
-	If ( ! isset($post_id) ) $post_id = $post->ID;
-	
-	$jason = array();
-	
-	// Get author from post content
-	$content_post	= get_post($post_id);
-	$post_author	= get_userdata($content_post->post_author);
-	$email 			= $post_author->user_email; 
-	
-	// Debug
-	//print_r($post_author);exit;
-	
-	$author = array (
-		'@type'	=> 'Person',
-		'name'	=> apply_filters ( 'schema_wp_filter_author_name', $post_author->display_name ),
-		'url'	=> esc_url( get_author_posts_url( $post_author->ID ) )
-	);
-	
-	if ( get_the_author_meta( 'description', $post_author->ID ) ) {
-		$author['description'] = strip_tags( get_the_author_meta( 'description', $post_author->ID ) );
-	}
-	
+function schema_wp_get_author_array_from_post_author($post_author) {
+
+    $jason = array();
+    $email 			= $post_author->user_email;
+
+    // Debug
+    //print_r($post_author);exit;
+
+    $author = array (
+        '@type'	=> 'Person',
+        '@id'   => esc_url( get_author_posts_url( $post_author->ID ) ),
+        'name'	=> apply_filters ( 'schema_wp_filter_author_name', $post_author->display_name ),
+        'url'	=> esc_url( get_author_posts_url( $post_author->ID ) )
+    );
+
+    if ( get_the_author_meta( 'description', $post_author->ID ) ) {
+        $author['description'] = strip_tags( get_the_author_meta( 'description', $post_author->ID ) );
+    }
+
 	if ( schema_wp_validate_gravatar( $email ) ) {
 		// Default = 96px, since it is a squre image, width = height
 		$image_size	= apply_filters( 'schema_wp_get_author_array_img_size', 96 ); 
@@ -90,6 +80,8 @@ function schema_wp_get_author_array( $post_id = null ) {
 			);
 		}
 	}
+
+
 	
 	
 	// sameAs
@@ -106,21 +98,51 @@ function schema_wp_get_author_array( $post_id = null ) {
 	$tumblr 	= esc_attr( stripslashes( get_the_author_meta( 'tumblr', $post_author->ID ) ) );
 	$github 	= esc_attr( stripslashes( get_the_author_meta( 'github', $post_author->ID ) ) );
 	
+
 	$sameAs_links = array( $website, $googleplus, $facebook, $twitter, $instagram, $youtube, $linkedin, $myspace, $pinterest, $soundcloud, $tumblr, $github);
-	
-	$social = array();
-	
-	// Remove empty fields
-	foreach( $sameAs_links as $sameAs_link ) {
-		if ( $sameAs_link != '' ) $social[] = $sameAs_link;
-	}
-	
-	if ( ! empty($social) ) {
-		$author["sameAs"] = $social;
-	}
-	
-	return apply_filters( 'schema_wp_author', $author );
+
+    $social = array();
+
+    // Remove empty fields
+    foreach( $sameAs_links as $sameAs_link ) {
+        if ( $sameAs_link != '' ) $social[] = $sameAs_link;
+    }
+
+    if ( ! empty($social) ) {
+        $author["sameAs"] = $social;
+    }
+    return apply_filters( 'schema_wp_author', $author );
 }
+
+/**
+ * Get author array
+ *
+ * @since 1.5.3
+ * @return array
+ */
+function schema_wp_get_author_array( $post_id = null ) {
+	
+	global $post;
+    // Set post ID
+    If ( ! isset($post_id) ) $post_id = $post->ID;
+
+    // support the co-author's plugin
+    if ( function_exists( 'get_coauthors') ) {
+        $post_authors = get_coauthors($post_id);
+        $author_array = array();
+        foreach ( $post_authors as  $post_author ) {
+            $author_array[] = schema_wp_get_author_array_from_post_author($post_author);
+        }
+        return $author_array;
+    } else {
+        // Get author from post content
+        $content_post	= get_post($post_id);
+        $post_author = get_userdata($content_post->post_author);
+
+        return schema_wp_get_author_array_from_post_author($post_author);
+    }
+}
+
 
 /**
  * Validate gravatar by email or id
