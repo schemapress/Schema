@@ -90,7 +90,7 @@ function schema_wp_get_type( $post_id = null ) {
  * @param int $post_id The post ID.
  * @return string post ID, or false
  */
-function schema_wp_get_jsonld( $post_id = null ) {
+function schema_wp_get_jsonld( $post_id ) {
 	
 	global $post;
 	
@@ -100,7 +100,7 @@ function schema_wp_get_jsonld( $post_id = null ) {
 	
 	$schema_json = get_post_meta( $post_id, '_schema_json', true);
 	
-	If ( ! isset($schema_json )) $schema_json = fasle;
+	If ( ! isset($schema_json )) $schema_json = array();
 	
 	return apply_filters( 'schema_wp_json', $schema_json );
 }
@@ -126,7 +126,7 @@ function schema_wp_get_publisher_array() {
 	
 	$publisher = array(
 		"@type"	=> "Organization",	// default required value
-		"@id" => get_bloginfo("url") . "/#organization",
+		"@id" => schema_wp_get_home_url() . "#organization",
 		"name"	=> wp_filter_nohtml_kses($name),
 		"logo"	=> array(
     		"@type" => "ImageObject",
@@ -283,7 +283,8 @@ function schema_wp_get_description( $post_id = null ) {
 	$full_content		= $content_post->post_content;
 	$excerpt			= $content_post->post_excerpt;
 	
-	$full_content		= str_replace(']]>', ']]&gt;', $full_content);
+	// Strip shortcodes and tags
+	$full_content 		= preg_replace('#\[[^\]]+\]#', '', $full_content);
 	$full_content 		= wp_strip_all_tags( $full_content );
 	
 	// Filter content before it gets shorter ;)
@@ -292,6 +293,8 @@ function schema_wp_get_description( $post_id = null ) {
 	
 	$desc_word_count	= apply_filters( 'schema_wp_filter_description_word_count', 49 );
 	$short_content		= wp_trim_words( $full_content, $desc_word_count, '' ); 
+	
+	// Use excerpt if presnet, or use short_content
 	$description		= apply_filters( 'schema_wp_filter_description', ( $excerpt != '' ) ? $excerpt : $short_content ); 
 	
 	return $description;
@@ -835,31 +838,63 @@ function schema_wp_get_blog_posts_page_url() {
 }
 
 /**
- * Get First Post Date Function
+ * Retrieves the home URL
  *
- * @since 1.6.9.8
- * @param  $format Type of date format to return, using PHP date standard, default Y-m-d
- * @return Date of first post
+ * @since 1.7.1
+ * @return string
  */
-function schema_wp_first_post_date( $format = 'Y-m-d' ) {
-	// Setup get_posts arguments
-	$ax_args = array(
-		'numberposts' => -1,
-		'post_status' => 'publish',
-		'order' => 'ASC'
-	);
+function schema_wp_get_home_url( $path = '', $scheme = null ) {
 
-	// Get all posts in order of first to last
-	$ax_get_all = get_posts($ax_args);
+	$home_url = home_url( $path, $scheme );
 
-	// Extract first post from array
-	$ax_first_post = $ax_get_all[0];
+	if ( ! empty( $path ) ) {
+		return $home_url;
+	}
 
-	// Assign first post date to var
-	$ax_first_post_date = $ax_first_post->post_date;
+	$home_path = wp_parse_url( $home_url, PHP_URL_PATH );
+	
+	if ( '/' === $home_path ) { // Home at site root, already slashed.
+		return $home_url;
+	}
 
-	// return date in required format
-	$output = date($format, strtotime($ax_first_post_date));
+	if ( is_null( $home_path ) ) { // Home at site root, always slash.
+		return trailingslashit( $home_url );
+	}
 
-	return $output;
+	if ( is_string( $home_path ) ) { // Home in subdirectory, slash if permalink structure has slash.
+		return user_trailingslashit( $home_url );
+	}
+
+	return apply_filters( 'schema_wp_home_url', $home_url );
+}
+
+/**
+ * Check if is Blog page
+ *
+ * @since 1.7.1
+ * @return true or false
+ */
+function schema_wp_is_blog() {
+	
+	// Return true if is Blog (post list page)
+	if ( ! is_front_page() && is_home() || is_home() ) {
+		return true;
+	}
+	
+	return false;
+}
+
+/**
+ * Truncate a string of content to 110 characters, respecting full words.
+ *
+ * @since 1.7.1
+ * @return string
+ */
+function schema_wp_get_truncate_to_word( $value, $limit = 110, $end = '...' ) {
+	
+	$limit 		= apply_filters( 'schema_wp_truncate_to_word_limit', $limit );
+	$limit 		= $limit - mb_strlen($end); // Take into account $end string into the limit
+    $valuelen 	= mb_strlen($value);
+    
+	return $limit < $valuelen ? mb_substr($value, 0, mb_strrpos($value, ' ', $limit - $valuelen)) . $end : $value;	
 }

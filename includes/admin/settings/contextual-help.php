@@ -58,10 +58,10 @@ function schema_wp_settings_contextual_help() {
 	) );
 
 	$screen->add_help_tab( array(
-		'id'	    => 'schema-wp-settings-misc',
-		'title'	    => __( 'Miscellaneous', 'schema-wp' ),
+		'id'	    => 'schema-wp-settings-advanced',
+		'title'	    => __( 'Advanced', 'schema-wp' ),
 		'content'	=>
-			'<p>' . __( 'This screen provides other miscellaneous options such as deleting plugin data on uninstall.', 'schema-wp' ) . '</p>' .
+			'<p>' . __( 'This screen provides advanced options such as deleting plugin data on uninstall.', 'schema-wp' ) . '</p>' .
 			'<p>' . __( 'A description of all the options are provided beside their input boxes.', 'schema-wp' ) . '</p>'
 	) );
 

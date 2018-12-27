@@ -18,7 +18,7 @@ if ( !defined( 'ABSPATH' ) ) exit;
  *
  * Looks to see if the specified setting exists, returns default if not
  *
- * @since 1.8.4
+ * @since 1.0
  * @global $schema_wp_options Array of all the Schema Options
  * @return mixed
  */
@@ -36,7 +36,7 @@ function schema_wp_get_option( $key = '', $default = false ) {
  * Warning: Passing in an empty, false or null string value will remove
  *          the key from the schema_wp_options array.
  *
- * @since 2.3
+ * @since 1.0
  * @param string $key The Key to update
  * @param string|bool|int $value The value to set the key to
  * @global $schema_wp_options Array of all the Schema Options
@@ -73,14 +73,12 @@ function schema_wp_update_option( $key = '', $value = false ) {
 	return $did_update;
 }
 
-
-
 /**
  * Remove an option
  *
  * Removes an edd setting value in both the db and the global variable.
  *
- * @since 2.3
+ * @since 1.0
  * @param string $key The Key to delete
  * @global $schema_wp_options Array of all the Schema Options
  * @return boolean True if removed, false if not.
@@ -134,9 +132,9 @@ function schema_wp_get_settings() {
 		$search_results_settings = is_array( get_option( 'schema_wp_settings_search_results' ) )    ? get_option( 'schema_wp_settings_search_results' )    : array();
 		$ext_settings     = is_array( get_option( 'schema_wp_settings_extensions' ) ) ? get_option( 'schema_wp_settings_extensions' ) : array();
 		$license_settings = is_array( get_option( 'schema_wp_settings_licenses' ) )   ? get_option( 'schema_wp_settings_licenses' )   : array();
-		$misc_settings    = is_array( get_option( 'schema_wp_settings_misc' ) )       ? get_option( 'schema_wp_settings_misc' )       : array();
+		$advanced_settings    = is_array( get_option( 'schema_wp_settings_advanced' ) )       ? get_option( 'schema_wp_settings_advanced' )	: array();
 
-		$settings = array_merge( $general_settings, $knowledge_graph_settings, $search_results_settings, $ext_settings, $license_settings, $misc_settings );
+		$settings = array_merge( $general_settings, $knowledge_graph_settings, $search_results_settings, $ext_settings, $license_settings, $advanced_settings );
 
 		update_option( 'schema_wp_settings', $settings );
 
@@ -144,6 +142,7 @@ function schema_wp_get_settings() {
 	return apply_filters( 'schema_wp_get_settings', $settings );
 }
 
+add_action( 'admin_init', 'schema_wp_register_settings' );
 /**
  * Add all settings sections and fields
  *
@@ -183,13 +182,15 @@ function schema_wp_register_settings() {
 
 				add_settings_field(
 					'schema_wp_settings[' . $option['id'] . ']',
-					$name,
+					$name . apply_filters( 'schema_wp_after_setting_name', '', $option ),
 					function_exists( 'schema_wp_' . $option['type'] . '_callback' ) ? 'schema_wp_' . $option['type'] . '_callback' : 'schema_wp_missing_callback',
 					'schema_wp_settings_' . $tab . '_' . $section,
 					'schema_wp_settings_' . $tab . '_' . $section,
 					array(
 						'section'       => $section,
 						'id'            => isset( $option['id'] )            ? $option['id']            : null,
+						'class'         => isset( $option['class'] )         ? $option['class']         : null,
+						'class_field'   => isset( $option['class_field'] )   ? $option['class_field']   : null,
 						'desc'          => ! empty( $option['desc'] )        ? $option['desc']          : '',
 						'name'          => isset( $option['name'] )          ? $option['name']          : null,
 						'size'          => isset( $option['size'] )          ? $option['size']          : null,
@@ -217,12 +218,11 @@ function schema_wp_register_settings() {
 	register_setting( 'schema_wp_settings', 'schema_wp_settings', 'schema_wp_settings_sanitize' );
 
 }
-add_action( 'admin_init', 'schema_wp_register_settings' );
 
 /**
  * Retrieve the array of plugin settings
  *
- * @since 1.8
+ * @since 1.0
  * @return array
 */
 function schema_wp_get_registered_settings() {
@@ -236,25 +236,30 @@ function schema_wp_get_registered_settings() {
 		'general' => apply_filters( 'schema_wp_settings_general',
 			array(
 				'main' => array(
-					'about_page' => array(
-						'id' => 'about_page',
-						'name' => __( 'About Page', 'schema-wp' ),
-						'desc' => __( 'Select the about page', 'schema-wp' ),
-						'type' => 'post_select',
-						'post_type' => 'page'
-					),
-					'contact_page' => array(
-						'id' => 'contact_page',
-						'name' => __( 'Contact Page', 'schema-wp' ),
-						'desc' => __( 'Select the contact page', 'schema-wp' ),
-						'type' => 'post_select',
-						'post_type' => 'page'
-					),
-					'auto_featured_img' => array(
-						'id' => 'auto_featured_img',
-						'name' => __( 'Set Featured image automatically?', 'schema-wp' ),
-						'desc' => __( 'Check this box if you would like Schema to try setting Featured image while you create or edit the post.', 'schema-wp' ),
-						'type' => 'checkbox'
+					'site_type' => array(
+						'id' => 'site_type',
+						'name' => __( 'Site Type', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'select',
+						'options' => array(
+							'' 						=> __('Select Site Type', 'schema-wp'),
+							'blog'					=> 'Blog or Personal',
+							'online_shop' 			=> 'Online Shop',
+							'news_chanel' 			=> 'News and Magazine',
+							'offline_business' 		=> 'Small Offline Business',
+							'corporation' 			=> 'Corporation',
+							'portfolio' 			=> 'Portfolio',
+							'photography'			=> 'Photography',
+							'music'					=> 'Music',
+							'niche_affiliate'		=> 'Niche Affiliate / Reviews',
+							'business_directory' 	=> 'Online Business Directory',
+							'job_board'				=> 'Online Job Board',
+							'knowledgebase'			=> 'Knowledgebase / Wiki',
+							'question_answer'		=> 'Question & Answer',
+							'school'				=> 'School or College',
+							'else' 					=> 'Something else'
+						),
+						'std' => ''
 					),
 					'publisher_logo' => array(
 						'id' => 'publisher_logo',
@@ -266,9 +271,235 @@ function schema_wp_get_registered_settings() {
 				)
 			)
 		),
-		
-		'content' => apply_filters( 'schema_wp_settings_content',
+
+		/** Knowledge Graph Settings */
+		'knowledge_graph' => apply_filters('schema_wp_settings_knowledge_graph',
 			array(
+				'organization' => array( // section
+					// Social Profiles
+					'person_or_organization_settings' => array(
+						'id' => 'social_profiles_settings',
+						'name' => '<strong>' . __( 'Person or Organization', 'schema-wp' ) . '</strong>',
+						'desc' => __( 'This information will be used in Google\'s Knowledge Graph Card, the big block of information you see on the right side of the search results.', 'schema-wp' ),
+						'type' => 'header'
+					),
+					'organization_or_person' => array(
+						'id' => 'organization_or_person',
+						'class_field' => 'organization_or_person_radio',
+						'name' => __( 'This Website Represent', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'radio',
+						'options' => array(
+							//'' 				=> __('Select Type', 'schema-wp'),
+							'organization'	=> 'Organization',
+							'person' 		=> 'Person'
+						),
+						'std' => ''
+					),
+					'name' => array(
+						'id' => 'name',
+						'class_field' => 'input_name',
+						'class' => 'tr_field_name',
+						'name' => __( 'Name', 'schema-wp' ),
+						'desc' => __( '', 'schema-wp' ),
+						'type' => 'text',
+						'placeholder' => get_bloginfo( 'name' ),
+						'std' => ''
+					),
+					'url' => array(
+						'id' => 'url',
+						'class' => 'tr_field_url',
+						'name' => __( 'Website URL', 'schema-wp' ),
+						'desc' => __( '', 'schema-wp' ),
+						'type' => 'text',
+						'placeholder' => 'https://',
+						'std' => ''
+					),
+					'logo' => array(
+						'id' => 'logo',
+						'class' => 'tr_field_logo',
+						'name' => __( 'Logo', 'schema-wp' ),
+						'desc' => __('Specify the image of your organization\'s logo to be used in Google Search results and in the Knowledge Graph.<br />Learn more about', 'schema-wp') . ' <a href="https://developers.google.com/search/docs/data-types/logo" target="_blank">'.__('Logo guidelines', 'schema-wp').'</a>',
+						'type' => 'image_upload',
+						'std' => ''
+					)
+				),
+				
+				/** Social Profiles Settings */
+				'social_profiles' => array( // section
+				
+					// Social Profiles
+					'social_profiles_settings' => array(
+						'id' => 'social_profiles_settings',
+						'name' => '<strong>' . __( 'Social Profiles', 'schema-wp' ) . '</strong>',
+						'desc' => __( 'Provide your social profile information to a Google Knowledge panel.', 'schema-wp' ),
+						'type' => 'header'
+					),
+					'facebook' => array(
+						'id' => 'facebook',
+						'name' => __( 'Facebook', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => 'https://',
+						'std' => ''
+					),
+					'twitter' => array(
+						'id' => 'twitter',
+						'name' => __( 'Twitter', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => 'https://',
+						'std' => ''
+					),
+					'google' => array(
+						'id' => 'google',
+						'name' => __( 'Google+', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => 'https://',
+						'std' => ''
+					),
+					'instagram' => array(
+						'id' => 'instagram',
+						'name' => __( 'Instagram', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => 'https://',
+						'std' => ''
+					),
+					'youtube' => array(
+						'id' => 'youtube',
+						'name' => __( 'YouTube', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => 'https://',
+						'std' => ''
+					),
+					'linkedin' => array(
+						'id' => 'linkedin',
+						'name' => __( 'LinkedIn', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => 'https://',
+						'std' => ''
+					),
+					'myspace' => array(
+						'name' => __( 'Myspace', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => 'https://',
+						'std' => ''
+					),
+					'pinterest' => array(
+						'id' => 'pinterest',
+						'name' => __( 'Pinterest', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => 'https://',
+						'std' => ''
+					),
+					'soundcloud' => array(
+						'id' => 'soundcloud',
+						'name' => __( 'SoundCloud', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => 'https://',
+						'std' => ''
+					),
+					'tumblr' => array(
+						'id' => 'tumblr',
+						'name' => __( 'Tumblr', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => 'https://',
+						'std' => ''
+					)
+				),
+				/** Corporate Contacts Settings */
+				'corporate_contacts' => array( // section
+				
+					'corporate_contacts_contact_type' => array(
+						'id' => 'corporate_contacts_contact_type',
+						'name' => __( 'Contact Type', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'select',
+						'options' => schema_wp_get_corporate_contacts_types()
+					),
+					
+					'corporate_contacts_telephone' => array(
+						'id' => 'corporate_contacts_telephone',
+						'name' => __( 'Telephone', 'schema-wp' ),
+						'desc' => '<br>' . __('Recommended. An internationalized version of the phone number, starting with the "+" symbol and country code (+1 in the US and Canada).', 'schema-wp'),
+						'type' => 'text',
+						'std' => ''
+					),
+					
+					'corporate_contacts_url' => array(
+						'id' => 'corporate_contacts_url',
+						'name' => __( 'URL', 'schema-wp' ),
+						'desc' => '<br>' . __('Recommended. The URL of contact page.', 'schema-wp'),
+						'type' => 'text',
+						'placeholder' => 'https://',
+						'std' => ''
+					)
+				), 
+				
+				/** Search Results Settings */
+				'search_results' => array( // section
+					
+					// Sitelinks
+					'sitelinks_search_box' => array(
+						'id' => 'sitelinks_search_box',
+						'name' => __( 'Enable Sitelinks Search Box?', 'schema-wp' ),
+						'desc' => __( 'Tell Google to show a Sitelinks search box.', 'schema-wp' ),
+						'type' => 'checkbox'
+					),
+					
+					// Site name
+					'site_name_enable' => array(
+						'id' => 'site_name_enable',
+						'class_field' => 'site_name_enable_checkbox',
+						'name' => __( 'Enable Site Name?', 'schema-wp' ),
+						'desc' => __( 'Tell Google to show your site name in search results.', 'schema-wp' ),
+						'type' => 'checkbox'
+					),
+					'site_name' => array(
+						'id' => 'site_name',
+						'class' => 'tr_field_site_name',
+						'name' => __( 'Site Name', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'std' => get_bloginfo ('name'),
+					),
+					'site_alternate_name' => array(
+						'id' => 'site_alternate_name',
+						'class' => 'tr_field_site_alternate_name',
+						'name' => __( 'Site Alternate Name', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'std' => ''
+					)
+				), 
+			)
+		),
+			
+		/** Content Settings */
+		'schemas' => apply_filters( 'schema_wp_settings_schemas',
+			array(
+				'about_page' => array(
+					'id' => 'about_page',
+					'name' => __( 'About Page', 'schema-wp' ),
+					'desc' => __( '', 'schema-wp' ),
+					'type' => 'post_select',
+					'post_type' => 'page'
+				),
+				'contact_page' => array(
+					'id' => 'contact_page',
+					'name' => __( 'Contact Page', 'schema-wp' ),
+					'desc' => __( '', 'schema-wp' ),
+					'type' => 'post_select',
+					'post_type' => 'page'
+				),
 				'web_page_element' => array(
 					'id' => 'web_page_element_enable',
 					'name' => __( 'WPHeader and WPFooter', 'schema-wp' ),
@@ -302,202 +533,6 @@ function schema_wp_get_registered_settings() {
 			)
 		),
 		
-		/** Knowledge Graph Settings */
-		'knowledge_graph' => apply_filters('schema_wp_settings_knowledge_graph',
-			array(
-				'organization' => array( // section
-					'organization_or_person' => array(
-						'id' => 'organization_or_person',
-						'name' => __( 'Organization or Person?', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'select',
-						'options' => array(
-							'' 				=> __('Select Type', 'schema-wp'),
-							'organization'	=> 'Organization',
-							'person' 		=> 'Person'
-						),
-						'std' => ''
-					),
-					'name' => array(
-						'id' => 'name',
-						'name' => __( 'Name', 'schema-wp' ),
-						'desc' => __( 'Organization or Person name.', 'schema-wp' ),
-						'type' => 'text',
-						'placeholder' => get_bloginfo( 'name' ),
-						'std' => ''
-					),
-					'url' => array(
-						'id' => 'url',
-						'name' => __( 'Website', 'schema-wp' ),
-						'desc' => __( 'Organization or Person website URL.', 'schema-wp' ),
-						'type' => 'text',
-						'placeholder' => 'http://',
-						'std' => ''
-					),
-					'logo' => array(
-						'id' => 'logo',
-						'name' => __( 'Logo', 'schema-wp' ),
-						'desc' => __( 'Organization logo.', 'schema-wp' ) . ' <a href="https://developers.google.com/search/docs/data-types/logo" target="_blank">'.__('Logo guidelines', 'schema-wp').'</a>',
-						'type' => 'image_upload',
-						'std' => ''
-					)
-				),
-				
-				/** Corporate Contacts Settings */
-				'corporate_contacts' => array( // section
-				
-					'corporate_contacts_contact_type' => array(
-						'id' => 'corporate_contacts_contact_type',
-						'name' => __( 'Contact Type', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'select',
-						'options' => schema_wp_get_corporate_contacts_types()
-					),
-					
-					'corporate_contacts_telephone' => array(
-						'id' => 'corporate_contacts_telephone',
-						'name' => __( 'Telephone', 'schema-wp' ),
-						'desc' => '<br>' . __('Recommended. An internationalized version of the phone number, starting with the "+" symbol and country code (+1 in the US and Canada).', 'schema-wp'),
-						'type' => 'text',
-						'std' => ''
-					),
-					
-					'corporate_contacts_url' => array(
-						'id' => 'corporate_contacts_url',
-						'name' => __( 'URL', 'schema-wp' ),
-						'desc' => '<br>' . __('Recommended. The URL of contact page.', 'schema-wp'),
-						'type' => 'text',
-						'placeholder' => 'http://',
-						'std' => ''
-					),
-					
-					// Social Profiles
-					'social_profiles_settings' => array(
-						'id' => 'social_profiles_settings',
-						'name' => '<strong>' . __( 'Social Profiles', 'schema-wp' ) . '</strong>',
-						'desc' => __( 'Use structured data markup embedded in your public website to specify your preferred social profiles.', 'schema-wp' ),
-						'type' => 'header'
-					),
-					'facebook' => array(
-						'id' => 'facebook',
-						'name' => __( 'Facebook', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'text',
-						'placeholder' => 'http://',
-						'std' => ''
-					),
-					'twitter' => array(
-						'id' => 'twitter',
-						'name' => __( 'Twitter', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'text',
-						'placeholder' => 'http://',
-						'std' => ''
-					),
-					'google' => array(
-						'id' => 'google',
-						'name' => __( 'Google+', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'text',
-						'placeholder' => 'http://',
-						'std' => ''
-					),
-					'instagram' => array(
-						'id' => 'instagram',
-						'name' => __( 'Instagram', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'text',
-						'placeholder' => 'http://',
-						'std' => ''
-					),
-					'youtube' => array(
-						'id' => 'youtube',
-						'name' => __( 'YouTube', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'text',
-						'placeholder' => 'http://',
-						'std' => ''
-					),
-					'linkedin' => array(
-						'id' => 'linkedin',
-						'name' => __( 'LinkedIn', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'text',
-						'placeholder' => 'http://',
-						'std' => ''
-					),
-					'myspace' => array(
-						'name' => __( 'myspace', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'text',
-						'placeholder' => 'http://',
-						'std' => ''
-					),
-					'pinterest' => array(
-						'id' => 'pinterest',
-						'name' => __( 'Pinterest', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'text',
-						'placeholder' => 'http://',
-						'std' => ''
-					),
-					'soundcloud' => array(
-						'id' => 'soundcloud',
-						'name' => __( 'SoundCloud', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'text',
-						'placeholder' => 'http://',
-						'std' => ''
-					),
-					'tumblr' => array(
-						'id' => 'tumblr',
-						'name' => __( 'Tumblr', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'text',
-						'placeholder' => 'http://',
-						'std' => ''
-					)
-				) 
-			)
-		),
-		
-		/** Search Results Settings */
-		'search_results' => apply_filters('schema_wp_settings_search_results',
-			array(
-				'sitelinks' => array( // section
-					'sitelinks_search_box' => array(
-						'id' => 'sitelinks_search_box',
-						'name' => __( 'Enable Sitelinks Search Box?', 'schema-wp' ),
-						'desc' => __( 'Tell Google to show a Sitelinks search box.', 'schema-wp' ),
-						'type' => 'checkbox'
-					)
-				),
-				'sitename' => array( // section
-					'site_name_enable' => array(
-						'id' => 'site_name_enable',
-						'name' => __( 'Enable Site Name?', 'schema-wp' ),
-						'desc' => __( 'Tell Google to show your site name in search results.', 'schema-wp' ),
-						'type' => 'checkbox'
-					),
-					'site_name' => array(
-						'id' => 'site_name',
-						'name' => __( 'Site Name', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'text',
-						'std' => get_bloginfo ('name'),
-					),
-					'site_alternate_name' => array(
-						'id' => 'site_alternate_name',
-						'name' => __( 'Site Alternate Name', 'schema-wp' ),
-						'desc' => '',
-						'type' => 'text',
-						'std' => ''
-					)
-				),
-			)
-		),
-		
-		
 		/** Extension Settings */
 		'extensions' => apply_filters('schema_wp_settings_extensions',
 			array()
@@ -506,8 +541,8 @@ function schema_wp_get_registered_settings() {
 			array()
 		),
 		
-		/** Misc Settings */
-		'misc' => apply_filters('schema_wp_settings_misc',
+		/** Advanced Settings */
+		'advanced' => apply_filters('schema_wp_settings_advanced',
 			array(
 				'main' => array(
 					'uninstall_on_delete' => array(
@@ -647,11 +682,11 @@ function schema_wp_get_registered_settings_types() {
 	return $setting_types;
 }
 
-
+add_filter( 'schema_wp_settings_sanitize_text', 'schema_wp_sanitize_text_field' );
 /**
  * Sanitize text fields
  *
- * @since 1.8
+ * @since 1.0
  * @param array $input The field value
  * @return string $input Sanitizied value
  */
@@ -699,12 +734,11 @@ function schema_wp_sanitize_text_field( $input ) {
 
 	return trim( wp_kses( $input, $allowed_tags ) );
 }
-add_filter( 'schema_wp_settings_sanitize_text', 'schema_wp_sanitize_text_field' );
 
 /**
  * Retrieve settings tabs
  *
- * @since 1.8
+ * @since 1.0
  * @return array $tabs
  */
 function schema_wp_get_settings_tabs() {
@@ -713,9 +747,8 @@ function schema_wp_get_settings_tabs() {
 
 	$tabs						= array();
 	$tabs['general']			= __( 'General',			'schema-wp' );
-	$tabs['content']			= __( 'Content',			'schema-wp' );
 	$tabs['knowledge_graph']	= __( 'Knowledge Graph',	'schema-wp' );
-	$tabs['search_results']		= __( 'Search Results',		'schema-wp' );
+	$tabs['schemas']			= __( 'Schemas',			'schema-wp' );
 	
 	if( ! empty( $settings['extensions'] ) ) {
 		$tabs['extensions'] = __( 'Extensions', 'wp-schema' );
@@ -724,7 +757,7 @@ function schema_wp_get_settings_tabs() {
 		$tabs['licenses'] = __( 'Licenses', 'wp-schema' );
 	}
 
-	$tabs['misc']      = __( 'Misc', 'wp-schema' );
+	$tabs['advanced']      = __( 'Advanced', 'wp-schema' );
 	
 	//if( schema_wp()->settings->get( 'debug_mode', false ) ) {	
 	//	$tabs['schema_wp_debug']     = __( 'Debug Assistant', 'schema-wp' );
@@ -736,7 +769,7 @@ function schema_wp_get_settings_tabs() {
 /**
  * Retrieve settings tabs
  *
- * @since 2.5
+ * @since 1.0
  * @return array $section
  */
 function schema_wp_get_settings_tab_sections( $tab = false ) {
@@ -757,7 +790,7 @@ function schema_wp_get_settings_tab_sections( $tab = false ) {
  * Get the settings sections for each tab
  * Uses a static to avoid running the filters on every request to this function
  *
- * @since  2.5
+ * @since 1.0
  * @return array Array of tabs and sections
  */
 function schema_wp_get_registered_settings_sections() {
@@ -772,23 +805,21 @@ function schema_wp_get_registered_settings_sections() {
 		'general'    => apply_filters( 'schema_wp_settings_sections_general', array(
 			'main'		=> '',
 		) ),
-		'content'    => apply_filters( 'schema_wp_settings_sections_content', array(
+		'schemas'    => apply_filters( 'schema_wp_settings_sections_schemas', array(
 			'main'		=> '',
 		) ),
 		'knowledge_graph'	=> apply_filters( 'schema_wp_settings_sections_knowledge_graph', array(
 			'organization'			=> __( 'Organization Info', 'wp-schema' ),
+			'search_results'			=> __( 'Search Results', 'wp-schema' ),
+			'social_profiles'		=> __( 'Social Profiles', 'wp-schema' ),
 			'corporate_contacts'	=> __( 'Corporate Contacts', 'wp-schema' ),
-		) ),
-		'search_results'	=> apply_filters( 'schema_wp_settings_sections_search_results', array(
-			'sitelinks'      	=> __( 'Sitelinks Search Box', 'wp-schema' ),
-			'sitename'          => __( 'Site Name', 'wp-schema' ),
 		) ),
 		'extensions' => apply_filters( 'schema_wp_settings_sections_extensions', array(
 			'main'		 => __( 'Main', 'wp-schema' ),
 		) ),
-		'licenses'   => apply_filters( 'schema_wp_settings_sections_licenses', array() ),
-		'misc'       => apply_filters( 'schema_wp_settings_sections_misc', array(
-			'main'		 => '',
+		'licenses'	=> apply_filters( 'schema_wp_settings_sections_licenses', array() ),
+		'advanced'	=> apply_filters( 'schema_wp_settings_sections_advanced', array(
+			'main'		=> '',
 		) ),
 	);
 
@@ -802,7 +833,7 @@ function schema_wp_get_registered_settings_sections() {
  *
  * On large sites this can be expensive, so only load if on the settings page or $force is set to true
  *
- * @since 1.9.5
+ * @since 1.0
  * @param bool $force Force the pages to be loaded even if not on settings
  * @return array $pages_options An array of the pages
  */
@@ -834,6 +865,7 @@ function schema_wp_get_pages( $force = false ) {
  * @return void
  */
 function schema_wp_header_callback( $args ) {
+	echo $args['desc'];
 	echo apply_filters( 'schema_wp_after_setting_output', '', $args );
 }
 
@@ -855,10 +887,16 @@ function schema_wp_checkbox_callback( $args ) {
 	} else {
 		$name = 'name="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"';
 	}
-
+	
+	if ( isset( $args['class_field'] ) ) {
+		$class_field = 'class="' . schema_wp_sanitize_key( $args['class_field'] ) . '"';
+	} else {
+		$class_field = '';
+	}
+	
 	$checked  = ! empty( $schema_wp_option ) ? checked( 1, $schema_wp_option, false ) : '';
 	$html     = '<input type="hidden"' . $name . ' value="-1" />';
-	$html    .= '<input type="checkbox" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"' . $name . ' value="1" ' . $checked . '/>';
+	$html    .= '<input ' . $class_field . 'type="checkbox" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"' . $name . ' value="1" ' . $checked . '/>';
 	$html    .= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
 
 	echo apply_filters( 'schema_wp_after_setting_output', $html, $args );
@@ -890,13 +928,12 @@ function schema_wp_multicheck_callback( $args ) {
 	echo apply_filters( 'schema_wp_after_setting_output', $html, $args );
 }
 
-
 /**
  * Radio Callback
  *
  * Renders radio boxes.
  *
- * @since 1.3.3
+ * @since 1.0
  * @param array $args Arguments passed by the setting
  *
  * @return void
@@ -904,8 +941,14 @@ function schema_wp_multicheck_callback( $args ) {
 function schema_wp_radio_callback( $args ) {
 	$schema_wp_options = schema_wp_get_option( $args['id'] );
 
-	$html = '';
-
+	$html = '<fieldset class="">';
+	
+	if ( isset( $args['class_field'] ) ) {
+		$class_field = 'class="' . schema_wp_sanitize_key( $args['class_field'] ) . '"';
+	} else {
+		$class_field = '';
+	}
+	
 	foreach ( $args['options'] as $key => $option ) :
 		$checked = false;
 
@@ -914,15 +957,16 @@ function schema_wp_radio_callback( $args ) {
 		elseif( isset( $args['std'] ) && $args['std'] == $key && ! $schema_wp_options )
 			$checked = true;
 
-		$html .= '<input name="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . '][' . schema_wp_sanitize_key( $key ) . ']" type="radio" value="' . schema_wp_sanitize_key( $key ) . '" ' . checked(true, $checked, false) . '/>&nbsp;';
+		$html .= '<input ' . $class_field .' name="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . '][' . schema_wp_sanitize_key( $key ) . ']" type="radio" value="' . schema_wp_sanitize_key( $key ) . '" ' . checked(true, $checked, false) . '/>&nbsp;';
 		$html .= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . '][' . schema_wp_sanitize_key( $key ) . ']">' . esc_html( $option ) . '</label><br/>';
 	endforeach;
-
+	
+	$html .= '</fieldset>';
+	
 	$html .= '<p class="description">' . apply_filters( 'schema_wp_after_setting_output', wp_kses_post( $args['desc'] ), $args ) . '</p>';
 
 	echo $html;
 }
-
 
 /**
  * Text Callback
@@ -950,10 +994,16 @@ function schema_wp_text_callback( $args ) {
 	} else {
 		$name = 'name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']"';
 	}
+	
+	if ( isset( $args['class_field'] ) ) {
+		$class_field = schema_wp_sanitize_key( $args['class_field'] ) . ' ';
+	} else {
+		$class_field = '';
+	}
 
 	$readonly = $args['readonly'] === true ? ' readonly="readonly"' : '';
 	$size     = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
-	$html     = '<input type="text" class="' . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" ' . $name . ' value="' . esc_attr( stripslashes( $value ) ) . '" placeholder="' . $args['placeholder'] . '" ' . $readonly . '/>';
+	$html     = '<input type="text" class="' . $class_field . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" ' . $name . ' value="' . esc_attr( stripslashes( $value ) ) . '" placeholder="' . $args['placeholder'] . '" ' . $readonly . '/>';
 	$html    .= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
 
 	echo apply_filters( 'schema_wp_after_setting_output', $html, $args );
@@ -964,7 +1014,7 @@ function schema_wp_text_callback( $args ) {
  *
  * Renders number fields.
  *
- * @since 1.9
+ * @since 1.0
  * @param array $args Arguments passed by the setting
  *
  * @return void
@@ -985,13 +1035,19 @@ function schema_wp_number_callback( $args ) {
 	} else {
 		$name = 'name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']"';
 	}
-
+	
+	if ( isset( $args['class_field'] ) ) {
+		$class_field = schema_wp_sanitize_key( $args['class_field'] ) . ' ';
+	} else {
+		$class_field = '';
+	}
+	
 	$max  = isset( $args['max'] ) ? $args['max'] : 999999;
 	$min  = isset( $args['min'] ) ? $args['min'] : 0;
 	$step = isset( $args['step'] ) ? $args['step'] : 1;
 
 	$size = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
-	$html = '<input type="number" step="' . esc_attr( $step ) . '" max="' . esc_attr( $max ) . '" min="' . esc_attr( $min ) . '" class="' . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" ' . $name . ' value="' . esc_attr( stripslashes( $value ) ) . '"/>';
+	$html = '<input type="number" step="' . esc_attr( $step ) . '" max="' . esc_attr( $max ) . '" min="' . esc_attr( $min ) . '" class="' . $class_field . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" ' . $name . ' value="' . esc_attr( stripslashes( $value ) ) . '"/>';
 	$html .= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
 
 	echo apply_filters( 'schema_wp_after_setting_output', $html, $args );
@@ -1015,8 +1071,14 @@ function schema_wp_textarea_callback( $args ) {
 	} else {
 		$value = isset( $args['std'] ) ? $args['std'] : '';
 	}
-
-	$html = '<textarea class="large-text" cols="50" rows="5" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']">' . esc_textarea( stripslashes( $value ) ) . ' placeholder="' . $args['placeholder'] .'"</textarea>';
+	
+	if ( isset( $args['class_field'] ) ) {
+		$class_field = schema_wp_sanitize_key( $args['class_field'] ) . ' ';
+	} else {
+		$class_field = '';
+	}
+	
+	$html = '<textarea class="' . $class_field . 'large-text" cols="50" rows="5" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']">' . esc_textarea( stripslashes( $value ) ) . ' placeholder="' . $args['placeholder'] .'"</textarea>';
 	$html .= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
 
 	echo apply_filters( 'schema_wp_after_setting_output', $html, $args );
@@ -1053,7 +1115,7 @@ function schema_wp_password_callback( $args ) {
  *
  * If a function is missing for settings callbacks alert the user.
  *
- * @since 1.3.1
+ * @since 1.0
  * @param array $args Arguments passed by the setting
  * @return void
  */
@@ -1094,8 +1156,14 @@ function schema_wp_select_callback($args) {
 	} else {
 		$chosen = '';
 	}
+	
+	if ( isset( $args['class_field'] ) ) {
+		$class_field = 'class="' . schema_wp_sanitize_key( $args['class_field'] ) . '"';
+	} else {
+		$class_field = '';
+	}
 
-	$html = '<select id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']" ' . $chosen . 'data-placeholder="' . esc_html( $placeholder ) . '" />';
+	$html = '<select ' . $class_field .' id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']" ' . $chosen . 'data-placeholder="' . esc_html( $placeholder ) . '" />';
 
 	foreach ( $args['options'] as $option => $name ) {
 		$selected = selected( $option, $value, false );
@@ -1113,7 +1181,7 @@ function schema_wp_select_callback($args) {
  *
  * Renders color select fields.
  *
- * @since 1.8
+ * @since 1.0
  * @param array $args Arguments passed by the setting
  *
  * @return void
@@ -1185,6 +1253,12 @@ function schema_wp_rich_editor_callback( $args ) {
  */
 function schema_wp_upload_callback( $args ) {
 	$schema_wp_option = schema_wp_get_option( $args['id'] );
+	
+	if ( isset( $args['class_field'] ) ) {
+		$class_field = schema_wp_sanitize_key( $args['class_field'] ) . ' ';
+	} else {
+		$class_field = '';
+	}
 
 	if ( $schema_wp_option ) {
 		$value = $schema_wp_option;
@@ -1193,7 +1267,7 @@ function schema_wp_upload_callback( $args ) {
 	}
 
 	$size = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
-	$html = '<input type="text" class="' . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']" value="' . esc_attr( stripslashes( $value ) ) . '"/>';
+	$html = '<input type="text" class="' . $class_field . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']" value="' . esc_attr( stripslashes( $value ) ) . '"/>';
 	$html .= '<span>&nbsp;<input type="button" class="schema_wp_settings_upload_button button-secondary" value="' . __( 'Upload File', 'wp-schema' ) . '"/></span>';
 	$html .= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> ' . wp_kses_post( $args['desc'] ) . '</label>';
 
@@ -1211,13 +1285,19 @@ function schema_wp_upload_callback( $args ) {
 function schema_wp_image_upload_callback( $args ) {
 	$schema_wp_option = schema_wp_get_option( $args['id'] );
 	
+	if ( isset( $args['class_field'] ) ) {
+		$class_field = schema_wp_sanitize_key( $args['class_field'] ) . ' ';
+	} else {
+		$class_field = '';
+	}
+
 	if( $schema_wp_option )
 		$value = $schema_wp_option;
 	else
 		$value = isset( $args['std'] ) ? $args['std'] : '';
 
 	$size = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
-	$html = '<input type="text" class="' . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']" value="' . esc_attr( stripslashes( $value ) ) . '"/>';
+	$html = '<input type="text" class="' . $class_field . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']" value="' . esc_attr( stripslashes( $value ) ) . '"/>';
 	$html .= '<span>&nbsp;<input type="button" class="schema_wp_settings_upload_button button-secondary" value="' . __( 'Upload File', 'wp-schema' ) . '"/></span>';
 	
 	$html .= '<p>'  . wp_kses_post( $args['desc'] ) . '</p>';
@@ -1238,7 +1318,7 @@ function schema_wp_image_upload_callback( $args ) {
  *
  * Renders color picker fields.
  *
- * @since 1.6
+ * @since 1.0
  * @param array $args Arguments passed by the setting
  *
  * @return void
@@ -1265,7 +1345,7 @@ function schema_wp_color_callback( $args ) {
  *
  * Renders descriptive text onto the settings field.
  *
- * @since 2.1.3
+ * @since 1.0
  * @param array $args Arguments passed by the setting
  * @return void
  */
@@ -1281,7 +1361,7 @@ function schema_wp_descriptive_text_callback( $args ) {
  *
  * Renders file upload fields.
  *
- * @since 1.5.2
+ * @since 1.0
  * @param array $args Arguements passed by the setting
  */
 function schema_wp_post_select_callback( $args ) {
@@ -1307,13 +1387,11 @@ function schema_wp_post_select_callback( $args ) {
 		
 	echo $html;
 }
-
-
 	
 /**
  * Registers the license field callback for Software Licensing
  *
- * @since 1.5
+ * @since 1.0
  * @param array $args Arguments passed by the setting
  *
  * @return void
@@ -1499,7 +1577,7 @@ if ( ! function_exists( 'schema_wp_license_key_callback' ) ) {
  *
  * Adds a do_action() hook in place of the field
  *
- * @since 1.0.8.2
+ * @since 1.0
  * @param array $args Arguments passed by the setting
  * @return void
  */
@@ -1507,10 +1585,11 @@ function schema_wp_hook_callback( $args ) {
 	do_action( 'schema_wp_' . $args['id'], $args );
 }
 
+add_filter( 'schema_wp_after_setting_name', 'schema_wp_add_setting_tooltip', 10, 2 );
 /**
  * Set manage_schema_options as the cap required to save Schema settings pages
  *
- * @since 1.9
+ * @since 1.0
  * @return string capability required
  */
 function schema_wp_set_settings_cap() {
@@ -1527,4 +1606,80 @@ function schema_wp_add_setting_tooltip( $html, $args ) {
 
 	return $html;
 }
-add_filter( 'schema_wp_after_setting_output', 'schema_wp_add_setting_tooltip', 10, 2 );
+
+add_action( 'admin_print_footer_scripts', 'schema_wp_admin_footer_scripts' );
+/**
+ * Footer scripts
+ *
+ * @since 1.7
+ *
+ * @return void
+ */
+function schema_wp_admin_footer_scripts() { 
+
+	if( ! schema_wp_is_admin_page() ) {
+		return;
+	}
+
+?>
+<script>                
+	jQuery( document ).ready(function($) {
+        	   
+   	// Hide/Show Organization or Person fields 
+	$('.tr_field_name').hide();
+	$('.tr_field_logo').hide();
+	
+	var inputValue = $(".organization_or_person_radio:checked").attr("value");
+	
+	if ( inputValue == 'person' ) {
+		$('.tr_field_logo').hide();
+		$('.tr_field_name th').text('Person Name');
+    	$('.tr_field_name').show();
+	} 
+	else {
+		$('.tr_field_logo').show();
+		$('.tr_field_name').show();
+		$('.tr_field_name th').text('Organization Name');
+	}
+	
+	$(".organization_or_person_radio").change(function(){
+        var inputValue = $(this).attr("value");
+        if ($(this).val() == 'person') {
+			$('.tr_field_name th').text('Person Name');
+    		$('.tr_field_name').show();
+			$('.tr_field_logo').hide();
+    	}
+   		else {
+   			$('.tr_field_name').show();
+			$('.tr_field_logo').show();
+			$('.tr_field_name th').text('Organziation Name');
+   		}
+	});
+	
+	// Hide/Show Site Name fields 
+	$('.tr_field_site_name').hide();
+	$('.tr_field_site_alternate_name').hide();
+	
+	var inputValue = $(".site_name_enable_checkbox:checked").attr("value");
+	
+	if ( inputValue == 1 ) {
+		$('.tr_field_site_name').show();
+		$('.tr_field_site_alternate_name').show();
+	} 
+	
+	$(".site_name_enable_checkbox").change(function(){
+        var $this = $(this);
+         if ($this.is(':checked')) {
+			$('.tr_field_site_name').show();
+			$('.tr_field_site_alternate_name').show();
+    	}
+   		else {
+   			$('.tr_field_site_name').hide();
+			$('.tr_field_site_alternate_name').hide();
+   		}
+	});
+	
+});
+</script>
+<?php
+}

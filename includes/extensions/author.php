@@ -49,7 +49,7 @@ function schema_wp_get_author_array_from_post_author($post_author) {
     //print_r($post_author);exit;
 
     $author = array (
-		'@type'	=> 'Person',
+	'@type'	=> 'Person',
         '@id'   => esc_url( get_author_posts_url( $post_author->ID ) ),
         'name'	=> apply_filters ( 'schema_wp_filter_author_name', $post_author->display_name ),
         'url'	=> esc_url( get_author_posts_url( $post_author->ID ) )
@@ -59,37 +59,47 @@ function schema_wp_get_author_array_from_post_author($post_author) {
         $author['description'] = strip_tags( get_the_author_meta( 'description', $post_author->ID ) );
     }
 
-    if ( schema_wp_validate_gravatar($email) ) {
-        // Default = 96px, since it is a squre image, width = height
-        $image_size	= apply_filters( 'schema_wp_get_author_array_img_size', 96);
-        $image_url	= get_avatar_url( $email, $image_size );
+	if ( schema_wp_validate_gravatar( $email ) ) {
+		// Default = 96px, since it is a squre image, width = height
+		$image_size	= apply_filters( 'schema_wp_get_author_array_img_size', 96 ); 
+		
+		// Get an array of args
+		// @since 1.7.2
+		$args = array(
+						'size' => $image_size,
+					);
+		
+		$image_url	= get_avatar_url( $email, $args );
 
-        if ( $image_url ) {
-            $author['image'] = array (
-                '@type'		=> 'ImageObject',
-                'url' 		=> $image_url,
-                'height' 	=> $image_size,
-                'width' 	=> $image_size
-            );
-        }
-    }
+		if ( $image_url ) {
+			$author['image'] = array (
+				'@type'		=> 'ImageObject',
+				'url' 		=> $image_url,
+				'height' 	=> $image_size, 
+				'width' 	=> $image_size
+			);
+		}
+	}
 
 
-    // sameAs
-    $website 	= esc_attr( stripslashes( get_the_author_meta( 'user_url', $post_author->ID ) ) );
-    $googleplus = esc_attr( stripslashes( get_the_author_meta( 'googleplus', $post_author->ID ) ) );
-    $facebook 	= esc_attr( stripslashes( get_the_author_meta( 'facebook', $post_author->ID) ) );
-    $twitter 	= esc_attr( stripslashes( get_the_author_meta( 'twitter', $post_author->ID ) ) );
-    $instagram 	= esc_attr( stripslashes( get_the_author_meta( 'instagram', $post_author->ID ) ) );
-    $youtube 	= esc_attr( stripslashes( get_the_author_meta( 'youtube', $post_author->ID ) ) );
-    $linkedin 	= esc_attr( stripslashes( get_the_author_meta( 'linkedin', $post_author->ID ) ) );
-    $myspace 	= esc_attr( stripslashes( get_the_author_meta( 'myspace', $post_author->ID ) ) );
-    $pinterest 	= esc_attr( stripslashes( get_the_author_meta( 'pinterest', $post_author->ID ) ) );
-    $soundcloud = esc_attr( stripslashes( get_the_author_meta( 'soundcloud', $post_author->ID ) ) );
-    $tumblr 	= esc_attr( stripslashes( get_the_author_meta( 'tumblr', $post_author->ID ) ) );
-    $github 	= esc_attr( stripslashes( get_the_author_meta( 'github', $post_author->ID ) ) );
+	
+	
+	// sameAs
+	$website 	= esc_attr( stripslashes( get_the_author_meta( 'user_url', $post_author->ID ) ) );
+	$googleplus = esc_attr( stripslashes( get_the_author_meta( 'googleplus', $post_author->ID ) ) );
+	$facebook 	= esc_attr( stripslashes( get_the_author_meta( 'facebook', $post_author->ID) ) );
+	$twitter 	= esc_attr( stripslashes( get_the_author_meta( 'twitter', $post_author->ID ) ) );
+	$instagram 	= esc_attr( stripslashes( get_the_author_meta( 'instagram', $post_author->ID ) ) );
+	$youtube 	= esc_attr( stripslashes( get_the_author_meta( 'youtube', $post_author->ID ) ) );
+	$linkedin 	= esc_attr( stripslashes( get_the_author_meta( 'linkedin', $post_author->ID ) ) );
+	$myspace 	= esc_attr( stripslashes( get_the_author_meta( 'myspace', $post_author->ID ) ) );
+	$pinterest 	= esc_attr( stripslashes( get_the_author_meta( 'pinterest', $post_author->ID ) ) );
+	$soundcloud = esc_attr( stripslashes( get_the_author_meta( 'soundcloud', $post_author->ID ) ) );
+	$tumblr 	= esc_attr( stripslashes( get_the_author_meta( 'tumblr', $post_author->ID ) ) );
+	$github 	= esc_attr( stripslashes( get_the_author_meta( 'github', $post_author->ID ) ) );
+	
 
-    $sameAs_links = array( $website, $googleplus, $facebook, $twitter, $instagram, $youtube, $linkedin, $myspace, $pinterest, $soundcloud, $tumblr, $github);
+	$sameAs_links = array( $website, $googleplus, $facebook, $twitter, $instagram, $youtube, $linkedin, $myspace, $pinterest, $soundcloud, $tumblr, $github);
 
     $social = array();
 
@@ -148,7 +158,7 @@ function schema_wp_get_author_array( $post_id = null ) {
 function schema_wp_validate_gravatar( $email ) {
 
 	$hashkey 	= md5(strtolower(trim($email)));
-	$uri 		= 'http://www.gravatar.com/avatar/' . $hashkey . '?d=404';
+	$uri 		= 'http://www.gravatar.com/avatar/' . $hashkey;
 	$data 		= get_transient($hashkey);
 	
 	if (false === $data) {

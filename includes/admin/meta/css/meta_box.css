@@ -165,6 +165,10 @@
 	width:auto;
 }
 
+.chosen-container-multi {
+	width: 95% !important;
+}
+
 .widget-content .meta_box_repeatable select {
 	width:96%;
 }

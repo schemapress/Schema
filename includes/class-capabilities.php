@@ -62,9 +62,8 @@ class Schema_WP_Capabilities {
 			'publish_posts'          => true,
 			'read_private_pages'     => true,
 			'read_private_posts'     => true,
-			
-			'activate_plugins'     	=> true,
-			'manage_options'     	=> true
+			'activate_plugins'		 => true,
+			'manage_options'     	 => true
 		) );
 	}
 	
@@ -87,7 +86,9 @@ class Schema_WP_Capabilities {
 
 		if ( is_object( $wp_roles ) ) {
 			
+			/** Site Administrator Capabilities */
 			$wp_roles->add_cap( 'administrator', 'manage_schema_options' );
+			$wp_roles->add_cap( 'super_admin', 'manage_schema_options' );
 		
 		}
 	}
@@ -112,6 +113,7 @@ class Schema_WP_Capabilities {
 
 			/** Site Administrator Capabilities */
 			$wp_roles->remove_cap( 'administrator', 'manage_schema_options' );
+			$wp_roles->remove_cap( 'super_admin', 'manage_schema_options' );
 
 		}
 	}

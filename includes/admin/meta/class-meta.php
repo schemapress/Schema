@@ -22,7 +22,7 @@ define( 'SCHEMA_CUSTOM_METABOXES_DIR', plugin_dir_url( __FILE__ ) );
  *
  * @return	string									html for the field
  */
-function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
+function schema_wp_custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 	if ( ! ( $field || is_array( $field ) ) )
 		return;
 	
@@ -46,6 +46,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 	$min = isset( $field['min'] ) ? $field['min'] : null;
 	$max = isset( $field['max'] ) ? $field['max'] : null;
 	$step = isset( $field['step'] ) ? $field['step'] : null;
+	$multiple = isset( $field['multiple'] ) ? $field['multiple'] : null;
 	
 	// the id and name for each field
 	$id = $name = isset( $field['id'] ) ? $field['id'] : null;
@@ -330,7 +331,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 					if ( ! array_key_exists( $repeatable_field['id'], $meta[$i] ) )
 						$meta[$i][$repeatable_field['id']] = null;
 					echo '<label>' . $repeatable_field['label']  . '</label><p>';
-					echo custom_meta_box_field( $repeatable_field, $meta[$i][$repeatable_field['id']], array( $id, $i ) );
+					echo schema_wp_custom_meta_box_field( $repeatable_field, $meta[$i][$repeatable_field['id']], array( $id, $i ) );
 					echo '</p>';
 				} // end each field
 				echo '</td><td><a class="meta_box_repeatable_remove repeatable-remove" href="#"><span class="dashicons dashicons-dismiss"></span></a></td></tr>';
@@ -377,7 +378,7 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
 					//echo '<li><label>' . $repeatable_field['label']  . '</label>';
 					echo '<li><label></label>';
 					//echo '<li>';
-					echo custom_meta_box_field( $repeatable_field, $meta[$i][$repeatable_field['id']], array( $id, $i ) );
+					echo schema_wp_custom_meta_box_field( $repeatable_field, $meta[$i][$repeatable_field['id']], array( $id, $i ) );
 					echo '</li>';
 				} // end each field
 				echo '</td><td><a class="meta_box_repeatable_remove" href="#"><span class="dashicons dashicons-dismiss"></span></a></td></tr>';
@@ -410,16 +411,16 @@ function custom_meta_box_field( $field, $meta = null, $repeatable = null ) {
  * @return	bool				whether or not the type is in the provided array
  * @since 1.0
  */
-function meta_box_find_field_type($keySearch, $array) {
+function schema_wp_meta_box_find_field_type($keySearch, $array) {
 	
 	if ( ! is_array( $array) ) return;
 	
     foreach ($array as $key => $item) {
         
 		if ( isset( $key['type'] ) && $key['type'] == 'repeatable' )
-			return meta_box_find_field_type( $keySearch, $key['repeatable_fields'] );
+			return schema_wp_meta_box_find_field_type( $keySearch, $key['repeatable_fields'] );
 		elseif ( isset( $key['type'] ) && $key['type'] == 'repeatable_row' )
-			return meta_box_find_field_type( $keySearch, $h['repeatable_fields'] );
+			return schema_wp_meta_box_find_field_type( $keySearch, $h['repeatable_fields'] );
 		elseif ( ( isset( $key['type'] ) && $key['type'] == $keySearch ) || ( isset( $key['repeatable_type'] ) && $key['repeatable_type'] == $keySearch ) )
 			return true;
 		
@@ -428,7 +429,7 @@ function meta_box_find_field_type($keySearch, $array) {
 		if ($key == $keySearch) {
             return true;
         } else {
-            if (is_array($item) && meta_box_find_field_type($item, $keySearch)) {
+            if (is_array($item) && schema_wp_meta_box_find_field_type($item, $keySearch)) {
                return true;
             }
         }
@@ -452,7 +453,7 @@ function meta_box_find_field_type($keySearch, $array) {
  *
  * @return	bool				whether or not the type is in the provided array
  */
-function meta_box_find_repeatable( $needle = 'repeatable', $haystack ) {
+function schema_wp_meta_box_find_repeatable( $needle = 'repeatable', $haystack ) {
 	foreach ( $haystack as $h )
 		if ( isset( $h['type'] ) && $h['type'] == $needle )
 			return true;
@@ -473,7 +474,7 @@ function meta_box_find_repeatable( $needle = 'repeatable', $haystack ) {
  *
  * @return	bool				whether or not the type is in the provided array
  */
-function meta_box_find_repeatable_row( $needle = 'repeatable_row', $haystack ) {
+function schema_wp_meta_box_find_repeatable_row( $needle = 'repeatable_row', $haystack ) {
 	foreach ( $haystack as $h )
 		if ( isset( $h['type'] ) && $h['type'] == $needle )
 			return true;
@@ -483,7 +484,7 @@ function meta_box_find_repeatable_row( $needle = 'repeatable_row', $haystack ) {
 /**
  * sanitize boolean inputs
  */
-function meta_box_santitize_boolean( $string ) {
+function schema_wp_meta_box_santitize_boolean( $string ) {
 	if ( ! isset( $string ) || $string != 1 || $string != true )
 		return false;
 	else
@@ -498,7 +499,7 @@ function meta_box_santitize_boolean( $string ) {
  *
  * @return						a validated string
  */
-function meta_box_sanitize( $string, $function = 'sanitize_text_field' ) {
+function schema_wp_meta_box_sanitize( $string, $function = 'sanitize_text_field' ) {
 	switch ( $function ) {
 		case 'intval':
 			return intval( $string );
@@ -537,7 +538,7 @@ function meta_box_sanitize( $string, $function = 'sanitize_text_field' ) {
  *
  * @return	array				new array, fully mapped with the provided arrays
  */
-function meta_box_array_map_r( $func, $meta, $sanitizer ) {
+function schema_wp_meta_box_array_map_r( $func, $meta, $sanitizer ) {
 		
 	$newMeta = array();
 	$meta = array_values( $meta );
@@ -568,7 +569,7 @@ function meta_box_array_map_r( $func, $meta, $sanitizer ) {
 		 */
 		foreach( $array as $arrayKey => $arrayValue )
 			if ( is_array( $arrayValue ) )
-				$array[$arrayKey] = meta_box_array_map_r( $func, $arrayValue, $newSanitizer[$arrayKey] );
+				$array[$arrayKey] = schema_wp_meta_box_array_map_r( $func, $arrayValue, $newSanitizer[$arrayKey] );
 		
 		$array = array_map( $func, $array, $newSanitizer );
 		$newMeta[$key] = array_combine( $keys, array_values( $array ) );
@@ -622,46 +623,46 @@ class Schema_Custom_Add_Meta_Box {
 			
 			// js
 			$deps = array( 'jquery' ); 
-			if ( meta_box_find_field_type( 'date', $this->fields ) )
+			if ( schema_wp_meta_box_find_field_type( 'date', $this->fields ) )
 				$deps[] = 'jquery-ui-datepicker';
 			if (  in_array( true, array(
-				meta_box_find_field_type( 'slider', $this->fields ),
-				meta_box_find_field_type( 'sliderrating', $this->fields )
+				schema_wp_meta_box_find_field_type( 'slider', $this->fields ),
+				schema_wp_meta_box_find_field_type( 'sliderrating', $this->fields )
 			) ) ) {
 				$deps[] = 'jquery-ui-slider';
 			}
-			if ( meta_box_find_field_type( 'color', $this->fields ) )
+			if ( schema_wp_meta_box_find_field_type( 'color', $this->fields ) )
 				$deps[] = 'farbtastic';
 			if ( in_array( true, array(
-				meta_box_find_field_type( 'chosen', $this->fields ),
-				meta_box_find_field_type( 'post_chosen', $this->fields )
+				schema_wp_meta_box_find_field_type( 'chosen', $this->fields ),
+				schema_wp_meta_box_find_field_type( 'post_chosen', $this->fields )
 			) ) ) {
 				wp_register_script( 'chosen', SCHEMA_CUSTOM_METABOXES_DIR . 'js/chosen.js', array( 'jquery' ) );
 				$deps[] = 'chosen';
 				wp_enqueue_style( 'chosen', SCHEMA_CUSTOM_METABOXES_DIR . 'css/chosen.css' );
 			}
 			if ( in_array( true, array( 
-				meta_box_find_field_type( 'date', $this->fields ), 
-				meta_box_find_field_type( 'slider', $this->fields ),
-				meta_box_find_field_type( 'sliderrating', $this->fields ),
-				meta_box_find_field_type( 'color', $this->fields ),
-				meta_box_find_field_type( 'chosen', $this->fields ),
-				meta_box_find_field_type( 'post_chosen', $this->fields ),
-				meta_box_find_repeatable( 'repeatable', $this->fields ),
-				meta_box_find_repeatable( 'repeatable_row', $this->fields ),
-				meta_box_find_field_type( 'image', $this->fields ),
-				meta_box_find_field_type( 'file', $this->fields )
+				schema_wp_meta_box_find_field_type( 'date', $this->fields ), 
+				schema_wp_meta_box_find_field_type( 'slider', $this->fields ),
+				schema_wp_meta_box_find_field_type( 'sliderrating', $this->fields ),
+				schema_wp_meta_box_find_field_type( 'color', $this->fields ),
+				schema_wp_meta_box_find_field_type( 'chosen', $this->fields ),
+				schema_wp_meta_box_find_field_type( 'post_chosen', $this->fields ),
+				schema_wp_meta_box_find_repeatable( 'repeatable', $this->fields ),
+				schema_wp_meta_box_find_repeatable( 'repeatable_row', $this->fields ),
+				schema_wp_meta_box_find_field_type( 'image', $this->fields ),
+				schema_wp_meta_box_find_field_type( 'file', $this->fields )
 			) ) )
 				wp_enqueue_script( 'meta_box', SCHEMA_CUSTOM_METABOXES_DIR . 'js/scripts.js', $deps );
 				
 			if ( in_array( true, array( 
-				meta_box_find_field_type( 'select', $this->fields )
+				schema_wp_meta_box_find_field_type( 'select', $this->fields )
 			) ) )
 				wp_enqueue_script( 'schema_meta_box', SCHEMA_CUSTOM_METABOXES_DIR . 'js/schema.js', $deps );
 			
 			// Load media uploader required scripts
 			if ( in_array( true, array( 
-				meta_box_find_field_type( 'image', $this->fields )
+				schema_wp_meta_box_find_field_type( 'image', $this->fields )
 				) ) ) {
 				if(function_exists('wp_enqueue_media')) {
             		wp_enqueue_media();
@@ -675,9 +676,9 @@ class Schema_Custom_Add_Meta_Box {
 			// css
 			$deps = array();
 			wp_register_style( 'jqueryui', SCHEMA_CUSTOM_METABOXES_DIR . 'css/jqueryui.css' ); 
-			if ( meta_box_find_field_type( 'date', $this->fields ) || meta_box_find_field_type( 'slider', $this->fields ) || meta_box_find_field_type( 'sliderrating', $this->fields ) )
+			if ( schema_wp_meta_box_find_field_type( 'date', $this->fields ) || schema_wp_meta_box_find_field_type( 'slider', $this->fields ) || schema_wp_meta_box_find_field_type( 'sliderrating', $this->fields ) )
 				$deps[] = 'jqueryui';
-			if ( meta_box_find_field_type( 'color', $this->fields ) )
+			if ( schema_wp_meta_box_find_field_type( 'color', $this->fields ) )
 				$deps[] = 'farbtastic';
 			wp_enqueue_style( 'meta_box', SCHEMA_CUSTOM_METABOXES_DIR . 'css/meta_box.css', $deps );
 		}
@@ -688,9 +689,9 @@ class Schema_Custom_Add_Meta_Box {
 	 */
 	function admin_head() {
 		
-		if ( in_array( get_post_type(), $this->page ) && ( meta_box_find_field_type( 'date', $this->fields ) 
-															|| meta_box_find_field_type( 'slider', $this->fields ) 
-															|| meta_box_find_field_type( 'sliderrating', $this->fields ) ) ) {
+		if ( in_array( get_post_type(), $this->page ) && ( schema_wp_meta_box_find_field_type( 'date', $this->fields ) 
+															|| schema_wp_meta_box_find_field_type( 'slider', $this->fields ) 
+															|| schema_wp_meta_box_find_field_type( 'sliderrating', $this->fields ) ) ) {
 		
 			echo '<script type="text/javascript">
 						jQuery(function($) {';
@@ -824,7 +825,7 @@ class Schema_Custom_Add_Meta_Box {
 						<td>';
 						
 						$meta = get_post_meta( get_the_ID(), $field['id'], true);
-						echo custom_meta_box_field( $field, $meta );
+						echo schema_wp_custom_meta_box_field( $field, $meta );
 						
 				echo     '<td>
 					</tr>';
@@ -880,9 +881,9 @@ class Schema_Custom_Add_Meta_Box {
 				} elseif ( isset( $new ) && $new != $old ) {
 					$sanitizer = isset( $field['sanitizer'] ) ? $field['sanitizer'] : 'sanitize_text_field';
 					if ( is_array( $new ) )
-						$new = meta_box_array_map_r( 'meta_box_sanitize', $new, $sanitizer );
+						$new = schema_wp_meta_box_array_map_r( 'schema_wp_meta_box_sanitize', $new, $sanitizer );
 					else
-						$new = meta_box_sanitize( $new, $sanitizer );
+						$new = schema_wp_meta_box_sanitize( $new, $sanitizer );
 					update_post_meta( $post_id, $field['id'], $new );
 				}
 			}*/
@@ -901,9 +902,9 @@ class Schema_Custom_Add_Meta_Box {
 				} elseif ( isset( $new ) && $new != $old ) {
 					$sanitizer = isset( $field['sanitizer'] ) ? $field['sanitizer'] : 'sanitize_text_field';
 					if ( is_array( $new ) ) 
-						$new = meta_box_array_map_r( 'meta_box_sanitize', $new, $sanitizer );
+						$new = schema_wp_meta_box_array_map_r( 'schema_wp_meta_box_sanitize', $new, $sanitizer );
 					else
-						$new = meta_box_sanitize( $new, $sanitizer );
+						$new = schema_wp_meta_box_sanitize( $new, $sanitizer );
 					
 					if( $field['type'] == 'date') {
 						$new = strtotime($new);

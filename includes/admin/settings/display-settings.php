@@ -62,6 +62,7 @@ function schema_wp_options_page() {
 	ob_start();
 	?>
 	<div class="wrap <?php echo 'wrap-' . $active_tab; ?>">
+        <h1 class="wp-heading-inline"><?php _e('Schema', 'schema-wp'); echo ' <span style="font-size:12px;">Ver '.SCHEMAWP_VERSION.'</span>'; ?></h1>
 		<h1 class="nav-tab-wrapper">
 			<?php
 			foreach( schema_wp_get_settings_tabs() as $tab_id => $tab_name ) {
@@ -81,10 +82,13 @@ function schema_wp_options_page() {
 				echo '</a>';
 			}
 			?>
+            
+            <a class="button-primary schema_wiz_btn" href="<?php echo esc_url( admin_url( 'admin.php?page=schema-setup' ) ); ?>"><?php _e( 'Quick Configuration Wizard', 'schema-wp' ); ?></a>
+
 		</h1>
 		<?php
 
-		$number_of_sections = count( $sections );
+		$number_of_sections = is_array($sections) ? count( $sections ) : 0;
 		$number = 0;
 		if ( $number_of_sections > 1 ) {
 			echo '<div><ul class="subsubsub">';
@@ -110,6 +114,7 @@ function schema_wp_options_page() {
 			echo '</ul></div>';
 		}
 		?>
+        
 		<div id="tab_container">
 			<form method="post" action="options.php">
 				<table class="form-table">

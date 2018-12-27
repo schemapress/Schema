@@ -18,7 +18,9 @@ add_action('wp_head', 'schema_wp_output_blog');
 function schema_wp_output_blog() {
 		
 	// Run only on blog list page
-	if ( ! is_front_page() && is_home() || is_home() ) {
+	//if ( ! is_front_page() && is_home() || is_home() ) {
+	
+	if ( schema_wp_is_blog() ) {
 		
 		$json = schema_wp_get_blog_json( 'Blog' );
 		
@@ -82,7 +84,7 @@ function schema_wp_get_blog_json( $type ) {
            			(
 						'@type' => 'BlogPosting',
 						'headline' => wp_filter_nohtml_kses( get_the_title() ),
-						//'description' => strip_shortcodes( get_the_excerpt($post->ID) ),
+						'description' => schema_wp_get_description($schema_post->ID),
 						'url' => get_the_permalink(),
 						'sameAs' => schema_wp_get_sameAs($schema_post->ID),
 						'datePublished' => get_the_date('c'),

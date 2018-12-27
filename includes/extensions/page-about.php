@@ -8,15 +8,14 @@
 // Exit if accessed directly
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-
-add_filter( 'schema_output', 'schema_wp_no_sceham_output_if_page_about' );
+add_filter( 'schema_output', 'schema_wp_no_schema_output_if_page_about' );
 /**
  * Do not output schema default json-ld if this is the About page
  *
  * @since 1.5.2
  * @return schema json-ld array or an empy array
  */
-function schema_wp_no_sceham_output_if_page_about( $schema ) {
+function schema_wp_no_schema_output_if_page_about( $schema ) {
 	
 	$about_page_id = schema_wp_get_option( 'about_page' );
 	
@@ -102,17 +101,17 @@ function schema_wp_get_page_about_json( $type ) {
 		);
 	*/
 	
-	$schema["headline"]			= $json["headline"];
+	$schema["headline"] = $json["headline"];
 	
 	//$schema["datePublished"]	= $json["datePublished"];
-	//$schema["dateModified"]		= $json["dateModified"];
+	//$schema["dateModified"]	= $json["dateModified"];
 	
 	if ( ! empty( $json["media"] ) ) {
 		$schema["image"] = array(
     		"@type"		=> "ImageObject",
-    		"url"		=> isset($json["media"]["image_url"]) ? $json["media"]["image_url"] : '',
-    		"width"		=> isset($json["media"]["image_width"]) ? $json["media"]["image_width"] : '',
-			"height"	=> isset($json["media"]["image_height"]) ? $json["media"]["image_height"] : ''
+    		"url"		=> isset($json["media"]["url"]) ? $json["media"]["url"] : '',
+    		"width"		=> isset($json["media"]["width"]) ? $json["media"]["width"] : '',
+			"height"	=> isset($json["media"]["height"]) ? $json["media"]["height"] : ''
 		);
 	}
 	

@@ -3,9 +3,11 @@ Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, breadcrumbs, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile, taxonomy
 Requires at least: 4.0
-Tested up to: 4.9
+Tested up to: 4.9.8
 Requires PHP: 5.4
-Stable tag: 1.6.9.8
+Stable tag: 1.7.2
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -65,6 +67,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 * [BreadcrumbList](https://schema.org/BreadcrumbList) to markup Breadcrumbs.
 * [CollectionPage](https://schema.org/CollectionPage) to markup Categories Archives.
 * [CollectionPage](https://schema.org/CollectionPage) to markup Tags Archives.
+* [ItemList](https://schema.org/ItemList) to markup Post Type Archives.
 * [AboutPage](https://schema.org/AboutPage) to markup the About page.
 * [ContactPage](https://schema.org/ContactPage) to markup the Contact page.
 * [Person](https://schema.org/Person) enabled on Author pages
@@ -73,10 +76,11 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 **Supported Plugins**
 
-Schema plugin integrates, and play nicely with:
+Schema plugin integrates and/or play nicely with (not necessarily a full integration):
 
  * Yoast SEO
- * AMP plugin
+ * AMP plugin (Automattic's Accelerated Mobile Pages)
+ * Accelerated Mobile Pages - AMP for WP
  * WPRichSnippets
  * The SEO Framework
  * Visual Composer
@@ -149,13 +153,73 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 2. Create new schema type screen.
 3. Create post meta fields with Post Meta Box generator feature.
 4. Google Structured Data Testing Tool.
+5. Configuration Wizard.
 
 == Changelog ==
 
+= 1.7.3 = 
+* Fix: AMP markup when checking if variable hold an array by using is_array function.
+* Fix: Use get_option instead of deprecated function get_settings in AMP.
+* Fix: Put the Author gravatar size variable in an array of args.
+* Fix: Error loading gravatar happen when email not associated with an image.
+* Fix: Added check for post ID before outputting markup on singular pages.
+* Update: Move VC integration to deprecated functions.
+* Update: Move Divi integration to deprecated functions.
+* Update: Replaces “Cheating Huh?”” with “You don’t have permission to do this” to align the error message with recent WP core changes. (core.trac.wordpress.org/ticket/38332)
+* Update: Updated the readme.txt file.
+
+= 1.7.2 =
+* Fix: Shortcades was not excluded from description.
+* Fix: Set publicly_queryable to false in Schema post type to disable creation of single pages.
+* Fix: Removed a notice in AMP pages, and fixed markup output.
+* Fix: Media uploader was not working properly in post meta.
+* Enhancement: Improved performance of markup output on AMP pages.   
+* Updated the readme.txt file, and pumped the tested WP version to 4.9.8
+
+= 1.7.1 =
+* Added new function schema_wp_post_meta_fields, stop loading post meta directly.
+* Added new function schema_wp_is_blog, check if is Blog page.
+* Added capability support for super admin.
+* Added new function to truncate headlines to 110 characters per Google guidelines.
+* Enhanced performance by saving json-ld post meta only if has new value.
+* Enhanced some plugin settings description.
+* Enhanced the way plugin check for the Blog page.
+* Enhanced comments markup performance by checking comment number before query.
+* Fixed bug in schema_output function, typo in variable name.
+* Fixed home url when site is installed on its own subfolder.
+* Fixed AMP integration, schema was not present due to empty meta value.
+* Fixed copyrightYear markup in WPFooter, use post published year. 
+* Fixed use of undefined constant notice in misc function file.
+* Fixed description markup in Blog page. 
+* Fixed a PHP notice when settings page sections variable not containing an array.
+* Fixed admin menu item, hide the Schema Wizard empty menu item in dashboard.
+* Updated the readme.txt file, and pumped the tested WP version to 4.9.7
+
+= 1.7 =
+* Fixed some typos and wording in the plugin settings.
+* Enhanced plugin settings usability by adding functionality for tooltips.
+* Enhanced plugin settings by show/hide settings based on selection. 
+* Enhanced plugin settings by showing Schema plugin version in settings page title.
+* Added check if Genesis Framework functions exists before unhook site Header and Footer.
+* Added new step by step settings configuration setup wizard.
+* Added new settings for Site type.
+* Moved Social Profiles to its own sub tab in plugin settings.
+* Moved Yoast SEO setting under Advanced settings tab.
+* Updated the Welcome page, added link to configuration wizard.
+* Updated readme.txt file.
+
 = 1.6.9.8.2 =
-* Fixed fatal PHP error in Auto Featured image caused issue in version 1.6.9.8 update.
 * Fixed typos when return false in a couple of functions.
+* Fixed fatal errors caused due duplicate function names with other plugin in post meta.
+* Fixed ImageObject output in the About and Contact pages.
+* Fixed the About admin sub menu item url, it was not pointing correctly in some cases.
+* Fixed duplicate schema output in some cases when Sitelinks Search Box is enabled. 
+* Removed the Auto Featured Image feature, it was causing several issues.
+* Removed class-settings.php file, which was not used in the plugin.
 * Reverted all changes made in version 1.6.9.8 back, since issue has been solved!
+* Updated Chosen script and CSS to version 1.8.5 for post meta fields.
+* Updated the plugin welcome page.
+* Updated readme.txt file to include GPL license details.
 
 = 1.6.9.8.1 =
 * Reverted back all changes made in version 1.6.9.8, since it breaks!
@@ -595,6 +659,21 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.7.3 =
+In this release, AMP and fixes and enhancements has been introduced. Please, update the plugin on your website now to get these fixes and enhancements.
+
+= 1.7.1 =
+In this release, several bug fixes and enhancements has been introduced. Please, update the plugin on your website now to get these fixes and enhancements.
+
+= 1.7 =
+In this release, we have introduced new settings page and step-by-step settings Configuration Wizard. Please, update the plugin on your website now to get fixes and enhancements.
+
+= 1.6.9.8.2 =
+In this release, most of the reported bugs has been fixed. Please, update the plugin on your website now to get fixes and enhancements.
+
+= 1.6.9.8.1 =
+In this release, we reverted back to 1.6.9.8, update the plugin on your website now to get fixes.
 
 = 1.6.9.8 =
 In this release, most of the reported bugs has been fixed, including a fix for Easy Digital Downloads plugin. Also, new features has been introduced, example WPHeader and WPFooter markups, and support for ItemList markup on post types archive pages. Please, update the plugin on your website now to get fixes and enhancements.
