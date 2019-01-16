@@ -46,7 +46,7 @@ function schema_wp_install() {
 				'post_content'   => '',
 				'post_status'    => 'publish',
 				'post_author'    => 1,
-				'post_type'      => 'page'
+				'post_type'      => 'schema'
 			)
 		) : false; // set to false if already exists
 	
@@ -89,7 +89,7 @@ function schema_wp_install() {
 				'post_content'   => '',
 				'post_status'    => 'publish',
 				'post_author'    => 1,
-				'post_type'      => 'page'
+				'post_type'      => 'schema'
 			)
 		) : false; // set to false if already exists
 		
