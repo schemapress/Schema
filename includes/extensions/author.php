@@ -108,7 +108,8 @@ function schema_wp_get_author_array( $post_id = null ) {
 	
 	// Add full URL	to Twitter
 	// @since 1.7.3
-	if ( isset($twitter) ) $twitter = 'https://twitter.com/' . $twitter;
+	// @since 1.7.4
+	if ( isset($twitter) && $twitter != '' ) $twitter = 'https://twitter.com/' . $twitter;
 	
 	$sameAs_links = array( $website, $googleplus, $facebook, $twitter, $instagram, $youtube, $linkedin, $myspace, $pinterest, $soundcloud, $tumblr, $github);
 	
