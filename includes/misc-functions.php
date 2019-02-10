@@ -890,11 +890,12 @@ function schema_wp_is_blog() {
  * @since 1.7.1
  * @return string
  */
-function schema_wp_get_truncate_to_word( $value, $limit = 110, $end = '...' ) {
+function schema_wp_get_truncate_to_word( $string, $limit = 110, $end = '...' ) {
 	
-	$limit 		= apply_filters( 'schema_wp_truncate_to_word_limit', $limit );
-	$limit 		= $limit - mb_strlen($end); // Take into account $end string into the limit
-    $valuelen 	= mb_strlen($value);
-    
-	return $limit < $valuelen ? mb_substr($value, 0, mb_strrpos($value, ' ', $limit - $valuelen)) . $end : $value;	
+	$limit 	= apply_filters( 'schema_wp_truncate_to_word_limit', $limit );
+	$limit 	= $limit - strlen($end); // Take into account $end string into the limit
+	$string = substr($string, 0, $limit);
+	$string = substr($string, 0, strrpos($string, ' ')) . $end;
+	
+	return $string;
 }
