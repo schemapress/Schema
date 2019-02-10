@@ -18,7 +18,8 @@ class Schema_WP_Admin_Menu {
 		add_action( 'admin_menu', array( $this, 'register_main_menus' 		),	10 );
 		add_action( 'admin_menu', array( $this, 'register_types_menus' 		),  20 );
 		add_action( 'admin_menu', array( $this, 'register_extensions_menus' ),  30 );
-		add_action( 'admin_menu', array( $this, 'register_about_menus' 		),  40 );
+		add_action( 'admin_menu', array( $this, 'schema_premium_submenu' 	),  40 );
+		add_action( 'admin_menu', array( $this, 'register_about_menus' 		),  50 );
 	}
 
 	public function register_main_menus() {
@@ -80,6 +81,13 @@ class Schema_WP_Admin_Menu {
 			'manage_schema_options',
 			'admin.php?page=schema-wp-what-is-new'
 		);
+	}
+	
+	public function schema_premium_submenu() {
+	    
+		global $submenu;
+
+	    $submenu['schema'][] = array( __('Premium', 'schema-wp'), 'manage_options', 'https://schema.press/downloads/schema-premium/');
 	}
 
 }

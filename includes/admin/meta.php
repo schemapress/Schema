@@ -237,6 +237,21 @@ $fields_post_meta_box =  array (
 	
 );	
 
+/**
+ * Schema Premium plugin post meta message 
+ *
+ * @since 1.7.4
+ */
+$fields_schema_premium_plugin = array(
+	
+	array( // Post Types Select box
+		'label'	=> '', // <label>
+		'desc'	=> '<b>'.__('Want to enable new features?', 'schema-wp') .'<br>'. __(' Check out <a target="_blank" href="https://schema.press/downloads/schema-premium/">Schema Premium</a>.', 'schema-wp') . '</b>',  // description
+		'id'	=> $prefix.'schema_premium', // field id and name
+		'type'	=> 'desc' // type of field
+	),
+);
+
 	/**
 	 * Instantiate the class with all variables to create a meta box
 	 * var $id string meta box id
@@ -251,6 +266,7 @@ $fields_post_meta_box =  array (
 	$schema_article_box = new Schema_Custom_Add_Meta_Box( 'schema_article', __('Article', 'schema-wp'), $fields_article, 'schema', 'normal', 'high', true );
 	$schema_cpt_box = new Schema_Custom_Add_Meta_Box( 'schema_cpt', __('Post Types', 'schema-wp'), $fields_post_types, 'schema', 'side', 'default', true );
 	$schema_post_meta_box = new Schema_Custom_Add_Meta_Box( 'schema_post_meta_box', __('Post Meta', 'schema-wp'), $fields_post_meta_box, 'schema', 'normal', 'default', true );
+	$schema_post_meta_box = new Schema_Custom_Add_Meta_Box( 'schema_premium_plugin', __('Go Premium', 'schema-wp'), $fields_schema_premium_plugin, 'schema', 'side', 'default', true );
 }
 
 

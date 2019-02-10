@@ -77,7 +77,8 @@ function schema_wp_custom_meta_box_field( $field, $meta = null, $repeatable = nu
 		case 'tel':
 		case 'email':
 		default:
-			if ( is_array($meta) ) break; // if $meta has an array, continue to the next case, @since 1.7.2 
+			//if ( is_array($meta) ) continue; // if $meta has an array, continue to the next case, @since 1.6.9.4 
+			if ( is_array($meta) ) break; // if $meta has an array, take a break, @since 1.7.3 
 			echo '<input type="' . $type . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="' . esc_attr( $meta ) . '" class="'.$size.'-text '.$class.'" size="30" placeholder="' . $placeholder . '" />
 					<br />' . $desc;
 		break;

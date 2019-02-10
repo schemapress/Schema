@@ -10,6 +10,10 @@
  * @copyright Copyright (c), Ryan Hellyer
  * @author Ryan Hellyer <ryanhellyer@gmail.com>
  */
+ 
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 if ( ! class_exists( 'Schema_DotOrg_Plugin_Feedback' ) ) :
 class Schema_DotOrg_Plugin_Feedback {
 
@@ -280,7 +284,7 @@ endif;
 
 
 /*
-* Instantiate DotOrg_Plugin_Review class
+* Instantiate Schema_DotOrg_Plugin_Feedback class
 *
 * @since 1.5.4
 */
