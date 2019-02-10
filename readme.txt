@@ -3,9 +3,9 @@ Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
 Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, breadcrumbs, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile, taxonomy
 Requires at least: 4.0
-Tested up to: 4.9.8
+Tested up to: 5.0.3
 Requires PHP: 5.4
-Stable tag: 1.7.2
+Stable tag: 1.7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,25 +22,30 @@ Enhanced Presentation in Search Results By including structured data appropriate
 Check out the [Plugin Homepage](https://schema.press/) for more info and [documentation](https://schema.press/docs/).
 
 
-**What is Schema markup?**
+###What is Schema markup?
 
 Schema markup is code (semantic vocabulary) that you put on your website to help the search engines return more informative results for users. So, Schema is not just for SEO reasons, it’s also for the benefit of the searcher. 
 
-**Schema Key Features**
+### Schema Key Features
 
-* Easy to use, set it and forget it, with minimal settings. 
+* Easy to use, set it and forget it, with minimal settings.
+* **[Premium]** Support for different schema.org types. 
 * Enable Schema types at once per post type or post category.
+* **[Premium]** Enable Schema types anywhere you want on your site content.
+* **[Premium]** Integration: Customize source data of schema.org properties.
 * Valid markup, test it in Google Structured Data Testing Tool.
 * Output JSON-LD format, the most recommended by Google.
 * Reuse data saved in post meta, which is created by other plugins.
 * Extensible, means you can extend its functionality via other plugins, extensions or within your Theme’s functions.php file.
+
+> Note: some features are Premium. Which means you need Schema Premium to have those features. You can [get Schema Premium here](https://schema.press/pricing/)!
 
 **Plugin Extensions**
 
 * [Schema Review](https://wordpress.org/plugins/schema-review/): Extend Schema functionality by adding review and rating Structured Data functionality for Editors and Authors.
 * [Schema Default Image](https://wordpress.org/plugins/schema-default-image/): Add ability to set a default WordPress Featured image for schema.org markup.
 
-**Supported Google/Schema Markups**
+### Supported Google/Schema Markups
 
 * [Knowledge Graph](https://developers.google.com/structured-data/customize/overview)
  * [Logos](https://developers.google.com/structured-data/customize/logos)
@@ -51,7 +56,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
  * [Enable Sitelinks Search Box](https://developers.google.com/structured-data/customize/logos)
  * [Show Your Site Name in Search](https://developers.google.com/structured-data/site-name)
 
-**Supported Schema Types**
+### Supported Schema.org Types
  
 * Creative Work
  * [Article](https://schema.org/Article) enabled on Pages
@@ -74,7 +79,15 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 * [VideoObject](https://schema.org/VideoObject) enable automatically on all videos embedded with oEmbed. Supports VideoPress, YouTube, TED, Vimeo, Dailymotion, and Vine.
 * [AudioObject](https://schema.org/AudioObject) enable automatically on all audio embedded with oEmbed. Supports SoundCloud, and Mixcloud.
 
-**Supported Plugins**
+### Premium Supported Schema.org Types
+
+> Schema Premium has additional support for [schema.org types](https://schema.press/docs-premium/supported-types/).
+
+* LocalBusiness
+* Event
+* JobPosting
+
+### Supported Plugins
 
 Schema plugin integrates and/or play nicely with (not necessarily a full integration):
 
@@ -88,13 +101,19 @@ Schema plugin integrates and/or play nicely with (not necessarily a full integra
  * WooCommerce
  * Easy Digital Downloads (EDD)
 
-**Supported Themes**
+### Supported Themes
 
  * Genesis 2.x 
  * Thesis 2.x
  * Divi
 
-**Developers?**
+### Premium support
+
+schema.press team does not always provide active support for the Schema plugin on the WordPress.org forums, as we prioritize our email support. One-on-one email support is available to people who [bought Schema Premium](https://schema.press/pricing/) only.
+
+Note that the [Schema Premium](https://schema.press/downloads/schema-premium/) also has several extra [features](https://schema.press/features/) too, including the option to enable more schema.org types, set content location target for markup, and map schema.org properties, so it is well worth your investment!
+
+### Developers?
 
 Feel free to [fork the project on GitHub](https://github.com/schemapress/Schema) and submit your contributions via pull request.
 
@@ -107,6 +126,10 @@ Feel free to [fork the project on GitHub](https://github.com/schemapress/Schema)
 5. If you cache your site, make sure to clear cache after configuring the plugin settings.
 
 == Frequently Asked Questions ==
+
+= Do you offer a Premium plugin? =
+
+Yes, we do have a [Schema Premium](https://schema.press/downloads/schema-premium/) plugin that is packed with [features](https://schema.press/features/).
 
 = The plugin isn't working or have a bug? =
 
@@ -122,6 +145,9 @@ Nope! The Schema plugin is meant to add markup to a basic WordPress installation
 
 Other schema.org types shall be added via [Plugin Extensions](https://schema.press/downloads/), or a custom code.
 
+= Is there a way to add a new schema.org type? =
+
+Yes we do. We have a premium schema.org plugin called [Schema Premium](https://schema.press/downloads/schema-premium/).
 
 = Is there a way to add a new schema.org type? =
 
@@ -157,6 +183,21 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 
 == Changelog ==
 
+= 1.7.5 =
+* Fix: PHP Fatal error when truncating long headlines.
+
+= 1.7.4 = 
+* Fix: Activating plugin creates unwanted two menu items (Post, Page).
+* Fix: Author Twitter URL output even no ID was provided.
+* Fix: Warnings on uninstall plugin when enabling delete all settings.
+* Enhancement: Moved class-capabilities.php file to admin directory.
+* Enhancement: Update the plugin updater class to version 1.6.17
+* Enhancement: Added new post meta box for Schema Premium message.
+* Enhancement: Added new admin menu item for Schema Premium page.
+* Enhancement: Added Schema Premium to the Extensions page.
+* Update: Pumped tested WordPress version to 5.0.3 release.
+* Update: Updated the readme.txt file.
+
 = 1.7.3 = 
 * Fix: AMP markup when checking if variable hold an array by using is_array function.
 * Fix: Use get_option instead of deprecated function get_settings in AMP.
@@ -168,6 +209,7 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 s* Update: Move VC integration to deprecated functions.
 * Update: Move Divi integration to deprecated functions.
 * Update: Replaces “Cheating Huh?”” with “You don’t have permission to do this” to align the error message with recent WP core changes. (core.trac.wordpress.org/ticket/38332)
+* Update: Pumped tested WordPress version to 5.0.2 release.
 * Update: Updated the readme.txt file.
 
 = 1.7.2 =
@@ -793,3 +835,9 @@ Fixed an important bug within the plugin, Schema post was saved as draft and no 
 
 = 1.4.6 =
 Added ability to set Featured image automatically when creating or editing a post. Added back settings Content tab. Fixed admin notices and bugs. A few minor code/ documentation tweaks, updated readme.txt file with new details. Please, update the plugin on your website now to get bug fixes, enhancements and new cool features in this release. 
+
+= 1.7.3 =
+Added several bug fixes and enhancements. Please, update the plugin on your website now to get bug fixes. 
+
+= 1.7.4 =
+Added several bug fixes and enhancements. Please, update Schema plugin on your website now to get bug fixes. 
