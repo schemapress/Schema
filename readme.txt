@@ -1,11 +1,11 @@
 === Schema ===
 Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
-Tags: schema, schema.org, json, json-ld, google, seo, structured data, markup, search engine, search, rich snippets, breadcrumbs, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile, taxonomy
+Tags: schema, schema.org, rich snippets, structured data, json-ld, json, google, seo, markup, search engine, search, breadcrumbs, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile, taxonomy
 Requires at least: 4.0
-Tested up to: 5.0.3
+Tested up to: 5.2.3
 Requires PHP: 5.4
-Stable tag: 1.7.4
+Stable tag: 1.7.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -22,7 +22,7 @@ Enhanced Presentation in Search Results By including structured data appropriate
 Check out the [Plugin Homepage](https://schema.press/) for more info and [documentation](https://schema.press/docs/).
 
 
-###What is Schema markup?
+### What is Schema markup?
 
 Schema markup is code (semantic vocabulary) that you put on your website to help the search engines return more informative results for users. So, Schema is not just for SEO reasons, it’s also for the benefit of the searcher. 
 
@@ -38,9 +38,13 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 * Reuse data saved in post meta, which is created by other plugins.
 * Extensible, means you can extend its functionality via other plugins, extensions or within your Theme’s functions.php file.
 
-> Note: some features are Premium. Which means you need Schema Premium to have those features. You can [get Schema Premium here](https://schema.press/pricing/)!
+> Note: some features are Premium. Which means you need Schema Premium to have those features. [Get Schema Premium here](https://schema.press/pricing/)!
 
-**Plugin Extensions**
+### Free vs Premium
+
+> See: a [Free vs Premium comparison](https://schema.press/vs/).
+
+### Free Plugin Extensions
 
 * [Schema Review](https://wordpress.org/plugins/schema-review/): Extend Schema functionality by adding review and rating Structured Data functionality for Editors and Authors.
 * [Schema Default Image](https://wordpress.org/plugins/schema-default-image/): Add ability to set a default WordPress Featured image for schema.org markup.
@@ -81,11 +85,21 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 ### Premium Supported Schema.org Types
 
-> Schema Premium has additional support for [schema.org types](https://schema.press/docs-premium/supported-types/).
+> Schema Premium has additional support for [schema.org types](https://schema.press/docs-premium/supported-types/), including:
 
-* LocalBusiness
-* Event
-* JobPosting
+* [Article](https://schema.press/docs-premium/add-schema-article/s)
+* [Blog Posting](https://schema.press/docs-premium/add-schema-org-markup-blogposting/)
+* [Event](https://schema.press/docs-premium/add-schema-org-event/)
+* [FAQPage](https://schema.press/docs-premium/add-schema-org-faq-page/)
+* [Course](https://schema.press/docs-premium/add-schema-org-course/)
+* [Job Posting](https://schema.org/JobPosting)
+* [Local Business](https://schema.press/docs-premium/add-schema-localbusiness/)
+* [Person](https://schema.org/Person)
+* [Product](https://schema.press/docs-premium/add-schema-product/)
+* [Recipe](https://schema.press/docs-premium/add-schema-org-recipe/)
+* [Review](https://schema.press/docs-premium/add-schema-org-markup-for-review/)
+* [Service](https://schema.press/docs-premium/add-schema-service/)
+* [Software Application](https://schema.press/docs-premium/add-schema-org-markup-for-software-application/)
 
 ### Supported Plugins
 
@@ -98,7 +112,7 @@ Schema plugin integrates and/or play nicely with (not necessarily a full integra
  * The SEO Framework
  * Visual Composer
  * ThirstyAffiliates
- * WooCommerce
+ * **[Premium]** WooCommerce: [Schema for WooCommerce](https://schema.press/downloads/schema-woocommerce/) extension.
  * Easy Digital Downloads (EDD)
 
 ### Supported Themes
@@ -129,7 +143,9 @@ Feel free to [fork the project on GitHub](https://github.com/schemapress/Schema)
 
 = Do you offer a Premium plugin? =
 
-Yes, we do have a [Schema Premium](https://schema.press/downloads/schema-premium/) plugin that is packed with [features](https://schema.press/features/).
+Yes, we do have a [Schema Premium](https://schema.press/downloads/schema-premium/) plugin that is packed with [features](https://schema.press/features/) and [supports more schema.org types](https://schema.press/docs-premium/supported-types/).
+
+See [Schema Free vs Schema Premium](https://schema.press/vs/).
 
 = The plugin isn't working or have a bug? =
 
@@ -183,8 +199,19 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 
 == Changelog ==
 
+= 1.7.7 =
+* Fix: Taxonomy json output on WooCommerce product category.
+
+= 1.7.6 =
+* Fix: CSS for admin bar menu item.
+* Tweak: Added premium extensions to extension page.
+* Update: Pumped tested WordPress version to 5.2.3 release.
+
 = 1.7.5 =
 * Fix: PHP Fatal error when truncating long headlines.
+* Fix: PHP warning when parse HTML5-code, added a better error suppression.
+* Tweak: Added a discount code for Schema Premium message.
+* Update: Pumped tested WordPress version to 5.1 release.
 
 = 1.7.4 = 
 * Fix: Activating plugin creates unwanted two menu items (Post, Page).
