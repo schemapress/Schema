@@ -1,6 +1,8 @@
 # [Schema](http://schema.press) #
 ============
 
+Version 1.7.7
+
 ### Welcome to our GitHub Repository
 
 Schema is a light-weight plugin for adding schema.org structured data markup in recommended JSON-LD format automatically to WordPress sites.
@@ -68,8 +70,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 Schema plugin integrates, and play nicely with:
 
  * Yoast SEO
- * AMP plugin (Automattic's Accelerated Mobile Pages)
- * Accelerated Mobile Pages - AMP for WP
+ * AMP plugin
  * WPRichSnippets
  * The SEO Framework
  * Visual Composer
@@ -83,4 +84,4 @@ Schema plugin integrates, and play nicely with:
  * Thesis 2.x
  * Divi
 
-More information and documentation can be found at [scema.press](https://schema.press/docs/).
+More information and documentation can be found at [scema.press](https://schema.press/).
