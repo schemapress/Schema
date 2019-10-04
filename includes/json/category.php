@@ -111,7 +111,7 @@ function schema_wp_get_category_json() {
 		$json = array
        		(
 				'@context' 		=> 'http://schema.org/',
-				'@type' 		=> "CollectionPage",
+				'@type' 		=> 'CollectionPage',
 				'headline' 		=> $category_headline,
 				'description' 	=> strip_tags(category_description()),
 				'url'		 	=> $category_link,

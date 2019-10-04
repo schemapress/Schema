@@ -63,7 +63,7 @@ function schema_wp_admin_bar_styles() {
 	<style type="text/css">
 		/* admin bar */
 		.schema_google_developers a {
-			padding-left:30px !important;
+			padding-left:20px !important;
 			background:	transparent url('<?php echo SCHEMAWP_PLUGIN_URL; ?>assets/images/admin-bar/google-developers.png') 8px 50% no-repeat !important;
 		}
 		.schema_google_developers a:hover {

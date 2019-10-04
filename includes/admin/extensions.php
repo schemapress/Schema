@@ -93,7 +93,10 @@ function schema_wp_extensions_get_rest( $tab = 'premium' ) {
 			$extensions = json_decode( wp_remote_retrieve_body( $api_response ), true );
 		
 			if ( $extensions && ! empty($extensions['products'] ) ) {
-		
+				
+				// debug
+				//echo'<pre>';print_r($extensions['products'] );echo'</pre>';
+				
 				foreach ( $extensions['products'] as $key => $extension ) {
 				
 					// get extension info
@@ -106,7 +109,8 @@ function schema_wp_extensions_get_rest( $tab = 'premium' ) {
 					if ( $tab === 'premium' ) {
 						// exclude if not in this category
 						$category = isset($info['category'][0]['slug']) ? $info['category'][0]['slug'] : '';
-						if ( $category != $tab && $info['slug'] != 'schema-premium' ) continue;
+						//if ( $category != $tab && $info['slug'] != 'schema-premium' ) continue;
+						if ($category === 'official-free' ) continue;
 					} else {
 						// exclude if not in this category
 						$category = isset($info['category'][0]['slug']) ? $info['category'][0]['slug'] : '';

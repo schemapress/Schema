@@ -246,7 +246,7 @@ $fields_schema_premium_plugin = array(
 	
 	array( // Post Types Select box
 		'label'	=> '', // <label>
-		'desc'	=> '<b>'.__('Want to enable new features?', 'schema-wp') .'<br>'. __(' Check out <a target="_blank" href="https://schema.press/downloads/schema-premium/">Schema Premium</a>.', 'schema-wp') . '</b>',  // description
+		'desc'	=> '<b>'.__('Want to enable new features?', 'schema-wp').'<br><br>'.__(' <a class="button button-large" target="_blank" href="https://schema.press/downloads/schema-premium/">Get Schema Premium</a>', 'schema-wp').'</b><br><br>'.__('Save 15% off your purchase? Use discount code: <b>SPFREE15</b>', 'schema-wp'),  // description
 		'id'	=> $prefix.'schema_premium', // field id and name
 		'type'	=> 'desc' // type of field
 	),

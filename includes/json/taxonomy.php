@@ -63,7 +63,7 @@ function schema_wp_get_taxonomy_json() {
     		
 			$schema_json = get_post_meta( $post->ID, '_schema_json', true );
 			
-			if ( isset($schema_json) ) {
+			if ( isset($schema_json) && !empty($schema_json) ) {
 				$json[] = $schema_json;
 			}
 			

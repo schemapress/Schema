@@ -345,13 +345,19 @@ function schema_wp_get_media( $post_id = null) {
 			
 			if ( $post->post_content ) {
 				$Document = new DOMDocument();
+				// @since 1.7.5
+				libxml_use_internal_errors(true);
+				// load the html into the object
 				@$Document->loadHTML( $post->post_content );
+				// @since 1.7.5
+				libxml_clear_errors();
 				$DocumentImages = $Document->getElementsByTagName( 'img' );
 
 				if ( $DocumentImages->length ) {
 					$image_url 		= $DocumentImages->item( 0 )->getAttribute( 'src' );
 					$image_width 	= ( $DocumentImages->item( 0 )->getAttribute( 'width' ) > 696 ) ? $DocumentImages->item( 0 )->getAttribute( 'width' ) : 696;
 					$image_height	= $DocumentImages->item( 0 )->getAttribute( 'height' );
+				
 				}
 			}
 		}
