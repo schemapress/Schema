@@ -116,7 +116,8 @@ function schema_wp_get_publisher_array() {
 	$publisher = array();
 	
 	$name = schema_wp_get_option( 'name' );
-	
+	$url  = esc_attr( stripslashes( schema_wp_get_option( 'url' ) ) );
+
 	// Use site name as organization name for publisher if not presented in plugin settings
 	// @since 1.5.9.5
 	if ( empty($name) ) $name = get_bloginfo( 'name' );
@@ -128,6 +129,7 @@ function schema_wp_get_publisher_array() {
 		"@type"	=> "Organization",	// default required value
 		"@id" => schema_wp_get_home_url() . "#organization",
 		"name"	=> wp_filter_nohtml_kses($name),
+		"url" => $url,
 		"logo"	=> array(
     		"@type" => "ImageObject",
     		"url" => $logo,

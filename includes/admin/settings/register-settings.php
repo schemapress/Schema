@@ -296,6 +296,45 @@ function schema_wp_get_registered_settings() {
 						),
 						'std' => ''
 					),
+					'organization_subtype' => array(
+						'id' => 'organization_subtype',
+						'name' => __( 'Organization sub-type?', 'schema-wp'),
+						'type' => 'select',
+						'options' => array(
+							null => __( 'None', 'schema-wp'),
+							'LocalBusiness' => __( 'Local Business', 'schema-wp'),
+							'Restaurant' => __( 'Restaurant', 'schema-wp'),
+							'DaySpa' => __( 'Day Spa', 'schema-wp'),
+							'HealthClub' => __( 'Health Club', 'schema-wp'),
+							'Store' => __( 'Store', 'schema-wp'),
+							'TelevisionStation' => __( 'TelevisionStation', 'schema-wp'),
+							'AnimalShelter' => __( 'AnimalShelter', 'schema-wp'),
+							'AutomotiveBusiness' => __( 'Automotive Business', 'schema-wp'),
+							'Dentist' => __( 'Dentist', 'schema-wp'),
+							'DryCleaningOrLaundry' => __( 'Dry Cleaning or Laundry', 'schema-wp'),
+							'EmergencyService' => __( 'Emergency Service', 'schema-wp'),
+							'EmploymentAgency' => __( 'Employment Agency', 'schema-wp'),
+							'Entertainment Agency'=> __( 'EntertainmentAgency', 'schema-wp'),
+							'FinancialService' => __( 'Financial Service', 'schema-wp'),
+							'FoodEstablishment' => __( 'Food Establishment', 'schema-wp'),
+							'GovernmentOffice' => __( 'Government Office', 'schema-wp'),
+							'HealthAndBeautyBusiness' => __( 'Health & Beauty', 'schema-wp'),
+							'InternetCafe' => __( 'Internet Cafe', 'schema-wp'),
+							'LegalService' => __( 'Legal Service', 'schema-wp'),
+							'Library' => __( 'Library', 'schema-wp'),
+							'LodgingBusiness' => __( 'Lodging Business', 'schema-wp'),
+							'ProfessionalService' => __( 'Professional Service', 'schema-wp'),
+							'RadioStation' => __( 'Radio Station', 'schema-wp'),
+							'RealEstateAgent' => __( 'Real Estate Agent', 'schema-wp'),
+							'RecyclingCenter' => __( 'Recycling Center', 'schema-wp'),
+							'SelfStorage' => __( 'Self Storage', 'schema-wp'),
+							'ShoppingCenter' => __( 'Shopping Centre', 'schema-wp'),
+							'SportsActivityLocation' => __( 'SportsActivityLocation', 'schema-wp'),
+							'TouristInformationCenter' => __( 'TouristInformationCenter', 'schema-wp'),
+							'TravelAgency'  => __( 'Travel Agency', 'schema-wp')
+						),
+						'std' => 'None'
+					),
 					'name' => array(
 						'id' => 'name',
 						'class_field' => 'input_name',
@@ -320,6 +359,13 @@ function schema_wp_get_registered_settings() {
 						'class' => 'tr_field_logo',
 						'name' => __( 'Logo', 'schema-wp' ),
 						'desc' => __('Specify the image of your organization\'s logo to be used in Google Search results and in the Knowledge Graph.<br />Learn more about', 'schema-wp') . ' <a href="https://developers.google.com/search/docs/data-types/logo" target="_blank">'.__('Logo guidelines', 'schema-wp').'</a>',
+						'type' => 'image_upload',
+						'std' => ''
+					),
+					'image' => array(
+						'id' => 'image',
+						'name' => __( 'Image', 'schema-wp' ),
+						'desc' => __( 'An image depicting the Person/Organization (optional).', 'schema-wp' ),
 						'type' => 'image_upload',
 						'std' => ''
 					)
@@ -441,7 +487,70 @@ function schema_wp_get_registered_settings() {
 						'type' => 'text',
 						'placeholder' => 'https://',
 						'std' => ''
-					)
+					),
+                                        // Address
+					'address' => array(
+						'id' => 'address_settings',
+						'name' => '<strong>' . __( 'Address', 'schema-wp' ) . '</strong>',
+						'desc' => __( 'Use structured data markup embedded in your public website to specify your address.', 'schema-wp' ),
+						'type' => 'header'
+					),
+					'address_country' => array(
+						'id' => 'address_country',
+						'name' => __( 'Country', 'schema-wp' ),
+						'desc' => __( 'Please use a two letter country code', 'schema-wp' ),
+						'type' => 'text',
+						'placeholder' => 'AU',
+						'std' => ''
+					),
+					'address_locality' => array(
+						'id' => 'address_locality',
+						'name' => __( 'Locality', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => '',
+						'std' => ''
+					),
+					'address_region' => array(
+						'id' => 'address_region',
+						'name' => __( 'Region', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => '',
+						'std' => ''
+					),
+					'postal_code' => array(
+						'id' => 'postal_code',
+						'name' => __( 'Post Code', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => '',
+						'std' => ''
+					),
+					'street_address' => array(
+						'id' => 'street_address',
+						'name' => __( 'Street Address', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'text',
+						'placeholder' => '',
+						'std' => ''
+					),
+					'latitude' => array(
+						'id' => 'latitude',
+						'name' => __( 'Latitude', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'geo',
+						'placeholder' => '',
+						'std' => ''
+					),
+					'longitude' => array(
+						'id' => 'longitude',
+						'name' => __( 'Longitude', 'schema-wp' ),
+						'desc' => '',
+						'type' => 'geo',
+						'placeholder' => '',
+						'std' => ''
+					),
 				), 
 				
 				/** Search Results Settings */
@@ -1048,6 +1157,44 @@ function schema_wp_number_callback( $args ) {
 
 	$size = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
 	$html = '<input type="number" step="' . esc_attr( $step ) . '" max="' . esc_attr( $max ) . '" min="' . esc_attr( $min ) . '" class="' . $class_field . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" ' . $name . ' value="' . esc_attr( stripslashes( $value ) ) . '"/>';
+	$html .= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
+
+	echo apply_filters( 'schema_wp_after_setting_output', $html, $args );
+}
+
+/**
+ * Lat/Long Callback
+ *
+ * Renders number fields.
+ *
+ * @since 1.9
+ * @param array $args Arguments passed by the setting
+ *
+ * @return void
+ */
+function schema_wp_geo_callback( $args ) {
+	$schema_wp_option = schema_wp_get_option( $args['id'] );
+
+	if ( $schema_wp_option ) {
+		$value = $schema_wp_option;
+	} else {
+		$value = isset( $args['std'] ) ? $args['std'] : '';
+	}
+
+	if ( isset( $args['faux'] ) && true === $args['faux'] ) {
+		$args['readonly'] = true;
+		$value = isset( $args['std'] ) ? $args['std'] : '';
+		$name  = '';
+	} else {
+		$name = 'name="schema_wp_settings[' . esc_attr( $args['id'] ) . ']"';
+	}
+
+	$max  = isset( $args['max'] ) ? $args['max'] : 180;
+	$min  = isset( $args['min'] ) ? $args['min'] : -180;
+	$step = isset( $args['step'] ) ? $args['step'] : 0.000000001;
+
+	$size = ( isset( $args['size'] ) && ! is_null( $args['size'] ) ) ? $args['size'] : 'regular';
+	$html = '<input type="number" step="' . esc_attr( $step ) . '" max="' . esc_attr( $max ) . '" min="' . esc_attr( $min ) . '" class="' . sanitize_html_class( $size ) . '-text" id="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']" ' . $name . ' value="' . esc_attr( stripslashes( $value ) ) . '"/>';
 	$html .= '<label for="schema_wp_settings[' . schema_wp_sanitize_key( $args['id'] ) . ']"> '  . wp_kses_post( $args['desc'] ) . '</label>';
 
 	echo apply_filters( 'schema_wp_after_setting_output', $html, $args );
