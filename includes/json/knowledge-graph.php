@@ -77,20 +77,31 @@ function schema_wp_get_knowledge_graph_json() {
 	
 	if ( empty($name) || empty($url) ) return;
 	
-	// Set logo only when type = Organization
-	if ( $type == 'Organization' ) {
-		$logo = esc_attr( stripslashes( schema_wp_get_option( 'logo' ) ) );
-	} else {
-		$logo = '';
-	}
-	
 	$schema['@context'] = "http://schema.org";
 	$schema['@type'] 	= $type;
-	$schema['@id'] 		= '#' . $organization_or_person;
+	$schema['@id'] 		= $url . '#' . $organization_or_person;
 	
 	if ( !empty($name) ) $schema['name'] 	= $name;
 	if ( !empty($url) ) $schema['url'] 		= $url;
-	if ( !empty($logo) ) $schema['logo'] 	= $logo;
+	
+	// Add logo
+	// @since 1.7.7
+	// Set logo only when type = Organization
+	if ( $type == 'Organization' ) {
+		$logo = esc_attr( stripslashes( schema_wp_get_option( 'logo' ) ) );
+		if ( !empty($logo) ) {
+			$logo_attachment_id = attachment_url_to_postid( $logo );
+			// If the above function fails, we can use the commented one below:
+			//$logo_attachment_id = schema_wp_get_attachment_id_from_url( $logo );
+	 		if ( !empty($logo_attachment_id) ) {
+	 			$schema['logo'] = schema_wp_get_image_object_by_attachment_id( $logo_attachment_id );
+				$schema['logo']['@id'] = $url . '#logo'; 
+	 		} else {
+				// It's external, use image url only
+				$schema['logo'] = $logo;
+			}
+	 	}
+	}
 	
 	// Get corporate contacts types array
 	$corporate_contacts_types = schema_wp_get_corporate_contacts_types_array();
@@ -105,7 +116,7 @@ function schema_wp_get_knowledge_graph_json() {
 	if ( ! empty($social) ) {
 		$schema["sameAs"] = $social;
 	}
-	
+
 	return apply_filters( 'schema_wp_knowledge_graph_json', $schema );
 }
 
