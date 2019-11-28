@@ -1,0 +1,1843 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Schema\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-27 14:34+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3"
+
+#: includes/admin/meta.php:249
+msgid ""
+" <a class=\"button button-large\" target=\"_blank\" href=\"https://schema."
+"press/downloads/schema-premium/\">Get Schema Premium</a>"
+msgstr ""
+
+#: includes/json/category.php:108
+msgid " Category"
+msgstr ""
+
+#: includes/json/tag.php:84
+msgid " Tag"
+msgstr ""
+
+#: includes/admin/updater/class-license-handler.php:168
+#, php-format
+msgid "%1$s"
+msgstr ""
+
+#: includes/admin/settings/contextual-help.php:29
+#, php-format
+msgid ""
+"<a href=\"%s\">Post an issue</a> on <a href=\"%s\">GitHub</a>. View <a "
+"href=\"%s\">extensions</a>"
+msgstr ""
+
+#: includes/admin/settings/contextual-help.php:65
+msgid "A description of all the options are provided beside their input boxes."
+msgstr ""
+
+#: includes/admin/class-menu.php:79 includes/admin/class-menu.php:80
+msgid "About"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:595
+#: includes/admin/class-setup-wizard.php:598
+msgid "About Page"
+msgstr ""
+
+#: includes/admin/class-welcome.php:246
+msgid "AboutPage"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:28
+msgctxt "add new on admin bar"
+msgid "Schema"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:30
+msgid "Add New Schema"
+msgstr ""
+
+#: includes/admin/meta.php:170
+msgid "Add post meta key name as source"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:27
+msgctxt "admin menu"
+msgid "Schema"
+msgstr ""
+
+#: includes/admin/settings/contextual-help.php:62
+#: includes/admin/meta/class-meta.php:64
+msgid "Advanced"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:34
+msgid "All Schemas"
+msgstr ""
+
+#: includes/admin/class-welcome.php:297
+msgid "Also, you can set Schema to work on specific post categories."
+msgstr ""
+
+#: includes/admin/meta.php:41 includes/admin/meta.php:42
+#: includes/admin/meta.php:266 includes/admin/class-welcome.php:210
+msgid "Article"
+msgstr ""
+
+#: includes/admin/meta.php:65
+msgid "Article Type"
+msgstr ""
+
+#: includes/extensions/audio-object.php:115
+msgid "Audio duration, example: if duration is 1 Hour 35 MIN, use: PT1H35M"
+msgstr ""
+
+#: includes/extensions/audio-object.php:36
+msgid "Audio Markups"
+msgstr ""
+
+#: includes/extensions/audio-object.php:122
+msgid "Audio short description."
+msgstr ""
+
+#: includes/extensions/audio-object.php:101
+msgid "Audio title"
+msgstr ""
+
+#: includes/extensions/audio-object.php:108
+msgid "Audio upload date in ISO 8601 format YYYY-MM-DD example: 2016-06-23"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:665
+#: includes/admin/class-setup-wizard.php:668
+msgid "AudioObject"
+msgstr ""
+
+#: includes/misc-functions.php:680
+msgid "Australian Dollars"
+msgstr ""
+
+#: includes/admin/class-welcome.php:254
+msgid "author archive"
+msgstr ""
+
+#: includes/admin/meta.php:153
+msgid "Author Name"
+msgstr ""
+
+#: includes/admin/class-welcome.php:305
+msgid "Automatically add AudioObject to oEmbed"
+msgstr ""
+
+#: includes/admin/class-welcome.php:301
+msgid "Automatically add VideoObject to oEmbed"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:590
+msgid ""
+"Automatically, add additional schema.org markups to your website content."
+msgstr ""
+
+#: includes/admin/admin-functions.php:161
+msgid "Baggage Tracking"
+msgstr ""
+
+#: includes/misc-functions.php:681
+msgid "Bangladeshi Taka"
+msgstr ""
+
+#: includes/admin/admin-functions.php:156
+msgid "Bill Payment"
+msgstr ""
+
+#: includes/admin/admin-functions.php:155
+msgid "Billing Support"
+msgstr ""
+
+#: includes/admin/class-welcome.php:222
+msgid "Blog"
+msgstr ""
+
+#: includes/admin/class-welcome.php:213
+msgid "BlogPosting"
+msgstr ""
+
+#: includes/misc-functions.php:682
+msgid "Brazilian Real"
+msgstr ""
+
+#: includes/admin/class-welcome.php:234
+msgid "BreadcrumbList"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:638
+#: includes/admin/class-setup-wizard.php:641
+msgid "Breadcrumbs"
+msgstr ""
+
+#: includes/admin/extensions.php:43 includes/admin/extensions.php:61
+#: includes/admin/extensions.php:61
+msgid "Browse all extensions"
+msgstr ""
+
+#: includes/misc-functions.php:683
+msgid "Bulgarian Lev"
+msgstr ""
+
+#: includes/misc-functions.php:684
+msgid "Canadian Dollars"
+msgstr ""
+
+#: includes/admin/meta.php:206
+msgid "Checkbox"
+msgstr ""
+
+#: includes/misc-functions.php:685
+msgid "Chilean Peso"
+msgstr ""
+
+#: includes/misc-functions.php:686
+msgid "Chinese Yuan"
+msgstr ""
+
+#: includes/admin/class-welcome.php:238 includes/admin/class-welcome.php:242
+msgid "CollectionPage"
+msgstr ""
+
+#: includes/misc-functions.php:687
+msgid "Colombian Peso"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:647
+#: includes/admin/class-setup-wizard.php:650
+msgid "Comments"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:698
+msgid "Configure Your Schema Types!"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:605
+#: includes/admin/class-setup-wizard.php:608
+msgid "Contact Page"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:424
+msgid "Contact Type"
+msgstr ""
+
+#: includes/admin/class-welcome.php:250
+msgid "ContactPage"
+msgstr ""
+
+#: includes/admin/post-type/schema-columns.php:51
+msgid "Content"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:368
+#: includes/admin/class-setup-wizard.php:431
+#: includes/admin/class-setup-wizard.php:575
+#: includes/admin/class-setup-wizard.php:675
+msgid "Continue"
+msgstr ""
+
+#: includes/admin/class-welcome.php:280
+msgid "Correct Genesis Schema Markup"
+msgstr ""
+
+#: includes/admin/meta.php:179
+msgid "Create custom post meta field?"
+msgstr ""
+
+#: includes/admin/meta.php:180
+msgid "Create Field?"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:172
+msgid "Create Schema"
+msgstr ""
+
+#: includes/admin/meta.php:178
+msgid "Create?"
+msgstr ""
+
+#: includes/admin/admin-functions.php:159
+msgid "Credit Card Support"
+msgstr ""
+
+#: includes/admin/class-welcome.php:167
+msgid "Credits"
+msgstr ""
+
+#: includes/misc-functions.php:693
+msgid "Croatia kuna"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:93
+msgid "Custom field deleted."
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:92
+msgid "Custom field updated."
+msgstr ""
+
+#: includes/admin/admin-functions.php:153
+msgid "Customer Support"
+msgstr ""
+
+#: includes/misc-functions.php:688
+msgid "Czech Koruna"
+msgstr ""
+
+#: includes/misc-functions.php:689
+msgid "Danish Krone"
+msgstr ""
+
+#: includes/admin/meta.php:161 includes/admin/meta.php:223
+#: includes/extensions/audio-object.php:121
+#: includes/extensions/video-object.php:121
+msgid "Description"
+msgstr ""
+
+#: includes/admin/meta.php:227
+msgid "Description for this field"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:43
+msgid "Description."
+msgstr ""
+
+#: includes/integrations/yoast-seo.php:77
+msgid "Disable Duplicate Features that Yoast SEO Offers?"
+msgstr ""
+
+#: includes/admin/class-welcome.php:365
+msgid ""
+"Docs are on its way! We will update <a href=\"http://schema.press/\">schema."
+"press</a> site with plugin documentation soon."
+msgstr ""
+
+#: includes/admin/class-welcome.php:364
+msgid "Documentation"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:383
+msgid "Does your site represent a Person or Organization?"
+msgstr ""
+
+#: includes/misc-functions.php:690
+msgid "Dominican Peso"
+msgstr ""
+
+#: includes/extensions/audio-object.php:114
+#: includes/extensions/video-object.php:114
+msgid "Duration"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:32
+msgid "Edit Schema"
+msgstr ""
+
+#: includes/misc-functions.php:723
+msgid "Egyptian Pound"
+msgstr ""
+
+#: includes/admin/admin-functions.php:160
+msgid "Emergency"
+msgstr ""
+
+#: includes/admin/meta.php:50
+msgid "Enable custom post meta box"
+msgstr ""
+
+#: includes/admin/meta.php:51
+msgid "Enable post meta box?"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:463
+msgid "Enable Site Name?"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:454
+msgid "Enable Sitelinks Search Box?"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:633
+#: includes/admin/class-setup-wizard.php:642
+#: includes/admin/class-setup-wizard.php:651
+#: includes/admin/class-setup-wizard.php:660
+#: includes/admin/class-setup-wizard.php:669
+#: includes/admin/settings/register-settings.php:546
+msgid "enable?"
+msgstr ""
+
+#: includes/admin/meta.php:108
+msgid "Enabled on specific custom post types"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:52
+msgctxt "enhanced select"
+msgid "%qty% results are available, use up and down arrow keys to navigate."
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:54
+msgctxt "enhanced select"
+msgid "Loading failed"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:61
+msgctxt "enhanced select"
+msgid "Loading more results&hellip;"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:53
+msgctxt "enhanced select"
+msgid "No matches found"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:51
+msgctxt "enhanced select"
+msgid "One result is available, press enter to select it."
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:58
+msgctxt "enhanced select"
+msgid "Please delete %qty% characters"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:57
+msgctxt "enhanced select"
+msgid "Please delete 1 character"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:56
+msgctxt "enhanced select"
+msgid "Please enter %qty% or more characters"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:55
+msgctxt "enhanced select"
+msgid "Please enter 1 or more characters"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:62
+msgctxt "enhanced select"
+msgid "Searching&hellip;"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:60
+msgctxt "enhanced select"
+msgid "You can only select %qty% items"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:59
+msgctxt "enhanced select"
+msgid "You can only select 1 item"
+msgstr ""
+
+#: includes/extensions/sameAs.php:41
+msgid "Enter sameAs URLs, one per line."
+msgstr ""
+
+#: includes/admin/updater/class-license-handler.php:475
+msgid "Enter valid license key for automatic updates."
+msgstr ""
+
+#: includes/admin/updater/class-license-handler.php:204
+#, php-format
+msgid ""
+"Enter your extension license keys here to receive updates for purchased "
+"extensions. If your license key has expired, please <a href=\"%s\" "
+"target=\"_blank\">renew your license</a>."
+msgstr ""
+
+#: includes/admin/class-notices.php:53
+#: includes/admin/updater/class-license-handler.php:319
+msgid "Error"
+msgstr ""
+
+#: includes/misc-functions.php:691
+msgid "Euros"
+msgstr ""
+
+#: includes/admin/class-menu.php:67 includes/admin/class-menu.php:68
+#: includes/admin/settings/contextual-help.php:56
+msgid "Extensions"
+msgstr ""
+
+#: includes/admin/extensions.php:41
+msgid "Extensions for Schema"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:454
+#: includes/admin/class-setup-wizard.php:457
+#: includes/admin/settings/register-settings.php:341
+msgid "Facebook"
+msgstr ""
+
+#: includes/integrations/yoast-seo.php:81
+msgid ""
+"Features that will be disabled:<br /><ol><li>Organization/Person</li><li>"
+"Social Profiles</li><li>Corporate Contacts\n"
+"</li><li>Breadcrumb</li><li>Sitelink Search Box</li></ol>"
+msgstr ""
+
+#: includes/admin/meta.php:224
+msgid "Field description"
+msgstr ""
+
+#: includes/admin/meta.php:215
+msgid "Field label"
+msgstr ""
+
+#: includes/admin/meta.php:132 includes/admin/meta/class-meta.php:346
+msgid "Fields"
+msgstr ""
+
+#: includes/admin/meta.php:145
+msgid "Filter"
+msgstr ""
+
+#: includes/admin/class-welcome.php:196
+msgid "First-time Schema configuration!"
+msgstr ""
+
+#: includes/admin/class-welcome.php:222
+msgid "for Blog posts list page"
+msgstr ""
+
+#: includes/admin/class-welcome.php:234
+msgid "for Breadcrumbs"
+msgstr ""
+
+#: includes/admin/class-welcome.php:238
+msgid "for Categories"
+msgstr ""
+
+#: includes/admin/settings/contextual-help.php:26
+msgid "For more information:"
+msgstr ""
+
+#: includes/admin/class-welcome.php:242
+msgid "for Tags"
+msgstr ""
+
+#: includes/admin/class-welcome.php:246
+msgid "for the about page"
+msgstr ""
+
+#: includes/admin/class-welcome.php:250
+msgid "for the contact page"
+msgstr ""
+
+#: includes/admin/class-welcome.php:230
+msgid "for Web Page Footer"
+msgstr ""
+
+#: includes/admin/class-welcome.php:226
+msgid "for Web Page Header"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:136
+#: includes/admin/class-welcome.php:212
+#: includes/admin/settings/register-settings.php:1020
+#: includes/admin/settings/contextual-help.php:38
+msgid "General"
+msgstr ""
+
+#: includes/admin/extensions.php:124
+msgid "Get Schema Premium"
+msgstr ""
+
+#: includes/admin/class-welcome.php:197
+msgid "Get started quickly with the Schema configuration wizard!"
+msgstr ""
+
+#: includes/admin/extensions.php:124
+msgid "Get this Extension"
+msgstr ""
+
+#: includes/admin/class-welcome.php:163
+msgid "Getting Started"
+msgstr ""
+
+#: includes/admin/class-welcome.php:61 includes/admin/class-welcome.php:62
+msgid "Getting started with Schema"
+msgstr ""
+
+#: includes/admin/meta.php:269
+msgid "Go Premium"
+msgstr ""
+
+#: includes/admin/class-welcome.php:264 includes/admin/class-welcome.php:353
+msgid "Go To Schema Settings"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:478
+#: includes/admin/class-setup-wizard.php:481
+#: includes/admin/settings/register-settings.php:357
+msgid "Google+"
+msgstr ""
+
+#: includes/admin/class-welcome.php:337
+msgid ""
+"Hang on! We are going to add more schema integration and cool features to "
+"Schema plugin."
+msgstr ""
+
+#: includes/admin/meta.php:157
+msgid "Headline"
+msgstr ""
+
+#: includes/admin/class-welcome.php:274
+msgid "Hello AMP!"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:692
+msgid "here"
+msgstr ""
+
+#: includes/admin/class-welcome.php:394
+msgid ""
+"Here, we will be listing some of the faces that have helped build Schema."
+msgstr ""
+
+#. Author of the plugin
+msgid "Hesham"
+msgstr ""
+
+#: includes/misc-functions.php:692
+msgid "Hong Kong Dollar"
+msgstr ""
+
+#: includes/admin/class-feedback.php:232
+msgid "How do you like Schema?"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://zebida.com"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://schema.press"
+msgstr ""
+
+#: includes/misc-functions.php:694
+msgid "Hungarian Forint"
+msgstr ""
+
+#: includes/misc-functions.php:695
+msgid "Icelandic krona"
+msgstr ""
+
+#: includes/admin/class-welcome.php:289
+msgid ""
+"If Divi theme is active, Schema plugin will clear shortcodes to be able to "
+"output the content description."
+msgstr ""
+
+#: includes/admin/class-welcome.php:275
+msgid "If you are using the AMP plugin, Schema got you covered!"
+msgstr ""
+
+#: includes/admin/class-welcome.php:278
+msgid "If you are using the WPRichSnippets plugin, Schema will behave!"
+msgstr ""
+
+#: includes/admin/extensions.php:54
+#, php-format
+msgid ""
+"If you have a Personal or Plus license, you can easily upgrade from your "
+"account page to <a href=\"%s\">get access to all of these extensions</a>!"
+msgstr ""
+
+#: includes/misc-functions.php:697
+msgid "Indian Rupee"
+msgstr ""
+
+#: includes/misc-functions.php:696
+msgid "Indonesia Rupiah"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:490
+#: includes/admin/class-setup-wizard.php:493
+#: includes/admin/settings/register-settings.php:365
+msgid "Instagram"
+msgstr ""
+
+#: includes/admin/class-welcome.php:268
+msgid "Integration with Themes and other Plugins"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:126
+msgid "Introduction"
+msgstr ""
+
+#: includes/admin/class-welcome.php:288
+msgid "Is Divi your Theme?"
+msgstr ""
+
+#: includes/misc-functions.php:699
+msgid "Israeli Shekel"
+msgstr ""
+
+#: includes/admin/meta.php:67
+msgid ""
+"It is recommended to set type BlogPosting for posts, and leave empty or set "
+"to General for page post type"
+msgstr ""
+
+#: includes/json/web-page-element.php:76
+msgid "It looks like nothing was found at this location!"
+msgstr ""
+
+#: includes/misc-functions.php:700
+msgid "Japanese Yen"
+msgstr ""
+
+#: includes/admin/meta.php:169
+msgid "Key"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:1021
+#: includes/admin/settings/contextual-help.php:44
+msgid "Knowledge Graph"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:449
+msgid ""
+"Knowledge panels prominently display your social profile information in some "
+"Google Search results."
+msgstr ""
+
+#: includes/admin/meta.php:214 includes/admin/meta.php:219
+msgid "Label"
+msgstr ""
+
+#: includes/misc-functions.php:701
+msgid "Lao Kip"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:703
+msgid "Learn More"
+msgstr ""
+
+#: includes/admin/class-feedback.php:242
+msgid "Leave Feedback"
+msgstr ""
+
+#: includes/admin/class-feedback.php:236
+msgid ""
+"Let us know what you think about the plugin, what is missing, and how we can "
+"make it better. Leave us a review with"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:320
+msgid "Let's Go!"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:514
+#: includes/admin/settings/register-settings.php:381
+msgid "LinkedIn"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:517
+msgid "Linkedin"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:421
+#: includes/admin/settings/register-settings.php:322
+msgid "Logo"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:422
+#: includes/admin/class-setup-wizard.php:621
+#: includes/admin/settings/register-settings.php:268
+#: includes/admin/settings/register-settings.php:323
+msgid "Logo guidelines"
+msgstr ""
+
+#. Publish box date format, see http://php.net/date
+#: includes/admin/post-type/schema-post-type.php:103
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: includes/misc-functions.php:703
+msgid "Malaysian Ringgits"
+msgstr ""
+
+#: includes/admin/class-capabilities.php:36
+msgid "Manage Schema Options"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:588
+msgid "Mark Up Your Content"
+msgstr ""
+
+#: includes/admin/class-welcome.php:260
+msgid "Maybe coming soon!"
+msgstr ""
+
+#: includes/admin/meta.php:174
+msgid "Meta Key Name"
+msgstr ""
+
+#: includes/misc-functions.php:704
+msgid "Mexican Peso"
+msgstr ""
+
+#: includes/extensions/audio-object.php:51
+msgid "Multiple audios"
+msgstr ""
+
+#: includes/extensions/video-object.php:51
+msgid "Multiple videos"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:526
+#: includes/admin/class-setup-wizard.php:529
+#: includes/admin/settings/register-settings.php:388
+msgid "Myspace"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:404
+#: includes/admin/class-setup-wizard.php:407
+#: includes/admin/settings/register-settings.php:304
+#: includes/admin/post-type/schema-columns.php:19
+msgid "Name"
+msgstr ""
+
+#: includes/admin/class-welcome.php:361
+msgid "Need Help?"
+msgstr ""
+
+#: includes/misc-functions.php:698
+msgid "Nepali Rupee"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:31
+msgid "New Schema"
+msgstr ""
+
+#: includes/admin/class-welcome.php:258
+msgid "New Schema Type?"
+msgstr ""
+
+#: includes/misc-functions.php:707
+msgid "New Zealand Dollar"
+msgstr ""
+
+#: includes/admin/class-welcome.php:214
+msgid "NewsArticle"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:696
+msgid "Next Step"
+msgstr ""
+
+#: includes/misc-functions.php:705
+msgid "Nigerian Naira"
+msgstr ""
+
+#: includes/admin/class-welcome.php:286
+msgid ""
+"No problem! The Schema plugin will automatically indicate that and show "
+"respect for SEO Framework."
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:38
+msgid "No schema found in Trash."
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:37
+msgid "No schema found."
+msgstr ""
+
+#: includes/admin/class-feedback.php:245
+msgid "No thanks"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:318
+msgid ""
+"No time right now? If you don’t want to go through the wizard, you can skip "
+"and return to the WordPress dashboard. Come back anytime if you change your "
+"mind!"
+msgstr ""
+
+#: includes/admin/updater/class-license-handler.php:319
+msgid "Nonce verification failed"
+msgstr ""
+
+#: includes/extensions/audio-object.php:43
+#: includes/extensions/video-object.php:43
+msgid "None"
+msgstr ""
+
+#: includes/misc-functions.php:706
+msgid "Norwegian Krone"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:321
+msgid "Not right now"
+msgstr ""
+
+#: includes/extensions/audio-object.php:38
+msgid ""
+"Note: You can enable markups to multiple audios on the same page. However, "
+"this may slow down your site, make sure your site is hosted on a reliable "
+"web host and cache your site pages by a good caching plugin. (Recommended "
+"setting: Single Audio)"
+msgstr ""
+
+#: includes/extensions/video-object.php:38
+msgid ""
+"Note: You can enable markups to multiple videos on the same page. However, "
+"this may slow down your site, make sure your site is hosted on a reliable "
+"web host and cache your site pages by a good caching plugin. (Recommended "
+"setting: Single Video)"
+msgstr ""
+
+#: includes/admin/class-welcome.php:272
+msgid ""
+"Now Schema plugin plays nicely with Yoast SEO plugin, you can have both "
+"plugins active with no conflicts."
+msgstr ""
+
+#: includes/admin/class-welcome.php:208
+msgid "Now, Schema plugin supports more schema.org types."
+msgstr ""
+
+#: includes/admin/class-welcome.php:296
+msgid ""
+"Now, you can create new schema.org markup types and enable them on post type "
+"bases."
+msgstr ""
+
+#: includes/admin/extensions.php:32
+msgid "Official Free"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:416
+msgid "Organization Logo"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:393
+msgid "Organization or Person?"
+msgstr ""
+
+#: includes/admin/extensions.php:56
+msgid "Our official free extensions are available to all license holders!"
+msgstr ""
+
+#: includes/admin/class-welcome.php:340
+msgid "Overview"
+msgstr ""
+
+#: includes/admin/admin-functions.php:163
+msgid "Package Tracking"
+msgstr ""
+
+#: includes/install.php:88
+msgid "Page"
+msgstr ""
+
+#: includes/json/web-page-element.php:75
+msgid "Page not found"
+msgstr ""
+
+#: includes/misc-functions.php:708
+msgid "Paraguayan Guaraní"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:36
+msgid "Parent Schemas:"
+msgstr ""
+
+#: includes/admin/class-welcome.php:254
+msgid "Person"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:381
+#: includes/admin/settings/register-settings.php:283
+msgid "Person or Organization"
+msgstr ""
+
+#: includes/misc-functions.php:709
+msgid "Philippine Pesos"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:538
+#: includes/admin/class-setup-wizard.php:541
+#: includes/admin/settings/register-settings.php:396
+msgid "Pinterest"
+msgstr ""
+
+#: includes/admin/class-welcome.php:271
+msgid "Play nicely with Yoast SEO"
+msgstr ""
+
+#: includes/admin/class-welcome.php:199
+msgid "Plugin Settings"
+msgstr ""
+
+#: includes/misc-functions.php:710
+msgid "Polish Zloty"
+msgstr ""
+
+#: includes/install.php:45
+msgid "Post"
+msgstr ""
+
+#: includes/admin/meta.php:268
+msgid "Post Meta"
+msgstr ""
+
+#: includes/admin/meta.php:49
+msgid "Post meta"
+msgstr ""
+
+#: includes/admin/meta.php:123
+msgid "Post meta box title, default: Schema"
+msgstr ""
+
+#: includes/admin/post-type/schema-columns.php:39
+msgid "Post Type"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:25
+msgctxt "post type general name"
+msgid "Schema"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:26
+msgctxt "post type singular name"
+msgid "Schema"
+msgstr ""
+
+#: includes/admin/meta.php:267
+msgid "Post Types"
+msgstr ""
+
+#: includes/misc-functions.php:711
+msgid "Pounds Sterling"
+msgstr ""
+
+#: includes/admin/class-menu.php:90 includes/admin/extensions.php:31
+msgid "Premium"
+msgstr ""
+
+#: includes/admin/extensions.php:53
+#, php-format
+msgid ""
+"Premium Extensions are only available with a Professional or Ultimate "
+"license. If you already have one of these licenses, simply <a href=\"%s\">"
+"log in to your account</a> to download any of these extensions."
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:118
+msgid "Preview schema"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:447
+#: includes/admin/settings/register-settings.php:336
+msgid "Provide your social profile information to a Google Knowledge panel."
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:615
+#: includes/admin/class-setup-wizard.php:620
+#: includes/admin/settings/register-settings.php:267
+msgid "Publisher Logo"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:621
+#: includes/admin/settings/register-settings.php:268
+msgid ""
+"Publisher Logo should have a wide aspect ratio, not a square icon, it should "
+"be no wider than 600px, and no taller than 60px."
+msgstr ""
+
+#: includes/admin/class-welcome.php:200
+#: includes/admin/settings/display-settings.php:86
+msgid "Quick Configuration Wizard"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:151
+msgid "Ready!"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:433
+msgid ""
+"Recommended. An internationalized version of the phone number, starting with "
+"the \"+\" symbol and country code (+1 in the US and Canada)."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:441
+msgid "Recommended. The URL of contact page."
+msgstr ""
+
+#: includes/admin/scripts.php:23 includes/admin/class-setup-wizard.php:81
+msgid "Remove"
+msgstr ""
+
+#: includes/admin/class-welcome.php:215
+msgid "Report"
+msgstr ""
+
+#: includes/admin/admin-functions.php:158
+msgid "Reservations"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:255
+msgid "Return to the WordPress Dashboard"
+msgstr ""
+
+#: includes/admin/admin-functions.php:162
+msgid "Roadside Assistance"
+msgstr ""
+
+#: includes/misc-functions.php:712
+msgid "Romanian Leu"
+msgstr ""
+
+#: includes/misc-functions.php:713
+msgid "Russian Ruble"
+msgstr ""
+
+#: includes/admin/admin-functions.php:157
+msgid "Sales"
+msgstr ""
+
+#: includes/extensions/sameAs.php:74
+msgid "sameAs"
+msgstr ""
+
+#: includes/admin/meta-tax.php:44
+msgid "sameAs "
+msgstr ""
+
+#: includes/admin/meta.php:249
+#, php-format
+msgid "Save 15% off your purchase? Use discount code: <b>SPFREE15</b>"
+msgstr ""
+
+#. Name of the plugin
+#: includes/admin/class-feedback.php:293 includes/admin/meta.php:128
+#: includes/admin/class-menu.php:30 includes/admin/class-menu.php:31
+#: includes/admin/meta-tax.php:25
+#: includes/extensions/post-meta-generator.php:160
+#: includes/admin/settings/display-settings.php:65
+msgid "Schema"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:29
+msgctxt "schema"
+msgid "Add New"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:188
+msgid "Schema &rsaquo; Setup Wizard"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:99
+msgid "Schema added."
+msgstr ""
+
+#: includes/admin/class-welcome.php:306
+msgid ""
+"Schema allow you to enable AudioObject markup automatically whenever oEmbed "
+"is called on your page."
+msgstr ""
+
+#: includes/admin/class-welcome.php:302
+msgid ""
+"Schema allow you to enable VideoObject markup automatically whenever oEmbed "
+"is called on your page."
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:97
+msgid "Schema created."
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:105
+msgid "Schema draft updated."
+msgstr ""
+
+#: includes/admin/meta-exclude.php:69
+msgid "Schema Exclude"
+msgstr ""
+
+#: includes/admin/class-welcome.php:346
+msgid ""
+"Schema markup is code (semantic vocabulary) that you put on your website to "
+"help the search engines return more informative results for users. So, "
+"Schema is not just for SEO reasons, it’s also for the benefit of the "
+"searcher."
+msgstr ""
+
+#: includes/admin/meta.php:35
+msgid "Schema Markup Type"
+msgstr ""
+
+#: includes/admin/class-welcome.php:269
+msgid "Schema plays nicely  and support themes mentioned below."
+msgstr ""
+
+#: includes/integrations/yoast-seo.php:81
+msgid ""
+"Schema plugin will override Yoast SEO output to avoid markup duplication. "
+"Check this box if you would like to disable Schema markup and use Yoast SEO "
+"output instead."
+msgstr ""
+
+#: includes/admin/class-welcome.php:295
+msgid "Schema Post Type"
+msgstr ""
+
+#. %s: date and time of the revision
+#: includes/admin/post-type/schema-post-type.php:96
+#, php-format
+msgid "Schema restored to revision from %s"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:94
+#: includes/admin/post-type/schema-post-type.php:98
+msgid "Schema saved."
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:101
+#, php-format
+msgid "Schema scheduled for: <strong>%1$s</strong>."
+msgstr ""
+
+#: includes/admin/meta.php:265 includes/admin/class-menu.php:39
+msgid "Schema Settings"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:105
+msgid "Schema Setup"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:105
+msgid "Schema Setup Wizard"
+msgstr ""
+
+#: includes/admin/post-type/schema-columns.php:27
+msgid "Schema Type"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:91
+msgid "Schema updated."
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:690
+msgid ""
+"Schema will now take care of all the needed technical optimization of your "
+"site."
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:146
+#: includes/admin/settings/register-settings.php:1022
+msgid "Schemas"
+msgstr ""
+
+#: includes/admin/class-welcome.php:216
+msgid "ScholarlyArticle"
+msgstr ""
+
+#: includes/admin/settings/contextual-help.php:50
+msgid "Search Results"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:35
+msgid "Search Schemas"
+msgstr ""
+
+#: includes/admin/class-notices.php:53
+msgid "Security check failed"
+msgstr ""
+
+#: includes/extensions/audio-object.php:37
+msgid "Select audio markup type."
+msgstr ""
+
+#: includes/admin/meta.php:192
+msgid "Select field type"
+msgstr ""
+
+#: includes/admin/meta.php:150
+msgid "Select Filter"
+msgstr ""
+
+#: includes/admin/meta.php:66
+msgid "Select more specific article type"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:811
+#: includes/admin/settings/register-settings.php:1668
+#: includes/admin/meta/class-meta.php:42
+msgid "Select One"
+msgstr ""
+
+#: includes/admin/meta.php:36
+msgid "Select Schema type which describes your content best"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:246
+msgid "Select Site Type"
+msgstr ""
+
+#: includes/admin/meta.php:195
+msgid "Select Type"
+msgstr ""
+
+#: includes/extensions/video-object.php:37
+msgid "Select video markup type."
+msgstr ""
+
+#: includes/admin/class-menu.php:40
+msgid "Settings"
+msgstr ""
+
+#: includes/admin/class-notices.php:32
+msgid "Settings successfully imported"
+msgstr ""
+
+#: includes/admin/class-notices.php:20
+msgid "Settings updated."
+msgstr ""
+
+#: includes/misc-functions.php:714
+msgid "Singapore Dollar"
+msgstr ""
+
+#: includes/extensions/audio-object.php:47
+msgid "Single audio"
+msgstr ""
+
+#: includes/extensions/video-object.php:47
+msgid "Single video"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:478
+msgid "Site Alternate Name"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:470
+msgid "Site Name"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:131
+#: includes/admin/class-setup-wizard.php:331
+#: includes/admin/class-setup-wizard.php:343
+#: includes/admin/settings/register-settings.php:242
+msgid "Site Type"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:369
+#: includes/admin/class-setup-wizard.php:432
+#: includes/admin/class-setup-wizard.php:576
+#: includes/admin/class-setup-wizard.php:676
+msgid "Skip this step"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:141
+#: includes/admin/class-setup-wizard.php:445
+#: includes/admin/settings/register-settings.php:335
+msgid "Social Profiles"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:550
+#: includes/admin/class-setup-wizard.php:553
+#: includes/admin/settings/register-settings.php:404
+msgid "SoundCloud"
+msgstr ""
+
+#: includes/misc-functions.php:715
+msgid "South African rand"
+msgstr ""
+
+#: includes/misc-functions.php:702
+msgid "South Korean Won"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:422
+#: includes/admin/settings/register-settings.php:323
+msgid ""
+"Specify the image of your organization's logo to be used in Google Search "
+"results and in the Knowledge Graph.<br />Learn more about"
+msgstr ""
+
+#: includes/admin/class-welcome.php:349
+msgid ""
+"Structured Data can help you to send the right signals to search engines "
+"about your business and content."
+msgstr ""
+
+#: includes/admin/class-welcome.php:350
+msgid ""
+"Structured Data helps search engines to understand what the content is "
+"specifically about. Moreover, structured data will allow users to see the "
+"value of a website before they visit, via rich snippets, which are rich data "
+"that are displayed in the SERP’s."
+msgstr ""
+
+#: includes/admin/admin-bar-menu.php:41
+msgid "Structured Data Testing Tool"
+msgstr ""
+
+#: includes/admin/class-welcome.php:369
+msgid "Support"
+msgstr ""
+
+#: includes/admin/class-welcome.php:207
+msgid "Support More Schema Types"
+msgstr ""
+
+#: includes/admin/class-welcome.php:307
+msgid "Supported oEmbed audios: SoundCloud, and Mixcloud."
+msgstr ""
+
+#: includes/admin/class-welcome.php:303
+msgid ""
+"Supported oEmbed videos: Dailymotion, TED, Vimeo, VideoPress, Vine, YouTube."
+msgstr ""
+
+#: includes/misc-functions.php:716
+msgid "Swedish Krona"
+msgstr ""
+
+#: includes/misc-functions.php:717
+msgid "Swiss Franc"
+msgstr ""
+
+#: includes/misc-functions.php:718
+msgid "Taiwan New Dollars"
+msgstr ""
+
+#: includes/admin/class-welcome.php:217
+msgid "TechArticle"
+msgstr ""
+
+#: includes/admin/admin-functions.php:154
+msgid "Technical Support"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:432
+msgid "Telephone"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:455
+msgid "Tell Google to show a Sitelinks search box."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:464
+msgid "Tell Google to show your site name in search results."
+msgstr ""
+
+#: includes/admin/meta.php:198
+msgid "Text"
+msgstr ""
+
+#: includes/admin/meta.php:202
+msgid "Text Area"
+msgstr ""
+
+#: includes/misc-functions.php:719
+msgid "Thai Baht"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:317
+msgid ""
+"Thank you for choosing Schema to power your website! This quick setup wizard "
+"will help you configure the basic settings. <strong>It’s completely optional "
+"and shouldn’t take longer than two minutes.</strong>"
+msgstr ""
+
+#: includes/admin/class-welcome.php:185
+msgid ""
+"Thank you for installing Schema. The best Schema.org plugin for WordPress."
+msgstr ""
+
+#: includes/admin/class-welcome.php:332
+msgid ""
+"Thank you for installing Schema. The best schema.org plugin for WordPress."
+msgstr ""
+
+#: includes/admin/class-welcome.php:389
+msgid "Thank you for updating to the latest version!"
+msgstr ""
+
+#. Description of the plugin
+msgid "The next generation of Structured Data."
+msgstr ""
+
+#: includes/admin/class-welcome.php:70 includes/admin/class-welcome.php:71
+msgid "The people that build Schema"
+msgstr ""
+
+#: includes/admin/class-welcome.php:285
+msgid "The SEO Framework plugin is active?"
+msgstr ""
+
+#: includes/admin/extensions.php:142
+msgid ""
+"There was an error retrieving the extensions list from the server. Please "
+"try again later."
+msgstr ""
+
+#: includes/admin/extensions.php:46
+msgid ""
+"These extensions <em><strong>add functionality</strong></em> to your Schema-"
+"powered site."
+msgstr ""
+
+#: includes/admin/meta.php:134
+msgid ""
+"This feature allow you to override the schema.org markups output generated "
+"by the Schema plugin."
+msgstr ""
+
+#: includes/admin/meta.php:124
+msgid ""
+"This field will allow you to override the Schema post meta box title, "
+"default: Schema"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:335
+msgid ""
+"This information can help us to prioritize future additions to our plugin "
+"for specific types of sites"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:385
+#: includes/admin/settings/register-settings.php:284
+msgid ""
+"This information will be used in Google's Knowledge Graph Card, the big "
+"block of information you see on the right side of the search results."
+msgstr ""
+
+#: includes/admin/meta.php:146
+msgid "This is the filter name"
+msgstr ""
+
+#: includes/admin/meta.php:133
+msgid ""
+"This is where you can define a source for schema.org markup fields to "
+"override its output. Select a filter name, then define post meta key name to "
+"pull data from, or tick the check box to automatically create a new custom "
+"post meta field to insert values manually when editing posts."
+msgstr ""
+
+#: includes/admin/settings/contextual-help.php:57
+msgid ""
+"This screen provides access to settings added by most Schema extensions."
+msgstr ""
+
+#: includes/admin/settings/contextual-help.php:64
+msgid ""
+"This screen provides advanced options such as deleting plugin data on "
+"uninstall."
+msgstr ""
+
+#: includes/admin/settings/contextual-help.php:51
+msgid ""
+"This screen provides settings for configuring Search Results. You can set "
+"Sitelinks Search Box and Site Name."
+msgstr ""
+
+#: includes/admin/settings/contextual-help.php:45
+msgid ""
+"This screen provides settings for configuring the Knowledge Graph. You can "
+"set Organization Info and Corporate Contacts."
+msgstr ""
+
+#: includes/admin/settings/contextual-help.php:39
+msgid ""
+"This screen provides the most basic settings for configuring Schema plugin "
+"on your site. You can set Schema for About and Contact pages, and turn "
+"automatic <em>Feature image</em> on and off...etc"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:390
+#: includes/admin/settings/register-settings.php:290
+msgid "This Website Represent"
+msgstr ""
+
+#: includes/admin/meta-exclude.php:37
+msgid "Tick this checkbox to turn off Schema output on this entry."
+msgstr ""
+
+#: includes/admin/meta.php:122 includes/extensions/audio-object.php:100
+#: includes/extensions/video-object.php:100
+msgid "Title"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:562
+#: includes/admin/class-setup-wizard.php:565
+#: includes/admin/settings/register-settings.php:412
+msgid "Tumblr"
+msgstr ""
+
+#: includes/misc-functions.php:720
+msgid "Turkish Lira"
+msgstr ""
+
+#: includes/admin/meta-exclude.php:36
+msgid "Turn Schema OFF"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:466
+#: includes/admin/class-setup-wizard.php:469
+#: includes/admin/settings/register-settings.php:349
+msgid "Twitter"
+msgstr ""
+
+#: includes/admin/meta.php:191
+msgid "Type"
+msgstr ""
+
+#: includes/admin/class-menu.php:56 includes/admin/class-menu.php:57
+msgid "Types"
+msgstr ""
+
+#: includes/extensions/audio-object.php:107
+#: includes/extensions/video-object.php:107
+msgid "Upload Date"
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:440
+msgid "URL"
+msgstr ""
+
+#: includes/admin/meta-tax.php:44 includes/extensions/sameAs.php:40
+msgid ""
+"URL of a reference Web page that unambiguously indicates the item's identity."
+" E.g. the URL of the item's Wikipedia page, Freebase page, or official "
+"website."
+msgstr ""
+
+#: includes/extensions/sameAs.php:39
+msgid "URLs"
+msgstr ""
+
+#: includes/misc-functions.php:721
+msgid "US Dollars"
+msgstr ""
+
+#: includes/admin/scripts.php:22 includes/admin/class-setup-wizard.php:80
+msgid "Use This File"
+msgstr ""
+
+#: includes/admin/class-welcome.php:282
+msgid "Uses Thesis Theme 2.x Post Image"
+msgstr ""
+
+#: includes/admin/class-welcome.php:281
+msgid ""
+"Using Genesis Framework? The Schema plugin will automatically indicate that "
+"and correct Genesis Schema output."
+msgstr ""
+
+#: includes/admin/class-welcome.php:283
+msgid ""
+"Using Thesis? The Schema plugin will automatically indicate and use Thesis "
+"Post Image is are presented."
+msgstr ""
+
+#: includes/admin/class-welcome.php:188 includes/admin/class-welcome.php:333
+#: includes/admin/class-welcome.php:390
+#, php-format
+msgid "Version %s"
+msgstr ""
+
+#: includes/extensions/video-object.php:115
+msgid "Video duration, example: if duration is 1 Hour 35 MIN, use: PT1H35M"
+msgstr ""
+
+#: includes/extensions/video-object.php:36
+msgid "Video Markups"
+msgstr ""
+
+#: includes/extensions/video-object.php:122
+msgid "Video short description."
+msgstr ""
+
+#: includes/extensions/video-object.php:101
+msgid "Video title"
+msgstr ""
+
+#: includes/extensions/video-object.php:108
+msgid "Video upload date in ISO 8601 format YYYY-MM-DD example: 2016-06-23"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:656
+#: includes/admin/class-setup-wizard.php:659
+msgid "VideoObject"
+msgstr ""
+
+#: includes/misc-functions.php:722
+msgid "Vietnamese Dong"
+msgstr ""
+
+#: includes/admin/class-welcome.php:421
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:33
+msgid "View Schema"
+msgstr ""
+
+#: includes/admin/post-type/schema-post-type.php:111
+msgid "View schema"
+msgstr ""
+
+#: includes/admin/settings/contextual-help.php:27
+#, php-format
+msgid "Visit the <a href=\"%s\">documentation</a> on the schema.press website."
+msgstr ""
+
+#: includes/admin/meta.php:249
+msgid "Want to enable new features?"
+msgstr ""
+
+#: includes/admin/scripts.php:25 includes/admin/class-setup-wizard.php:83
+msgid ""
+"We are sorry but your browser is not compatible with this kind of file "
+"upload. Please upgrade your browser."
+msgstr ""
+
+#: includes/admin/class-welcome.php:370
+msgid ""
+"We do our best to provide support we can. If you encounter a problem, report "
+"it to <a href=\"https://wordpress.org/support/plugin/schema\">support</a>."
+msgstr ""
+
+#: includes/admin/settings/register-settings.php:313
+msgid "Website URL"
+msgstr ""
+
+#: includes/admin/class-welcome.php:184 includes/admin/class-welcome.php:331
+#: includes/admin/class-welcome.php:388
+#, php-format
+msgid "Welcome to Schema v%s"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:316
+msgid "Welcome to Schema!"
+msgstr ""
+
+#: includes/admin/class-welcome.php:345
+msgid "What is Schema markup?"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:333
+msgid "What is your site about?"
+msgstr ""
+
+#: includes/admin/class-welcome.php:160
+msgid "What's New"
+msgstr ""
+
+#: includes/admin/class-welcome.php:52 includes/admin/class-welcome.php:53
+msgid "What's new in Schema"
+msgstr ""
+
+#: includes/admin/class-welcome.php:348
+msgid "Why is Structured Data so Important?"
+msgstr ""
+
+#: includes/admin/class-welcome.php:230
+msgid "WPFooter"
+msgstr ""
+
+#: includes/admin/class-welcome.php:226
+msgid "WPHeader"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:629
+#: includes/admin/class-setup-wizard.php:632
+#: includes/admin/settings/register-settings.php:545
+msgid "WPHeader and WPFooter"
+msgstr ""
+
+#: includes/admin/class-welcome.php:277
+msgid "WPRichSnippets plugin"
+msgstr ""
+
+#: includes/integrations/yoast-seo.php:78
+msgid "Yes"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:692
+msgid "You can change settings from"
+msgstr ""
+
+#: schema.php:124 schema.php:136
+msgid "You don’t have permission to do this"
+msgstr ""
+
+#: includes/admin/class-feedback.php:234
+#, php-format
+msgid "You have been using the %s plugin for %s now!"
+msgstr ""
+
+#: includes/extensions/audio-object.php:95
+msgid ""
+"You have enabled AudioObject, if you see an error in the <a "
+"target=\"_blank\" href=\"https://search.google.com/structured-data/testing-"
+"tool\">testing tool</a>, use the fields below to fill the missing fields, "
+"correct markup errors, and add additional details about the audio embedded "
+"in your content editor."
+msgstr ""
+
+#: includes/extensions/video-object.php:95
+msgid ""
+"You have enabled VideoObject, if you see an error in the <a "
+"target=\"_blank\" href=\"https://search.google.com/structured-data/testing-"
+"tool\">testing tool</a>, use the fields below to fill the missing fields, "
+"correct markup errors, and add additional details about the video embedded "
+"in your content editor."
+msgstr ""
+
+#: includes/admin/updater/class-license-handler.php:436
+#, php-format
+msgid ""
+"You have invalid or expired license keys for Schema. Please go to the <a "
+"href=\"%s\">Licenses page</a> to correct this issue."
+msgstr ""
+
+#: includes/admin/post-type/schema-wp-ajax.php:95
+msgid "You must select at least one post type!"
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:688
+msgid "You've done it!"
+msgstr ""
+
+#: includes/admin/class-feedback.php:236
+msgid "your feedback"
+msgstr ""
+
+#: schema.php:147
+msgid ""
+"Your version of PHP is below the minimum version of PHP required by Schema "
+"plugin. Please contact your host and request that your version be upgraded "
+"to 5.4 or later."
+msgstr ""
+
+#: includes/admin/class-setup-wizard.php:502
+#: includes/admin/class-setup-wizard.php:505
+#: includes/admin/settings/register-settings.php:373
+msgid "YouTube"
+msgstr ""
