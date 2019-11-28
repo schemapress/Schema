@@ -3,9 +3,9 @@ Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
 Tags: schema, schema.org, rich snippets, structured data, json-ld, json, google, seo, markup, search engine, search, breadcrumbs, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile, taxonomy
 Requires at least: 4.0
-Tested up to: 5.2.3
+Tested up to: 5.3
 Requires PHP: 5.4
-Stable tag: 1.7.6
+Stable tag: 1.7.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -32,7 +32,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 * **[Premium]** Support for different schema.org types. 
 * Enable Schema types at once per post type or post category.
 * **[Premium]** Enable Schema types anywhere you want on your site content.
-* **[Premium]** Integration: Customize source data of schema.org properties.
+* **[Premium]** Customize source data of schema.org properties.
 * Valid markup, test it in Google Structured Data Testing Tool.
 * Output JSON-LD format, the most recommended by Google.
 * Reuse data saved in post meta, which is created by other plugins.
@@ -48,6 +48,13 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 
 * [Schema Review](https://wordpress.org/plugins/schema-review/): Extend Schema functionality by adding review and rating Structured Data functionality for Editors and Authors.
 * [Schema Default Image](https://wordpress.org/plugins/schema-default-image/): Add ability to set a default WordPress Featured image for schema.org markup.
+
+### Premium Plugin Extensions
+
+* [Schema for WooCommerce](https://schema.press/downloads/schema-woocommerce/): Integration for WooCommerce.
+* [Schema FAQ Block](https://schema.press/downloads/schema-faq-block/): Add FAQ Block.
+* [Schema How-To Block](https://schema.press/downloads/schema-howto-block/): Add How-To Block.
+* [Schema Rating](https://schema.press/downloads/schema-rating/): Allow site visitors to submit rating on front-end.
 
 ### Supported Google/Schema Markups
 
@@ -91,6 +98,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 * [Blog Posting](https://schema.press/docs-premium/add-schema-org-markup-blogposting/)
 * [Event](https://schema.press/docs-premium/add-schema-org-event/)
 * [FAQPage](https://schema.press/docs-premium/add-schema-org-faq-page/)
+* [HowTo](https://schema.press/docs-premium/add-schema-org-howto/)
 * [Course](https://schema.press/docs-premium/add-schema-org-course/)
 * [Job Posting](https://schema.org/JobPosting)
 * [Local Business](https://schema.press/docs-premium/add-schema-localbusiness/)
@@ -100,6 +108,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 * [Review](https://schema.press/docs-premium/add-schema-org-markup-for-review/)
 * [Service](https://schema.press/docs-premium/add-schema-service/)
 * [Software Application](https://schema.press/docs-premium/add-schema-org-markup-for-software-application/)
+* [WebPage](https://schema.press/version-110-support-medical-web-page/)
 
 ### Supported Plugins
 
@@ -110,12 +119,14 @@ Schema plugin integrates and/or play nicely with (not necessarily a full integra
  * Accelerated Mobile Pages - AMP for WP
  * WPRichSnippets
  * The SEO Framework
- * Visual Composer
+ * WPBakery Page Builder
  * ThirstyAffiliates
  * **[Premium]** WooCommerce: [Schema for WooCommerce](https://schema.press/downloads/schema-woocommerce/) extension.
  * Easy Digital Downloads (EDD)
 
 ### Supported Themes
+
+The plugin should work fine with any well coded WordPress theme, however these themes were tested and works properly with the plugin.
 
  * Genesis 2.x 
  * Thesis 2.x
@@ -155,7 +166,7 @@ Post detailed information about the issue in the [support forum](https://wordpre
 
 Indeed, detailed information about the plugin can be found on the [documentation section](https://schema.press/docs/) on our website.
 
-= Are you going to add support for new schema.org types in the future? =
+= Are you going to support new schema.org types in the future? =
 
 Nope! The Schema plugin is meant to add markup to a basic WordPress installation, including those types (mostly Article, BlogPosting) which needs to be supported on a fresh install. 
 
@@ -191,16 +202,36 @@ Yes, Schema plugin will detect Yoast SEO plugin and override its output on the f
 Yes, Schema plugin will detect AMP plugin and output a more complete and valid schema.org markup.
 
 == Screenshots ==
-1. Plugin Settings page.
-2. Create new schema type screen.
-3. Create post meta fields with Post Meta Box generator feature.
-4. Google Structured Data Testing Tool.
-5. Configuration Wizard.
+1. Schema Plugin General Settings page.
+2. Schema Plugin Knowledge Graph Settings page.
+3. Schema Plugin Schemas Settings page.
+4. Schema Plugin Advanced Settings page.
+5. Create new schema type screen.
+6. Create post meta fields with Post Meta Box generator feature.
+7. Google Structured Data Testing Tool.
+8. Schema Plugin Easy Configuration Wizard.
 
 == Changelog ==
 
+= 1.7.8.1 =
+* Enhancement: Translation .po for English, French, German, Russian, Spanish, and Swedish.
+* Update: Pumped tested WordPress version to 5.3 release.
+* Update: Modified readme.txt file.
+* Update: Modified README.md file.
+
+= 1.7.8 =
+* Enhancement: Added Schema premium settings to plugin settings.
+* Updated: Changed Visual Composer in readme.txt file to WPBakery Page Builder.
+* Update: Added more screenshots for plugin settings.
+* Update: Modified readme.txt file.
+
 = 1.7.7 =
 * Fix: Taxonomy json output on WooCommerce product category.
+* Fix: Generate image object instead of image url in Organization logo markup.
+* Enhancement: Added property @id for Organization type.
+* Enhancement: added function to retrieve image id by url.
+* Update: Pumped tested WordPress version to 5.2.4 release.
+* Update: Modified readme.txt file.
 
 = 1.7.6 =
 * Fix: CSS for admin bar menu item.
@@ -730,6 +761,12 @@ s* Update: Move VC integration to deprecated functions.
 * Initial Release
 
 == Upgrade Notice ==
+
+= 1.7.7 =
+In this release, schema.org HowTo has been introduced, plus fixes. Please, update the plugin on your website now to get these fixes and enhancements.
+
+= 1.7.6 =
+In this release, schema.org FAQPage has been introduced, plus fixes. Please, update the plugin on your website now to get these fixes and enhancements.
 
 = 1.7.3 =
 In this release, AMP and fixes and enhancements has been introduced. Please, update the plugin on your website now to get these fixes and enhancements.
