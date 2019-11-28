@@ -144,7 +144,13 @@ function schema_wp_options_page() {
 				?>
 				</table>
 				<?php submit_button(); ?>
-			</form>
+                
+                <div style="padding:20px;" class="update-message notice inline notice-success notice-alt">
+                	<span class="dashicons dashicons-admin-generic"></span>
+                    Unlock <a target="_blank" href="https://schema.press/downloads/schema-premium/">Schema Premium</a> features.
+                </div>
+			
+            </form>
 		</div><!-- #tab_container-->
 	</div><!-- .wrap -->
 	<?php

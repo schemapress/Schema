@@ -92,7 +92,7 @@ function schema_wp_pre_submit_validation() {
 	parse_str( $_POST['form_data'], $vars );
   
 	if ( empty( $vars['_schema_post_types'] ) ) {
-        _e('You must select at leat one post type!', 'schema-wp');
+        _e('You must select at least one post type!', 'schema-wp');
         die();
     }
 	
