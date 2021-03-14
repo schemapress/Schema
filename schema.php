@@ -5,9 +5,11 @@
  * Description: The next generation of Structured Data.
  * Author: Hesham
  * Author URI: http://zebida.com
- * Version: 1.7.8.1
+ * Version: 1.7.8.9
  * Text Domain: schema-wp
- * Domain Path: languages
+ * Domain Path: /languages
+ * License:         GPLv2 or later
+ * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  *
  * Schema is distributed under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 2 of the License, or
@@ -50,7 +52,7 @@ final class Schema_WP {
 	 *
 	 * @since 1.0
 	 */
-	private $version = '1.7.8.1';
+	private $version = '1.7.8.9';
 
 	/**
 	 * The settings instance variable
@@ -144,7 +146,7 @@ final class Schema_WP {
 	 * @return void
 	 */
 	public function below_php_version_notice() {
-		echo '<div class="error"><p>' . __( 'Your version of PHP is below the minimum version of PHP required by Schema plugin. Please contact your host and request that your version be upgraded to 5.4 or later.', 'schema-wp' ) . '</p></div>';
+		echo '<div class="notice notice-error"><p>' . __( 'Your version of PHP is below the minimum version of PHP required by Schema plugin. Please contact your host and request that your version be upgraded to 5.4 or later.', 'schema-wp' ) . '</p></div>';
 	}
 	
 	/**
@@ -305,7 +307,10 @@ final class Schema_WP {
 	 * @return void
 	 */
 	public function load_textdomain() {
-
+        
+        load_plugin_textdomain( 'schema-wp', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+        
+        /*
 		// Set filter for plugin's languages directory
 		$lang_dir = dirname( plugin_basename( SCHEMAWP_PLUGIN_FILE ) ) . '/languages/';
 		$lang_dir = apply_filters( 'schema_wp_languages_directory', $lang_dir );
@@ -327,7 +332,7 @@ final class Schema_WP {
 		} else {
 			// Load the default language files
 			load_plugin_textdomain( 'schema-wp', false, $lang_dir );
-		}
+		}*/
 	}
 }
 
