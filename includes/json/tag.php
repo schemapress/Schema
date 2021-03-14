@@ -86,7 +86,7 @@ function schema_wp_get_tag_json() {
 
 		$json = array
        		(
-				'@context' 		=> 'http://schema.org/',
+				'@context' 		=> 'https://schema.org/',
 				'@type' 		=> "CollectionPage",
 				'headline' 		=> $tag_headline,
 				'description' 	=> strip_tags(tag_description()),

@@ -316,9 +316,9 @@ function schema_wp_get_media( $post_id = null) {
 	
 	// Featured image
 	$image_attributes	= wp_get_attachment_image_src( get_post_thumbnail_id($post_id), 'full' );
-	$image_url			= $image_attributes[0];
-	$image_width		= ( $image_attributes[1] > 696 ) ? $image_attributes[1] : 696; // Images should be at least 696 pixels wide
-	$image_height		= $image_attributes[2];
+	$image_url			= isset($image_attributes[0]) ? $image_attributes[0] : '';
+	$image_width		= ( isset($image_attributes[1]) && $image_attributes[1] > 696 ) ? $image_attributes[1] : 696; // Images should be at least 696 pixels wide
+	$image_height		= isset($image_attributes[2]) ? $image_attributes[2] : '';
 	
 	// Thesis 2.x Post Image
 	$my_theme = wp_get_theme();
@@ -870,16 +870,17 @@ function schema_wp_get_currency_symbol( $currency ) {
 function schema_wp_get_archive_link( $post_type ) {
 	global $wp_post_types;
 	$archive_link = false;
+	$slug = '';
 	if (isset($wp_post_types[$post_type])) {
 		$wp_post_type = $wp_post_types[$post_type];
-	if ($wp_post_type->publicly_queryable)
-		if ($wp_post_type->has_archive && $wp_post_type->has_archive!==true)
-			$slug = $wp_post_type->has_archive;
-		else if (isset($wp_post_type->rewrite['slug']))
-			$slug = $wp_post_type->rewrite['slug'];
-		else
-			$slug = $post_type;
-		$archive_link = get_option( 'siteurl' ) . "/{$slug}/";
+		if ($wp_post_type->publicly_queryable)
+			if ($wp_post_type->has_archive && $wp_post_type->has_archive!==true)
+				$slug = $wp_post_type->has_archive;
+			else if (isset($wp_post_type->rewrite['slug']))
+				$slug = $wp_post_type->rewrite['slug'];
+			else
+				$slug = $post_type;
+			$archive_link = get_option( 'siteurl' ) . "/{$slug}/";
 	}
 	return apply_filters( 'schema_wp_archive_link', $archive_link, $post_type );
 }
@@ -956,9 +957,25 @@ function schema_wp_is_blog() {
 function schema_wp_get_truncate_to_word( $string, $limit = 110, $end = '...' ) {
 	
 	$limit 	= apply_filters( 'schema_wp_truncate_to_word_limit', $limit );
-	$limit 	= $limit - strlen($end); // Take into account $end string into the limit
-	$string = substr($string, 0, $limit);
-	$string = substr($string, 0, strrpos($string, ' ')) . $end;
-	
-	return $string;
+
+	if (strlen($string) > $limit || $string == '') {
+		$words = preg_split('/\s/', $string);      
+		$output = '';
+		$i      = 0;
+		while (1) {
+			$length = strlen($output)+strlen($words[$i]);
+			if ($length > $limit) {
+				break;
+			} 
+			else {
+				$output .= " " . $words[$i];
+				++$i;
+			}
+		}
+		$output .= $end;
+	} 
+	else {
+		$output = $string;
+	}
+	return $output;
 }

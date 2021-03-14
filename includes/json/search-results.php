@@ -29,7 +29,7 @@ function schema_wp_output_sitelinks_search_box() {
 		
 		$output .= PHP_EOL . '<script type="application/ld+json">' . PHP_EOL;
 		$output .= '{' . PHP_EOL;
-		$output .= '  "@context": "http://schema.org",' . PHP_EOL;
+		$output .= '  "@context": "https://schema.org",' . PHP_EOL;
 		$output .= '  "@type": "WebSite",' . PHP_EOL;
 		$output .= '  "@id": "#website",' . PHP_EOL;
 		

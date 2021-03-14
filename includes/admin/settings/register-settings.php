@@ -484,58 +484,7 @@ function schema_wp_get_registered_settings() {
 			)
 		),
 			
-		/** Content Settings */
-		
-		/*
-		'schemas' => apply_filters( 'schema_wp_settings_schemas',
-			array(
-				'about_page' => array(
-					'id' => 'about_page',
-					'name' => __( 'About Page', 'schema-wp' ),
-					'desc' => __( '', 'schema-wp' ),
-					'type' => 'post_select',
-					'post_type' => 'page'
-				),
-				'contact_page' => array(
-					'id' => 'contact_page',
-					'name' => __( 'Contact Page', 'schema-wp' ),
-					'desc' => __( '', 'schema-wp' ),
-					'type' => 'post_select',
-					'post_type' => 'page'
-				),
-				'web_page_element' => array(
-					'id' => 'web_page_element_enable',
-					'name' => __( 'WPHeader and WPFooter', 'schema-wp' ),
-					'desc' => __( 'enable?', 'schema-wp' ),
-					'type' => 'checkbox'
-				),
-				'breadcrumbs' => array(
-					'id' => 'breadcrumbs_enable',
-					'name' => __( 'Breadcrumbs', 'schema-wp' ),
-					'desc' => __( 'enable?', 'schema-wp' ),
-					'type' => 'checkbox'
-				),
-				'comments' => array(
-					'id' => 'comments_enable',
-					'name' => __( 'Comments', 'schema-wp' ),
-					'desc' => __( 'enable?', 'schema-wp' ),
-					'type' => 'checkbox'
-				),
-				'video' => array(
-					'id' => 'video_object_enable',
-					'name' => __( 'VideoObject', 'schema-wp' ),
-					'desc' => __( 'enable?', 'schema-wp' ),
-					'type' => 'checkbox'
-				),
-				'audio' => array(
-					'id' => 'audio_object_enable',
-					'name' => __( 'AudioObject', 'schema-wp' ),
-					'desc' => __( 'enable?', 'schema-wp' ),
-					'type' => 'checkbox'
-				)
-			)
-		),
-		*/
+	
 		/** Schemas Settings */
 		'schemas' => apply_filters( 'schema_wp_settings_schemas',
 			array(
@@ -551,46 +500,6 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'Comments', 'schema-premium' ),
 						'desc' => __( 'enable?', 'schema-premium' ),
 						'type' => 'checkbox'
-					),
-					'default_image' => array(
-						'id' => 'default_image',
-						'class' => 'tr_field_logo',
-						'name' => __( 'Default image', 'schema-premium' ),
-						'desc' => __('Specify a default image to be a fallback for missing Featured Images. (should be at least 1200 pixels wide)', 'schema-premium'),
-						'type' => 'image_upload',
-						'std' => '',
-						'readonly' => true,
-						'premium_feature' => true
-					)
-				),
-				'author' => array(
-					'author_archive' => array(
-						'id' => 'author_archive_enable',
-						'name' => __( 'Author Archives', 'schema-premium' ),
-						'desc' => __( 'enable?', 'schema-premium' ),
-						'type' => 'checkbox',
-						'readonly' => true,
-						'premium_feature' => true
-					),
-					'author_url' => array(
-						'id' => 'author_url_enable',
-						'name' => __( 'Author URL', 'schema-premium' ),
-						'desc' => __( 'enable?', 'schema-premium' ),
-						'type' => 'checkbox',
-						'tooltip_title' => __('Keep disabled', 'schema-premium'),
-						'tooltip_desc' => __('if you don\'t want to expose author profile url.', 'schema-premium' ),
-						'readonly' => true,
-						'premium_feature' => true
-					),
-					'gravatar_image' => array(
-						'id' => 'gravatar_image_enable',
-						'name' => __( 'Gravatar ImageObject', 'schema-premium' ),
-						'desc' => __( 'enable?', 'schema-premium' ),
-						'type' => 'checkbox',
-						'tooltip_title' => __('When enabled', 'schema-premium' ),
-						'tooltip_desc' => __('User gravatar.com image will be used in author markup.', 'schema-premium' ),
-						'readonly' => true,
-						'premium_feature' => true
 					)
 				),
 				'breadcrumbs' => array(
@@ -599,76 +508,7 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'Breadcrumbs', 'schema-premium' ),
 						'desc' => __( 'enable?', 'schema-premium' ),
 						'type' => 'checkbox'
-					),
-					'breadcrumbs_home_enable' => array(
-						'id' => 'breadcrumbs_home_enable',
-						'name' => __( 'Show Homepage', 'schema-premium' ),
-						'desc' => __( 'enable?', 'schema-premium' ),
-						'type' => 'checkbox',
-						'readonly' => true,
-						'premium_feature' => true
-					),
-					'breadcrumbs_home_text' => array(
-						'id' => 'breadcrumbs_home_text',
-						'name' => __( 'Homepage Text', 'schema-premium' ),
-						'desc' => '',
-						'type' => 'text',
-						'std' => __( 'Home', 'schema-premium' ),
-						'tooltip_title' => __('Change', 'schema-premium'),
-						'tooltip_desc' => __('Text for the Homepage. Default is Home', 'schema-premium' ),
-						'readonly' => true,
-						'premium_feature' => true
-					),
-				),
-				'blog' => array(
-					'blog_markup' => array(
-						'id' => 'blog_markup',
-						'name' => __( 'Blog Markup', 'schema-premium' ),
-						'desc' => __( '', 'schema-premium' ),
-						'type' => 'select',
-						'options' => array(
-							''			=> __('Select Markup Type', 'schema-premium'),
-							'Blog'		=> __( 'Blog', 'schema-premium'),
-							'ItemList'	=> __( 'ItemList', 'schema-premium')
-						),
-						'std' => '',
-						'readonly' => true,
-						'premium_feature' => true
-					),
-					'category' => array(
-						'id' => 'category_enable',
-						'name' => __( 'Categories', 'schema-premium' ),
-						'desc' => __( 'enable?', 'schema-premium' ),
-						'type' => 'checkbox',
-						'readonly' => true,
-						'premium_feature' => true
-					),
-					'tag' => array(
-						'id' => 'tag_enable',
-						'name' => __( 'Tags', 'schema-premium' ),
-						'desc' => __( 'enable?', 'schema-premium' ),
-						'type' => 'checkbox',
-						'readonly' => true,
-						'premium_feature' => true
-					),
-				),
-				'post_types' => array(
-					'post_type_archive' => array(
-						'id' => 'post_type_archive_enable',
-						'name' => __( 'Post Type Archives', 'schema-premium' ),
-						'desc' => __( 'enable?', 'schema-premium' ),
-						'type' => 'checkbox',
-						'readonly' => true,
-						'premium_feature' => true
-					),
-					'taxonomy' => array(
-						'id' => 'taxonomy_enable',
-						'name' => __( 'Taxonomies', 'schema-premium' ),
-						'desc' => __( 'enable?', 'schema-premium' ),
-						'type' => 'checkbox',
-						'readonly' => true,
-						'premium_feature' => true
-					),
+					)
 				),
 				'special_pages' => array(
 					'about_page' => array(
@@ -695,16 +535,6 @@ function schema_wp_get_registered_settings() {
 						'tooltip_title' => __('When enabled', 'schema-premium'),
 						'tooltip_desc' => __('Schema plugin will fetch video data automatically from embedded video. (configure it under Schema > Types)', 'schema-premium'),
 					),
-					'video_meta' => array(
-						'id' => 'video_object_meta_enable',
-						'name' => __( 'VideoObject meta', 'schema-premium' ),
-						'desc' => __( 'enable?', 'schema-premium' ),
-						'type' => 'checkbox',
-						'tooltip_title' => __('When enabled', 'schema-premium'),
-						'tooltip_desc' => __('Schema plugin will show new post meta feilds to allow you insert video details in page editor.', 'schema-premium'),
-						'readonly' => true,
-						'premium_feature' => true
-					),
 					'audio' => array(
 						'id' => 'audio_object_enable',
 						'name' => __( 'AudioObject', 'schema-premium' ),
@@ -712,17 +542,6 @@ function schema_wp_get_registered_settings() {
 						'type' => 'checkbox',
 						'tooltip_title' => __('When enabled', 'schema-premium'),
 						'tooltip_desc' => __('Schema plugin will fetch audio data automatically from embedded audio. (configure it under Schema > Types)', 'schema-premium'),
-					),
-					'youtube_api_key' => array(
-						'id' => 'youtube_api_key',
-						'name' => __( 'YouTube API Key', 'schema-premium' ),
-						'desc' => '<br><br>' . __('Obtain a YouTube API Key from your Google Developer console.', 'schema-premium'),
-						'type' => 'text',
-						'std' => '',
-						'tooltip_title' => __('When used', 'schema-premium'),
-						'tooltip_desc' => __('Schema plugin will use YoouTube API to fetch video data automatically.', 'schema-premium'),
-						'readonly' => true,
-						'premium_feature' => true
 					)
 				)
 			)
@@ -745,81 +564,6 @@ function schema_wp_get_registered_settings() {
 						'name' => __( 'Delete Data on Uninstall?', 'schema-premium' ),
 						'desc' => __( 'Check this box if you would like Schema to completely remove all of its data when uninstalling via Plugins > Delete.', 'schema-premium' ),
 						'type' => 'checkbox'
-					),
-					'schema_output_location' => array(
-						'id' => 'schema_output_location',
-						'name' => __( 'Schema Markup Output', 'schema-premium' ),
-						'desc' => '',
-						'type' => 'select',
-						'options' => array(
-							'head'		=> __( 'Head', 'schema-premium'),
-							'footer'	=> __( 'Footer', 'schema-premium')
-						),
-						'std' => 'head',
-						'tooltip_title' => __('Schema markup script output', 'schema-premium'),
-						'tooltip_desc' => __('Choose where to output the schema.org json-ld markup.', 'schema-premium'),
-						'readonly' => true,
-						'premium_feature' => true
-					),
-					'json_ld_output_format' => array(
-						'id' => 'json_ld_output_format',
-						'name' => __( 'JSON-LD Output Format', 'schema-premium' ),
-						'desc' => '',
-						'type' => 'select',
-						'options' => array(
-							'minified'		=> __( 'Minified', 'schema-premium'),
-							'pretty_print'	=> __( 'Pretty Print', 'schema-premium')
-						),
-						'std' => 'minified',
-						'tooltip_title' => __('Schema markup script output', 'schema-premium'),
-						'tooltip_desc' => __('Choose the output format of the schema.org json-ld markup.', 'schema-premium'),
-						'readonly' => true,
-						'premium_feature' => true
-					),
-					'schema_test_link' => array(
-						'id' => 'schema_test_link',
-						'name' => __( 'Enable Test Schema Link in Admin Top Toolbar?', 'schema-premium' ),
-						'desc' => '',
-						'type' => 'select',
-						'options' => array(
-							'yes'	=> __( 'Yes', 'schema-premium'),
-							'no'	=> __( 'No', 'schema-premium')
-						),
-						'std' => 'yes',
-						'tooltip_title' => __('When enabled', 'schema-premium'),
-						'tooltip_desc' => __('Schema plugin will show a Test link in admin toolbar. Clicking on that link will take you directly to Google Rich Snippets Testing Tool.', 'schema-premium'),
-						'readonly' => true,
-						'premium_feature' => true
-					),
-					'properties_instructions' => array(
-						'id' => 'properties_instructions_enable',
-						'name' => __( 'Enable Properties Instructions?', 'schema-premium' ),
-						'desc' => '',
-						'type' => 'select',
-						 'options' => array(
-							'yes'	=> __( 'Yes', 'schema-premium'),
-							'no'	=> __( 'No', 'schema-premium')
-						),
-						'std' => 'no',
-						'tooltip_title' => __('When enabled', 'schema-premium'),
-						'tooltip_desc' => __('Instructions will show under each property post meta field.', 'schema-premium'),
-						'readonly' => true,
-						'premium_feature' => true
-					),
-					'acf_admin_menu_show' => array(
-						'id' => 'acf_admin_menu_show',
-						'name' => __( 'Enable ACF PRO admin menu?', 'schema-premium' ),
-						'desc' => '',
-						'type' => 'select',
-						'options' => array(
-							'yes'	=> __( 'Yes', 'schema-premium'),
-							'no'	=> __( 'No', 'schema-premium')
-						),
-						'std' => 'no',
-					'tooltip_title' => __('When enabled', 'schema-premium'),
-					'tooltip_desc' => __('Schema Premium plugin will show Advanced Custom Fields (ACF) admin menu item.', 'schema-premium'),
-					'readonly' => true,
-						'premium_feature' => true
 					)
 				)
 			)
@@ -1078,10 +822,7 @@ function schema_wp_get_registered_settings_sections() {
 		) ),
 		'schemas'    => apply_filters( 'schema_wp_settings_sections_schemas', array(
 			'general'		=> __( 'General', 'schema-premium' ),
-			'author'		=> __( 'Author', 'schema-premium' ),
 			'breadcrumbs'	=> __( 'Breadcrumbs', 'schema-premium' ),
-			'blog'			=> __( 'Blog', 'schema-premium' ),
-			'post_types'	=> __( 'Post Types', 'schema-premium' ),
 			'special_pages' => __( 'Special Pages', 'schema-premium' ),
 			'embeds' 		=> __( 'Embeds', 'schema-premium' ),
 		) ),

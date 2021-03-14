@@ -83,19 +83,19 @@ function schema_wp_get_blog_json( $type ) {
 					$blogPost[] = apply_filters( 'schema_output_blog_post', array
            			(
 						'@type' => 'BlogPosting',
-						'headline' => wp_filter_nohtml_kses( get_the_title() ),
+						'headline' => wp_filter_nohtml_kses( get_the_title($schema_post->ID) ),
 						'description' => schema_wp_get_description($schema_post->ID),
-						'url' => get_the_permalink(),
+						'url' => get_the_permalink($schema_post->ID),
 						'sameAs' => schema_wp_get_sameAs($schema_post->ID),
-						'datePublished' => get_the_date('c'),
-						'dateModified' => get_the_modified_date('c'),
-						'mainEntityOfPage' => get_the_permalink(),
+						'datePublished' => get_the_date('c', $schema_post->ID),
+						'dateModified' => get_the_modified_date('c', $schema_post->ID),
+						'mainEntityOfPage' => get_the_permalink($schema_post->ID),
 						'author' => schema_wp_get_author_array(),
 						'publisher' => schema_wp_get_publisher_array(),
 						'image' => schema_wp_get_media($schema_post->ID),
 						'keywords' => schema_wp_get_post_tags($schema_post->ID),
-						'commentCount' => get_comments_number(),
-						'comment' => schema_wp_get_comments(),
+						'commentCount' => get_comments_number($schema_post->ID),
+						'comment' => schema_wp_get_comments($schema_post->ID),
             		));
 				}
 			}

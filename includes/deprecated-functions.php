@@ -39,3 +39,20 @@ function schema_wp_first_post_date( $format = 'Y-m-d' ) {
 
 	return $output;
 }
+
+
+/**
+ * Truncate a string of content to 110 characters, respecting full words.
+ *
+ * @since 1.7.1
+ * @return string
+ */
+function schema_wp_get_truncate_to_word_deprecated( $string, $limit = 110, $end = '...' ) {
+	
+	$limit 	= apply_filters( 'schema_wp_truncate_to_word_limit', $limit );
+	$limit 	= $limit - strlen($end); // Take into account $end string into the limit
+	$string = substr($string, 0, $limit);
+	$string = substr($string, 0, strrpos($string, ' ')) . $end;
+	
+	return $string;
+}

@@ -170,7 +170,7 @@ function schema_wp_get_schema_json( $type ) {
 	// @since 1.4
 	
 	// Stuff for any page
-	$schema["@context"] = "http://schema.org/";
+	$schema["@context"] = "https://schema.org/";
 
 	$schema["@type"] = $type;
 	

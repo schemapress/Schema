@@ -110,7 +110,7 @@ function schema_wp_get_category_json() {
 
 		$json = array
        		(
-				'@context' 		=> 'http://schema.org/',
+				'@context' 		=> 'https://schema.org/',
 				'@type' 		=> 'CollectionPage',
 				'headline' 		=> $category_headline,
 				'description' 	=> strip_tags(category_description()),

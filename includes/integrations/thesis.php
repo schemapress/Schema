@@ -3,7 +3,7 @@
  * Thesis Theme 2.x integration
  *
  *
- * plugin url: http://diythemes.com/
+ * plugin url: https://diythemes.com/
  * @since 1.4
  */
  

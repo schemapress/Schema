@@ -140,7 +140,7 @@ function schema_wp_get_author_array( $post_id = null ) {
 function schema_wp_validate_gravatar( $email ) {
 
 	$hashkey 	= md5(strtolower(trim($email)));
-	$uri 		= 'http://www.gravatar.com/avatar/' . $hashkey;
+	$uri 		= 'https://www.gravatar.com/avatar/' . $hashkey;
 	$data 		= get_transient($hashkey);
 	
 	if (false === $data) {

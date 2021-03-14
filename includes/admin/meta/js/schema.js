@@ -22,22 +22,24 @@ jQuery(function($) {
 	
 	
 	// repeated post meta group / show hide main meta box
+	
 	$('#schema_post_meta_box').hide();
 	
-	var post_meta_enabled = $("#_schema_post_meta_box_enabled").attr('checked');
+	var post_meta_enabled = $("#_schema_post_meta_box_enabled").prop('checked');
 	
 	if (post_meta_enabled)
 		$('#schema_post_meta_box').show();
 		
 	$('#_schema_post_meta_box_enabled').change(function(){
-        var checked = $(this).attr('checked');
+        var checked = $(this).prop('checked');
         if (checked) {
            $('#schema_post_meta_box').show();             
         } else {
             $('#schema_post_meta_box').hide();
         }
-    });
+	});
 	
+	/*
 	// repeated post meta group fields
 	// first, hide all divs inside the repeatable row, which has the advanmced options
 	$('.meta_box_repeatable_row div').hide();
@@ -51,6 +53,6 @@ jQuery(function($) {
     	$(this).html('Advanced <span class="dashicons dashicons-arrow-down-alt2"></span>'); // Advanced options
 		//$(this).html(this.id);
 	});
-	
+	*/
 	
 });
