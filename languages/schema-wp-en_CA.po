@@ -1,19 +1,20 @@
-#, fuzzy
+# Translation of Schema in English (Canada)
+# This file is distributed under the same license as the Schema package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Schema\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-11-27 14:34+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"PO-Revision-Date: 2019-12-18 23:23+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.3.1; wp-5.3"
+"Language: en_CA\n"
+"Project-Id-Version: Schema\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-27 14:34+0000\n"
+"Last-Translator: Hesham Z. <hesham.zebida@gmail.com>\n"
+"Language-Team: English (Canada)\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
 
 #: includes/admin/meta.php:249
 msgid ""
@@ -23,7 +24,7 @@ msgstr ""
 
 #: includes/json/category.php:108
 msgid " Category"
-msgstr ""
+msgstr " Category"
 
 #: includes/json/tag.php:84
 msgid " Tag"
@@ -47,7 +48,7 @@ msgstr ""
 
 #: includes/admin/class-menu.php:79 includes/admin/class-menu.php:80
 msgid "About"
-msgstr ""
+msgstr "About"
 
 #: includes/admin/class-setup-wizard.php:595
 #: includes/admin/class-setup-wizard.php:598
@@ -323,7 +324,7 @@ msgstr ""
 
 #: includes/admin/class-welcome.php:365
 msgid ""
-"Docs are on its way! We will update <a href=\"https://schema.press/\">schema."
+"Docs are on its way! We will update <a href=\"http://schema.press/\">schema."
 "press</a> site with plugin documentation soon."
 msgstr ""
 
@@ -447,7 +448,7 @@ msgstr ""
 
 #: includes/extensions/sameAs.php:41
 msgid "Enter sameAs URLs, one per line."
-msgstr ""
+msgstr "Enter sameAs URLs, one per line."
 
 #: includes/admin/updater/class-license-handler.php:475
 msgid "Enter valid license key for automatic updates."
@@ -612,7 +613,7 @@ msgid ""
 "Here, we will be listing some of the faces that have helped build Schema."
 msgstr ""
 
-#. Author of the plugin
+#. Author of the plugin/theme
 msgid "Hesham"
 msgstr ""
 
@@ -624,11 +625,11 @@ msgstr ""
 msgid "How do you like Schema?"
 msgstr ""
 
-#. Author URI of the plugin
+#. Author URI of the plugin/theme
 msgid "http://zebida.com"
 msgstr ""
 
-#. URI of the plugin
+#. Plugin URI of the plugin/theme
 msgid "https://schema.press"
 msgstr ""
 
@@ -767,7 +768,7 @@ msgstr ""
 msgid "Logo guidelines"
 msgstr ""
 
-#. Publish box date format, see http://php.net/date
+#. translators: Publish box date format, see http://php.net/date
 #: includes/admin/post-type/schema-post-type.php:103
 msgid "M j, Y @ G:i"
 msgstr ""
@@ -912,6 +913,8 @@ msgid ""
 "Now Schema plugin plays nicely with Yoast SEO plugin, you can have both "
 "plugins active with no conflicts."
 msgstr ""
+"Now Schema plugin plays nicely with Yoast SEO plugin, you can have both "
+"plugins active with no conflicts."
 
 #: includes/admin/class-welcome.php:208
 msgid "Now, Schema plugin supports more schema.org types."
@@ -933,7 +936,7 @@ msgstr ""
 
 #: includes/admin/class-setup-wizard.php:393
 msgid "Organization or Person?"
-msgstr ""
+msgstr "Organization or Person?"
 
 #: includes/admin/extensions.php:56
 msgid "Our official free extensions are available to all license holders!"
@@ -988,7 +991,7 @@ msgstr ""
 
 #: includes/admin/class-welcome.php:199
 msgid "Plugin Settings"
-msgstr ""
+msgstr "Plugin Settings"
 
 #: includes/misc-functions.php:710
 msgid "Polish Zloty"
@@ -1119,18 +1122,19 @@ msgstr ""
 
 #: includes/extensions/sameAs.php:74
 msgid "sameAs"
-msgstr ""
+msgstr "sameAs"
 
 #: includes/admin/meta-tax.php:44
 msgid "sameAs "
-msgstr ""
+msgstr "sameAs "
 
 #: includes/admin/meta.php:249
 #, php-format
 msgid "Save 15% off your purchase? Use discount code: <b>SPFREE15</b>"
 msgstr ""
 
-#. Name of the plugin
+#. #-#-#-#-#  schema-code.pot (Schema 1.7)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
 #: includes/admin/class-feedback.php:293 includes/admin/meta.php:128
 #: includes/admin/class-menu.php:30 includes/admin/class-menu.php:31
 #: includes/admin/meta-tax.php:25
@@ -1142,7 +1146,7 @@ msgstr ""
 #: includes/admin/post-type/schema-post-type.php:29
 msgctxt "schema"
 msgid "Add New"
-msgstr ""
+msgstr "Add New"
 
 #: includes/admin/class-setup-wizard.php:188
 msgid "Schema &rsaquo; Setup Wizard"
@@ -1203,7 +1207,7 @@ msgstr ""
 msgid "Schema Post Type"
 msgstr ""
 
-#. %s: date and time of the revision
+#. translators: %s: date and time of the revision
 #: includes/admin/post-type/schema-post-type.php:96
 #, php-format
 msgid "Schema restored to revision from %s"
@@ -1477,7 +1481,7 @@ msgstr ""
 msgid "Thank you for updating to the latest version!"
 msgstr ""
 
-#. Description of the plugin
+#. Description of the plugin/theme
 msgid "The next generation of Structured Data."
 msgstr ""
 
@@ -1625,10 +1629,13 @@ msgid ""
 " E.g. the URL of the item's Wikipedia page, Freebase page, or official "
 "website."
 msgstr ""
+"URL of a reference Web page that unambiguously indicates the item's identity."
+" E.g. the URL of the item's Wikipedia page, Freebase page, or official "
+"website."
 
 #: includes/extensions/sameAs.php:39
 msgid "URLs"
-msgstr ""
+msgstr "URLs"
 
 #: includes/misc-functions.php:721
 msgid "US Dollars"
