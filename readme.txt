@@ -3,11 +3,11 @@ Contributors: hishaman, schemapress
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NGVUBT2QXN7YL
 Tags: schema, schema.org, rich snippets, structured data, json-ld, json, google, seo, markup, search engine, search, breadcrumbs, social, post, page, plugin, wordpress, content, article, news, search results, site name, knowledge graph, social, social profiles, keywords, meta-tags, metadata, tags, categories, optimize, ranking, search engine optimization, search engines, serp, sitelinks, google sitelinks, sitelinks search box, google sitelinks search box, semantic, structured, canonical, custom post types, post type, title, terms, media, images, thumb, featured, url, video, video markup, video object, VideoObject, video schema, audio object, AudioObject, audio schema, audio, sameAs, about, contact, amp, mobile, taxonomy
 Requires at least: 4.0
-Tested up to: 5.3
+Tested up to: 5.7
 Requires PHP: 5.4
-Stable tag: 1.7.8.1
+Stable tag: 1.7.8.9
 License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Get the next generation of Schema Structured Data to enhance your WordPress site presentation in Google search results.
 
@@ -25,6 +25,10 @@ Check out the [Plugin Homepage](https://schema.press/) for more info and [docume
 ### What is Schema markup?
 
 Schema markup is code (semantic vocabulary) that you put on your website to help the search engines return more informative results for users. So, Schema is not just for SEO reasons, it’s also for the benefit of the searcher. 
+
+### Schema.org Markup Demo
+
+View our [Live Structured Data Demo](https://demo.schema.reviews/) examples. 
 
 ### Schema Key Features
 
@@ -52,9 +56,10 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 ### Premium Plugin Extensions
 
 * [Schema for WooCommerce](https://schema.press/downloads/schema-woocommerce/): Integration for WooCommerce.
-* [Schema FAQ Block](https://schema.press/downloads/schema-faq-block/): Add FAQ Block.
+* [Schema FAQ Block](https://schema.press/downloads/schema-faq-block/): Add FAQ Block. ( [FAQPage Demo](https://demo.schema.reviews/extensions/schema-faq-block/) ).
 * [Schema How-To Block](https://schema.press/downloads/schema-howto-block/): Add How-To Block.
-* [Schema Rating](https://schema.press/downloads/schema-rating/): Allow site visitors to submit rating on front-end.
+* [Schema Rating](https://schema.press/downloads/schema-rating/): Allow site visitors to submit rating ( [Demo](https://demo.schema.reviews/nested-aggregate-rating/) ).
+* [Schema Reviews](https://schema.press/downloads/schema-reviews/): Allow site visitors to submit reviews ( [Demo](https://demo.schema.reviews/nested-review/) ).
 
 ### Supported Google/Schema Markups
 
@@ -100,6 +105,7 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 * [FAQPage](https://schema.press/docs-premium/add-schema-org-faq-page/)
 * [HowTo](https://schema.press/docs-premium/add-schema-org-howto/)
 * [Course](https://schema.press/docs-premium/add-schema-org-course/)
+* [SpecialAnnouncement](https://schema.press/docs-premium/add-schema-org-markup-special-announcement/)
 * [Job Posting](https://schema.org/JobPosting)
 * [Local Business](https://schema.press/docs-premium/add-schema-localbusiness/)
 * [Person](https://schema.org/Person)
@@ -109,6 +115,10 @@ Schema markup is code (semantic vocabulary) that you put on your website to help
 * [Service](https://schema.press/docs-premium/add-schema-service/)
 * [Software Application](https://schema.press/docs-premium/add-schema-org-markup-for-software-application/)
 * [WebPage](https://schema.press/version-110-support-medical-web-page/)
+
+### Schema.org Markup Examples
+
+View our [Live Structured Data Demo](https://demo.schema.reviews/) examples. 
 
 ### Supported Plugins
 
@@ -136,7 +146,7 @@ The plugin should work fine with any well coded WordPress theme, however these t
 
 schema.press team does not always provide active support for the Schema plugin on the WordPress.org forums, as we prioritize our email support. One-on-one email support is available to people who [bought Schema Premium](https://schema.press/pricing/) only.
 
-Note that the [Schema Premium](https://schema.press/downloads/schema-premium/) also has several extra [features](https://schema.press/features/) too, including the option to enable more schema.org types, set content location target for markup, and map schema.org properties, so it is well worth your investment!
+Note that the premium [Schema Plugin](https://schema.press/downloads/schema-premium/) also has several extra [features](https://schema.press/features/) too, including the option to enable more schema.org types, set content location target for markup, and map schema.org properties, so it is well worth your investment!
 
 ### Developers?
 
@@ -213,9 +223,46 @@ Yes, Schema plugin will detect AMP plugin and output a more complete and valid s
 
 == Changelog ==
 
+= 1.7.8.9 =
+* Enhancement: Cache Knowledge Graph markup, reduced 3 database queries and enhanced performance.
+* Update: Pumped tested WordPress version to 5.7 release.
+
+= 1.7.8.8 =
+* Update: More clean backend and plugin settings.
+* Update: Pumped tested WordPress version to 5.6.2 release.
+
+= 1.7.8.7 =
+* Fixed: Truncate headline.
+
+= 1.7.8.6 =
+* Fixed: Revert to truncate headline to 110 characters, avoid markup error.
+
+= 1.7.8.5 =
+* Fixed: Use full headline instead of truncated version.
+* Update: Pumped tested WordPress version to 5.6.1 release.
+
+= 1.7.8.4 =
+* Fixed: PHP notice when calling comments markup function.
+* Fixed: BlogPosting markup was missing post id parameter.
+* Fixed: Corrected admin notices CSS classes.
+* Update: Pumped tested WordPress version to 5.6 release.
+* Update: Modified readme.txt file.
+
+= 1.7.8.3 =
+* Fixed: Query warnings due to changes in WordPress 5.5
+* Update: Pumped tested WordPress version to 5.5.1 release.
+* Update: Modified readme.txt file.
+
+= 1.7.8.2 =
+* Fixed: PHP notices across the plugin code.
+* Update: Corrected license url in plugin file.
+* Update: Modified license file.
+* Update: Pumped tested WordPress version to 5.4.1 release.
+* Update: Modified readme.txt file.
+
 = 1.7.8.1 =
 * Enhancement: Translation .po for English, French, German, Russian, Spanish, and Swedish.
-* Update: Pumped tested WordPress version to 5.3 release.
+* Update: Pumped tested WordPress version to 5.3.2 release.
 * Update: Modified readme.txt file.
 * Update: Modified README.md file.
 
