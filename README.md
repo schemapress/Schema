@@ -1,7 +1,7 @@
 # [Schema](http://schema.press) #
 ============
 
-Version 1.7.8.1
+Version 1.7.8.9
 
 ### Welcome to our GitHub Repository
 
